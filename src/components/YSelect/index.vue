@@ -1,7 +1,6 @@
 <template>
   <div class="">
 
-    {{value}}{{result}}{{options}}
     <el-select
       v-model="result"
       placeholder="请选择"
