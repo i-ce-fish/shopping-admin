@@ -8,19 +8,23 @@
       @change="change"
       :size="size"
     >
-      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+      <el-option v-for="item in innerOptions" :key="item.value" :label="item.label" :value="item.value" />
     </el-select>
   </div>
 </template>
 <script>
+import request from "@/utils/request"
 
 export default {
   components: {},
   props: {
+    // 接口地址
+    api: String,
     disabled: { type: Boolean, default: false },
     // 数字类型的value有bug，导致选中后label不显示
     value: String,
     config: Object,
+    // 初始化数据
     options: {
       type: Array,
       default: () => [{
@@ -44,7 +48,9 @@ export default {
   },
   data() {
     return {
-      result: this.value
+      result: this.value,
+      // 作为内部数据使用
+      innerOptions: this.options
     }
   },
   computed: {},
@@ -56,10 +62,23 @@ export default {
   created() {
   },
   mounted() {
+    this.initData()
   },
   methods: {
     change() {
       this.$emit("input", this.result.toString())
+    },
+    async initData() {
+      if (this.api) {
+        const res = await request({
+          url: this.api,
+          method: "get"
+        })
+        this.innerOptions = res.data.map((item) => ({
+          label: item.name,
+          value: item.id.toString()
+        }))
+      }
     }
   }
 }

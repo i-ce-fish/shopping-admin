@@ -48,8 +48,8 @@
           <el-col :span="12">
             <el-form-item label="课程:" prop="catalog_id">
               <YSelect
-                :options="course_options"
                 v-model="paperForm.course"
+                api="/api/selects"
               />
             </el-form-item>
           </el-col>
@@ -70,7 +70,6 @@
 <script>
 
 import { addPaper } from "../../api/paper"
-import { getCourses } from "../../api/select"
 
 export default {
 
@@ -82,12 +81,8 @@ export default {
     }
   },
   created() {
-    this.init()
   },
   methods: {
-    init() {
-      this.get_course_options()
-    },
     async api() {
       await addPaper(this.paperForm)
       this.$router.push({ path: "/paper" })
@@ -107,17 +102,8 @@ export default {
         }
         return undefined
       })
-    },
-
-    async get_course_options() {
-      const res = await getCourses()
-      res.data.map((item) => {
-        this.course_options.push({
-          label: item.name,
-          value: item.id.toString()
-        })
-      })
     }
+
   }
 
 }
