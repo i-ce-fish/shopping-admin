@@ -15,6 +15,7 @@ import YSlider from "@/components/YSlider/index.vue"
 import YUpload from "@/components/YUpload/index.vue"
 import YSwitch from "@/components/YSwitch/index.vue"
 import YTable from "@/components/YTable/index.vue"
+import YForm from "@/components/YForm/index.vue"
 //
 import store from "./store"
 import router from "./router"
@@ -31,6 +32,7 @@ Vue.component("YSlider", YSlider)
 Vue.component("YUpload", YUpload)
 Vue.component("YSwitch", YSwitch)
 Vue.component("YTable", YTable)
+Vue.component("YForm", YForm)
 
 Vue.use(ElementUI)
 // 返回

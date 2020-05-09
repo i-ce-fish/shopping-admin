@@ -30,8 +30,12 @@ const routes = [
     name: "Register",
     component: () => import("@/views/Register")
   },
-  paperRouter
-
+  paperRouter,
+  {
+    path: "/test",
+    name: "test",
+    component: () => import("@/views/Test")
+  }
 //  todo 404
 ]
 
