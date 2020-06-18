@@ -34,14 +34,21 @@ export const regular = {
   numLinefeedMsg: "请输入数字和换行符",
   // 255位以内的字符
   char0to255: /^.{0,255}$/,
-  char0to255Msg: "请输入255位以内的字符"
+  char0to255Msg: "请输入255位以内的字符",
+  test(rule, value, callback) {
+    console.log("test ")
+    if (true) {
+      return callback(new Error("请输入正确的xx"))
+    }
+    callback()
+  }
 }
 /**
  * @description 自定义校验
  */
 export const validateOrder = function(rule, value, callback) {
-  if (true) {
-    return callback(new Error("请输入正确的xx"))
+  if (parseInt(value, 10) > 1) {
+    return callback(new Error("排序值不可以大于255"))
   }
   callback()
 }

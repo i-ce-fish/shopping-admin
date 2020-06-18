@@ -7,6 +7,7 @@ export function login(data) {
     data
   })
 }
+
 export function register(data) {
   return request({
     url: "/api/users",
@@ -14,6 +15,7 @@ export function register(data) {
     data
   })
 }
+
 export function getInfo(params) {
   return request({
     url: "/api/auth/info",

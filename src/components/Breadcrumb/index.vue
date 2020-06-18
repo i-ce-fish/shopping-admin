@@ -11,14 +11,13 @@
 
 export default {
   data() {
-    return {
-    }
+    return {}
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .breadcrumb,.el-breadcrumb{
+  .breadcrumb, .el-breadcrumb {
     height: 50px;
     line-height: 50px;
 

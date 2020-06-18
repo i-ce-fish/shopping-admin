@@ -7,7 +7,7 @@
       <div class="">
         <el-form ref="form" :model="form" label-width="80px">
           <el-form-item label="用户名">
-            <el-input v-model="form.email" placeholder="请输入账号"></el-input>
+            <el-input v-model="form.username" placeholder="请输入账号"></el-input>
           </el-form-item>
           <el-form-item label="密码">
             <el-input v-model="form.password" placeholder="请输入密码" show-password></el-input>
@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       form: {
-        email: "1maxazure@gmail.com",
+        username: "maxazure",
         password: "test"
       }
     }

@@ -1,6 +1,24 @@
 <template>
-  <el-radio-group v-model="result" @change="change">
-    <el-radio v-for="item of options" :key="item.value" :label="item.value">{{ item.label }}</el-radio>
+  <el-radio-group
+    v-model="result"
+    @change="change"
+    :size="size"
+    :fill="fill"
+    :text-color="textColor"
+    :disabled="disabled"
+  >
+    <el-radio
+      v-for="item of options"
+      :key="item.value"
+      :label="item.value"
+
+      :disabled="item.disabled"
+      :name="item.name"
+      :border="item.border"
+      :size="item.size"
+
+    >{{ item.label }}
+    </el-radio>
   </el-radio-group>
 </template>
 <script>
@@ -13,10 +31,20 @@ export default {
           type: Array,
           require: false,
           default: () => [
-            { value: true, label: "是" },
-            { value: false, label: "否" }
+            {
+              value: true,
+              label: "是"
+            },
+            {
+              value: false,
+              label: "否"
+            }
           ]
-        }
+        },
+    size: String,
+    fill: String,
+    textColor: String,
+    disabled: Boolean
   },
   data() {
     return {

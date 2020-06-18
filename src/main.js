@@ -2,6 +2,7 @@ import Vue from "vue"
 import ElementUI from "element-ui"
 import "normalize.css"
 import "element-ui/lib/theme-chalk/index.css"
+import "@/style/index.scss"
 
 // 自定义组件
 import YInput from "@/components/YInput/index.vue"
@@ -12,14 +13,18 @@ import YDatepicker from "@/components/YDatepicker/index.vue"
 import YNumber from "@/components/YNumber/index.vue"
 import YRadio from "@/components/YRadio/index.vue"
 import YSlider from "@/components/YSlider/index.vue"
-import YUpload from "@/components/YUpload/index.vue"
 import YSwitch from "@/components/YSwitch/index.vue"
 import YTable from "@/components/YTable/index.vue"
 import YForm from "@/components/YForm/index.vue"
+import YUpload from "@/components/YUpload/index.vue"
+import YUploadSingle from "@/components/YUpload/YUploadSingle.vue"
+import YUploadMultiple from "@/components/YUpload/YUploadMultiple.vue"
 //
 import store from "./store"
 import router from "./router"
 import App from "./App.vue"
+
+import "./permission" // permission control
 
 Vue.component("YRadio", YRadio)
 Vue.component("YInput", YInput)
@@ -33,6 +38,8 @@ Vue.component("YUpload", YUpload)
 Vue.component("YSwitch", YSwitch)
 Vue.component("YTable", YTable)
 Vue.component("YForm", YForm)
+Vue.component("YUploadSingle", YUploadSingle)
+Vue.component("YUploadMultiple", YUploadMultiple)
 
 Vue.use(ElementUI)
 // 返回

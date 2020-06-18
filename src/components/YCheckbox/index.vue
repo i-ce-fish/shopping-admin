@@ -1,6 +1,29 @@
 <template>
-  <el-checkbox-group v-model="result" @change="change">
-    <el-checkbox v-for="item of options" :key="item.value" :label="item.label" />
+  <el-checkbox-group
+    v-model="result"
+    @change="change"
+    :disabled="disabled"
+    :min="min"
+    :max="max"
+    :size="size"
+    :fill="fill"
+    :text-color="textColor"
+  >
+    <el-checkbox
+      v-for="item of options"
+      :key="item.value"
+      :label="item.label"
+      :indeterminate="item.indeterminate"
+      :disabled="item.disabled"
+      :checked="item.checked"
+      :name="item.name"
+      :true-label="item.trueLabel"
+      :false-label="item.falseLabel"
+      :id="item.id"
+      :controls="item.controls"
+      :border="item.border"
+      :size="item.size"
+    />
   </el-checkbox-group>
 </template>
 <script>
@@ -25,7 +48,15 @@ export default {
         value: "选项5",
         label: "北京烤鸭"
       }]
-    }
+    },
+    label: {},
+    disabled: Boolean,
+    min: Number,
+    max: Number,
+    size: String,
+    fill: String,
+    textColor: String
+
   },
   data() {
     return { result: this.value }

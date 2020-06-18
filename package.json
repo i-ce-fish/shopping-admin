@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint --fix"
   },
   "dependencies": {
     "axios": "0.18.1",
@@ -13,6 +13,7 @@
     "element-ui": "^2.13.1",
     "js-cookie": "^2.2.1",
     "normalize.css": "^8.0.1",
+    "nprogress": "0.2.0",
     "store": "^2.0.12",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",

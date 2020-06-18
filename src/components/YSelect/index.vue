@@ -1,14 +1,40 @@
 <template>
-  <div class="">
-
+  <div class="y-select">
     <el-select
       v-model="result"
-      placeholder="请选择"
+      :placeholder="placeholder"
       :disabled="disabled"
       @change="change"
       :size="size"
+      :name="name"
+      :id="id"
+      :autocomplete="autocomplete"
+      :automatic-dropdown="automaticDropdown"
+      :clearable="clearable"
+      :filterable="filterable"
+      :allow-create="allowCreate"
+      :loading="loading"
+      :popper-class="popperClass"
+      :remote="remote"
+      :loading-text="loadingText"
+      :no-match-text="noMatchText"
+      :no-data-text="noDataText"
+      :remote-method="remoteMethod"
+      :filter-method="filterMethod"
+      :multiple="multiple"
+      :multiple-limit="multipleLimit"
+      :default-first-option="defaultFirstOption"
+      :reserve-keyword="reserveKeyword"
+      :value-key="valueKey"
+      :collapse-tags="collapseTags"
+      :popper-append-to-body="popperAppendToBody"
     >
-      <el-option v-for="item in innerOptions" :key="item.value" :label="item.label" :value="item.value" />
+      <el-option
+        v-for="item in innerOptions"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+        :disabled="item.disabled"/>
     </el-select>
   </div>
 </template>
@@ -20,9 +46,24 @@ export default {
   props: {
     // 接口地址
     api: String,
-    disabled: { type: Boolean, default: false },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     // 数字类型的value有bug，导致选中后label不显示
-    value: String,
+    value: {
+      String,
+      required: true
+    },
+    // api 数据格式与组件数据格式转换
+    valueName: {
+      String,
+      default: "value"
+    },
+    labelName: {
+      String,
+      default: "label"
+    },
     config: Object,
     // 初始化数据
     options: {
@@ -44,11 +85,58 @@ export default {
         label: "北京烤鸭"
       }]
     },
-    size: { type: String, default: "small", required: false }
+    size: {
+      type: String,
+      default: "small",
+      required: false
+    },
+
+    name: String,
+    id: String,
+
+    autocomplete: {
+      type: String,
+      default: "off"
+    },
+    automaticDropdown: Boolean,
+    clearable: Boolean,
+    filterable: Boolean,
+    allowCreate: Boolean,
+    loading: Boolean,
+    popperClass: String,
+    remote: Boolean,
+    loadingText: String,
+    noMatchText: String,
+    noDataText: String,
+    remoteMethod: Function,
+    filterMethod: Function,
+    multiple: Boolean,
+    multipleLimit: {
+      type: Number,
+      default: 0
+    },
+    placeholder: {
+      type: String,
+      default: "请选择"
+    },
+    defaultFirstOption: Boolean,
+    reserveKeyword: Boolean,
+    valueKey: {
+      type: String,
+      default: "value"
+    },
+    collapseTags: Boolean,
+    popperAppendToBody: {
+      type: Boolean,
+      default: true
+    }
+
   },
   data() {
     return {
-      result: this.value,
+      // ajax数据滞后，要加非空判断
+      // value 为id 时是Number类型
+      result: this.value?.toString(),
       // 作为内部数据使用
       innerOptions: this.options
     }
@@ -56,7 +144,9 @@ export default {
   computed: {},
   watch: {
     value(val) {
-      this.result = val
+      // 搜索表单重置后为空，要有费非空判断
+      // value 为id 时是Number类型
+      this.result = val?.toString()
     }
   },
   created() {
@@ -74,9 +164,9 @@ export default {
           url: this.api,
           method: "get"
         })
-        this.innerOptions = res.data.map((item) => ({
-          label: item.name,
-          value: item.id.toString()
+        this.innerOptions = res.data.list.map((item) => ({
+          label: item[this.labelName],
+          value: item[this.valueName]?.toString()
         }))
       }
     }
@@ -85,6 +175,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .base-select {
-  }
+
 </style>

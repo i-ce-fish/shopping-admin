@@ -8,14 +8,20 @@
       @click=" dialogVisible=true"
     >上传图片
     </el-button>
-    <el-dialog :visible.sync="dialogVisible">
+    <!--        :multiple="multiple"-->
+    <el-dialog
+      :visible.sync="dialogVisible"
+      :modal="modal"
+    >
       <el-upload
+        ref="upload"
         name="file"
-        :multiple="multiple"
         :file-list="fileList"
         :on-success="handleSuccess"
         :on-remove="handleRemove"
         :on-change="handleChange"
+        :on-error="handleError"
+        :before-upload="beforeUpload"
         :show-file-list="true"
         class="editor-slide-upload"
         :action="uploadUrl"
@@ -30,87 +36,76 @@
   </div>
 </template>
 <script>
-// import { getToken } from 'api/qiniu'
 
 export default {
   name: "EditorSlideUpload",
-  model: {
-    prop: "input",
-    event: "successCBK"
-  },
   props: {
+    value: Array,
     color: {
       type: String,
       default: "#1890ff"
     },
-    multiple: { type: Boolean, default: false, required: false }
+    // todo bug 多选时不能同时上传
+    multiple: {
+      type: Boolean,
+      default: false,
+      required: true
+    },
+    // 是否显示遮罩层
+    modal: {
+      type: Boolean,
+      default: true,
+      required: false
+    }
   },
   data() {
     return {
       dialogVisible: false,
+      // 上传路径
       uploadUrl: "http://shop.cdb99.com:8088/api/upload",
+      // 访问路径
       readFileUrl: "http://shop.cdb99.com",
-      result: "",
+      result: [],
+      // has bug 上传框默认值 fileList: this.value
       fileList: []
+    }
+  },
+  watch: {
+    value(val) {
+      this.fileList = val
     }
   },
   methods: {
     checkAllSuccess() {
-      return Object.keys(this.listObj).every(item => this.listObj[item].hasSuccess)
+      return Object.keys(this.listObj)
+        .every((item) => this.listObj[item].hasSuccess)
     },
     handleSubmit() {
-      // const arr = Object.keys(this.listObj).map(v => this.listObj[v])
-      // if (!this.checkAllSuccess()) {
-      //   this.$message('请等待所有图片上传成功 或 出现了网络问题，请刷新页面重新上传！')
-      //   return
-      // }
-      // this.$emit('successCBK', arr)
-      // this.listObj = {}
-      // this.fileList = []
-      this.$emit("successCBK", this.result)
+      this.$emit("success", this.result)
       this.dialogVisible = false
     },
     handleSuccess(response, file) {
-      // const uid = file.uid
-      // const objKeyArr = Object.keys(this.listObj)
-      // for (let i = 0, len = objKeyArr.length; i < len; i++) {
-      //   if (this.listObj[objKeyArr[i]].uid === uid) {
-      //     this.listObj[objKeyArr[i]].url = this.readFileUrl + response.data
-      //     this.listObj[objKeyArr[i]].hasSuccess = true
-      //     return
-      //   }
-      // }
-
-      this.result = this.readFileUrl + response.data
+      if (this.multiple) {
+        this.result.push({ url: this.readFileUrl + response.data })
+      } else {
+        this.result = [{ url: this.readFileUrl + response.data }]
+        this.fileList = this.result
+      }
     },
-    handleRemove(file) {
-      // const uid = file.uid
-      // const objKeyArr = Object.keys(this.listObj)
-      // for (let i = 0, len = objKeyArr.length; i < len; i++) {
-      //   if (this.listObj[objKeyArr[i]].uid === uid) {
-      //     delete this.listObj[objKeyArr[i]]
-      //     return
-      //   }
-      // }
-      this.result = ""
+    handleRemove(file, fileList) {
+      this.result = fileList
     },
     beforeUpload(file) {
-      // const _self = this
-      // const _URL = window.URL || window.webkitURL
-      // const fileName = file.uid
-      // this.listObj[fileName] = {}
-      // return new Promise((resolve, reject) => {
-      //   const img = new Image()
-      //   img.src = _URL.createObjectURL(file)
-      //   img.onload = function() {
-      //     _self.listObj[fileName] = { hasSuccess: false, uid: file.uid, width: this.width, height: this.height }
-      //   }
-      //   resolve(true)
-      // })
     },
-    // 只能上传一张
     handleChange(file, fileList) {
-      this.fileList = fileList.slice(-1)
+    },
+    handleError() {
+      console.log("上传失败,设置假路径")
+      this.result.push({ url: "https://www.uniqlo.cn/hmall/test/u0000000005575/chip/22/COL00.jpg" })
+      if (!this.multiple) {
+        this.result = [{ url: "https://www.uniqlo.cn/hmall/test/u0000000005575/chip/22/COL00.jpg" }]
+        this.fileList = this.result
+      }
     }
   }
 }

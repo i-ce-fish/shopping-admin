@@ -4,8 +4,8 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        // target: "http://shop.cdb99.com:8088/",
-        target: "http://123.207.179.135:5001",
+        target: "http://shop.cdb99.com:8088/",
+        // target: "http://123.207.179.135:5001",
         ws: true,
         changeOrigin: true
       },
