@@ -75,6 +75,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .ycheckbox {
-  }
+.ycheckbox {
+}
 </style>

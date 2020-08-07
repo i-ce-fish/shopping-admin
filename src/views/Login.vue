@@ -62,21 +62,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .Login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.Login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    height: 100vh;
+  height: 100vh;
 
-    .box-card {
-      height: 300px;
-    }
+  .box-card {
+    height: 300px;
   }
+}
 
-  .login {
-    display: flex;
-    justify-content: space-around;
+.login {
+  display: flex;
+  justify-content: space-around;
 
-  }
+}
 </style>

@@ -27,20 +27,20 @@ export default {
   props: {
     value: [Boolean, String],
     options:
-        {
-          type: Array,
-          require: false,
-          default: () => [
-            {
-              value: true,
-              label: "是"
-            },
-            {
-              value: false,
-              label: "否"
-            }
-          ]
-        },
+      {
+        type: Array,
+        require: false,
+        default: () => [
+          {
+            value: true,
+            label: "是"
+          },
+          {
+            value: false,
+            label: "否"
+          }
+        ]
+      },
     size: String,
     fill: String,
     textColor: String,
@@ -67,6 +67,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .yradio {
-  }
+.yradio {
+}
 </style>

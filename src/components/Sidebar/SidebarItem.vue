@@ -116,10 +116,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  //<!--  清除点击效果-->
-  .menu-wrapper {
-    .href:hover {
+//<!--  清除点击效果-->
+.menu-wrapper {
+  .href:hover {
 
-    }
   }
+}
 </style>

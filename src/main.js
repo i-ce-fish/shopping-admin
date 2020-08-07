@@ -2,8 +2,9 @@ import Vue from "vue"
 import ElementUI from "element-ui"
 import "normalize.css"
 import "element-ui/lib/theme-chalk/index.css"
-import "@/style/index.scss"
+import "@/styles/index.scss"
 
+import _ from "lodash"
 // 自定义组件
 import YInput from "@/components/YInput/index.vue"
 import YSelect from "@/components/YSelect/index.vue"
@@ -42,6 +43,10 @@ Vue.component("YUploadSingle", YUploadSingle)
 Vue.component("YUploadMultiple", YUploadMultiple)
 
 Vue.use(ElementUI)
+
+// lodash
+Vue.prototype._ = _
+
 // 返回
 Vue.prototype.back = function() {
   // eslint-disable-next-line no-restricted-globals

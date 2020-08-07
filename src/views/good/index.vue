@@ -323,12 +323,12 @@ export default {
 </script>
 
 <style lang='scss' scope>
-  .app-container {
-    padding: 20px;
+.app-container {
+  padding: 20px;
 
-    .no-margin {
-      margin: 0;
-    }
+  .no-margin {
+    margin: 0;
   }
+}
 
 </style>

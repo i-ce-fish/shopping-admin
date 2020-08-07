@@ -216,43 +216,43 @@ export default {
 }
 </script>
 <style lang='scss' scope>
-  .card-container {
-    background-color: #f0f2f5;
-    padding: 30px;
-    min-height: 100vh;
+.card-container {
+  background-color: #f0f2f5;
+  padding: 30px;
+  min-height: 100vh;
 
-    .box-card {
+  .box-card {
 
+  }
+
+  .preview-box-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #606266;
+    line-height: 40px;
+
+  }
+
+  .preview-box {
+    width: 375px;
+    min-height: 667px;
+    font-size: 16px;
+    line-height: 25px;
+
+    .el-card__body {
+      padding: 15px;
     }
 
-    .preview-box-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #606266;
-      line-height: 40px;
-
+    .title {
+      text-align: center;
+      font-size: 18px;
     }
 
-    .preview-box {
-      width: 375px;
-      min-height: 667px;
-      font-size: 16px;
-      line-height: 25px;
-
-      .el-card__body {
-        padding: 15px;
-      }
-
-      .title {
-        text-align: center;
-        font-size: 18px;
-      }
-
-      img {
-        width: 100%;
-        height: auto;
-      }
+    img {
+      width: 100%;
+      height: auto;
     }
   }
+}
 
 </style>

@@ -71,6 +71,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .base-select {
-  }
+.base-select {
+}
 </style>

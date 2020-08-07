@@ -1,235 +1,177 @@
 <template>
-  <div :class="{fullscreen:fullscreen}" class="tinymce-container editor-container">
-    <textarea :id="tinymceId" class="tinymce-textarea"/>
-
-    <div class="editor-custom-btn-container">
-      <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK"/>
-    </div>
+  <div class="tinymce-box">
+    <editor
+      v-model="myValue"
+      :init="init"
+      :disabled="disabled"
+      @onClick="onClick">
+    </editor>
   </div>
 </template>
 
 <script>
-import editorImage from "@/components/Tinymce/editorImage.vue"
-import plugins from "@/components/Tinymce/plugins"
-import toolbar from "@/components/Tinymce/toolbar"
-
+import tinymce from "tinymce/tinymce" // tinymce默认hidden，不引入不显示
+import Editor from "@tinymce/tinymce-vue"
+import "tinymce/themes/silver"
+// 编辑器插件plugins
+// 更多插件参考：https://www.tiny.cloud/docs/plugins/
+import "tinymce/plugins/image"// 插入上传图片插件
+import "tinymce/plugins/media"// 插入视频插件
+import "tinymce/plugins/table"// 插入表格插件
+import "tinymce/plugins/lists"// 列表插件
+import "tinymce/plugins/wordcount"
+import "tinymce/icons/default"// 解决图标显示为!notFound
+import "tinymce/plugins/lineheight/plugin.min"// 行高插件
+// 字数统计插件
 export default {
+  components: {
+    Editor
+  },
   name: "Tinymce",
-  components: { editorImage },
   props: {
-    id: {
-      type: String,
-      default() {
-        return `vue-tinymce-${+new Date()}${(Math.random() * 1000).toFixed(0)}`
-      }
-    },
     value: {
       type: String,
       default: ""
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    plugins: {
+      type: [String, Array],
+      default: "lists image media table wordcount lineheight"
+    },
     toolbar: {
-      type: Array,
-      required: false,
-      default() {
-        return []
-      }
-    },
-    // 菜单栏
-    menubar: {
-      type: String,
-      // default: 'file edit insert view format table'
-      default: ""
-    },
-    height: {
-      type: Number,
-      required: false,
-      default: 720
+      type: [String, Array],
+      default: "undo redo |  formatselect | bold italic forecolor backcolor |lineheight alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table | removeformat"
     }
   },
   data() {
     return {
-      val: "",
-      hasChange: false,
-      hasInit: false,
-      tinymceId: this.id,
-      fullscreen: false,
-      languageTypeList: {
-        en: "en",
-        zh: "zh_CN"
-      }
-    }
-  },
-  computed: {
-    language() {
-      // return this.languageTypeList[this.$store.getters.language]
-      return "zh_CN"
-    }
-  },
-  watch: {
-    value(val) {
-      if (this.val !== this.value) {
-        if (this.hasInit) {
-          this.$nextTick(() => this.setContent(val || ""))
+      init: {
+        language_url: "/tinymce/langs/zh_CN.js",
+        language: "zh_CN",
+        skin_url: "/tinymce/skins/ui/oxide",
+        // skin_url: 'tinymce/skins/ui/oxide-dark',//暗色系
+        height: 300,
+        plugins: this.plugins,
+        toolbar: this.toolbar,
+        branding: false,
+        menubar: false,
+        // 行高数组
+        lineheight_val: "1 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2",
+        // 此处为图片上传处理函数，这个直接用了base64的图片形式上传图片，
+        // 如需ajax上传可参考https://www.tiny.cloud/docs/configure/file-image-upload/#images_upload_handler
+        images_upload_handler: (blobInfo, succFun, failFun) => {
+          // const img = 'data:image/jpeg;base64,' + blobInfo.base64()
+          // success(img)
+
+          const file = blobInfo.blob()// 转化为易于理解的file对象
+          const xhr = new XMLHttpRequest()
+          xhr.withCredentials = false
+          xhr.open("POST", "http://shop.cdb99.com:8088/api/upload")
+          xhr.onload = function() {
+            if (xhr.status !== 200) {
+              failFun(`HTTP Error: ${xhr.status}`)
+              return
+            }
+            const json = JSON.parse(xhr.responseText)
+            // 返回格式校验
+            // if (!json || typeof json.location != 'string') {
+            //   failFun('Invalid JSON: ' + xhr.responseText);
+            //   return;
+            // }
+            // todo 设置图片访问路径
+            succFun(`http://shop.cdb99.com${json.data}`)
+          }
+          const formData = new FormData()
+          formData.append("file", file, file.name)// 此处与源文档不一样
+          xhr.send(formData)
+        },
+        // 想要哪一个图标提供本地文件选择功能，参数可为media(媒体)、image(图片)、file(文件),多个参数用空格分隔
+        file_picker_types: " media",
+        // be used to add custom file picker to those dialogs that have it.
+        file_picker_callback(cb, value, meta) {
+          // 当点击meidia图标上传时,判断meta.filetype == 'media'有必要，因为file_picker_callback是media(媒体)、image(图片)、file(文件)的共同入口
+          if (meta.filetype === "media") {
+            // 创建一个隐藏的type=file的文件选择input
+            const input = document.createElement("input")
+            input.setAttribute("type", "file")
+            input.onchange = function() {
+              const file = this.files[0]// 只选取第一个文件。如果要选取全部，后面注意做修改
+              const xhr = new XMLHttpRequest()
+              xhr.open("POST", "http://shop.cdb99.com:8088/api/upload")
+              // xhr.withCredentials = self.credentials;
+              xhr.upload.onprogress = function(e) {
+                // 进度(e.loaded / e.total * 100)
+                console.log((e.loaded / e.total) * 100)
+              }
+              xhr.onerror = function() {
+                // 根据自己的需要添加代码
+                console.log(xhr.status)
+              }
+              xhr.onload = function() {
+                if (xhr.status < 200 || xhr.status >= 300) {
+                  console.log(`HTTP 错误: ${xhr.status}`)
+                  return
+                }
+                console.log(xhr)
+                const json = JSON.parse(xhr.responseText)
+
+                // todo 校验
+                // 假设接口返回JSON数据为{status: 0, msg: "上传成功", data: {location: "/localImgs/1546434503854.mp4"}}
+                // if (json.status == 0) {
+                //   console.log(json)
+                //   //接口返回的文件保存地址
+                //   let mediaLocation = json.data;
+                //   //cb()回调函数，将mediaLocation显示在弹框输入框中
+                // } else {
+                //   console.log(json.msg);
+                //   return;
+                // }
+                // todo 跨域
+                cb(`todo url ${json.data}`, { title: file.name })
+              }
+              const formData = new FormData()
+              // 假设接口接收参数为file,值为选中的文件
+              formData.append("file", file)
+              // 正式使用将下面被注释的内容恢复
+              xhr.send(formData)
+            }
+            // 触发点击
+            input.click()
+          }
         }
-      }
-      // let con = this.getContent();
-      // console.log(con,val)
-      // if (!this.hasChange && this.hasInit) {
-      //   this.$nextTick(() =>
-      //     this.setContent(val || ''))
-      // }
-    },
-    val() {
-      this.$emit("input", this.val)
-    },
-    language() {
-      this.destroyTinymce()
-      this.$nextTick(() => this.initTinymce())
+
+      },
+      myValue: this.value
     }
   },
   mounted() {
-    this.initTinymce()
-  },
-  activated() {
-    this.initTinymce()
-  },
-  deactivated() {
-    this.destroyTinymce()
-  },
-  destroyed() {
-    this.destroyTinymce()
+    tinymce.init({})
   },
   methods: {
-    initTinymce() {
-      // eslint-disable-next-line no-underscore-dangle
-      const _this = this
-      window.tinymce.init({
-        language: this.language,
-        selector: `#${this.tinymceId}`,
-        height: this.height,
-        body_class: "panel-body ",
-        object_resizing: false,
-        toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
-        menubar: this.menubar,
-        plugins,
-        end_container_on_empty_block: true,
-        powerpaste_word_import: "clean",
-        code_dialog_height: 450,
-        code_dialog_width: 1000,
-        advlist_bullet_styles: "square",
-        advlist_number_styles: "default",
-        imagetools_cors_hosts: ["www.tinymce.com", "codepen.io"],
-        default_link_target: "_blank",
-        link_title: false,
-        nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
-        init_instance_callback: (editor) => {
-          if (_this.value) {
-            editor.setContent(_this.val)
-          }
-          _this.hasInit = true
-          editor.on("NodeChange Change KeyUp SetContent", () => {
-            this.hasChange = true
-            this.val = editor.getContent()
-            //  this.$emit('input', editor.getContent())
-          })
-        },
-        setup(editor) {
-          editor.on("FullscreenStateChanged", (e) => {
-            _this.fullscreen = e.state
-          })
-        }
-        // 整合七牛上传
-        // images_dataimg_filter(img) {
-        //   setTimeout(() => {
-        //     const $image = $(img);
-        //     $image.removeAttr('width');
-        //     $image.removeAttr('height');
-        //     if ($image[0].height && $image[0].width) {
-        //       $image.attr('data-wscntype', 'image');
-        //       $image.attr('data-wscnh', $image[0].height);
-        //       $image.attr('data-wscnw', $image[0].width);
-        //       $image.addClass('wscnph');
-        //     }
-        //   }, 0);
-        //   return img
-        // },
-        // images_upload_handler(blobInfo, success, failure, progress) {
-        //   progress(0);
-        //   const token = _this.$store.getters.token;
-        //   getToken(token).then(response => {
-        //     const url = response.data.qiniu_url;
-        //     const formData = new FormData();
-        //     formData.append('token', response.data.qiniu_token);
-        //     formData.append('key', response.data.qiniu_key);
-        //     formData.append('file', blobInfo.blob(), url);
-        //     upload(formData).then(() => {
-        //       success(url);
-        //       progress(100);
-        //     })
-        //   }).catch(err => {
-        //     failure('出现未知问题，刷新页面，或者联系程序员')
-        //     console.log(err);
-        //   });
-        // },
-      })
+    // 添加相关的事件，可用的事件参照文档=> https://github.com/tinymce/tinymce-vue => All available events
+    // 需要什么事件可以自己增加
+    onClick(e) {
+      this.$emit("onClick", e, tinymce)
     },
-    destroyTinymce() {
-      const tinymce = window.tinymce.get(this.tinymceId)
-      if (this.fullscreen) {
-        tinymce.execCommand("mceFullScreen")
-      }
-      if (tinymce) {
-        tinymce.destroy()
-      }
+    // 可以添加一些自己的自定义事件，如清空内容
+    clear() {
+      this.myValue = ""
+    }
+  },
+  watch: {
+    value(newValue) {
+      this.myValue = newValue
     },
-    setContent(value) {
-      window.tinymce.get(this.tinymceId)
-        .setContent(value)
-    },
-    getContent() {
-      window.tinymce.get(this.tinymceId)
-        .getContent()
-    },
-    imageSuccessCBK(arr) {
-      // eslint-disable-next-line no-underscore-dangle
-      const _this = this
-      arr.forEach((v) => {
-        window.tinymce.get(_this.tinymceId)
-          .insertContent(`<img class="wscnph" src="${v.url}" >`)
-      })
+    myValue(newValue) {
+      this.$emit("input", newValue)
     }
   }
 }
+
 </script>
-
 <style scoped>
-  .tinymce-container {
-    position: relative;
-    line-height: normal;
-  }
 
-  .tinymce-container >>> .mce-fullscreen {
-    z-index: 10000;
-  }
-
-  .tinymce-textarea {
-    visibility: hidden;
-    z-index: -1;
-  }
-
-  .editor-custom-btn-container {
-    position: absolute;
-    right: 4px;
-    top: 4px;
-    /*z-index: 2005;*/
-  }
-
-  .fullscreen .editor-custom-btn-container {
-    z-index: 10000;
-    position: fixed;
-  }
-
-  .editor-upload-btn {
-    display: inline-block;
-  }
 </style>

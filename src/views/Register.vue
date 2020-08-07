@@ -93,22 +93,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .Register {
+.Register {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    height: 100vh;
+  height: 100vh;
 
-    .box-card {
-      height: 450px;
-    }
+  .box-card {
+    height: 450px;
   }
+}
 
-  .center {
-    display: flex;
-    justify-content: space-around;
+.center {
+  display: flex;
+  justify-content: space-around;
 
-  }
+}
 </style>

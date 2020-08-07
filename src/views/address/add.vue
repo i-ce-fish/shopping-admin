@@ -153,13 +153,13 @@ export default {
 }
 </script>
 <style lang='scss' scope>
-  .card-container {
-    background-color: #f0f2f5;
-    padding: 30px;
-    min-height: 100vh;
+.card-container {
+  background-color: #f0f2f5;
+  padding: 30px;
+  min-height: 100vh;
 
-    .box-card {
+  .box-card {
 
-    }
   }
+}
 </style>

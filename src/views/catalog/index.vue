@@ -41,10 +41,10 @@
     </y-form>
 
     <y-table
-:data="catalogsData"
-:pagination="pagination"
-@sortBy="sortBy"
-             @changePage4List="getList">
+      :data="catalogsData"
+      :pagination="pagination"
+      @sortBy="sortBy"
+      @changePage4List="getList">
       <template>
 
         <el-table-column
@@ -160,11 +160,11 @@ export default {
 </script>
 
 <style lang='scss' scope>
-  .app-container {
-    padding: 20px;
+.app-container {
+  padding: 20px;
 
-    .no-margin {
-      margin: 0;
-    }
+  .no-margin {
+    margin: 0;
   }
+}
 </style>

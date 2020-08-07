@@ -1,7 +1,16 @@
 # cms
 
+##首次运行
+npm install 
+npm run serve
 
 
+如果出现:npm install --save tinymce/plugins/lineheight
+
+下载插件：[lineheight.zip](http://tinymce.ax-z.cn/more-plugins/lineheight.php)
+放到/node_modules/tinymce/plugins下
+
+## 构建流程
 npm install -g @vue/cli
 
 vue create hello-world

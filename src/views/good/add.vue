@@ -610,9 +610,9 @@ export default {
 
     // todo 先展开表格后，再添加二级属性，列表数据无法刷新
     /**   点击确认时将数据添加到goodForm.material
-       *  在点击添加或编辑按钮时设置当前操作类型
-       * @param lev 判断是一级属性还是二级属性
-       */
+     *  在点击添加或编辑按钮时设置当前操作类型
+     * @param lev 判断是一级属性还是二级属性
+     */
     confirmMaterial(lev) {
       // 处理一级属性
       if (lev === "1") {
@@ -655,11 +655,11 @@ export default {
       this[`materialTemp${lev}`] = {}
     },
     /**
-       *
-       * @param id  一级属性数组索引
-       * @param id2 二级属性数组索引
-       * @param lev 一级还是二级
-       */
+     *
+     * @param id  一级属性数组索引
+     * @param id2 二级属性数组索引
+     * @param lev 一级还是二级
+     */
     editMaterial(id, id2, lev) {
       if (lev === "1") {
         this.materialTemp1 = { ...this.goodForm.material[id] }
@@ -702,9 +702,9 @@ export default {
 
     // todo 先展开表格后，再添加二级属性，列表数据无法刷新
     /**   点击确认时将数据添加到goodForm.material
-       *  在点击添加或编辑按钮时设置当前操作类型
-       * @param type 判断是一级属性还是二级属性
-       */
+     *  在点击添加或编辑按钮时设置当前操作类型
+     * @param type 判断是一级属性还是二级属性
+     */
     confirmColorSize(type) {
       // 处理一级属性
       // if (type === 'color') {
@@ -723,10 +723,10 @@ export default {
       this[`${type}Temp`] = {}
     },
     /**
-       *
-       * @param id  一级属性数组索引
-       * @param type 一级还是二级
-       */
+     *
+     * @param id  一级属性数组索引
+     * @param type 一级还是二级
+     */
     editColorSize(id, type) {
       this[`${type}Temp`] = { ...this.goodForm[`${type}s`][id] }
       this.colorSizeTitle = `编辑${type === "color" ? "颜色" : "尺码"}`
@@ -749,17 +749,17 @@ export default {
 }
 </script>
 <style lang='scss' scope>
-  .card-container {
-    background-color: #f0f2f5;
-    padding: 30px;
-    min-height: 100vh;
+.card-container {
+  background-color: #f0f2f5;
+  padding: 30px;
+  min-height: 100vh;
 
-    .box-card {
+  .box-card {
 
-    }
-
-    .table-grey {
-      background: #f0f9eb;
-    }
   }
+
+  .table-grey {
+    background: #f0f9eb;
+  }
+}
 </style>

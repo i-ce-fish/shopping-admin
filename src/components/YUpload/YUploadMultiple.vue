@@ -66,6 +66,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .YUploadSingle {
-  }
+.YUploadSingle {
+}
 </style>

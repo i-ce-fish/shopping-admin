@@ -601,9 +601,9 @@ export default {
 
     // todo 先展开表格后，再添加二级属性，列表数据无法刷新
     /**   点击确认时将数据添加到goodForm.material
-       *  在点击添加或编辑按钮时设置当前操作类型
-       * @param lev 判断是一级属性还是二级属性
-       */
+     *  在点击添加或编辑按钮时设置当前操作类型
+     * @param lev 判断是一级属性还是二级属性
+     */
     confirmMaterial(lev) {
       // 处理一级属性
       if (lev === "1") {
@@ -623,8 +623,8 @@ export default {
         if (this.materialTemp2.type === "add") {
           // 数组为空的时候初始化
           this.goodForm.material[this.materialTemp2.index].value ??
-            (this.goodForm.material[this.materialTemp2.index].value = [])
-            // 添加到数组
+          (this.goodForm.material[this.materialTemp2.index].value = [])
+          // 添加到数组
           this.goodForm.material[this.materialTemp2.index].value.push({ ...this.materialTemp2 })
           //  添加数组到数据后，自动展开表格，通过另一个变量控制表格只在第一次添加二级属性的时候需要手动展开
           if (!this.materialExpand) {
@@ -645,11 +645,11 @@ export default {
       this[`materialTemp${lev}`] = {}
     },
     /**
-       *
-       * @param index  一级属性数组索引
-       * @param index2 二级属性数组索引
-       * @param lev 一级还是二级
-       */
+     *
+     * @param index  一级属性数组索引
+     * @param index2 二级属性数组索引
+     * @param lev 一级还是二级
+     */
     editMaterial(index, index2, lev) {
       if (lev === "1") {
         this.materialTemp1 = { ...this.goodForm.material[index] }
@@ -697,9 +697,9 @@ export default {
 
     // todo 先展开表格后，再添加二级属性，列表数据无法刷新
     /**   点击确认时将数据添加到goodForm.material
-       *  在点击添加或编辑按钮时设置当前操作类型
-       * @param lev 判断是一级属性还是二级属性
-       */
+     *  在点击添加或编辑按钮时设置当前操作类型
+     * @param lev 判断是一级属性还是二级属性
+     */
     confirmColorSize(lev) {
       // 处理一级属性
       if (lev === "color") {
@@ -745,11 +745,11 @@ export default {
       this[`${lev}Temp`] = {}
     },
     /**
-       *
-       * @param index  一级属性数组索引
-       * @param index2 二级属性数组索引
-       * @param lev 一级还是二级
-       */
+     *
+     * @param index  一级属性数组索引
+     * @param index2 二级属性数组索引
+     * @param lev 一级还是二级
+     */
     editColorSize(index, index2, lev) {
       if (lev === "color") {
         this.colorTemp = { ...this.goodForm.colors[index] }
@@ -785,17 +785,17 @@ export default {
 }
 </script>
 <style lang='scss' scope>
-  .card-container {
-    background-color: #f0f2f5;
-    padding: 30px;
-    min-height: 100vh;
+.card-container {
+  background-color: #f0f2f5;
+  padding: 30px;
+  min-height: 100vh;
 
-    .box-card {
+  .box-card {
 
-    }
-
-    .table-grey {
-      background: #f0f9eb;
-    }
   }
+
+  .table-grey {
+    background: #f0f9eb;
+  }
+}
 </style>

@@ -107,6 +107,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .yslider {
-  }
+.yslider {
+}
 </style>
