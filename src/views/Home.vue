@@ -13,7 +13,6 @@
           <el-row class="card-desc">
             <el-col>
               <div class="test">
-
                 周同比12%
               </div>
             </el-col>
@@ -26,81 +25,126 @@
     </el-row>
     <el-row>
       <el-col>
-        <!--        <el-card class="box-card">-->
-        <!--          <div v-for="o in 4" :key="o" class="text item">-->
-        <!--            {{ "列表内容 " + o }}-->
-        <!--          </div>-->
         <Tinymce ref="editor" v-model="content" :height="400"/>
-        <!--        </el-card>-->
 
       </el-col>
     </el-row>
-    <!--    问卷收集  todo  api  -->
-    <!--    <div class="">-->
-    <!--      <el-card>-->
-    <!--        <el-form-->
-    <!--          ref="questionForm"-->
-    <!--          :model="questionForm"-->
-    <!--          label-width="100px"-->
-    <!--        >-->
 
-    <!--          <el-row>-->
+    <el-row>
+      <el-col>
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>商城首页设置</span>
+          </div>
 
-    <!--            <el-col :span="12">-->
-    <!--              <el-form-item label="请输入问题" prop="address">-->
-    <!--                <component-->
-    <!--                  v-bind:is="YInput"-->
-    <!--                  v-model="questionForm.address"-->
-    <!--                />-->
-    <!--              </el-form-item>-->
-    <!--            </el-col>-->
+          <y-form
+            ref="settingForm"
+            :model="settingForm"
+            :rules="settingRules"
+            label-width="100px"
+          >
+            <el-row>
 
-    <!--            <el-col :span="12">-->
-    <!--              <el-form-item label="选项类型:" prop="coupon">-->
-    <!--                <component-->
-    <!--                  v-bind:is="YSelect"-->
-    <!--                  v-model="questionForm.coupon"-->
-    <!--                  :options='[{value: "选项1",label: "单选"}, {value: "选项2", label: "多选"}, {value: "选项3",label: "填空"}]'-->
-    <!--                />-->
-    <!--              </el-form-item>-->
-    <!--            </el-col>-->
+              <el-col :span="12">
+                <el-form-item label="店铺名称:" prop="product_name">
 
-    <!--            <el-col :span="12">-->
-    <!--              <el-form-item label="是否单选:" prop="status">-->
-    <!--                <component-->
-    <!--                  v-bind:is="YRadio"-->
-    <!--                  v-model="questionForm.status"-->
-    <!--                />-->
-    <!--              </el-form-item>-->
-    <!--            </el-col>-->
+                  <el-tooltip class="item" content="建议3-5个字" placement="top-start">
+                    <y-input
+                      v-model="settingForm.shopName"
+                    />
+                  </el-tooltip>
 
-    <!--            <el-col :span="12" v-for="(o,i) in options" v-bind:key="i">-->
-    <!--              <el-form-item label="选项:" prop="status">-->
-    <!--                <component-->
-    <!--                  v-bind:is="YInput"-->
-    <!--                  v-model="questionForm.status"-->
-    <!--                />-->
-    <!--              </el-form-item>-->
-    <!--            </el-col>-->
+                </el-form-item>
+              </el-col>
 
-    <!--            <el-col :span="24">-->
-    <!--              <el-form-item>-->
-    <!--                <el-button @click="submit('questionForm')">添加问题</el-button>-->
-    <!--              </el-form-item>-->
-    <!--              <el-form-item>-->
-    <!--                <el-button @click="submit('questionForm')">添加选项</el-button>-->
-    <!--              </el-form-item>-->
-    <!--              <el-form-item>-->
-    <!--                <el-button @click="submit('questionForm')">提交</el-button>-->
-    <!--              </el-form-item>-->
-    <!--            </el-col>-->
-    <!--          </el-row>-->
+              <el-col :span="12">
+                <el-form-item label="店铺地址:" prop="product_sn">
 
-    <!--        </el-form>-->
+                  <y-input
+                    v-model="settingForm.shopAddress"
+                  />
+                </el-form-item>
+              </el-col>
 
-    <!--      </el-card>-->
+              <el-col :span="12">
+                <el-form-item label="经度:" prop="type_sn">
+                  <el-tooltip class="item" content="用于顾客导航到店铺" placement="top-start">
+                    <y-input
+                      v-model="settingForm.longitude"
+                    />
+                  </el-tooltip>
+                </el-form-item>
+              </el-col>
 
-    <!--    </div>-->
+              <el-col :span="12">
+                <el-form-item label="纬度:" prop="gender">
+                  <el-tooltip content="用于顾客导航到店铺" placement="top-start">
+                    <y-input
+                      v-model="settingForm.latitude"
+                    />
+                  </el-tooltip>
+                </el-form-item>
+              </el-col>
+
+              <el-col :span="12">
+                <el-form-item label="轮播图:" prop="carousels">
+
+                  <y-upload-multiple
+                    v-model="settingForm.carousels"
+                  />
+                </el-form-item>
+              </el-col>
+
+              <el-col :span="12">
+                <el-form-item label="宣传视频:" prop="detail">
+                  <y-upload-single
+                    v-model="settingForm.video"
+                  />
+                </el-form-item>
+              </el-col>
+
+              <el-col :span="12">
+                <el-form-item label="宣传简介:" prop="detail">
+                  <y-input
+                    type="textarea"
+                    v-model="settingForm.videoIntro"
+                  />
+                </el-form-item>
+              </el-col>
+
+              <el-col :span="12">
+                <el-form-item label="微信二维码图片:" prop="detail">
+                  <y-upload-single
+                    v-model="settingForm.wxQRcode"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="微信id:" prop="detail">
+                  <y-input
+                    v-model="settingForm.wxid"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="联系电话:" prop="detail">
+                  <y-input
+                    v-model="settingForm.mobile"
+                  />
+                </el-form-item>
+              </el-col>
+
+              <el-col :span="24">
+                <el-form-item>
+                  <el-button @click="submit('settingForm')">提交</el-button>
+                  <el-button @click="back">返回</el-button>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </y-form>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -111,6 +155,8 @@ export default {
   components: { Tinymce },
   data() {
     return {
+      settingForm: {},
+      settingRules: {},
       content: "",
       questionForm: {},
       options: ["0"]

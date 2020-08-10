@@ -97,6 +97,9 @@
           align='center'>
 
           <template slot-scope="scope">
+<!--            <i class="el-icon-circle-check" style="color: green;font-size: 40px"></i>-->
+<!--            <i class="el-icon-circle-close" style="color: red;font-size: 40px"></i>-->
+
             <el-button
               :type="scope.row.is_header? 'success':'info'"
               :icon="scope.row.is_header? 'el-icon-check':'el-icon-close'"
