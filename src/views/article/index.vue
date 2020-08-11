@@ -1,147 +1,144 @@
 <template>
-  <div class="app-container">
-    <y-form
-      ref="articleForm"
-      :model="articleForm"
-      label-width="80px"
-    >
-      <el-row type="flex" justify="end">
-        <el-form-item>
-          <el-button type="success" @click="add">添加图文模块</el-button>
-        </el-form-item>
-      </el-row>
-
-      <el-row type="flex" justify="space-between">
-        <el-col :span="20">
-          <el-row>
-
-            <el-col :span="6">
-              <el-form-item label="标题:" prop="title">
-
-                <y-input
-
-                  v-model="articleForm.title"
-
-                />
-              </el-form-item>
-            </el-col>
-
-            <el-col :span="6">
-              <el-form-item label="作者:" prop="author">
-
-                <y-input
-
-                  v-model="articleForm.author"
-
-                />
-              </el-form-item>
-            </el-col>
-
-            <el-col :span="6">
-              <el-form-item label="栏目ID:" prop="catalog_id">
-
-                <y-select
-
-                  v-model="articleForm.catalog_id"
-
-                  api="/api/catalogs"
-                  labelName="catalog_name"
-                  valueName="id"
-
-                />
-              </el-form-item>
-            </el-col>
-
-          </el-row>
-        </el-col>
-        <el-col :span="4">
-          <el-row type="flex" justify="end">
-            <el-form-item>
-              <el-button type="primary" @click="onSearch">查询</el-button>
-              <el-button @click="reset" class="no-margin">重置</el-button>
-            </el-form-item>
-          </el-row>
-        </el-col>
-      </el-row>
-
-    </y-form>
-
-    <y-table
-      :data="articlesData"
-      :pagination="pagination"
-      @sortBy="sortBy"
-      @changePage4List="getList">
-      <template>
-
-        <el-table-column
-          prop="title"
-          label="标题"
-
+    <div class="app-container">
+        <y-form
+                ref="articleForm"
+                :model="articleForm"
+                label-width="80px"
         >
+            <el-row type="flex" justify="end">
+                <el-form-item>
+                    <el-button type="success" @click="add">添加图文模块</el-button>
+                </el-form-item>
+            </el-row>
 
-        </el-table-column>
+            <el-row type="flex" justify="space-between">
+                <el-col :span="20">
+                    <el-row>
 
-        <el-table-column
-          prop="author"
-          label="作者"
+                        <el-col :span="6">
+                            <el-form-item label="标题:" prop="title">
 
-        >
+                                <y-input
 
-        </el-table-column>
+                                v-model="articleForm.title"
 
-        <el-table-column
-          prop="is_header"
-          label="首页头条"
-          sortable="is_header"
-          width="100px"
-          align='center'>
+                                />
+                            </el-form-item>
+                        </el-col>
 
-          <template slot-scope="scope">
-<!--            <i class="el-icon-circle-check" style="color: green;font-size: 40px"></i>-->
-<!--            <i class="el-icon-circle-close" style="color: red;font-size: 40px"></i>-->
+                        <el-col :span="6">
+                            <el-form-item label="作者:" prop="author">
 
-            <el-button
-              :type="scope.row.is_header? 'success':'info'"
-              :icon="scope.row.is_header? 'el-icon-check':'el-icon-close'"
-              circle></el-button>
-          </template>
+                                <y-input
 
-        </el-table-column>
+                                v-model="articleForm.author"
 
-        <el-table-column
-          prop="is_col_header"
-          label="栏目显示"
-          sortable="is_col_header"
-          width="100px"
-          align='center'>
+                                />
+                            </el-form-item>
+                        </el-col>
 
-          <template slot-scope="scope">
-            <el-button
-              :type="scope.row.is_col_header? 'success':'info'"
-              :icon="scope.row.is_col_header? 'el-icon-check':'el-icon-close'"
-              circle></el-button>
-          </template>
+                        <el-col :span="6">
+                            <el-form-item label="栏目ID:" prop="catalog_id">
 
-        </el-table-column>
+                                <y-select
 
-        <el-table-column
-          prop="catalog_id"
-          label="栏目ID"
+                                v-model="articleForm.catalog_id"
 
-          width="100px"
-          align='center'>
+                                 api="/api/catalogs"
 
-        </el-table-column>
+                                  labelName='catalog_name'
+valueName='id'
 
-        <el-table-column label="操作" width="100px">
-          <template slot-scope="{row}">
-            <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
-            <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
-          </template>
-        </el-table-column>
-      </template>
-    </y-table>
-  </div>
+                                />
+                            </el-form-item>
+                        </el-col>
+
+                    </el-row>
+                </el-col>
+                <el-col :span="4">
+                    <el-row type="flex" justify="end">
+                        <el-form-item>
+                            <el-button type="primary" @click="onSearch">查询</el-button>
+                            <el-button @click="reset" class="no-margin">重置</el-button>
+                        </el-form-item>
+                    </el-row>
+                </el-col>
+            </el-row>
+
+        </y-form>
+
+        <y-table :data="articlesData" :pagination="pagination" @sortBy="sortBy" @changePage4List="getList">
+            <template>
+
+                        <el-table-column
+prop="title"
+label="标题"
+
+                                          >
+
+                        </el-table-column>
+
+                        <el-table-column
+prop="author"
+label="作者"
+
+                                          >
+
+                        </el-table-column>
+
+                        <el-table-column
+prop="is_header"
+label="是否在首页"
+                                          sortable="is_header"
+                                          width="100px"
+                                           align='center'   >
+
+                            <template slot-scope="scope">
+                                <el-button :type="scope.row.is_header? 'success':'info'" :icon="scope.row.is_header? 'el-icon-check':'el-icon-close'" circle ></el-button>
+                            </template>
+
+                        </el-table-column>
+
+                        <el-table-column
+prop="is_col_header"
+label="是否头条"
+                                          sortable="is_col_header"
+                                          width="100px"
+                                           align='center'   >
+
+                            <template slot-scope="scope">
+                                <el-button :type="scope.row.is_col_header? 'success':'info'" :icon="scope.row.is_col_header? 'el-icon-check':'el-icon-close'" circle ></el-button>
+                            </template>
+
+                        </el-table-column>
+
+                        <el-table-column
+prop="catalog_id"
+label="栏目ID"
+
+                                          width="100px"
+                                           align='center'   >
+
+                        </el-table-column>
+
+                        <el-table-column
+prop="intro"
+label="简介"
+                                          sortable="intro"
+                                          width="100px"
+                                           align='center'   >
+
+                        </el-table-column>
+
+                <el-table-column label="操作" width="100px">
+                    <template slot-scope="{row}">
+                        <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
+                        <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </template>
+        </y-table>
+    </div>
 </template>
 <script>
 import { getArticles, delArticle } from "@/api/article"
@@ -178,10 +175,7 @@ export default {
       this.$router.push({ path: "add" })
     },
     edit(id) {
-      this.$router.push({
-        path: "edit",
-        query: { id }
-      })
+      this.$router.push({ path: "edit", query: { id }})
     },
     del(id) {
       this.$confirm("是否删除?", "提示", {
@@ -190,14 +184,13 @@ export default {
         type: "warning"
       })
         .then(() => {
-          delArticle(id)
-            .then((response) => {
-              this.$message({
-                type: "success",
-                message: "删除成功!"
-              })
-              this.getList()
+          delArticle(id).then((response) => {
+            this.$message({
+              type: "success",
+              message: "删除成功!"
             })
+            this.getList()
+          })
         })
         .catch(() => {
           this.$message({
@@ -221,11 +214,10 @@ export default {
 </script>
 
 <style lang='scss' scope>
-.app-container {
-  padding: 20px;
-
-  .no-margin {
-    margin: 0;
-  }
-}
+    .app-container {
+        padding: 20px;
+        .no-margin{
+            margin: 0;
+        }
+    }
 </style>

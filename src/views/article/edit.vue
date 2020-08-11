@@ -88,6 +88,18 @@
                     />
                   </el-form-item>
                 </el-col>
+                <el-col :span="12">
+                  <el-form-item label="简介:" prop="intro">
+
+                    <y-input
+
+                      v-model="articleForm.intro"
+
+                      type="textarea"
+
+                    />
+                  </el-form-item>
+                </el-col>
 
                 <el-col :span="24">
                   <el-form-item label="正文:" prop="body">

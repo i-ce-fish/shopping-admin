@@ -82,11 +82,23 @@
                   />
                 </el-form-item>
               </el-col>
+              <el-col :span="12">
+                <el-form-item label="简介:" prop="intro">
+
+                  <y-input
+
+                    v-model="articleForm.intro"
+
+                    type="textarea"
+
+                  />
+                </el-form-item>
+              </el-col>
 
               <el-col :span="24">
                 <el-form-item label="正文:" prop="body">
 
-                  <Tinymce ref="editor" v-model="articleForm.body" :height="400"/>
+                  <Tinymce ref="editor" v-model="articleForm.body"/>
 
                 </el-form-item>
               </el-col>
@@ -222,8 +234,8 @@ export default {
   .preview-box {
     width: 375px;
     min-height: 667px;
-    font-size: 16px;
-    line-height: 25px;
+    font-size: 14px;
+    //line-height: 20px;
 
     .el-card__body {
       padding: 15px;
