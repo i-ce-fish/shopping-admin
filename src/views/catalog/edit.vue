@@ -13,11 +13,16 @@
                     <el-col :span="12">
                         <el-form-item label="类别名:" prop="catalog_name">
 
+                          <el-tooltip  content="请输入图文分类名称 " placement="top-start">
+
                                 <y-input
 
                             v-model="catalogForm.catalog_name"
 
                             />
+
+                          </el-tooltip>
+
                         </el-form-item>
                     </el-col>
 
@@ -29,6 +34,7 @@
                             v-model="catalogForm.description"
 
                             />
+
                         </el-form-item>
                     </el-col>
 

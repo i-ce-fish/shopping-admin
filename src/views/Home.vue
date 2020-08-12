@@ -48,7 +48,7 @@
               <el-col :span="12">
                 <el-form-item label="店铺名称:" prop="product_name">
 
-                  <el-tooltip class="item" content="建议3-5个字" placement="top-start">
+                  <el-tooltip  content="建议3-5个字" placement="top-start">
                     <y-input
                       v-model="settingForm.shopName"
                     />

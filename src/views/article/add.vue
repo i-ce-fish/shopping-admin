@@ -235,7 +235,7 @@ export default {
     width: 375px;
     min-height: 667px;
     font-size: 14px;
-    //line-height: 20px;
+    line-height: 180%;
 
     .el-card__body {
       padding: 15px;
@@ -244,12 +244,9 @@ export default {
     .title {
       text-align: center;
       font-size: 18px;
+      line-height: 3;
     }
 
-    img {
-      width: 100%;
-      height: auto;
-    }
   }
 }
 

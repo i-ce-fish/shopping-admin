@@ -2,136 +2,129 @@
   <div class="card-container">
     <el-card class="box-card">
       <h3>修改article</h3>
-      <y-form
-        ref="articleForm"
-        :model="articleForm"
-        :rules="articleRules"
-        label-width="100px"
-      >
-        <el-row type="flex" justify="space-between">
-          <el-col :span="14">
+      <el-row type="flex" justify="space-between">
+        <el-col :span="14">
 
-            <y-form
-              ref="articleForm"
-              :model="articleForm"
-              :rules="articleRules"
-              label-width="100px"
-            >
-              <el-row>
+          <y-form
+            ref="articleForm"
+            :model="articleForm"
+            :rules="articleRules"
+            label-width="100px"
+          >
+            <el-row>
 
-                <el-col :span="12">
-                  <el-form-item label="标题:" prop="title">
+              <el-col :span="12">
+                <el-form-item label="标题:" prop="title">
 
-                    <y-input
+                  <y-input
 
-                      v-model="articleForm.title"
+                    v-model="articleForm.title"
 
-                    />
-                  </el-form-item>
-                </el-col>
+                  />
+                </el-form-item>
+              </el-col>
 
-                <el-col :span="12">
-                  <el-form-item label="首页图:" prop="front_pic">
+              <el-col :span="12">
+                <el-form-item label="首页图:" prop="front_pic">
 
-                    <y-upload-single
+                  <y-upload-single
 
-                      v-model="articleForm.front_pic"
+                    v-model="articleForm.front_pic"
 
-                    />
-                  </el-form-item>
-                </el-col>
+                  />
+                </el-form-item>
+              </el-col>
 
-                <el-col :span="12">
-                  <el-form-item label="作者:" prop="author">
+              <el-col :span="12">
+                <el-form-item label="作者:" prop="author">
 
-                    <y-input
+                  <y-input
 
-                      v-model="articleForm.author"
+                    v-model="articleForm.author"
 
-                    />
-                  </el-form-item>
-                </el-col>
+                  />
+                </el-form-item>
+              </el-col>
 
-                <el-col :span="12">
-                  <el-form-item label="首页头条:" prop="is_header">
+              <el-col :span="12">
+                <el-form-item label="首页头条:" prop="is_header">
 
-                    <y-radio
+                  <y-radio
 
-                      v-model="articleForm.is_header"
+                    v-model="articleForm.is_header"
 
-                    />
-                  </el-form-item>
-                </el-col>
+                  />
+                </el-form-item>
+              </el-col>
 
-                <el-col :span="12">
-                  <el-form-item label="栏目显示:" prop="is_col_header">
+              <el-col :span="12">
+                <el-form-item label="栏目显示:" prop="is_col_header">
 
-                    <y-radio
+                  <y-radio
 
-                      v-model="articleForm.is_col_header"
+                    v-model="articleForm.is_col_header"
 
-                    />
-                  </el-form-item>
-                </el-col>
+                  />
+                </el-form-item>
+              </el-col>
 
-                <el-col :span="12">
-                  <el-form-item label="栏目ID:" prop="catalog_id">
+              <el-col :span="12">
+                <el-form-item label="栏目ID:" prop="catalog_id">
 
-                    <y-select
+                  <y-select
 
-                      v-model="articleForm.catalog_id"
+                    v-model="articleForm.catalog_id"
 
-                      api="/api/catalogs"
-                      labelName="catalog_name"
-                      valueName="id"
+                    api="/api/catalogs"
+                    labelName="catalog_name"
+                    valueName="id"
 
-                    />
-                  </el-form-item>
-                </el-col>
-                <el-col :span="12">
-                  <el-form-item label="简介:" prop="intro">
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+                <el-form-item label="简介:" prop="intro">
 
-                    <y-input
+                  <y-input
 
-                      v-model="articleForm.intro"
+                    v-model="articleForm.intro"
 
-                      type="textarea"
+                    type="textarea"
 
-                    />
-                  </el-form-item>
-                </el-col>
+                  />
+                </el-form-item>
+              </el-col>
 
-                <el-col :span="24">
-                  <el-form-item label="正文:" prop="body">
+              <el-col :span="24">
+                <el-form-item label="正文:" prop="body">
 
-                    <Tinymce ref="editor" v-model="articleForm.body" :height="400"/>
+                  <Tinymce ref="editor" v-model="articleForm.body"/>
 
-                  </el-form-item>
-                </el-col>
+                </el-form-item>
+              </el-col>
 
-                <el-col :span="24">
-                  <el-form-item>
-                    <el-button @click="submit('articleForm')">提交</el-button>
-                    <el-button @click="back">返回</el-button>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-            </y-form>
+              <el-col :span="24">
+                <el-form-item>
+                  <el-button @click="submit('articleForm')">提交</el-button>
+                  <el-button @click="back">返回</el-button>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </y-form>
 
-          </el-col>
-          <el-col :span="8">
-            <div class="preview-box-title">
-              模拟小程序展示效果
+        </el-col>
+        <el-col :span="8">
+          <div class="preview-box-title">
+            模拟小程序展示效果
+          </div>
+          <el-card class="preview-box">
+            <div class="title">
+              {{ articleForm.title }}
             </div>
-            <el-card class="preview-box">
-              <div class="title">
-                {{ articleForm.title }}
-              </div>
-              <div v-html="articleForm.body"/>
-            </el-card>
-          </el-col>
-        </el-row>
-      </y-form>
+            <div v-html="articleForm.body"/>
+          </el-card>
+        </el-col>
+      </el-row>
     </el-card>
   </div>
 </template>
@@ -248,8 +241,8 @@ export default {
   .preview-box {
     width: 375px;
     min-height: 667px;
-    font-size: 16px;
-    line-height: 25px;
+    font-size: 14px;
+    line-height: 180%;
 
     .el-card__body {
       padding: 15px;
@@ -258,12 +251,9 @@ export default {
     .title {
       text-align: center;
       font-size: 18px;
+      line-height: 3;
     }
 
-    img {
-      width: 100%;
-      height: auto;
-    }
   }
 }
 

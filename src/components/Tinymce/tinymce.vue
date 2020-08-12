@@ -43,7 +43,7 @@ export default {
     },
     toolbar: {
       type: [String, Array],
-      default: "undo redo |  formatselect | bold italic forecolor backcolor |lineheight alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table | removeformat"
+      default: "undo redo |  formatselect |  fontselect |fontsizeselect| bold italic forecolor backcolor |lineheight alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table | removeformat"
     }
   },
   data() {
@@ -58,6 +58,10 @@ export default {
         toolbar: this.toolbar,
         branding: false,
         menubar: false,
+        // 字体
+        fontsize_formats: "12px 14px 16px 18px 24px 36px 48px 56px 72px",
+        font_formats: "微软雅黑=Microsoft YaHei,Helvetica Neue,PingFang SC,sans-serif;苹果苹方=PingFang SC,Microsoft YaHei,sans-serif;宋体=simsun,serif;仿宋体=FangSong,serif;黑体=SimHei,sans-serif;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;",
+
         // 行高数组
         lineheight_val: "1 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2",
         // 此处为图片上传处理函数，这个直接用了base64的图片形式上传图片，
