@@ -1,7 +1,7 @@
 <template>
   <div class="card-container">
     <el-card class="box-card">
-      <h3>添加good</h3>
+      <h3>添加商品</h3>
 
       <y-form
         ref="goodForm"
@@ -12,29 +12,34 @@
         <el-row>
 
           <el-col :span="12">
+            <el-form-item label="商品列表图:" prop="main_pic">
+
+              <y-upload-image
+                :limit="1"
+                v-model="goodForm.main_pic"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="详情轮播图:" prop="carousels">
+
+              <y-upload-image
+                v-model="goodForm.carousels"
+              />
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
             <el-form-item label="商品名称:" prop="product_name">
 
               <y-input
-
                 v-model="goodForm.product_name"
-
               />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="商品编号:" prop="product_sn">
-
-              <y-input
-
-                v-model="goodForm.product_sn"
-
-              />
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="款式编号:" prop="type_sn">
+            <el-form-item label="款号:" prop="type_sn">
 
               <y-input
 
@@ -43,210 +48,454 @@
               />
             </el-form-item>
           </el-col>
+          <el-col :span="12">
+            <el-form-item label="上市季节:" prop="type_sn">
+
+              <y-input
+
+                v-model="goodForm.value11234213"
+
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="材质成分:" prop="type_sn">
+
+              <y-input
+
+                v-model="goodForm.value1123123"
+
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="洗涤信息:" prop="type_sn">
+
+              <y-input
+
+                v-model="goodForm.value1123"
+
+              />
+            </el-form-item>
+          </el-col>
 
           <el-col :span="12">
             <el-form-item label="适合性别:" prop="gender">
 
-              <y-select
-
-                v-model="goodForm.gender"
-
-                :options="[{value: '1',label: '男'},{value: '0',label: '女'}]"
-
+              <y-radio
+                :options="[{value: '1',label: '男'},{value: '0',label: '女'},{value:'2',label:'中性'}]"
               />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="吊牌价格:" prop="original_price">
+            <el-form-item label="吊牌价:" prop="original_price">
 
               <y-input
-
                 v-model="goodForm.original_price"
-
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="品类:" prop="vip_price">
+              <y-input
               />
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
-            <el-form-item label="优惠价格:" prop="onsale_price">
-
+            <el-form-item label="内购价:" prop="onsale_price">
               <y-input
                 v-model="goodForm.onsale_price"
               />
             </el-form-item>
           </el-col>
-
           <el-col :span="12">
-            <el-form-item label="vip价格:" prop="vip_price">
-
+            <el-form-item label="引导语:" prop="vip_price">
               <y-input
 
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="尊享价:" prop="vip_price">
+              <y-input
                 v-model="goodForm.vip_price"
-
               />
             </el-form-item>
           </el-col>
 
-          <el-col :span="12">
-            <el-form-item label="轮播图:" prop="carousels">
-
-              <y-upload-multiple
-
-                v-model="goodForm.carousels"
-
-              />
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="页面主图:" prop="main_pic">
-
-              <y-upload-single
-
-                v-model="goodForm.main_pic"
-
-              />
-            </el-form-item>
-          </el-col>
-
-          <el-col :span="12">
-            <el-form-item label="产品详情:" prop="detail">
-
-              <y-input
-
-                v-model="goodForm.detail"
-
-              />
-            </el-form-item>
-          </el-col>
-
+          <!--          颜色-->
           <el-col :span="24">
-            <el-form-item label="产品参数:" prop="product_parameter">
-              <div v-for="(item,index) in goodForm.product_parameter" :key="index" class="">
-                <el-row type="flex">
-                  <el-col :span="10">
-                    <el-row type="flex">
-                      <el-col :span="4">
-                        属性名:
-                      </el-col>
-                      <el-col :span="16">
-                        <y-input v-model="item.key"/>
-                      </el-col>
-                    </el-row>
-                  </el-col>
-                  <el-col :span="10">
-                    <el-row type="flex">
-                      <el-col :span="4">
-                        属性值:
-                      </el-col>
-                      <el-col :span="16">
-                        <y-input v-model="item.value"/>
-                      </el-col>
-                    </el-row>
-                  </el-col>
+            <el-form-item label="颜色:" prop="vip_price">
 
-                  <el-col :span="4">
-                    <el-button @click="removeProp(item)">删除</el-button>
-
-                  </el-col>
-
-                </el-row>
-              </div>
-              <el-button @click="addProp">添加产品参数</el-button>
-
+              <el-select
+                v-model="goodForm.value1"
+                multiple
+                allow-create
+                filterable
+                default-first-option
+                placeholder="请选择版型标签">
+                <el-option
+                  v-for="item in [{value: '1',label: '黄色'},{value: '0',label: '绿色'},{value:'2',label:'红色'}]"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
             </el-form-item>
           </el-col>
 
-          <el-col :span="24">
-            <el-form-item
-              label="材质:"
-              prop="material"
-            >
+          <!--          商品参数-->
 
-              <el-table
-                :data="goodForm.material"
-                style="width: 100%"
-                :default-expand-all="materialExpand"
+          <el-card>
+            <div slot="header">
+              <span>商品参数</span>
+            </div>
+            <div class="">
+              <el-row>
+                <el-col :span="12">
+                  <el-form-item label="版型:" prop="vip_price">
+                    <el-tooltip content="请选择或直接输入标签" placement="top-start">
 
-                id="materialTable"
-                row-class-name="table-grey"
+                      <el-select
+                        v-model="goodForm.value1"
+                        multiple
+                        allow-create
+                        filterable
+                        default-first-option
+                        placeholder="请选择版型标签">
+                        <el-option
+                          v-for="item in [{
+                                    value: 'HTML',
+                                    label: '超级紧身'
+                                  }, {
+                                    value: 'CSS',
+                                    label: '紧身'
+                                  }, {
+                                    value: 'JavaScript',
+                                    label: '修身'
+                                  }]"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                      </el-select>
+                    </el-tooltip>
+                  </el-form-item>
+                </el-col>
 
+                <el-col :span="12">
+                  <el-form-item label="风格元素:" prop="vip_price">
+                    <el-select
+                      v-model="goodForm.value2"
+                      multiple
+                      allow-create
+                      filterable
+                      default-first-option
+                      placeholder="请选择风格元素标签">
+                      <el-option
+                        v-for="item in [{
+                                    value: 'HTML',
+                                    label: '少淑'
+                                  }, {
+                                    value: 'CSS',
+                                    label: '简约'
+                                  }, {
+                                    value: 'JavaScript',
+                                    label: '北欧'
+                                  }]"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+
+                <el-col :span="12">
+                  <el-form-item label="细节特征:" prop="vip_price">
+                    <el-select
+                      v-model="goodForm.value3"
+                      multiple
+                      allow-create
+                      filterable
+                      default-first-option
+                      placeholder="请选择细节特征标签">
+                      <el-option
+                        v-for="item in [{
+                                    value: 'HTML',
+                                    label: '高腰'
+                                  }, {
+                                    value: 'CSS',
+                                    label: '泡泡袖'
+                                  }, {
+                                    value: 'JavaScript',
+                                    label: '拼接'
+                                  }]"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                      </el-option>
+                    </el-select>
+                  </el-form-item>
+                </el-col>
+
+              </el-row>
+            </div>
+          </el-card>
+          <!--          商品说明-->
+          <el-card>
+            <div slot="header">
+              <span>商品说明</span>
+            </div>
+            <div class="">
+              <el-card>
+                <div class="" slot="header">款式/风格:</div>
+                <div class="">
+                  <el-row>
+                    <el-col :span="12">
+                      <el-form-item label="介绍视频:" prop="vip_price">
+                        <el-tooltip content="请上传1段视频 " placement="top-start">
+                          <y-upload-file
+                          >
+                            <div class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                          </y-upload-file>
+                        </el-tooltip>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form-item label="轮播图:" prop="vip_price">
+                        <y-upload-image
+                          :limit="1"
+                        />
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form-item label="风格类型:" prop="vip_price">
+                        <y-input
+                          type="textarea"
+
+                        />
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form-item label="时尚度:" prop="vip_price">
+                        <y-input
+                          type="textarea"
+
+                        />
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form-item label="设计来历:" prop="vip_price">
+                        <y-input
+                          type="textarea"
+
+                        />
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form-item label="创意细节:" prop="vip_price">
+                        <y-input
+                          type="textarea"
+
+                        />
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form-item label="细节图:" prop="vip_price">
+                        <y-upload-image
+                          :limit="3"
+                        />
+                      </el-form-item>
+                    </el-col>
+
+                    <el-col :span="12">
+                      <el-form-item label="自定义:" prop="vip_price">
+                        <y-input
+                        />
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+                </div>
+
+              </el-card>
+              <el-row>
+
+                <el-col :span="12">
+                  <el-form-item label="面料/做工:" prop="vip_price">
+                    <y-input
+                      type="textarea"
+
+                    />
+                  </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                  <el-form-item label="适穿人群/场合:" prop="vip_price">
+                    <y-input
+                      type="textarea"
+
+                    />
+                  </el-form-item>
+                </el-col>
+                <el-col :span="12">
+                  <el-form-item label="穿着效果:" prop="vip_price">
+                    <y-input
+                      type="textarea"
+
+                    />
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </div>
+          </el-card>
+          <!--          -->
+          <!--          -->
+          <!--          -->
+          <!--          -->
+
+          <!--          关联近似款-->
+          <el-card>
+            <div class="" slot="header">关联近似款:</div>
+            <div class="">
+
+              <el-tree
+                :data="categoryList"
+                :props="categoryProp"
+                show-checkbox
               >
-                <el-table-column type="expand">
-                  <template slot-scope="props">
-                    <el-table
-                      :data="goodForm.material[props.$index].value"
-                      style="width: 100%"
-                    >
-                      <el-table-column
-                        label="二级属性名称"
-                        prop="key"
-                      />
+              </el-tree>
+            </div>
 
-                      <el-table-column
-                        label="二级属性内容"
-                        prop="value"
-                      />
+          </el-card>
+          <el-input></el-input>
 
-                      <el-table-column label="操作">
-                        <template slot-scope="scope">
-                          <el-button
-                            size="mini"
-                            @click="editMaterial(props.$index,scope.$index, '2')"
-                          >编辑二级属性
-                          </el-button>
+          <!--          自定义属性-->
 
-                          <el-button
-                            size="mini"
-                            type="danger"
-                            @click="delMaterial(props.$index,scope.$index, '2')"
-                          >删除
-                          </el-button>
-                        </template>
-                      </el-table-column>
-                    </el-table>
+          <!--          <el-col :span="24">-->
+          <!--            <el-form-item label="产品参数:" prop="product_parameter">-->
+          <!--              <div v-for="(item,index) in goodForm.product_parameter" :key="index" class="">-->
+          <!--                <el-row type="flex">-->
+          <!--                  <el-col :span="10">-->
+          <!--                    <el-row type="flex">-->
+          <!--                      <el-col :span="4">-->
+          <!--                        属性名:-->
+          <!--                      </el-col>-->
+          <!--                      <el-col :span="16">-->
+          <!--                        <y-input v-model="item.key"/>-->
+          <!--                      </el-col>-->
+          <!--                    </el-row>-->
+          <!--                  </el-col>-->
+          <!--                  <el-col :span="10">-->
+          <!--                    <el-row type="flex">-->
+          <!--                      <el-col :span="4">-->
+          <!--                        属性值:-->
+          <!--                      </el-col>-->
+          <!--                      <el-col :span="16">-->
+          <!--                        <y-input v-model="item.value"/>-->
+          <!--                      </el-col>-->
+          <!--                    </el-row>-->
+          <!--                  </el-col>-->
 
-                  </template>
-                </el-table-column>
+          <!--                  <el-col :span="4">-->
+          <!--                    <el-button @click="removeProp(item)">删除</el-button>-->
 
-                <el-table-column
-                  label="一级属性名称"
-                  prop="key"
-                />
+          <!--                  </el-col>-->
 
-                <el-table-column label="操作">
-                  <template slot-scope="scope">
-                    <el-button
-                      size="mini"
-                      @click="editMaterial(scope.$index, scope.row,'1')"
-                    >编辑一级属性
-                    </el-button>
+          <!--                </el-row>-->
+          <!--              </div>-->
+          <!--              <el-button @click="addProp">添加产品参数</el-button>-->
 
-                    <el-button
-                      size="mini"
-                      type="danger"
-                      @click="delMaterial(scope.$index,null,'1')"
-                    >删除一级属性
-                    </el-button>
+          <!--            </el-form-item>-->
+          <!--          </el-col>-->
 
-                    <el-button
-                      size="mini"
-                      @click="addMaterial(scope.$index, scope.row,'2')"
-                    >添加二级属性
-                    </el-button>
-                  </template>
-                </el-table-column>
-              </el-table>
+          <!--          <el-col :span="24">-->
+          <!--            <el-form-item-->
+          <!--              label="材质:"-->
+          <!--              prop="material"-->
+          <!--            >-->
 
-              <el-button
-                size="mini"
-                @click="addMaterial(null,null,'1')"
-              >添加一级属性
-              </el-button>
+          <!--              <el-table-->
+          <!--                :data="goodForm.material"-->
+          <!--                style="width: 100%"-->
+          <!--                :default-expand-all="materialExpand"-->
 
-            </el-form-item>
-          </el-col>
+          <!--                id="materialTable"-->
+          <!--                row-class-name="table-grey"-->
+
+          <!--              >-->
+          <!--                <el-table-column type="expand">-->
+          <!--                  <template slot-scope="props">-->
+          <!--                    <el-table-->
+          <!--                      :data="goodForm.material[props.$index].value"-->
+          <!--                      style="width: 100%"-->
+          <!--                    >-->
+          <!--                      <el-table-column-->
+          <!--                        label="二级属性名称"-->
+          <!--                        prop="key"-->
+          <!--                      />-->
+
+          <!--                      <el-table-column-->
+          <!--                        label="二级属性内容"-->
+          <!--                        prop="value"-->
+          <!--                      />-->
+
+          <!--                      <el-table-column label="操作">-->
+          <!--                        <template slot-scope="scope">-->
+          <!--                          <el-button-->
+          <!--                            size="mini"-->
+          <!--                            @click="editMaterial(props.$index,scope.$index, '2')"-->
+          <!--                          >编辑二级属性-->
+          <!--                          </el-button>-->
+
+          <!--                          <el-button-->
+          <!--                            size="mini"-->
+          <!--                            type="danger"-->
+          <!--                            @click="delMaterial(props.$index,scope.$index, '2')"-->
+          <!--                          >删除-->
+          <!--                          </el-button>-->
+          <!--                        </template>-->
+          <!--                      </el-table-column>-->
+          <!--                    </el-table>-->
+          <!--                  </template>-->
+          <!--                </el-table-column>-->
+          <!--                <el-table-column-->
+          <!--                  label="一级属性名称"-->
+          <!--                  prop="key"-->
+          <!--                />-->
+          <!--                <el-table-column label="操作">-->
+          <!--                  <template slot-scope="scope">-->
+          <!--                    <el-button-->
+          <!--                      size="mini"-->
+          <!--                      @click="editMaterial(scope.$index, scope.row,'1')"-->
+          <!--                    >编辑一级属性-->
+          <!--                    </el-button>-->
+
+          <!--                    <el-button-->
+          <!--                      size="mini"-->
+          <!--                      type="danger"-->
+          <!--                      @click="delMaterial(scope.$index,null,'1')"-->
+          <!--                    >删除一级属性-->
+          <!--                    </el-button>-->
+
+          <!--                    <el-button-->
+          <!--                      size="mini"-->
+          <!--                      @click="addMaterial(scope.$index, scope.row,'2')"-->
+          <!--                    >添加二级属性-->
+          <!--                    </el-button>-->
+          <!--                  </template>-->
+          <!--                </el-table-column>-->
+          <!--              </el-table>-->
+
+          <!--              <el-button-->
+          <!--                size="mini"-->
+          <!--                @click="addMaterial(null,null,'1')"-->
+          <!--              >添加一级属性-->
+          <!--              </el-button>-->
+
+          <!--            </el-form-item>-->
+          <!--          </el-col>-->
 
           <!--          颜色尺码-->
           <el-col :span="24">
@@ -480,6 +729,29 @@ export default {
 
   data() {
     return {
+      tags: [
+        {
+          name: "标签一",
+          type: ""
+        },
+        {
+          name: "标签二",
+          type: "success"
+        },
+        {
+          name: "标签三",
+          type: "info"
+        },
+        {
+          name: "标签四",
+          type: "warning"
+        },
+        {
+          name: "标签五",
+          type: "danger"
+        }
+      ],
+
       goodForm: {},
       goodRules: {
 
@@ -552,12 +824,91 @@ export default {
       materialTitle: "",
 
       materialExpand: false,
-      colorExpand: false
+      colorExpand: false,
+
+      categoryList: [{
+        label: "一级 1",
+        children: [{
+          label: "二级 1-1",
+          children: [{
+            label: "三级 1-1-1"
+          }]
+        }]
+      }, {
+        label: "一级 2",
+        children: [{
+          label: "二级 2-1",
+          children: [{
+            label: "三级 2-1-1"
+          }]
+        }, {
+          label: "二级 2-2",
+          children: [{
+            label: "三级 2-2-1"
+          }]
+        }]
+      }, {
+        label: "一级 3",
+        children: [{
+          label: "二级 3-1",
+          children: [{
+            label: "三级 3-1-1"
+          }]
+        }, {
+          label: "二级 3-2",
+          children: [{
+            label: "三级 3-2-1"
+          }]
+        }]
+      }],
+
+      categoryProp: {
+        label: "label",
+        children: "children"
+      }
     }
   },
   created() {
+    this.init()
   },
   methods: {
+    init() {
+      this.categoryList = [{
+        label: "男装 1",
+        children: [{
+          label: "裤子 1-1",
+          children: [{
+            label: "牛仔裤 1-1-1"
+          }]
+        }]
+      }, {
+        label: "男装 2",
+        children: [{
+          label: "裤子 2-1",
+          children: [{
+            label: "牛仔裤 2-1-1"
+          }]
+        }, {
+          label: "裤子 2-2",
+          children: [{
+            label: "牛仔裤 2-2-1"
+          }]
+        }]
+      }, {
+        label: "男装 3",
+        children: [{
+          label: "裤子 3-1",
+          children: [{
+            label: "牛仔裤 3-1-1"
+          }]
+        }, {
+          label: "裤子 3-2",
+          children: [{
+            label: "牛仔裤 3-2-1"
+          }]
+        }]
+      }]
+    },
     async addGood() {
       // 提交数据之前先序列化部分需要转成json 的字段
       const postForm = objToJson(this.goodForm, ["material", "colors", "carousels", "product_parameter", "sizes"])

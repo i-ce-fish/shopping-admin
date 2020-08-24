@@ -1,9 +1,9 @@
 <template>
   <el-date-picker
     v-model="result"
-    type="date"
     @change="change"
 
+    :type="type"
     :size="size"
     :format="format"
     :value-format="valueFormat"
@@ -32,7 +32,10 @@
 export default {
   props: {
     value: Date,
-
+    type: {
+      type: String,
+      value: "date"
+    },
     size: String,
     format: String,
     valueFormat: String,

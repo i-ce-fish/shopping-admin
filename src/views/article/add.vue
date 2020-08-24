@@ -1,7 +1,18 @@
 <template>
   <div class="card-container">
     <el-card class="box-card">
-      <h3>添加article</h3>
+      <div class="" slot="header">
+        <el-row type="flex" justify="end">
+          <el-col>
+            <h3>添加article</h3>
+          </el-col>
+          <el-col :span="8" style="min-width: 280px">
+            <el-button @click="submit('articleForm')" type="success">发布</el-button>
+            <el-button @click="submit('articleForm')" type="primary">存为草稿</el-button>
+            <el-button @click="back">返回</el-button>
+          </el-col>
+        </el-row>
+      </div>
       <el-row type="flex" justify="space-between">
         <el-col :span="14">
 
@@ -27,10 +38,9 @@
               <el-col :span="12">
                 <el-form-item label="首页图:" prop="front_pic">
 
-                  <y-upload-single
-
+                  <y-upload-image
                     v-model="articleForm.front_pic"
-
+                    :limit="1"
                   />
                 </el-form-item>
               </el-col>
@@ -58,13 +68,14 @@
               </el-col>
 
               <el-col :span="12">
-                <el-form-item label="栏目显示:" prop="is_col_header">
+                <el-form-item label="编辑状态:" prop="is_col_header">
 
                   <y-radio
 
                     v-model="articleForm.is_col_header"
-
+                    :options="[{label:'编辑中',value:'1'},{label:'已完成',value:'2'}]"
                   />
+
                 </el-form-item>
               </el-col>
 
@@ -95,6 +106,41 @@
                 </el-form-item>
               </el-col>
 
+              <el-col :span="12">
+
+                <el-form-item label="排序: ">
+                  <y-input
+                    v-model="articleForm.sort">
+                  </y-input>
+
+                </el-form-item>
+              </el-col>
+
+              <el-col :span="12">
+
+                <el-form-item label="定时发布: ">
+
+                  <y-datepicker
+                    v-model="articleForm.value1123"
+                    type="datetime"
+                    default-time="12:00:00"
+                  >
+                  </y-datepicker>
+                </el-form-item>
+              </el-col>
+              <el-col :span="12">
+
+                <el-form-item label="延后提醒: ">
+                  <y-datepicker
+                    v-model="articleForm.value1732"
+                    type="datetime"
+                    default-time="12:00:00"
+                  >
+                  </y-datepicker>
+
+                </el-form-item>
+              </el-col>
+
               <el-col :span="24">
                 <el-form-item label="正文:" prop="body">
 
@@ -103,12 +149,6 @@
                 </el-form-item>
               </el-col>
 
-              <el-col :span="24">
-                <el-form-item>
-                  <el-button @click="submit('articleForm')">提交</el-button>
-                  <el-button @click="back">返回</el-button>
-                </el-form-item>
-              </el-col>
             </el-row>
           </y-form>
 

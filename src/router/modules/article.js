@@ -10,20 +10,20 @@ const articleRouter = {
     name: "index",
     component: () => import("@/views/article/index"),
     meta: {
-      title: "图文模块管理",
+      title: "听老板娘说",
       icon: "tree"
     }
   }, {
     path: "edit",
     component: () => import("@/views/article/edit"),
     hidden: true,
-    meta: { title: "修改图文模块" }
+    meta: { title: "修改推文" }
   },
   {
     path: "add",
     component: () => import("@/views/article/add"),
     hidden: true,
-    meta: { title: "添加图文模块" }
+    meta: { title: "添加推文" }
   }
   ]
 }

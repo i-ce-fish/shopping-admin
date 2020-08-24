@@ -32,7 +32,10 @@ export default {
       default: false
     },
 
-    labelPosition: String,
+    labelPosition: {
+      type: String,
+      default: ""
+    },
     labelSuffix: {
       type: String,
       default: ""

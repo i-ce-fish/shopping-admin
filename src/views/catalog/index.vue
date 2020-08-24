@@ -1,73 +1,78 @@
 <template>
-    <div class="app-container">
-        <y-form
-                ref="catalogForm"
-                :model="catalogForm"
-                label-width="80px"
+
+  <!--  todo 样式:   凡是表单都要有输入建议  计划发布时间(精确到日)(显示成多少天后)(超时红色闪烁提醒)     根据分类树形表格    -->
+<!--  todo 字段:           分类排序              -->
+<!--  todo 模板:搜索建议    6. 增加条件筛选提示  -->
+  <div class="app-container">
+    <y-form
+      ref="catalogForm"
+      :model="catalogForm"
+      label-width="80px"
+    >
+      <el-row type="flex" justify="end">
+        <el-form-item>
+
+          <el-button type="success" @click="add">添加图文分类</el-button>
+
+        </el-form-item>
+      </el-row>
+
+      <el-row type="flex" justify="space-between">
+        <el-col :span="20">
+          <el-row>
+
+            <el-col :span="6">
+              <el-form-item label="类别名:" prop="catalog_name">
+
+                <y-input
+
+                  v-model="catalogForm.catalog_name"
+
+                />
+              </el-form-item>
+            </el-col>
+
+          </el-row>
+        </el-col>
+        <el-col :span="4">
+          <el-row type="flex" justify="end">
+            <el-form-item>
+              <el-button type="primary" @click="onSearch">查询</el-button>
+              <el-button @click="reset" class="no-margin">重置</el-button>
+            </el-form-item>
+          </el-row>
+        </el-col>
+      </el-row>
+
+    </y-form>
+
+    <y-table :data="catalogsData" :pagination="pagination" @sortBy="sortBy" @changePage4List="getList">
+      <template>
+
+        <el-table-column
+          prop="catalog_name"
+          label="类别名"
+
         >
-            <el-row type="flex" justify="end">
-                <el-form-item>
-                    <el-button type="success" @click="add">添加图文分类</el-button>
-                </el-form-item>
-            </el-row>
 
-            <el-row type="flex" justify="space-between">
-                <el-col :span="20">
-                    <el-row>
+        </el-table-column>
 
-                        <el-col :span="6">
-                            <el-form-item label="类别名:" prop="catalog_name">
+        <el-table-column
+          prop="description"
+          label="介绍"
+        >
 
-                                <y-input
+        </el-table-column>
 
-                                v-model="catalogForm.catalog_name"
-
-                                />
-                            </el-form-item>
-                        </el-col>
-
-                    </el-row>
-                </el-col>
-                <el-col :span="4">
-                    <el-row type="flex" justify="end">
-                        <el-form-item>
-                            <el-button type="primary" @click="onSearch">查询</el-button>
-                            <el-button @click="reset" class="no-margin">重置</el-button>
-                        </el-form-item>
-                    </el-row>
-                </el-col>
-            </el-row>
-
-        </y-form>
-
-        <y-table :data="catalogsData" :pagination="pagination" @sortBy="sortBy" @changePage4List="getList">
-            <template>
-
-                        <el-table-column
-prop="catalog_name"
-label="类别名"
-
-                                          >
-
-                        </el-table-column>
-
-                        <el-table-column
-prop="description"
-label="介绍"
-
-                                          >
-
-                        </el-table-column>
-
-                <el-table-column label="操作" width="100px">
-                    <template slot-scope="{row}">
-                        <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
-                        <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
-                    </template>
-                </el-table-column>
-            </template>
-        </y-table>
-    </div>
+        <el-table-column label="操作" width="100px">
+          <template slot-scope="{row}">
+            <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
+            <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
+          </template>
+        </el-table-column>
+      </template>
+    </y-table>
+  </div>
 </template>
 <script>
 import { getCatalogs, delCatalog } from "@/api/catalog"
@@ -104,7 +109,10 @@ export default {
       this.$router.push({ path: "add" })
     },
     edit(id) {
-      this.$router.push({ path: "edit", query: { id }})
+      this.$router.push({
+        path: "edit",
+        query: { id }
+      })
     },
     del(id) {
       this.$confirm("是否删除?", "提示", {
@@ -113,13 +121,14 @@ export default {
         type: "warning"
       })
         .then(() => {
-          delCatalog(id).then((response) => {
-            this.$message({
-              type: "success",
-              message: "删除成功!"
+          delCatalog(id)
+            .then((response) => {
+              this.$message({
+                type: "success",
+                message: "删除成功!"
+              })
+              this.getList()
             })
-            this.getList()
-          })
         })
         .catch(() => {
           this.$message({
@@ -143,10 +152,11 @@ export default {
 </script>
 
 <style lang='scss' scope>
-    .app-container {
-        padding: 20px;
-        .no-margin{
-            margin: 0;
-        }
-    }
+.app-container {
+  padding: 20px;
+
+  .no-margin {
+    margin: 0;
+  }
+}
 </style>

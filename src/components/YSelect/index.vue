@@ -144,7 +144,7 @@ export default {
   computed: {},
   watch: {
     value(val) {
-      // 搜索表单重置后为空，要有费非空判断
+      // 搜索表单重置后为空，要有非空判断
       // value 为id 时是Number类型
       this.result = val?.toString()
     }

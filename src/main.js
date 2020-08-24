@@ -20,7 +20,9 @@ import YForm from "@/components/YForm/index.vue"
 import YUpload from "@/components/YUpload/index.vue"
 import YUploadSingle from "@/components/YUpload/YUploadSingle.vue"
 import YUploadMultiple from "@/components/YUpload/YUploadMultiple.vue"
-//
+import YUploadImage from "@/components/YUploadImage/index.vue"
+import YUploadFile from "@/components/YUploadFile/index.vue"
+// store
 import store from "./store"
 import router from "./router"
 import App from "./App.vue"
@@ -41,6 +43,8 @@ Vue.component("YTable", YTable)
 Vue.component("YForm", YForm)
 Vue.component("YUploadSingle", YUploadSingle)
 Vue.component("YUploadMultiple", YUploadMultiple)
+Vue.component("YUploadImage", YUploadImage)
+Vue.component("YUploadFile", YUploadFile)
 
 Vue.use(ElementUI)
 
@@ -49,7 +53,6 @@ Vue.prototype._ = _
 
 // 返回
 Vue.prototype.back = function() {
-  // eslint-disable-next-line no-restricted-globals
   history.back()
 }
 Vue.config.productionTip = false
