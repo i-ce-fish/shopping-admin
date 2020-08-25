@@ -1,8 +1,8 @@
 <template>
 
-  <!--  todo 样式:   凡是表单都要有输入建议  计划发布时间(精确到日)(显示成多少天后)(超时红色闪烁提醒)     根据分类树形表格    -->
-<!--  todo 字段:           分类排序              -->
-<!--  todo 模板:搜索建议    6. 增加条件筛选提示  -->
+  <!--  todo 样式:   凡是表单都要有输入建议  计划发布时间(精确到日)(显示成多少天后)(超时红色闪烁提醒)        -->
+  <!--  todo 字段:           分类排序              -->
+  <!--  todo 模板:搜索建议    6. 增加条件筛选提示  -->
   <div class="app-container">
     <y-form
       ref="catalogForm"
@@ -52,9 +52,7 @@
         <el-table-column
           prop="catalog_name"
           label="类别名"
-
         >
-
         </el-table-column>
 
         <el-table-column
@@ -63,7 +61,11 @@
         >
 
         </el-table-column>
-
+        <el-table-column
+          prop="sort"
+          label="排序"
+        >
+        </el-table-column>
         <el-table-column label="操作" width="100px">
           <template slot-scope="{row}">
             <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>

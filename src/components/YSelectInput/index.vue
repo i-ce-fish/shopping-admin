@@ -1,4 +1,6 @@
 <template>
+  <y-tooltip :tips="tips" >
+
   <el-select
     v-model="result"
     placeholder="请选择"
@@ -14,6 +16,7 @@
       :value="item.value"
     />
   </el-select>
+  </y-tooltip>
 </template>
 <script>
 
@@ -40,6 +43,11 @@ export default {
         value: "选项5",
         label: "北京烤鸭"
       }]
+    },
+    // 输入提示
+    tips: {
+      type: String,
+      default: ""
     }
   },
   data() {

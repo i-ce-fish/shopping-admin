@@ -1,32 +1,35 @@
 <template>
-  <el-date-picker
-    v-model="result"
-    @change="change"
+  <y-tooltip :tips="tips">
 
-    :type="type"
-    :size="size"
-    :format="format"
-    :value-format="valueFormat"
-    :readonly="readonly"
-    :placeholder="placeholder"
-    :start-placeholder="startPlaceholder"
-    :end-placeholder="endPlaceholder"
-    :prefix-icon="prefixIcon"
-    :clear-icon="clearIcon"
-    :name="name"
-    :disabled="disabled"
-    :clearable="clearable"
-    :id="id"
-    :popper-class="popperClass"
-    :editable="editable"
-    :align="align"
-    :default-value="defaultValue"
-    :range-separator="rangeSeparator"
-    :default-time="defaultTime"
-    :picker-options="pickerOptions"
-    :unlink-panels="unlinkPanels"
-    :validate-event="validateEvent"
-  />
+    <el-date-picker
+      v-model="result"
+      @change="change"
+
+      :type="type"
+      :size="size"
+      :format="format"
+      :value-format="valueFormat"
+      :readonly="readonly"
+      :placeholder="placeholder"
+      :start-placeholder="startPlaceholder"
+      :end-placeholder="endPlaceholder"
+      :prefix-icon="prefixIcon"
+      :clear-icon="clearIcon"
+      :name="name"
+      :disabled="disabled"
+      :clearable="clearable"
+      :id="id"
+      :popper-class="popperClass"
+      :editable="editable"
+      :align="align"
+      :default-value="defaultValue"
+      :range-separator="rangeSeparator"
+      :default-time="defaultTime"
+      :picker-options="pickerOptions"
+      :unlink-panels="unlinkPanels"
+      :validate-event="validateEvent"
+    />
+  </y-tooltip>
 </template>
 <script>
 export default {
@@ -81,6 +84,11 @@ export default {
     validateEvent: {
       type: Boolean,
       default: true
+    },
+    // 输入提示
+    tips: {
+      type: String,
+      default: "请输入"
     }
   },
   data() {

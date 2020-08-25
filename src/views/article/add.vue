@@ -30,7 +30,6 @@
                   <y-input
 
                     v-model="articleForm.title"
-
                   />
                 </el-form-item>
               </el-col>
@@ -80,7 +79,7 @@
               </el-col>
 
               <el-col :span="12">
-                <el-form-item label="栏目ID:" prop="catalog_id">
+                <el-form-item label="所属栏目:" prop="catalog_id">
 
                   <y-select
 
@@ -110,7 +109,10 @@
 
                 <el-form-item label="排序: ">
                   <y-input
+
+                    tips="数值越大, 排序越前"
                     v-model="articleForm.sort">
+
                   </y-input>
 
                 </el-form-item>

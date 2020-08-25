@@ -1,4 +1,6 @@
 <template>
+  <y-tooltip :tips="tips" >
+
   <el-input-number
     v-model="result"
     controls-position="right"
@@ -16,6 +18,7 @@
     :placeholder="placeholder"
     :precision="precision"
   />
+  </y-tooltip>
 </template>
 <script>
 export default {
@@ -56,6 +59,11 @@ export default {
       validator(val) {
         return val >= 0 && val === parseInt(val, 10)
       }
+    },
+    // 输入提示
+    tips: {
+      type: String,
+      default: ""
     }
 
   },

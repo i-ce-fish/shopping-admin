@@ -1,53 +1,60 @@
 <template>
-    <div class="card-container">
-        <el-card class="box-card">
-            <h3>添加catalog</h3>
-            <y-form
-                    ref="catalogForm"
-                    :model="catalogForm"
-                    :rules="catalogRules"
-                    label-width="100px"
-            >
-                <el-row>
+  <div class="card-container">
+    <el-card class="box-card">
+      <h3>添加catalog</h3>
+      <y-form
+        ref="catalogForm"
+        :model="catalogForm"
+        :rules="catalogRules"
+        label-width="100px"
+      >
+        <el-row>
 
-                    <el-col :span="12">
-                        <el-form-item label="类别名:" prop="catalog_name">
+          <el-col :span="12">
+            <el-form-item label="类别名:" prop="catalog_name">
 
-                          <el-tooltip  content="请输入图文分类名称 " placement="top-start">
+              <y-input
 
-                            <y-input
+                v-model="catalogForm.catalog_name"
 
-                                v-model="catalogForm.catalog_name"
+              />
 
-                            />
+            </el-form-item>
+          </el-col>
 
-                            </el-tooltip>
+          <el-col :span="12">
+            <el-form-item label="介绍:" prop="description">
 
-                        </el-form-item>
-                    </el-col>
+              <y-input
 
-                    <el-col :span="12">
-                        <el-form-item label="介绍:" prop="description">
+                v-model="catalogForm.description"
 
-                            <y-input
+              />
 
-                                v-model="catalogForm.description"
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="排序:" prop="description">
 
-                            />
+              <y-input
+                tips="数值越大, 排序越前"
+                v-model="catalogForm.value123"
 
-                        </el-form-item>
-                    </el-col>
+              />
 
-                    <el-col :span="24">
-                        <el-form-item>
-                            <el-button @click="submit('catalogForm')">提交</el-button>
-                            <el-button @click="back">返回</el-button>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-            </y-form>
-        </el-card>
-    </div>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="24">
+            <el-form-item>
+              <el-button @click="submit('catalogForm')">提交</el-button>
+              <el-button @click="back">返回</el-button>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </y-form>
+    </el-card>
+  </div>
 </template>
 
 <script>
@@ -118,13 +125,13 @@ export default {
 }
 </script>
 <style lang='scss' scope>
-    .card-container {
-        background-color: #f0f2f5;
-        padding: 30px;
-        min-height: 100vh;
+.card-container {
+  background-color: #f0f2f5;
+  padding: 30px;
+  min-height: 100vh;
 
-        .box-card {
+  .box-card {
 
-        }
-    }
+  }
+}
 </style>

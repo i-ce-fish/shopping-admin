@@ -22,12 +22,14 @@ import YUploadSingle from "@/components/YUpload/YUploadSingle.vue"
 import YUploadMultiple from "@/components/YUpload/YUploadMultiple.vue"
 import YUploadImage from "@/components/YUploadImage/index.vue"
 import YUploadFile from "@/components/YUploadFile/index.vue"
+import YTooltip from "@/components/YTooltip/index.vue"
+
 // store
 import store from "./store"
 import router from "./router"
 import App from "./App.vue"
 
-import "./permission" // permission control
+import "./permission"
 
 Vue.component("YRadio", YRadio)
 Vue.component("YInput", YInput)
@@ -45,6 +47,7 @@ Vue.component("YUploadSingle", YUploadSingle)
 Vue.component("YUploadMultiple", YUploadMultiple)
 Vue.component("YUploadImage", YUploadImage)
 Vue.component("YUploadFile", YUploadFile)
+Vue.component("YTooltip", YTooltip)
 
 Vue.use(ElementUI)
 

@@ -1,6 +1,7 @@
 <template>
-  <div class="y-select">
-    <el-select
+  <y-tooltip :tips="tips" >
+
+  <el-select
       v-model="result"
       :placeholder="placeholder"
       :disabled="disabled"
@@ -36,7 +37,7 @@
         :value="item.value"
         :disabled="item.disabled"/>
     </el-select>
-  </div>
+  </y-tooltip>
 </template>
 <script>
 import request from "@/utils/request"
@@ -129,6 +130,11 @@ export default {
     popperAppendToBody: {
       type: Boolean,
       default: true
+    },
+    // 输入提示
+    tips: {
+      type: String,
+      default: ""
     }
 
   },

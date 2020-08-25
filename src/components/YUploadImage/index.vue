@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <y-tooltip :tips="tips">
+
     <el-upload
       action="https://jsonplaceholder.typicode.com/posts/"
       list-type="picture-card"
@@ -13,7 +14,7 @@
     <el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogImageUrl" alt="">
     </el-dialog>
-  </div>
+  </y-tooltip>
 </template>
 <script>
 export default {
@@ -24,6 +25,11 @@ export default {
     limit: {
       type: Number,
       default: 0
+    },
+    // 输入提示
+    tips: {
+      type: String,
+      default: ""
     }
   },
 

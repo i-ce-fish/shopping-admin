@@ -1,4 +1,6 @@
 <template>
+  <y-tooltip :tips="tips" >
+
   <el-radio-group
     v-model="result"
     @change="change"
@@ -20,6 +22,7 @@
     >{{ item.label }}
     </el-radio>
   </el-radio-group>
+  </y-tooltip>
 </template>
 <script>
 
@@ -44,7 +47,12 @@ export default {
     size: String,
     fill: String,
     textColor: String,
-    disabled: Boolean
+    disabled: Boolean,
+    // 输入提示
+    tips: {
+      type: String,
+      default: ""
+    }
   },
   data() {
     return {

@@ -1,26 +1,28 @@
 <template>
-  <el-input
-    v-model="result"
-    :size="size"
-    @input="input"
-    :placeholder="placeholder"
-    :disabled="disabled"
-    :resize="resize"
-    :form="form"
-    :readonly="readonly"
-    :type="type"
-    :autosize="autosize"
-    :autocomplete="autocomplete"
-    :validate-event="validateEvent"
-    :suffix-icon="suffixIcon"
-    :prefix-icon="prefixIcon"
-    :label="label"
-    :clearable="clearable"
-    :show-password="showPassword"
-    :show-word-limit="showWordLimit"
-    :tabindex="tabindex"
+  <y-tooltip :tips="tips" >
+    <el-input
+      v-model="result"
+      :size="size"
+      @input="input"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      :resize="resize"
+      :form="form"
+      :readonly="readonly"
+      :type="type"
+      :autosize="autosize"
+      :autocomplete="autocomplete"
+      :validate-event="validateEvent"
+      :suffix-icon="suffixIcon"
+      :prefix-icon="prefixIcon"
+      :label="label"
+      :clearable="clearable"
+      :show-password="showPassword"
+      :show-word-limit="showWordLimit"
+      :tabindex="tabindex"
+    />
+  </y-tooltip>
 
-  />
 </template>
 <script>
 export default {
@@ -77,8 +79,12 @@ export default {
       type: Boolean,
       default: false
     },
-    tabindex: String
-
+    tabindex: String,
+    // 输入提示
+    tips: {
+      type: String,
+      default: ""
+    }
   },
   data() {
     return {

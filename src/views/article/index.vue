@@ -7,7 +7,6 @@
     >
 
       <el-row>
-
         <el-col>
           <span type="success" style="line-height: 40px">搜索条件</span>
         </el-col>
@@ -23,33 +22,29 @@
 
         <el-col :span="6">
           <el-form-item label="标题:" prop="title">
-            <el-tooltip content="请输入图文分类名称 " placement="top-start">
-              <y-input
-                v-model="articleForm.title"
-              />
-            </el-tooltip>
+            <y-input
+              v-model="articleForm.title"
+              tips="请输入标题"
+            />
           </el-form-item>
         </el-col>
         <el-col :span="6">
           <el-form-item label="文章内容:" prop="title">
-            <el-tooltip content="请输入图文分类名称 " placement="top-start">
-              <y-input
-                v-model="articleForm.value234"
-              />
-            </el-tooltip>
+            <y-input
+              v-model="articleForm.value234"
+              tips="请输入文章内容"
+            />
           </el-form-item>
         </el-col>
         <el-col :span="6">
           <el-form-item label="发布时间:" prop="title">
-            <el-tooltip content="请输入图文分类名称 " placement="top-start">
-              <y-datepicker
-                v-model="articleForm.value123"
-                type="datetimerange"
-                range-separator="至"
-                start-placeholder="开始日期"
-                end-placeholder="结束日期"
-              />
-            </el-tooltip>
+            <y-datepicker
+              v-model="articleForm.value123"
+              type="datetimerange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+            />
           </el-form-item>
         </el-col>
 
@@ -74,8 +69,8 @@
       <template>
 
         <el-table-column
-          prop="catalog_id"
-          label="栏目ID"
+          prop="catalog_name"
+          label="所属栏目"
           width="100px"
           align='center'>
 
@@ -97,29 +92,34 @@
 
         <el-table-column
           prop="count"
+          sortable
           label="阅读量">
         </el-table-column>
         <el-table-column
           prop="count"
+          sortable
           label="点赞数">
         </el-table-column>
         <el-table-column
           prop="count"
+          sortable
           label="发布时间">
         </el-table-column>
         <el-table-column
           prop="count"
+          sortable
           label="提醒时间">
         </el-table-column>
 
         <el-table-column
           prop="count"
+          sortable
           label="排序">
         </el-table-column>
 
         <el-table-column
           prop="is_header"
-          label="是否首页"
+          label="是否发布"
           sortable="is_header"
           width="100px"
           align='center'>
@@ -128,6 +128,22 @@
             <el-button
               :type="scope.row.is_header? 'success':'info'"
               :icon="scope.row.is_header? 'el-icon-check':'el-icon-close'"
+              circle></el-button>
+          </template>
+
+        </el-table-column>
+
+        <el-table-column
+          prop="is_col_header"
+          label="编辑状态"
+          sortable="is_col_header"
+          width="100px"
+          align='center'>
+
+          <template slot-scope="scope">
+            <el-button
+              :type="scope.row.is_col_header? 'success':'info'"
+              :icon="scope.row.is_col_header? 'el-icon-check':'el-icon-close'"
               circle></el-button>
           </template>
 
@@ -164,6 +180,33 @@ import { getArticles, delArticle } from "@/api/article"
 import { getCatalogs } from "@/api/catalog"
 
 export default {
+  directives: {
+    // 自定义组件的名字
+    test: {
+      // 钩子函数，被绑定元素插入父节点时调用 (父节点存在即可调用，不必存在于 document 中)。
+      inserted(el) {
+        console.log(el)
+        console.log("inserted")
+      },
+      // 只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个在绑定时执行一次的初始化动作。
+      bind() {
+        console.log("bind")
+      },
+      // 所在组件的 VNode 更新时调用，但是可能发生在其孩子的 VNode 更新之前。
+      // 指令的值可能发生了改变也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新
+      updata() {
+        console.log("updata")
+      },
+      // 所在组件的 VNode 及其孩子的 VNode 全部更新时调用。
+      componentUpdated() {
+        console.log("componentUpdated")
+      },
+      // 只调用一次，指令与元素解绑时调用。
+      unbind() {
+        console.log("unbind")
+      }
+    }
+  },
   data() {
     return {
       articleForm: {
@@ -177,8 +220,8 @@ export default {
       catalogOption: []
     }
   },
-  created() {
-    this.getCatalogOption()
+  async created() {
+    await this.getCatalogOption()
     this.getList()
   },
   methods: {
@@ -190,6 +233,12 @@ export default {
           pagesize: this.pagination.pageSize
         }
       )
+
+      // 根据接口筛选出catalog_name
+      res.data.list.forEach((o) => {
+        // eslint-disable-next-line
+        o.catalog_name = this._.filter(this.catalogOption, { "id": o.catalog_id.toString() })[0]?.catalog_name
+      })
 
       // const a = this._.chain(this.catalogOption)
       //   .forEach((i) => {

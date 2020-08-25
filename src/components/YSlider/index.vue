@@ -1,26 +1,28 @@
 <template>
-  <el-slider
-    v-model="result"
-    :min="min"
-    :max="max"
-    @change="change"
-    :step="step"
-    :show-input="showInput"
-    :show-input-controls="showInputControls"
-    :input-size="inputSize"
-    :show-stops="showStops"
-    :show-tooltip="showTooltip"
-    :format-tooltip="formatTooltip"
-    :disabled="disabled"
-    :range="range"
-    :vertical="vertical"
-    :height="height"
-    :debounce="debounce"
-    :label="label"
-    :tooltip-class="tooltipClass"
-    :marks="marks"
+  <y-tooltip :tips="tips">
+    <el-slider
+      v-model="result"
+      :min="min"
+      :max="max"
+      @change="change"
+      :step="step"
+      :show-input="showInput"
+      :show-input-controls="showInputControls"
+      :input-size="inputSize"
+      :show-stops="showStops"
+      :show-tooltip="showTooltip"
+      :format-tooltip="formatTooltip"
+      :disabled="disabled"
+      :range="range"
+      :vertical="vertical"
+      :height="height"
+      :debounce="debounce"
+      :label="label"
+      :tooltip-class="tooltipClass"
+      :marks="marks"
 
-  />
+    />
+  </y-tooltip>
 </template>
 <script>
 export default {
@@ -85,8 +87,12 @@ export default {
       type: String
     },
     tooltipClass: String,
-    marks: Object
-
+    marks: Object,
+    // 输入提示
+    tips: {
+      type: String,
+      default: ""
+    }
   },
   data() {
     return {

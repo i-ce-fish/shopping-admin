@@ -1,4 +1,5 @@
 <template>
+  <y-tooltip :tips="tips" >
   <el-switch
     v-model="result"
     @change="change"
@@ -16,6 +17,7 @@
     :validate-event="validateEvent"
     :id="id"
   />
+  </y-tooltip>
 </template>
 <script>
 export default {
@@ -67,7 +69,12 @@ export default {
       type: Boolean,
       default: true
     },
-    id: String
+    id: String,
+    // 输入提示
+    tips: {
+      type: String,
+      default: ""
+    }
 
   },
   data() {
