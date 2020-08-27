@@ -35,7 +35,7 @@
               </el-col>
 
               <el-col :span="12">
-                <el-form-item label="首页图:" prop="front_pic">
+                <el-form-item label="封面图:" prop="front_pic">
 
                   <y-upload-image
                     v-model="articleForm.front_pic"
@@ -48,15 +48,13 @@
                 <el-form-item label="作者:" prop="author">
 
                   <y-input
-
                     v-model="articleForm.author"
-
                   />
                 </el-form-item>
               </el-col>
 
               <el-col :span="12">
-                <el-form-item label="首页头条:" prop="is_header">
+                <el-form-item label="是否头条:" prop="is_header">
 
                   <y-radio
 

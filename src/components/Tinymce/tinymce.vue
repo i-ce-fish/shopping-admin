@@ -39,18 +39,20 @@ export default {
     },
     plugins: {
       type: [String, Array],
-      default: "lists image media table wordcount lineheight"
+      default: "lists image axupimgs media table wordcount lineheight "
     },
     toolbar: {
       type: [String, Array],
-      default: "undo redo |  formatselect |  fontselect |fontsizeselect| bold italic forecolor backcolor |lineheight alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table | removeformat"
+      default: "  undo redo |  formatselect |  fontselect |fontsizeselect| bold italic forecolor backcolor |lineheight alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table | removeformat"
     }
   },
   data() {
     return {
       init: {
+        selector: "#tinydemo",
         language_url: "/tinymce/langs/zh_CN.js",
         language: "zh_CN",
+        skin: "oxide",
         skin_url: "/tinymce/skins/ui/oxide",
         // skin_url: 'tinymce/skins/ui/oxide-dark',//暗色系
         height: 300,

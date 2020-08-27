@@ -57,7 +57,7 @@
         </el-col>
         <el-col :span="4">
 
-          <el-button type="success" @click="add">添加图文模块</el-button>
+          <el-button type="success" @click="add">编写推文</el-button>
 
         </el-col>
 

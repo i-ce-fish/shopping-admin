@@ -1,19 +1,23 @@
 <template>
   <y-tooltip :tips="tips">
 
-    <el-upload
-      action="https://jsonplaceholder.typicode.com/posts/"
-      list-type="picture-card"
-      :limit="limit"
-      :on-exceed="onExceed"
-      :multiple="limit>1||limit===0"
-      :on-preview="handlePictureCardPreview"
-      :on-remove="handleRemove">
-      <i class="el-icon-plus"></i>
-    </el-upload>
-    <el-dialog :visible.sync="dialogVisible">
-      <img width="100%" :src="dialogImageUrl" alt="">
-    </el-dialog>
+    <div class="">
+      <el-upload
+        action="https://jsonplaceholder.typicode.com/posts/"
+        list-type="picture-card"
+        :limit="limit"
+        :on-exceed="onExceed"
+        :multiple="limit>1||limit===0"
+        :on-preview="handlePictureCardPreview"
+        :on-remove="handleRemove">
+        <i class="el-icon-plus"></i>
+      </el-upload>
+      <el-dialog :visible.sync="dialogVisible">
+        <img width="100%" :src="dialogImageUrl" alt="">
+      </el-dialog>
+
+    </div>
+
   </y-tooltip>
 </template>
 <script>
