@@ -17,24 +17,19 @@
       :data="goodordersData"
       :pagination="pagination"
       @sortBy="sortBy"
-      @changePage4List="getList">
+      @changePage4List="getList"
+    >
       <template>
 
         <el-table-column
           prop="cusutomer_id"
           label="顾客ID"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column
           prop="total_amount"
           label="订单金额"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column label="操作" width="100px">
           <template slot-scope="{row}">
@@ -47,7 +42,7 @@
   </div>
 </template>
 <script>
-import { getGoodorders, delGoodorder } from "@/api/goodorder"
+import { getGoodorders, delGoodorder } from '@/api/goodorder'
 
 export default {
   data() {
@@ -78,34 +73,34 @@ export default {
     },
 
     add() {
-      this.$router.push({ path: "add" })
+      this.$router.push({ path: 'add' })
     },
     edit(id) {
       this.$router.push({
-        path: "edit",
+        path: 'edit',
         query: { id }
       })
     },
     del(id) {
-      this.$confirm("是否删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+      this.$confirm('是否删除?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
           delGoodorder(id)
             .then((response) => {
               this.$message({
-                type: "success",
-                message: "删除成功!"
+                type: 'success',
+                message: '删除成功!'
               })
               this.getList()
             })
         })
         .catch(() => {
           this.$message({
-            type: "info",
-            message: "已取消删除"
+            type: 'info',
+            message: '已取消删除'
           })
         })
     },

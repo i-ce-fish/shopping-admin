@@ -1,74 +1,80 @@
 <template>
   <div class="app-container">
-    <y-form
-      ref="goodsizeForm"
-      :model="goodsizeForm"
-      label-width="80px"
-    >
-      <el-row type="flex" justify="end">
-        <el-form-item>
+    <el-card>
+      <div slot="header">
+        <span>搜索条件</span>
+      </div>
+      <y-form
+        ref="goodsizeForm"
+        :model="goodsizeForm"
+        label-width="80px"
+      >
+
+        <el-row type="flex" justify="space-between">
+          <el-row>
+
+            <el-col>
+              <el-form-item label="库存数量:" prop="inventory">
+
+                <y-input
+
+                  v-model="goodsizeForm.inventory"
+                />
+              </el-form-item>
+            </el-col>
+
+          </el-row>
+
+        </el-row>
+
+        <el-row type="flex" align="space-between">
+          <el-col>
+            <el-button type="primary" @click="onSearch">查询</el-button>
+            <el-button class="no-margin" @click="reset">重置</el-button>
+          </el-col>
           <el-button type="success" @click="add">添加尺码表</el-button>
-        </el-form-item>
-      </el-row>
 
-    </y-form>
-
-    <y-table
-      :data="goodsizesData"
-      :pagination="pagination"
-      @sortBy="sortBy"
-      @changePage4List="getList">
+        </el-row>
+      </y-form>
+    </el-card>
+    <y-table :data="goodsizesData" :pagination="pagination" @sortBy="sortBy" @changePage4List="getList">
       <template>
 
         <el-table-column
           prop="size_name"
           label="尺码名"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column
           prop="display_name"
           label="尺寸显示名"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column
           prop="description"
           label="尺寸解释"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column
           prop="color_id"
           label="ColorID"
 
           width="100px"
-          align='center'>
-
-        </el-table-column>
+          align="center"
+        />
 
         <el-table-column
           prop="inventory"
           label="库存数量"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column
           prop="good_id"
           label="货品ID"
 
           width="100px"
-          align='center'>
-
-        </el-table-column>
+          align="center"
+        />
 
         <el-table-column label="操作" width="100px">
           <template slot-scope="{row}">
@@ -81,7 +87,7 @@
   </div>
 </template>
 <script>
-import { getGoodsizes, delGoodsize } from "@/api/goodsize"
+import { getGoodsizes, delGoodsize } from '@/api/goodsize'
 
 export default {
   data() {
@@ -112,34 +118,30 @@ export default {
     },
 
     add() {
-      this.$router.push({ path: "add" })
+      this.$router.push({ path: 'add' })
     },
     edit(id) {
-      this.$router.push({
-        path: "edit",
-        query: { id }
-      })
+      this.$router.push({ path: 'edit', query: { id }})
     },
     del(id) {
-      this.$confirm("是否删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+      this.$confirm('是否删除?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
-          delGoodsize(id)
-            .then((response) => {
-              this.$message({
-                type: "success",
-                message: "删除成功!"
-              })
-              this.getList()
+          delGoodsize(id).then((response) => {
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
             })
+            this.getList()
+          })
         })
         .catch(() => {
           this.$message({
-            type: "info",
-            message: "已取消删除"
+            type: 'info',
+            message: '已取消删除'
           })
         })
     },
@@ -158,11 +160,10 @@ export default {
 </script>
 
 <style lang='scss' scope>
-.app-container {
-  padding: 20px;
-
-  .no-margin {
-    margin: 0;
-  }
-}
+    .app-container {
+        padding: 20px;
+        .no-margin{
+            margin: 0;
+        }
+    }
 </style>

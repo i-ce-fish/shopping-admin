@@ -6,18 +6,18 @@
       style="width: 100%"
       row-key="id"
       :default-expand-all="defaultExpandAll"
-      @sort-change="changeSort"
-
       :size="size"
+
       :width="width"
       :height="height"
       :max-height="maxHeight"
       :fit="fit"
       :stripe="stripe"
       :border="border"
-      :rowKey="rowKey"
+      :row-key="rowKey"
       :context="context"
       :show-header="showHeader"
+      @sort-change="changeSort"
       :show-summary="showSummary"
       :sum-text="sumText"
       :summary-method="summaryMethod"
@@ -42,7 +42,7 @@
       :lazy="lazy"
       :load="load"
     >
-      <slot/>
+      <slot />
     </el-table>
     <el-pagination
       background
@@ -148,8 +148,8 @@ export default {
       type: Object,
       default() {
         return {
-          hasChildren: "hasChildren",
-          children: "children"
+          hasChildren: 'hasChildren',
+          children: 'children'
         }
       }
     },
@@ -168,15 +168,15 @@ export default {
   methods: {
     changePage(page) {
       this.pagination.pageNumber = page
-      this.$emit("changePage4List")
+      this.$emit('changePage4List')
     },
     changePageSize(val) {
       this.pagination.pageSize = val
-      this.$emit("changePage4List")
+      this.$emit('changePage4List')
     },
     setPaginationDefault() {
       if (!this.pagination.layout) {
-        this.pagination.layout = "total, prev, pager, next, jumper, sizes"
+        this.pagination.layout = 'total, prev, pager, next, jumper, sizes'
       }
       if (!this.pagination.pageSizes) {
         this.pagination.pageSizes = [10, 20, 30, 40, 50]
@@ -193,8 +193,8 @@ export default {
     changeSort(e) {
       // e.order 的值 null,ascending,descending
       const map = new Map([
-        ["descending", "1"],
-        ["ascending", "0"]])
+        ['descending', '1'],
+        ['ascending', '0']])
       const desc = map.get(e.order)
       const sort = {}
       if (desc) {
@@ -202,7 +202,7 @@ export default {
         sort.desc = desc
       }
 
-      this.$emit("sortBy", sort)
+      this.$emit('sortBy', sort)
     }
   }
 }

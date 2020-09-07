@@ -1,22 +1,22 @@
 <template>
-  <y-tooltip :tips="tips" >
-  <el-switch
-    v-model="result"
-    @change="change"
-    :disabled="disabled"
-    :width="width"
-    :active-icon-class="activeIconClass"
-    :inactive-icon-class="inactiveIconClass"
-    :active-text="activeText"
-    :inactive-text="inactiveText"
-    :active-color="activeColor"
-    :inactive-color="inactiveColor"
-    :active-value="activeValue"
-    :inactive-value="inactiveValue"
-    :name="name"
-    :validate-event="validateEvent"
-    :id="id"
-  />
+  <y-tooltip :tips="tips">
+    <el-switch
+      v-model="result"
+      :disabled="disabled"
+      :width="width"
+      :active-icon-class="activeIconClass"
+      :inactive-icon-class="inactiveIconClass"
+      :active-text="activeText"
+      :inactive-text="inactiveText"
+      :active-color="activeColor"
+      :inactive-color="inactiveColor"
+      :active-value="activeValue"
+      @change="change"
+      :inactive-value="inactiveValue"
+      :name="name"
+      :validate-event="validateEvent"
+      :id="id"
+    />
   </y-tooltip>
 </template>
 <script>
@@ -37,21 +37,21 @@ export default {
     },
     activeIconClass: {
       type: String,
-      default: ""
+      default: ''
     },
     inactiveIconClass: {
       type: String,
-      default: ""
+      default: ''
     },
     activeText: String,
     inactiveText: String,
     activeColor: {
       type: String,
-      default: ""
+      default: ''
     },
     inactiveColor: {
       type: String,
-      default: ""
+      default: ''
     },
     activeValue: {
       type: [Boolean, String, Number],
@@ -63,7 +63,7 @@ export default {
     },
     name: {
       type: String,
-      default: ""
+      default: ''
     },
     validateEvent: {
       type: Boolean,
@@ -73,7 +73,7 @@ export default {
     // 输入提示
     tips: {
       type: String,
-      default: ""
+      default: ''
     }
 
   },
@@ -87,7 +87,7 @@ export default {
   },
   methods: {
     change() {
-      this.$emit("input", this.result)
+      this.$emit('input', this.result)
     }
   }
 }

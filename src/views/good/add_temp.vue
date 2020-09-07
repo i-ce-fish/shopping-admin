@@ -17,7 +17,6 @@
               <y-input
 
                 v-model="goodForm.product_name"
-
               />
             </el-form-item>
           </el-col>
@@ -28,7 +27,6 @@
               <y-input
 
                 v-model="goodForm.product_sn"
-
               />
             </el-form-item>
           </el-col>
@@ -39,7 +37,6 @@
               <y-input
 
                 v-model="goodForm.type_sn"
-
               />
             </el-form-item>
           </el-col>
@@ -52,7 +49,6 @@
                 v-model="goodForm.gender"
 
                 :options="[{value: '1',label: '男'},{value: '0',label: '女'}]"
-
               />
             </el-form-item>
           </el-col>
@@ -63,7 +59,6 @@
               <y-input
 
                 v-model="goodForm.original_price"
-
               />
             </el-form-item>
           </el-col>
@@ -83,7 +78,6 @@
               <y-input
 
                 v-model="goodForm.vip_price"
-
               />
             </el-form-item>
           </el-col>
@@ -94,7 +88,6 @@
               <y-upload-multiple
 
                 v-model="goodForm.carousels"
-
               />
             </el-form-item>
           </el-col>
@@ -105,7 +98,6 @@
               <y-upload-single
 
                 v-model="goodForm.main_pic"
-
               />
             </el-form-item>
           </el-col>
@@ -116,7 +108,6 @@
               <y-input
 
                 v-model="goodForm.detail"
-
               />
             </el-form-item>
           </el-col>
@@ -131,7 +122,7 @@
                         属性名:
                       </el-col>
                       <el-col :span="16">
-                        <y-input v-model="item.key"/>
+                        <y-input v-model="item.key" />
                       </el-col>
                     </el-row>
                   </el-col>
@@ -141,7 +132,7 @@
                         属性值:
                       </el-col>
                       <el-col :span="16">
-                        <y-input v-model="item.value"/>
+                        <y-input v-model="item.value" />
                       </el-col>
                     </el-row>
                   </el-col>
@@ -165,13 +156,12 @@
             >
 
               <el-table
+                id="materialTable"
                 :data="goodForm.material"
                 style="width: 100%"
+
                 :default-expand-all="materialExpand"
-
-                id="materialTable"
                 row-class-name="table-grey"
-
               >
                 <el-table-column type="expand">
                   <template slot-scope="props">
@@ -253,12 +243,11 @@
             <el-form-item label="颜色尺码:" prop="colors">
 
               <el-table
+                id="colorSizeTable"
                 :data="goodForm.colors"
                 style="width: 100%"
                 :default-expand-all="colorExpand"
-                id="colorSizeTable"
                 row-class-name="table-grey"
-
               >
                 <el-table-column type="expand">
                   <template slot-scope="props">
@@ -350,9 +339,10 @@
 
           <DialogForm
             v-model="materialDialog1"
+            :title="materialTitle"
             @confirm="confirmMaterial('1')"
             @close="closeMaterial('1')"
-            :title="materialTitle">
+          >
             <template slot="body">
               <el-col :span="12">
                 <el-form-item label="标题:" prop="name">
@@ -367,9 +357,10 @@
           <!--    添加编辑材质二级属性-->
           <DialogForm
             v-model="materialDialog2"
+            :title="materialTitle"
             @confirm="confirmMaterial('2')"
             @close="closeMaterial('2')"
-            :title="materialTitle">
+          >
             <template slot="body">
               <el-col :span="12">
                 <el-form-item label="标题:" prop="name">
@@ -391,9 +382,10 @@
           <!--    添加编辑颜色-->
           <DialogForm
             v-model="colorDialog"
+            :title="colorSizeTitle"
             @confirm="confirmColorSize('color')"
             @close="closeColorSize('color')"
-            :title="colorSizeTitle">
+          >
             <template slot="body">
               <el-col :span="12">
 
@@ -408,7 +400,6 @@
                   <YUploadSingle
                     v-model="colorTemp.color_thumbnail"
                     :modal="false"
-
                   />
                 </el-form-item>
               </el-col>
@@ -426,9 +417,10 @@
           <!--    添加编辑尺码-->
           <DialogForm
             v-model="sizeDialog"
+            :title="colorSizeTitle"
             @confirm="confirmColorSize('size')"
             @close="closeColorSize('size')"
-            :title="colorSizeTitle">
+          >
             <template slot="body">
               <el-col :span="12">
                 <el-form-item label="尺码名">
@@ -469,9 +461,9 @@
 </template>
 
 <script>
-import DialogForm from "@/components/DialogForm/index.vue"
-import { listRemoveItem, objToJson } from "@/utils/index"
-import { addGood } from "../../api/good"
+import DialogForm from '@/components/DialogForm/index.vue'
+import { listRemoveItem, objToJson } from '@/utils/index'
+import { addGood } from '../../api/good'
 
 export default {
   components: { DialogForm },
@@ -485,15 +477,15 @@ export default {
 
           {
             required: true,
-            message: "请输入商品名称",
-            trigger: "blur"
+            message: '请输入商品名称',
+            trigger: 'blur'
           },
 
           {
-            type: "string",
+            type: 'string',
             max: 255,
-            message: "请输入长度小于255的商品名称",
-            trigger: "blur"
+            message: '请输入长度小于255的商品名称',
+            trigger: 'blur'
           }
 
         ],
@@ -501,10 +493,10 @@ export default {
         product_sn: [
 
           {
-            type: "string",
+            type: 'string',
             max: 80,
-            message: "请输入长度小于80的商品编号",
-            trigger: "blur"
+            message: '请输入长度小于80的商品编号',
+            trigger: 'blur'
           }
 
         ],
@@ -512,10 +504,10 @@ export default {
         type_sn: [
 
           {
-            type: "string",
+            type: 'string',
             max: 80,
-            message: "请输入长度小于80的款式编号",
-            trigger: "blur"
+            message: '请输入长度小于80的款式编号',
+            trigger: 'blur'
           }
 
         ],
@@ -523,10 +515,10 @@ export default {
         main_pic: [
 
           {
-            type: "string",
+            type: 'string',
             max: 255,
-            message: "请输入长度小于255的页面主图",
-            trigger: "blur"
+            message: '请输入长度小于255的页面主图',
+            trigger: 'blur'
           }
 
         ]
@@ -538,7 +530,7 @@ export default {
       sizeDialog: false,
       colorTemp: {},
       sizeTemp: {},
-      colorSizeTitle: "",
+      colorSizeTitle: '',
       // 材质
       materialDialog1: false,
       materialDialog2: false,
@@ -547,7 +539,7 @@ export default {
       // remark 分开两个避免input框v-model类型错误的bug，一级属性是数组，二级属性的string
       materialTemp1: {},
       materialTemp2: {},
-      materialTitle: "",
+      materialTitle: '',
 
       materialExpand: false,
       colorExpand: false
@@ -558,12 +550,12 @@ export default {
   methods: {
     async addGood() {
       // 提交数据之前先序列化部分需要转成json 的字段
-      await addGood(objToJson(this.goodForm, ["material", "colors", "carousels", "product_parameter", "sizes"]))
-      this.$router.push({ path: "/good" })
+      await addGood(objToJson(this.goodForm, ['material', 'colors', 'carousels', 'product_parameter', 'sizes']))
+      this.$router.push({ path: '/good' })
 
       this.$message({
-        message: "添加成功",
-        type: "success"
+        message: '添加成功',
+        type: 'success'
       })
     },
 
@@ -589,11 +581,11 @@ export default {
 
     // 材质方法
     delMaterial(index, index2, lev) {
-      if (lev === "1") {
+      if (lev === '1') {
         this.goodForm.material.splice(index, 1)
         // listRemoveItem(this.goodForm.product_parameter, item)
       }
-      if (lev === "2") {
+      if (lev === '2') {
         this.goodForm.material[index].value.splice(index2, 1)
       }
       this.$forceUpdate()
@@ -606,21 +598,21 @@ export default {
      */
     confirmMaterial(lev) {
       // 处理一级属性
-      if (lev === "1") {
-        if (this.materialTemp1.type === "add") {
+      if (lev === '1') {
+        if (this.materialTemp1.type === 'add') {
           // 空数组初始化
           this.goodForm.material ?? (this.goodForm.material = [])
           // 浅拷贝
           this.goodForm.material.push({ ...this.materialTemp1 })
         }
-        if (this.materialTemp1.type === "edit") {
+        if (this.materialTemp1.type === 'edit') {
           // 必须手动刷新
           this.$set(this.goodForm.material, this.materialTemp1.index, { ...this.materialTemp1 })
         }
       }
       //  处理二级属性
-      if (lev === "2") {
-        if (this.materialTemp2.type === "add") {
+      if (lev === '2') {
+        if (this.materialTemp2.type === 'add') {
           // 数组为空的时候初始化
           this.goodForm.material[this.materialTemp2.index].value ??
           (this.goodForm.material[this.materialTemp2.index].value = [])
@@ -631,14 +623,14 @@ export default {
             this.materialExpand = true
             // 绑定变表格展开的数据改变了，但是表格没展开，需要手动展开
             // 先获取materialId，不影响colors表格
-            document.getElementById("materialTable")
-              .getElementsByClassName("el-table__expand-icon")
+            document.getElementById('materialTable')
+              .getElementsByClassName('el-table__expand-icon')
               .forEach((item) => {
                 item.click()
               })
           }
         }
-        if (this.materialTemp2.type === "edit") {
+        if (this.materialTemp2.type === 'edit') {
           this.$set(this.goodForm.material[this.materialTemp2.index].value, this.materialTemp2.index2, { ...this.materialTemp2 })
         }
       }
@@ -651,31 +643,31 @@ export default {
      * @param lev 一级还是二级
      */
     editMaterial(index, index2, lev) {
-      if (lev === "1") {
+      if (lev === '1') {
         this.materialTemp1 = { ...this.goodForm.material[index] }
         this.materialTitle = `编辑一级属性：${this.materialTemp1.key}`
       }
-      if (lev === "2") {
+      if (lev === '2') {
         this.materialTemp2 = { ...this.goodForm.material[index].value[index2] }
         this.materialTitle = `编辑二级属性：${this.materialTemp2.key}`
       }
-      this[`materialTemp${lev}`].type = "edit"
+      this[`materialTemp${lev}`].type = 'edit'
       this[`materialTemp${lev}`].index = index
       this[`materialTemp${lev}`].index2 = index2
       this[`materialDialog${lev}`] = true
     },
     addMaterial(index, row, lev) {
-      if (lev === "1") {
+      if (lev === '1') {
         this.materialDialog1 = true
-        this.materialTitle = "添加一级属性"
+        this.materialTitle = '添加一级属性'
       }
-      if (lev === "2") {
+      if (lev === '2') {
         this.materialDialog2 = true
         // 添加二级属性时候设置一级属性id
         this.materialTemp2.index = index
-        this.materialTitle = "添加二级属性"
+        this.materialTitle = '添加二级属性'
       }
-      this[`materialTemp${lev}`].type = "add"
+      this[`materialTemp${lev}`].type = 'add'
     },
     // 点击取消的时候重置前一步设置的数据（添加或者编辑），否则影响下一步操作
     closeMaterial(lev) {
@@ -685,11 +677,11 @@ export default {
     //  颜色尺码方法
 
     delColorSize(index, index2, lev) {
-      if (lev === "color") {
+      if (lev === 'color') {
         this.goodForm.colors.splice(index, 1)
         // listRemoveItem(this.goodForm.product_parameter, item)
       }
-      if (lev === "size") {
+      if (lev === 'size') {
         this.goodForm.colors[index].value.splice(index2, 1)
       }
       this.$forceUpdate()
@@ -702,8 +694,8 @@ export default {
      */
     confirmColorSize(lev) {
       // 处理一级属性
-      if (lev === "color") {
-        if (this.colorTemp.type === "add") {
+      if (lev === 'color') {
+        if (this.colorTemp.type === 'add') {
           // 空数组初始化
           if (!this.goodForm.colors) {
             this.goodForm.colors = []
@@ -711,14 +703,14 @@ export default {
           // 浅拷贝
           this.goodForm.colors.push({ ...this.colorTemp })
         }
-        if (this.colorTemp.type === "edit") {
+        if (this.colorTemp.type === 'edit') {
           // 必须手动刷新
           this.$set(this.goodForm.colors, this.colorTemp.index, { ...this.colorTemp })
         }
       }
       //  处理二级属性
-      if (lev === "size") {
-        if (this.sizeTemp.type === "add") {
+      if (lev === 'size') {
+        if (this.sizeTemp.type === 'add') {
           // 数组为空的时候初始化
           if (!this.goodForm.colors[this.sizeTemp.index].value) {
             this.goodForm.colors[this.sizeTemp.index].value = []
@@ -731,14 +723,14 @@ export default {
             this.colorExpand = true
             // 绑定变表格展开的数据改变了，但是表格没展开，需要手动展开
             // 先获取materialId，不影响colors表格
-            document.getElementById("colorSizeTable")
-              .getElementsByClassName("el-table__expand-icon")
+            document.getElementById('colorSizeTable')
+              .getElementsByClassName('el-table__expand-icon')
               .forEach((item) => {
                 item.click()
               })
           }
         }
-        if (this.sizeTemp.type === "edit") {
+        if (this.sizeTemp.type === 'edit') {
           this.$set(this.goodForm.colors[this.sizeTemp.index].value, this.sizeTemp.index2, { ...this.sizeTemp })
         }
       }
@@ -751,31 +743,31 @@ export default {
      * @param lev 一级还是二级
      */
     editColorSize(index, index2, lev) {
-      if (lev === "color") {
+      if (lev === 'color') {
         this.colorTemp = { ...this.goodForm.colors[index] }
         this.materialTitle = `编辑颜色：${this.colorTemp.key}`
       }
-      if (lev === "size") {
+      if (lev === 'size') {
         this.sizeTemp = { ...this.goodForm.colors[index].value[index2] }
         this.materialTitle = `编辑尺码：${this.sizeTemp.key}`
       }
-      this[`${lev}Temp`].type = "edit"
+      this[`${lev}Temp`].type = 'edit'
       this[`${lev}Temp`].index = index
       this[`${lev}Temp`].index2 = index2
       this[`${lev}Dialog`] = true
     },
     addColorSize(index, row, lev) {
-      if (lev === "color") {
+      if (lev === 'color') {
         this.colorDialog = true
-        this.colorSizeTitle = "添加颜色"
+        this.colorSizeTitle = '添加颜色'
       }
-      if (lev === "size") {
+      if (lev === 'size') {
         this.sizeDialog = true
         // 添加二级属性时候设置一级属性id
         this.sizeTemp.index = index
-        this.colorSizeTitle = "添加尺码"
+        this.colorSizeTitle = '添加尺码'
       }
-      this[`${lev}Temp`].type = "add"
+      this[`${lev}Temp`].type = 'add'
     },
     // 点击取消的时候重置前一步设置的数据（添加或者编辑），否则影响下一步操作
     closeColorSize(lev) {

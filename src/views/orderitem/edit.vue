@@ -16,7 +16,6 @@
               <y-input
 
                 v-model="orderitemForm.good_id"
-
               />
             </el-form-item>
           </el-col>
@@ -27,7 +26,6 @@
               <y-input
 
                 v-model="orderitemForm.quantity"
-
               />
             </el-form-item>
           </el-col>
@@ -38,7 +36,6 @@
               <y-input
 
                 v-model="orderitemForm.total"
-
               />
             </el-form-item>
           </el-col>
@@ -49,7 +46,6 @@
               <y-input
 
                 v-model="orderitemForm.goodorder_id"
-
               />
             </el-form-item>
           </el-col>
@@ -68,7 +64,7 @@
 
 <script>
 
-import { putOrderitem, getOrderitem } from "../../api/orderitem"
+import { putOrderitem, getOrderitem } from '../../api/orderitem'
 
 export default {
 
@@ -90,11 +86,11 @@ export default {
 
     async putOrderitem() {
       await putOrderitem(this.$route.query.id, this.orderitemForm)
-      this.$router.push({ path: "/orderitem" })
+      this.$router.push({ path: '/orderitem' })
 
       this.$message({
-        message: "修改成功",
-        type: "success"
+        message: '修改成功',
+        type: 'success'
       })
     },
 

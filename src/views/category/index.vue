@@ -1,18 +1,16 @@
 <template>
   <div class="app-container">
-    <y-form
-      ref="categoryForm"
-      :model="categoryForm"
-      label-width="80px"
-    >
-      <el-row type="flex" justify="end">
-        <el-form-item>
-          <el-button type="success" @click="add">添加商品分类</el-button>
-        </el-form-item>
-      </el-row>
 
-      <el-row type="flex" justify="space-between">
-        <el-col :span="20">
+    <el-card>
+      <div slot="header">
+        <span>搜索条件</span>
+      </div>
+      <div>
+        <y-form
+          ref="categoryForm"
+          :model="categoryForm"
+          label-width="80px"
+        >
           <el-row>
 
             <el-col :span="6">
@@ -21,24 +19,25 @@
                 <y-input
 
                   v-model="categoryForm.name"
-
                 />
               </el-form-item>
             </el-col>
-
           </el-row>
-        </el-col>
-        <el-col :span="4">
-          <el-row type="flex" justify="end">
-            <el-form-item>
+          <el-row type="flex" align="space-between">
+            <el-col>
+
               <el-button type="primary" @click="onSearch">查询</el-button>
-              <el-button @click="reset" class="no-margin">重置</el-button>
-            </el-form-item>
-          </el-row>
-        </el-col>
-      </el-row>
+              <el-button @click="reset">重置</el-button>
+            </el-col>
 
-    </y-form>
+            <el-button type="success" @click="add">添加商品分类</el-button>
+
+          </el-row>
+
+        </y-form>
+
+      </div>
+    </el-card>
 
     <y-table :data="categoriesData" :pagination="pagination" @sortBy="sortBy" @changePage4List="getList">
       <template>
@@ -46,27 +45,20 @@
         <el-table-column
           prop="name"
           label="类别名"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column
           prop="sort"
           label="排序"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column
           prop="parent_id"
           label="父ID"
 
           width="100px"
-          align='center'>
-
-        </el-table-column>
+          align="center"
+        />
 
         <el-table-column label="操作" width="100px">
           <template slot-scope="{row}">
@@ -79,7 +71,7 @@
   </div>
 </template>
 <script>
-import { getCategories, delCategory } from "@/api/category"
+import { getCategories, delCategory } from '@/api/category'
 
 export default {
   data() {
@@ -110,34 +102,34 @@ export default {
     },
 
     add() {
-      this.$router.push({ path: "add" })
+      this.$router.push({ path: 'add' })
     },
     edit(id) {
       this.$router.push({
-        path: "edit",
+        path: 'edit',
         query: { id }
       })
     },
     del(id) {
-      this.$confirm("是否删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+      this.$confirm('是否删除?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
           delCategory(id)
             .then((response) => {
               this.$message({
-                type: "success",
-                message: "删除成功!"
+                type: 'success',
+                message: '删除成功!'
               })
               this.getList()
             })
         })
         .catch(() => {
           this.$message({
-            type: "info",
-            message: "已取消删除"
+            type: 'info',
+            message: '已取消删除'
           })
         })
     },

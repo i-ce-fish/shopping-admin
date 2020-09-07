@@ -17,48 +17,34 @@
       :data="addressesData"
       :pagination="pagination"
       @sortBy="sortBy"
-      @changePage4List="getList">
+      @changePage4List="getList"
+    >
       <template>
 
         <el-table-column
           prop="province"
           label="省"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column
           prop="city"
           label="市"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column
           prop="detail"
           label="详细地址"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column
           prop="customer_id"
           label="所属客户"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column
           prop="is_default"
           label="是否为默认地址"
-
-        >
-
-        </el-table-column>
+        />
 
         <el-table-column label="操作" width="100px">
           <template slot-scope="{row}">
@@ -71,7 +57,7 @@
   </div>
 </template>
 <script>
-import { getAddresses, delAddress } from "@/api/address"
+import { getAddresses, delAddress } from '@/api/address'
 
 export default {
   data() {
@@ -102,34 +88,34 @@ export default {
     },
 
     add() {
-      this.$router.push({ path: "add" })
+      this.$router.push({ path: 'add' })
     },
     edit(id) {
       this.$router.push({
-        path: "edit",
+        path: 'edit',
         query: { id }
       })
     },
     del(id) {
-      this.$confirm("是否删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+      this.$confirm('是否删除?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
           delAddress(id)
             .then((response) => {
               this.$message({
-                type: "success",
-                message: "删除成功!"
+                type: 'success',
+                message: '删除成功!'
               })
               this.getList()
             })
         })
         .catch(() => {
           this.$message({
-            type: "info",
-            message: "已取消删除"
+            type: 'info',
+            message: '已取消删除'
           })
         })
     },

@@ -1,6 +1,6 @@
 <template>
   <el-tooltip :content="tips" :disabled="!tips" :placement="placement">
-    <slot></slot>
+    <slot />
   </el-tooltip>
 </template>
 <script>
@@ -9,12 +9,12 @@ export default {
     // 内容
     tips: {
       type: String,
-      value: ""
+      value: ''
     },
     // 位置
     placement: {
       type: String,
-      default: "top-start"
+      default: 'top-start'
     }
   },
   data() {

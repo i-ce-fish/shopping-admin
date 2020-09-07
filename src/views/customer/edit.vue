@@ -16,7 +16,6 @@
               <y-input
 
                 v-model="customerForm.name"
-
               />
             </el-form-item>
           </el-col>
@@ -27,7 +26,6 @@
               <y-input
 
                 v-model="customerForm.wechat_id"
-
               />
             </el-form-item>
           </el-col>
@@ -38,7 +36,6 @@
               <y-input
 
                 v-model="customerForm.credits"
-
               />
             </el-form-item>
           </el-col>
@@ -51,7 +48,6 @@
                 v-model="customerForm.default_addr_id"
 
                 api="/api/todo"
-
               />
             </el-form-item>
           </el-col>
@@ -62,7 +58,6 @@
               <y-input
 
                 v-model="customerForm.vip_level"
-
               />
             </el-form-item>
           </el-col>
@@ -81,7 +76,7 @@
 
 <script>
 
-import { putCustomer, getCustomer } from "../../api/customer"
+import { putCustomer, getCustomer } from '../../api/customer'
 
 export default {
 
@@ -93,10 +88,10 @@ export default {
         name: [
 
           {
-            type: "string",
+            type: 'string',
             max: 60,
-            message: "请输入长度小于60的顾客名称",
-            trigger: "blur"
+            message: '请输入长度小于60的顾客名称',
+            trigger: 'blur'
           }
 
         ],
@@ -104,10 +99,10 @@ export default {
         wechat_id: [
 
           {
-            type: "string",
+            type: 'string',
             max: 60,
-            message: "请输入长度小于60的微信号",
-            trigger: "blur"
+            message: '请输入长度小于60的微信号',
+            trigger: 'blur'
           }
 
         ]
@@ -129,11 +124,11 @@ export default {
 
     async putCustomer() {
       await putCustomer(this.$route.query.id, this.customerForm)
-      this.$router.push({ path: "/customer" })
+      this.$router.push({ path: '/customer' })
 
       this.$message({
-        message: "修改成功",
-        type: "success"
+        message: '修改成功',
+        type: 'success'
       })
     },
 

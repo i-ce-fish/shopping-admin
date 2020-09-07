@@ -1,1 +1,1 @@
-import articleRouter from "./modules/article"
+import articleRouter from './modules/article'

@@ -1,4 +1,5 @@
-import { getToken, setToken, removeToken } from "@/utils/auth"
+import { getToken, setToken, removeToken } from '@/utils/auth'
+import { login } from '@/api/login'
 
 const state = {
   token: getToken()
@@ -14,7 +15,7 @@ const actions = {
 
   setToken({ commit }, token) {
     return new Promise((resolve) => {
-      commit("SET_TOKEN", token)
+      commit('SET_TOKEN', token)
       setToken(token)
       resolve()
     })
@@ -23,8 +24,17 @@ const actions = {
   // remove token
   resetToken({ commit }) {
     return new Promise((resolve) => {
-      commit("SET_TOKEN", "")
+      commit('SET_TOKEN', '')
       removeToken()
+      resolve()
+    })
+  },
+
+  login({ commit, dispatch }, userForm) {
+    return new Promise(async(resolve) => {
+      const res = await login(userForm)
+      commit('SET_TOKEN', res.data.token)
+      dispatch('initWebsocket')
       resolve()
     })
   }

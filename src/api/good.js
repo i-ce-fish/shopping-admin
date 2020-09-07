@@ -1,9 +1,9 @@
-import request from "@/utils/request"
+import request from '@/utils/request'
 
 export function getGoods(params) {
   return request({
-    url: "/api/goods",
-    method: "get",
+    url: '/api/goods',
+    method: 'get',
     params
   })
 }
@@ -11,14 +11,14 @@ export function getGoods(params) {
 export function getGood(id) {
   return request({
     url: `/api/goods/${id}`,
-    method: "get"
+    method: 'get'
   })
 }
 
 export function addGood(data) {
   return request({
-    url: "/api/goods",
-    method: "post",
+    url: '/api/goods',
+    method: 'post',
     data
   })
 }
@@ -26,7 +26,7 @@ export function addGood(data) {
 export function putGood(id, data) {
   return request({
     url: `/api/goods/${id}`,
-    method: "put",
+    method: 'put',
     data
   })
 }
@@ -34,6 +34,6 @@ export function putGood(id, data) {
 export function delGood(id) {
   return request({
     url: `/api/goods/${id}`,
-    method: "delete"
+    method: 'delete'
   })
 }

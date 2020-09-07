@@ -19,7 +19,6 @@
                   <y-input
 
                     v-model="articleForm.title"
-
                   />
                 </el-form-item>
               </el-col>
@@ -30,7 +29,6 @@
                   <y-upload-single
 
                     v-model="articleForm.front_pic"
-
                   />
                 </el-form-item>
               </el-col>
@@ -41,7 +39,6 @@
                   <y-input
 
                     v-model="articleForm.author"
-
                   />
                 </el-form-item>
               </el-col>
@@ -52,7 +49,6 @@
                   <y-radio
 
                     v-model="articleForm.is_header"
-
                   />
                 </el-form-item>
               </el-col>
@@ -63,7 +59,6 @@
                   <y-radio
 
                     v-model="articleForm.is_col_header"
-
                   />
                 </el-form-item>
               </el-col>
@@ -76,9 +71,8 @@
                     v-model="articleForm.catalog_id"
 
                     api="/api/catalogs"
-                    labelName="catalog_name"
-                    valueName="id"
-
+                    label-name="catalog_name"
+                    value-name="id"
                   />
                 </el-form-item>
               </el-col>
@@ -90,7 +84,6 @@
                     v-model="articleForm.intro"
 
                     type="textarea"
-
                   />
                 </el-form-item>
               </el-col>
@@ -98,7 +91,7 @@
               <el-col :span="24">
                 <el-form-item label="正文:" prop="body">
 
-                  <Tinymce ref="editor" v-model="articleForm.body"/>
+                  <Tinymce ref="editor" v-model="articleForm.body" />
 
                 </el-form-item>
               </el-col>
@@ -121,7 +114,7 @@
             <div class="title">
               {{ articleForm.title }}
             </div>
-            <div v-html="articleForm.body"/>
+            <div v-html="articleForm.body" />
           </el-card>
         </el-col>
       </el-row>
@@ -130,9 +123,9 @@
 </template>
 
 <script>
-import Tinymce from "@/components/Tinymce/tinymce.vue"
+import Tinymce from '@/components/Tinymce/tinymce.vue'
 
-import { putArticle, getArticle } from "../../api/article"
+import { putArticle, getArticle } from '../../api/article'
 
 export default {
   components: { Tinymce },
@@ -146,15 +139,15 @@ export default {
 
           {
             required: true,
-            message: "请输入标题",
-            trigger: "blur"
+            message: '请输入标题',
+            trigger: 'blur'
           },
 
           {
-            type: "string",
+            type: 'string',
             max: 255,
-            message: "请输入长度小于255的标题",
-            trigger: "blur"
+            message: '请输入长度小于255的标题',
+            trigger: 'blur'
           }
 
         ],
@@ -162,10 +155,10 @@ export default {
         front_pic: [
 
           {
-            type: "string",
+            type: 'string',
             max: 255,
-            message: "请输入长度小于255的首页图",
-            trigger: "blur"
+            message: '请输入长度小于255的首页图',
+            trigger: 'blur'
           }
 
         ],
@@ -173,10 +166,10 @@ export default {
         author: [
 
           {
-            type: "string",
+            type: 'string',
             max: 80,
-            message: "请输入长度小于80的作者",
-            trigger: "blur"
+            message: '请输入长度小于80的作者',
+            trigger: 'blur'
           }
 
         ]
@@ -198,11 +191,11 @@ export default {
 
     async putArticle() {
       await putArticle(this.$route.query.id, this.articleForm)
-      this.$router.push({ path: "/article" })
+      this.$router.push({ path: '/article' })
 
       this.$message({
-        message: "修改成功",
-        type: "success"
+        message: '修改成功',
+        type: 'success'
       })
     },
 

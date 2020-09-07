@@ -1,9 +1,9 @@
-import request from "@/utils/request"
+import request from '@/utils/request'
 
 export function getGoodsizes(params) {
   return request({
-    url: "/api/goodsizes",
-    method: "get",
+    url: '/api/goodsizes',
+    method: 'get',
     params
   })
 }
@@ -11,14 +11,14 @@ export function getGoodsizes(params) {
 export function getGoodsize(id) {
   return request({
     url: `/api/goodsizes/${id}`,
-    method: "get"
+    method: 'get'
   })
 }
 
 export function addGoodsize(data) {
   return request({
-    url: "/api/goodsizes",
-    method: "post",
+    url: '/api/goodsizes',
+    method: 'post',
     data
   })
 }
@@ -26,7 +26,7 @@ export function addGoodsize(data) {
 export function putGoodsize(id, data) {
   return request({
     url: `/api/goodsizes/${id}`,
-    method: "put",
+    method: 'put',
     data
   })
 }
@@ -34,6 +34,6 @@ export function putGoodsize(id, data) {
 export function delGoodsize(id) {
   return request({
     url: `/api/goodsizes/${id}`,
-    method: "delete"
+    method: 'delete'
   })
 }

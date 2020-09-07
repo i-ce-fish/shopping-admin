@@ -1,23 +1,23 @@
-const name = "shopping-admin"
-const path = require("path")
+const name = 'shopping-admin'
+const path = require('path')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
 module.exports = {
-  publicPath: "./",
-  assetsDir: "./",
+  publicPath: './',
+  assetsDir: './',
   devServer: {
     proxy: {
-      "/api": {
-        target: "http://shop.cdb99.com:8088/",
+      '/api': {
+        target: 'http://shop.cdb99.com:8088/',
         // target: "http://123.207.179.135:5001",
         ws: true,
         changeOrigin: true
       },
-      "/uploads": {
-        target: "http://localhost:5000/",
+      '/uploads': {
+        target: 'http://localhost:5000/',
         ws: true,
         changeOrigin: true
       }
@@ -30,7 +30,7 @@ module.exports = {
     resolve: {
       // 配置路径别名
       alias: {
-        "@": resolve("src")
+        '@': resolve('src')
       }
     }
   },

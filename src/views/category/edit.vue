@@ -16,7 +16,6 @@
               <y-input
 
                 v-model="categoryForm.name"
-
               />
             </el-form-item>
           </el-col>
@@ -27,7 +26,6 @@
               <y-input
 
                 v-model="categoryForm.sort"
-
               />
             </el-form-item>
           </el-col>
@@ -41,9 +39,8 @@
 
                 api="/api/categories"
 
-                labelName="catalog_name"
-                valueName="id"
-
+                label-name="catalog_name"
+                value-name="id"
               />
             </el-form-item>
           </el-col>
@@ -62,7 +59,7 @@
 
 <script>
 
-import { putCategory, getCategory } from "../../api/category"
+import { putCategory, getCategory } from '../../api/category'
 
 export default {
 
@@ -75,15 +72,15 @@ export default {
 
           {
             required: true,
-            message: "请输入类别名",
-            trigger: "blur"
+            message: '请输入类别名',
+            trigger: 'blur'
           },
 
           {
-            type: "string",
+            type: 'string',
             max: 255,
-            message: "请输入长度小于255的类别名",
-            trigger: "blur"
+            message: '请输入长度小于255的类别名',
+            trigger: 'blur'
           }
 
         ],
@@ -91,10 +88,10 @@ export default {
         sort: [
 
           {
-            type: "string",
+            type: 'string',
             max: 255,
-            message: "请输入长度小于255的排序",
-            trigger: "blur"
+            message: '请输入长度小于255的排序',
+            trigger: 'blur'
           }
 
         ]
@@ -116,11 +113,11 @@ export default {
 
     async putCategory() {
       await putCategory(this.$route.query.id, this.categoryForm)
-      this.$router.push({ path: "/category" })
+      this.$router.push({ path: '/category' })
 
       this.$message({
-        message: "修改成功",
-        type: "success"
+        message: '修改成功',
+        type: 'success'
       })
     },
 

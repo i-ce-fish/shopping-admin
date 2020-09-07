@@ -2,28 +2,29 @@
   <el-dialog
     :title="title"
     :visible.sync="dialogShow"
-    width="50%"
+    width="70%"
     :before-close="handleClose"
-    :modal="false"
+    :modal="modal"
   >
     <div class="dialogForm">
-      <y-form
-        ref="dialogForm"
-        :model="dialogForm"
-        :rules="dialogRules"
-        label-width="100px"
-      >
-        <el-row>
-          <slot name="body"></slot>
 
-        </el-row>
-      </y-form>
+      <slot />
+
+      <!--      <y-form-->
+      <!--        ref="dialogForm"-->
+      <!--        :model="dialogForm"-->
+      <!--        :rules="dialogRules"-->
+      <!--        label-width="100px"-->
+      <!--      >-->
+      <!--        <el-row>-->
+      <!--        </el-row>-->
+      <!--      </y-form>-->
 
     </div>
     <span slot="footer" class="dialog-footer">
-    <el-button @click="close">取 消</el-button>
-    <el-button type="primary" @click="confirm">确 定</el-button>
-  </span>
+      <el-button @click="close">取 消</el-button>
+      <el-button type="primary" @click="confirm">确 定</el-button>
+    </span>
   </el-dialog>
 
 </template>
@@ -38,13 +39,18 @@ export default {
     },
     title: {
       String,
-      default: "对话框"
+      default: '对话框'
+    },
+    // 遮罩
+    modal: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
     return {
-      dialogForm: {},
-      dialogRules: {},
+      // dialogForm: {},
+      // dialogRules: {},
       dialogShow: this.value
     }
   },
@@ -57,11 +63,9 @@ export default {
   },
   methods: {
     handleClose(done) {
-      console.log("guanbiqian ")
-      console.log(this.dialogShow)
-      this.$emit("test", this.dialogShow)
+      this.$emit('test', this.dialogShow)
 
-      this.$confirm("确认关闭？")
+      this.$confirm('确认关闭？')
         .then((_) => {
           done()
         })
@@ -73,14 +77,13 @@ export default {
     },
     close() {
       this.dialogShow = false
-      this.$emit("input", this.dialogShow)
-      this.$emit("close")
+      this.$emit('input', this.dialogShow)
+      this.$emit('close')
     },
     confirm() {
-      this.dialogShow = false
-
-      this.$emit("input", this.dialogShow)
-      this.$emit("confirm")
+      // 父组件控制是否添加成功, 然后关闭
+      this.$emit('input', this.dialogShow)
+      this.$emit('confirm')
     }
   }
 

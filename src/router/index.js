@@ -1,33 +1,38 @@
-import Vue from "vue"
-import VueRouter from "vue-router"
-import Layout from "@/layout"
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Layout from '@/layout'
 // import paperRouter from "./modules/paper"
-import articleRouter from "./modules/article"
-import catalogRouter from "./modules/catalog"
-import customerRouter from "./modules/customer"
-import goodRouter from "./modules/good"
-import goodsizeRouter from "./modules/goodsize"
-import goodcolorRouter from "./modules/goodcolor"
-import addressRouter from "./modules/address"
-import goodorderRouter from "./modules/goodorder"
-import orderitemRouter from "./modules/orderitem"
-import categoryRouter from "./modules/category"
+import articleRouter from './modules/article'
+import catalogRouter from './modules/catalog'
+import customerRouter from './modules/customer'
+import goodRouter from './modules/good'
+import goodsizeRouter from './modules/goodsize'
+import goodcolorRouter from './modules/goodcolor'
+import addressRouter from './modules/address'
+import goodorderRouter from './modules/goodorder'
+import orderitemRouter from './modules/orderitem'
+import categoryRouter from './modules/category'
+import colorRouter from './modules/color'
+import patternRouter from './modules/pattern'
+import materialRouter from './modules/material'
+import supplyRouter from './modules/supply'
+import brandRouter from './modules/brand'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     component: Layout,
-    redirect: "/home",
+    redirect: '/home',
     children: [{
-      path: "home",
-      name: "home",
-      component: () => import("@/views/Home"),
+      path: 'home',
+      name: 'home',
+      component: () => import('@/views/Home'),
       meta: {
-        title: "首页",
-        icon: "el-icon-house"
+        title: '首页',
+        icon: 'el-icon-house'
       }
 
     }
@@ -36,14 +41,14 @@ const routes = [
   },
 
   {
-    path: "/login",
-    name: "Login",
-    component: () => import("@/views/Login")
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/Login')
   },
   {
-    path: "/register",
-    name: "Register",
-    component: () => import("@/views/Register")
+    path: '/register',
+    name: 'Register',
+    component: () => import('@/views/Register')
   },
   articleRouter,
   catalogRouter,
@@ -55,11 +60,15 @@ const routes = [
   goodorderRouter,
   orderitemRouter,
   categoryRouter,
-
+  colorRouter,
+  materialRouter,
+  patternRouter,
+  brandRouter,
+  supplyRouter,
   {
-    path: "/test",
-    name: "test",
-    component: () => import("@/views/Test")
+    path: '/test',
+    name: 'test',
+    component: () => import('@/views/Test')
   }
 //  todo 404
 ]

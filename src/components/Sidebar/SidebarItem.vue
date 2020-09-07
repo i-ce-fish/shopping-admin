@@ -3,20 +3,21 @@
     <template
       v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
     >
-      <div class="href" v-if="onlyOneChild.meta" v-bind="linkProps(resolvePath(onlyOneChild.path))">
+      <div v-if="onlyOneChild.meta" class="href" v-bind="linkProps(resolvePath(onlyOneChild.path))">
         <el-menu-item
           :index="resolvePath(onlyOneChild.path)"
-          :class="{'submenu-title-noDropdown':!isNest}">
-          <i :class="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)"/>
-          {{onlyOneChild.meta.title}}
+          :class="{'submenu-title-noDropdown':!isNest}"
+        >
+          <i :class="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" />
+          {{ onlyOneChild.meta.title }}
         </el-menu-item>
       </div>
     </template>
 
     <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
-        <i :class="item.meta.icon"/>
-        {{item.meta.title}}
+        <i :class="item.meta.icon" />
+        {{ item.meta.title }}
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -31,10 +32,10 @@
 </template>
 
 <script>
-import path from "path"
+import path from 'path'
 
 export default {
-  name: "SidebarItem",
+  name: 'SidebarItem',
   props: {
     // route object
     item: {
@@ -47,7 +48,7 @@ export default {
     },
     basePath: {
       type: String,
-      default: ""
+      default: ''
     }
   },
   data() {
@@ -76,7 +77,7 @@ export default {
       if (showingChildren.length === 0) {
         this.onlyOneChild = {
           ...parent,
-          path: "",
+          path: '',
           noShowingChildren: true
         }
         return true
@@ -97,14 +98,14 @@ export default {
     linkProps(url) {
       if (this.isExternal(url)) {
         return {
-          is: "a",
+          is: 'a',
           href: url,
-          target: "_blank",
-          rel: "noopener"
+          target: '_blank',
+          rel: 'noopener'
         }
       }
       return {
-        is: "router-link",
+        is: 'router-link',
         to: url
       }
     },

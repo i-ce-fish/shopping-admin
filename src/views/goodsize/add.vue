@@ -16,8 +16,8 @@
               <y-input
 
                 v-model="goodsizeForm.size_name"
-
               />
+
             </el-form-item>
           </el-col>
 
@@ -27,8 +27,8 @@
               <y-input
 
                 v-model="goodsizeForm.display_name"
-
               />
+
             </el-form-item>
           </el-col>
 
@@ -38,26 +38,19 @@
               <y-input
 
                 v-model="goodsizeForm.description"
-
               />
+
             </el-form-item>
           </el-col>
 
           <el-col :span="12">
             <el-form-item label="ColorID:" prop="color_id">
 
-              <!--              <y-select-->
+              <y-select
 
-              <!--                v-model="goodsizeForm.color_id"-->
+                v-model="goodsizeForm.color_id"
+              />
 
-              <!--                api="/api/goods"-->
-              <!--                valueName="id"-->
-              <!--                labelName="product_name"-->
-
-              <!--              />-->
-              <y-input v-model="goodsizeForm.color_id">
-
-              </y-input>
             </el-form-item>
           </el-col>
 
@@ -67,8 +60,8 @@
               <y-input
 
                 v-model="goodsizeForm.inventory"
-
               />
+
             </el-form-item>
           </el-col>
 
@@ -78,10 +71,13 @@
               <y-select
 
                 v-model="goodsizeForm.good_id"
+
                 api="/api/goods"
-                valueName='id'
-                labelName='product_name'
+
+                value-name="id"
+                label-name="product_name"
               />
+
             </el-form-item>
           </el-col>
 
@@ -98,7 +94,7 @@
 </template>
 
 <script>
-import { addGoodsize } from "../../api/goodsize"
+import { addGoodsize } from '../../api/goodsize'
 
 export default {
 
@@ -110,10 +106,10 @@ export default {
         size_name: [
 
           {
-            type: "string",
+            type: 'string',
             max: 60,
-            message: "请输入长度小于60的尺码名",
-            trigger: "blur"
+            message: '请输入长度小于60的尺码名',
+            trigger: 'blur'
           }
 
         ],
@@ -121,10 +117,10 @@ export default {
         display_name: [
 
           {
-            type: "string",
+            type: 'string',
             max: 69,
-            message: "请输入长度小于69的尺寸显示名",
-            trigger: "blur"
+            message: '请输入长度小于69的尺寸显示名',
+            trigger: 'blur'
           }
 
         ],
@@ -132,17 +128,17 @@ export default {
         description: [
 
           {
-            type: "string",
+            type: 'string',
             max: 255,
-            message: "请输入长度小于255的尺寸解释",
-            trigger: "blur"
+            message: '请输入长度小于255的尺寸解释',
+            trigger: 'blur'
           }
 
         ]
 
       },
 
-      color_idOptions: []
+      good_idOptions: []
 
     }
   },
@@ -151,11 +147,11 @@ export default {
   methods: {
     async addGoodsize() {
       await addGoodsize(this.goodsizeForm)
-      this.$router.push({ path: "/goodsize" })
+      this.$router.push({ path: '/goodsize' })
 
       this.$message({
-        message: "添加成功",
-        type: "success"
+        message: '添加成功',
+        type: 'success'
       })
     },
 
@@ -166,20 +162,19 @@ export default {
         } else {
           return false
         }
-        return undefined
       })
     }
   }
 }
 </script>
 <style lang='scss' scope>
-.card-container {
-  background-color: #f0f2f5;
-  padding: 30px;
-  min-height: 100vh;
+    .card-container {
+        background-color: #f0f2f5;
+        padding: 30px;
+        min-height: 100vh;
 
-  .box-card {
+        .box-card {
 
-  }
-}
+        }
+    }
 </style>

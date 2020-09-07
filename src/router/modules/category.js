@@ -1,29 +1,29 @@
-import Layout from "@/layout"
+import Layout from '@/layout'
 
 const categoryRouter = {
-  path: "/category",
-  name: "category",
-  redirect: "/category/index",
+  path: '/category',
+  name: 'category',
+  redirect: '/category/index',
   component: Layout,
   children: [{
-    path: "index",
-    name: "index",
-    component: () => import("@/views/category/index"),
+    path: 'index',
+    name: 'index',
+    component: () => import('@/views/category/index'),
     meta: {
-      title: "商品分类管理",
-      icon: "tree"
+      title: '商品分类管理',
+      icon: 'tree'
     }
   }, {
-    path: "edit",
-    component: () => import("@/views/category/edit"),
+    path: 'edit',
+    component: () => import('@/views/category/edit'),
     hidden: true,
-    meta: { title: "修改商品分类" }
+    meta: { title: '修改商品分类' }
   },
   {
-    path: "add",
-    component: () => import("@/views/category/add"),
+    path: 'add',
+    component: () => import('@/views/category/add'),
     hidden: true,
-    meta: { title: "添加商品分类" }
+    meta: { title: '添加商品分类' }
   }
   ]
 }

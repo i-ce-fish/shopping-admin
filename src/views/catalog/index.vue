@@ -27,7 +27,6 @@
                 <y-input
 
                   v-model="catalogForm.catalog_name"
-
                 />
               </el-form-item>
             </el-col>
@@ -38,7 +37,7 @@
           <el-row type="flex" justify="end">
             <el-form-item>
               <el-button type="primary" @click="onSearch">查询</el-button>
-              <el-button @click="reset" class="no-margin">重置</el-button>
+              <el-button class="no-margin" @click="reset">重置</el-button>
             </el-form-item>
           </el-row>
         </el-col>
@@ -52,20 +51,16 @@
         <el-table-column
           prop="catalog_name"
           label="类别名"
-        >
-        </el-table-column>
+        />
 
         <el-table-column
           prop="description"
           label="介绍"
-        >
-
-        </el-table-column>
+        />
         <el-table-column
           prop="sort"
           label="排序"
-        >
-        </el-table-column>
+        />
         <el-table-column label="操作" width="100px">
           <template slot-scope="{row}">
             <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
@@ -77,7 +72,7 @@
   </div>
 </template>
 <script>
-import { getCatalogs, delCatalog } from "@/api/catalog"
+import { getCatalogs, delCatalog } from '@/api/catalog'
 
 export default {
   data() {
@@ -108,34 +103,34 @@ export default {
     },
 
     add() {
-      this.$router.push({ path: "add" })
+      this.$router.push({ path: 'add' })
     },
     edit(id) {
       this.$router.push({
-        path: "edit",
+        path: 'edit',
         query: { id }
       })
     },
     del(id) {
-      this.$confirm("是否删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+      this.$confirm('是否删除?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
           delCatalog(id)
             .then((response) => {
               this.$message({
-                type: "success",
-                message: "删除成功!"
+                type: 'success',
+                message: '删除成功!'
               })
               this.getList()
             })
         })
         .catch(() => {
           this.$message({
-            type: "info",
-            message: "已取消删除"
+            type: 'info',
+            message: '已取消删除'
           })
         })
     },

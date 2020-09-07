@@ -14,7 +14,7 @@
     :validate-on-rule-change="validateOnRuleChange"
     :hide-required-asterisk="hideRequiredAsterisk"
   >
-    <slot></slot>
+    <slot />
   </el-form>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     rules: Object,
     labelWidth: {
       String,
-      default: "100px"
+      default: '100px'
     },
     inline: {
       Boolean,
@@ -34,11 +34,11 @@ export default {
 
     labelPosition: {
       type: String,
-      default: ""
+      default: ''
     },
     labelSuffix: {
       type: String,
-      default: ""
+      default: ''
     },
     inlineMessage: Boolean,
     statusIcon: Boolean,

@@ -1,166 +1,182 @@
 <template>
   <div class="app-container">
-    <y-form
-      ref="articleForm"
-      :model="articleForm"
-      label-width="80px"
-    >
 
-      <el-row>
-        <el-col>
-          <span type="success" style="line-height: 40px">搜索条件</span>
-        </el-col>
+    <el-card>
+      <div slot="header">
+        <span>搜索条件</span>
+      </div>
+      <y-form
+        ref="articleForm"
+        :model="articleForm"
+        label-width="80px"
+      >
 
-        <el-col>
-          <el-form-item label="栏目ID:" prop="catalog_id">
-            <y-checkbox
-              v-model="articleForm.array"
-              :options="catalogOption"
-            />
-          </el-form-item>
-        </el-col>
+        <el-row>
 
-        <el-col :span="6">
-          <el-form-item label="标题:" prop="title">
-            <y-input
-              v-model="articleForm.title"
-              tips="请输入标题"
-            />
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
-          <el-form-item label="文章内容:" prop="title">
-            <y-input
-              v-model="articleForm.value234"
-              tips="请输入文章内容"
-            />
-          </el-form-item>
-        </el-col>
-        <el-col :span="6">
-          <el-form-item label="发布时间:" prop="title">
-            <y-datepicker
-              v-model="articleForm.value123"
-              type="datetimerange"
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-            />
-          </el-form-item>
-        </el-col>
+          <el-col>
+            <el-form-item label="栏目ID:" prop="catalog_id">
+              <y-checkbox
+                v-model="articleForm.catalogSelected"
+                :options="catalogOption"
+              />
+            </el-form-item>
+          </el-col>
 
-      </el-row>
-      <el-row type="flex" align="space-between">
-        <el-col>
+          <el-col :span="6">
+            <el-form-item label="标题:" prop="title">
+              <y-input
+                v-model="articleForm.title"
+                tips="请输入标题"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="文章内容:" prop="title">
+              <y-input
+                v-model="articleForm.body"
+                tips="请输入文章内容"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
+            <el-form-item label="发布时间:" prop="title">
+              <y-datepicker
+                v-model="articleForm.value123"
+                type="datetimerange"
+                range-separator="至"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+              />
+            </el-form-item>
+          </el-col>
 
-          <el-button type="primary" @click="onSearch">查询</el-button>
-          <el-button @click="reset">重置</el-button>
-        </el-col>
-        <el-col :span="4">
+        </el-row>
+        <el-row type="flex" align="space-between">
+          <el-col>
+
+            <el-button type="primary" @click="onSearch">查询</el-button>
+            <el-button @click="reset">重置</el-button>
+          </el-col>
 
           <el-button type="success" @click="add">编写推文</el-button>
 
-        </el-col>
+        </el-row>
 
-      </el-row>
+      </y-form>
 
-    </y-form>
+    </el-card>
 
-    <y-table :data="articlesData" row-key="id" :pagination="pagination" @sortBy="sortBy" @changePage4List="getList">
+    <y-table
+      :data="articlesData"
+      row-key="id"
+      :pagination="pagination"
+      @sortBy="sortBy"
+      @changePage4List="getList">
       <template>
 
         <el-table-column
           prop="catalog_name"
           label="所属栏目"
-          width="100px"
-          align='center'>
-
-        </el-table-column>
+          align="center"
+        />
 
         <el-table-column
           prop="title"
-          label="标题">
+          label="标题"
+          width="200px"
+          align="center"
 
-        </el-table-column>
+        />
 
         <el-table-column
           prop="intro"
           label="简介"
           width="200px"
-          align='center'>
-
-        </el-table-column>
-
-        <el-table-column
-          prop="count"
-          sortable
-          label="阅读量">
-        </el-table-column>
-        <el-table-column
-          prop="count"
-          sortable
-          label="点赞数">
-        </el-table-column>
-        <el-table-column
-          prop="count"
-          sortable
-          label="发布时间">
-        </el-table-column>
-        <el-table-column
-          prop="count"
-          sortable
-          label="提醒时间">
-        </el-table-column>
+          align="center"
+        />
 
         <el-table-column
-          prop="count"
+          prop="views"
           sortable
-          label="排序">
-        </el-table-column>
+          label="阅读量"
+        />
+        <el-table-column
+          prop="likes"
+          sortable
+          label="点赞数"
+        />
+        <el-table-column
+          prop="time_post"
+          sortable
+          label="发布时间"
+        />
+        <el-table-column
+          prop="delay_alert"
+          sortable
+          label="提醒时间"
+        />
 
         <el-table-column
-          prop="is_header"
+          prop="sort"
+          sortable="sort"
+          label="排序"
+        />
+
+        <el-table-column
+          prop="is_draft"
           label="是否发布"
-          sortable="is_header"
+          sortable="is_draft"
           width="100px"
-          align='center'>
+          align="center"
+        >
 
           <template slot-scope="scope">
-            <el-button
-              :type="scope.row.is_header? 'success':'info'"
-              :icon="scope.row.is_header? 'el-icon-check':'el-icon-close'"
-              circle></el-button>
+            <i :class="scope.row.is_col_header? 'el-icon-check':'el-icon-close'"></i>
+
+            <!--            <el-button-->
+            <!--              :type="scope.row.is_header? 'success':'info'"-->
+            <!--              :icon="scope.row.is_header? 'el-icon-check':'el-icon-close'"-->
+            <!--              circle-->
+            <!--            />-->
           </template>
 
         </el-table-column>
 
         <el-table-column
-          prop="is_col_header"
+          prop="is_editing"
           label="编辑状态"
-          sortable="is_col_header"
+          sortable="is_editing"
           width="100px"
-          align='center'>
+          align="center"
+        >
 
           <template slot-scope="scope">
-            <el-button
-              :type="scope.row.is_col_header? 'success':'info'"
-              :icon="scope.row.is_col_header? 'el-icon-check':'el-icon-close'"
-              circle></el-button>
+            <i :class="scope.row.is_col_header? 'el-icon-check':'el-icon-close'"></i>
+            <!--            <el-button-->
+            <!--              :type="scope.row.is_col_header? 'success':'info'"-->
+            <!--              :icon="scope.row.is_col_header? 'el-icon-check':'el-icon-close'"-->
+            <!--              circle-->
+            <!--            />-->
           </template>
 
         </el-table-column>
 
         <el-table-column
-          prop="is_col_header"
+          prop="is_headline"
           label="是否头条"
-          sortable="is_col_header"
+          sortable="is_headline"
           width="100px"
-          align='center'>
+          align="center"
+        >
 
           <template slot-scope="scope">
-            <el-button
-              :type="scope.row.is_col_header? 'success':'info'"
-              :icon="scope.row.is_col_header? 'el-icon-check':'el-icon-close'"
-              circle></el-button>
+            <i :class="scope.row.is_col_header? 'el-icon-check':'el-icon-close'"></i>
+
+            <!--            <el-button-->
+            <!--              :type="scope.row.is_col_header? 'success':'info'"-->
+            <!--              :icon="scope.row.is_col_header? 'el-icon-check':'el-icon-close'"-->
+            <!--              circle-->
+            <!--            />-->
           </template>
 
         </el-table-column>
@@ -176,48 +192,21 @@
   </div>
 </template>
 <script>
-import { getArticles, delArticle } from "@/api/article"
-import { getCatalogs } from "@/api/catalog"
+import { getArticles, delArticle } from '@/api/article'
+import { getCatalogs } from '@/api/catalog'
 
 export default {
-  directives: {
-    // 自定义组件的名字
-    test: {
-      // 钩子函数，被绑定元素插入父节点时调用 (父节点存在即可调用，不必存在于 document 中)。
-      inserted(el) {
-        console.log(el)
-        console.log("inserted")
-      },
-      // 只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个在绑定时执行一次的初始化动作。
-      bind() {
-        console.log("bind")
-      },
-      // 所在组件的 VNode 更新时调用，但是可能发生在其孩子的 VNode 更新之前。
-      // 指令的值可能发生了改变也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新
-      updata() {
-        console.log("updata")
-      },
-      // 所在组件的 VNode 及其孩子的 VNode 全部更新时调用。
-      componentUpdated() {
-        console.log("componentUpdated")
-      },
-      // 只调用一次，指令与元素解绑时调用。
-      unbind() {
-        console.log("unbind")
-      }
-    }
-  },
   data() {
     return {
       articleForm: {
-        array: []
+        catalogSelected: []
       },
       articlesData: [],
       pagination: {
         pageNumber: 1,
         pageSize: 10
       },
-      catalogOption: []
+      catalogOption: [{ label: 123 }]
     }
   },
   async created() {
@@ -250,34 +239,34 @@ export default {
     },
 
     add() {
-      this.$router.push({ path: "add" })
+      this.$router.push({ path: 'add' })
     },
     edit(id) {
       this.$router.push({
-        path: "edit",
+        path: 'edit',
         query: { id }
       })
     },
     del(id) {
-      this.$confirm("是否删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+      this.$confirm('是否删除?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
           delArticle(id)
             .then((response) => {
               this.$message({
-                type: "success",
-                message: "删除成功!"
+                type: 'success',
+                message: '删除成功!'
               })
               this.getList()
             })
         })
         .catch(() => {
           this.$message({
-            type: "info",
-            message: "已取消删除"
+            type: 'info',
+            message: '已取消删除'
           })
         })
     },

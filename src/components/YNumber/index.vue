@@ -1,23 +1,23 @@
 <template>
-  <y-tooltip :tips="tips" >
+  <y-tooltip :tips="tips">
 
-  <el-input-number
-    v-model="result"
-    controls-position="right"
-    @change="handleChange"
-    :min="min"
-    :max="max"
-    :step="step"
-    :step_strictly="stepStrictly"
-    :disabled="disabled"
-    :size="size"
-    :controls="controls"
-    :controls_position="controlsPosition"
-    :name="name"
-    :label="label"
-    :placeholder="placeholder"
-    :precision="precision"
-  />
+    <el-input-number
+      v-model="result"
+      controls-position="right"
+      :min="min"
+      :max="max"
+      :step="step"
+      :step_strictly="stepStrictly"
+      :disabled="disabled"
+      :size="size"
+      :controls="controls"
+      :controls_position="controlsPosition"
+      :name="name"
+      @change="handleChange"
+      :label="label"
+      :placeholder="placeholder"
+      :precision="precision"
+    />
   </y-tooltip>
 </template>
 <script>
@@ -49,7 +49,7 @@ export default {
     },
     controlsPosition: {
       type: String,
-      default: ""
+      default: ''
     },
     name: String,
     label: String,
@@ -63,7 +63,7 @@ export default {
     // 输入提示
     tips: {
       type: String,
-      default: ""
+      default: ''
     }
 
   },
@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     handleChange() {
-      this.$emit("input", this.result)
+      this.$emit('input', this.result)
     }
   }
 }

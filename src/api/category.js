@@ -1,9 +1,9 @@
-import request from "@/utils/request"
+import request from '@/utils/request'
 
 export function getCategories(params) {
   return request({
-    url: "/api/categories",
-    method: "get",
+    url: '/api/categories',
+    method: 'get',
     params
   })
 }
@@ -11,14 +11,14 @@ export function getCategories(params) {
 export function getCategory(id) {
   return request({
     url: `/api/categories/${id}`,
-    method: "get"
+    method: 'get'
   })
 }
 
 export function addCategory(data) {
   return request({
-    url: "/api/categories",
-    method: "post",
+    url: '/api/categories',
+    method: 'post',
     data
   })
 }
@@ -26,7 +26,7 @@ export function addCategory(data) {
 export function putCategory(id, data) {
   return request({
     url: `/api/categories/${id}`,
-    method: "put",
+    method: 'put',
     data
   })
 }
@@ -34,6 +34,6 @@ export function putCategory(id, data) {
 export function delCategory(id) {
   return request({
     url: `/api/categories/${id}`,
-    method: "delete"
+    method: 'delete'
   })
 }

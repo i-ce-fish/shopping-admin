@@ -9,10 +9,11 @@
         :on-exceed="onExceed"
         :multiple="limit>1||limit===0"
         :on-preview="handlePictureCardPreview"
-        :on-remove="handleRemove">
-        <i class="el-icon-plus"></i>
+        :on-remove="handleRemove"
+      >
+        <i class="el-icon-plus" />
       </el-upload>
-      <el-dialog :visible.sync="dialogVisible">
+      <el-dialog :visible.sync="dialogVisible" >
         <img width="100%" :src="dialogImageUrl" alt="">
       </el-dialog>
 
@@ -33,13 +34,13 @@ export default {
     // 输入提示
     tips: {
       type: String,
-      default: ""
+      default: ''
     }
   },
 
   data() {
     return {
-      dialogImageUrl: "",
+      dialogImageUrl: '',
       dialogVisible: false
     }
   },
@@ -53,7 +54,7 @@ export default {
     },
     onExceed() {
       this.$message({
-        type: "warning",
+        type: 'warning',
         message: `最多只能上传${this.limit}张图片`
       })
     }
@@ -61,3 +62,6 @@ export default {
 
 }
 </script>
+<style lang="scss" scoped>
+
+</style>

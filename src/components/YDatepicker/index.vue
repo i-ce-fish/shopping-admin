@@ -3,9 +3,8 @@
 
     <el-date-picker
       v-model="result"
-      @change="change"
-
       :type="type"
+
       :size="size"
       :format="format"
       :value-format="valueFormat"
@@ -15,6 +14,7 @@
       :end-placeholder="endPlaceholder"
       :prefix-icon="prefixIcon"
       :clear-icon="clearIcon"
+      @change="change"
       :name="name"
       :disabled="disabled"
       :clearable="clearable"
@@ -37,7 +37,7 @@ export default {
     value: Date,
     type: {
       type: String,
-      value: "date"
+      value: 'date'
     },
     size: String,
     format: String,
@@ -45,17 +45,17 @@ export default {
     readonly: Boolean,
     placeholder: {
       String,
-      default: "选择日期"
+      default: '选择日期'
     },
     startPlaceholder: String,
     endPlaceholder: String,
     prefixIcon: String,
     clearIcon: {
       type: String,
-      default: "el-icon-circle-close"
+      default: 'el-icon-circle-close'
     },
     name: {
-      default: ""
+      default: ''
     },
     disabled: Boolean,
     clearable: {
@@ -63,7 +63,7 @@ export default {
       default: true
     },
     id: {
-      default: ""
+      default: ''
     },
     popperClass: String,
     editable: {
@@ -72,12 +72,12 @@ export default {
     },
     align: {
       type: String,
-      default: "left"
+      default: 'left'
     },
     defaultValue: {},
     defaultTime: {},
     rangeSeparator: {
-      default: "-"
+      default: '-'
     },
     pickerOptions: {},
     unlinkPanels: Boolean,
@@ -88,7 +88,7 @@ export default {
     // 输入提示
     tips: {
       type: String,
-      default: "请输入"
+      default: '请输入'
     }
   },
   data() {
@@ -101,7 +101,7 @@ export default {
   },
   methods: {
     change() {
-      this.$emit("input", this.result)
+      this.$emit('input', this.result)
     }
   }
 }

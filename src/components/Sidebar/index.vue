@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar" >
     <el-menu
       class="el-menu-vertical-demo"
       background-color="#304156"
@@ -15,7 +15,8 @@
         v-for="route in routes"
         :key="route.path"
         :item="route"
-        :base-path="route.path"/>
+        :base-path="route.path"
+      />
 
       <!--      <el-menu-item index="/home" v-for="route in routes" :key="route.path">-->
       <!--      <el-menu-item index="/home">-->
@@ -36,7 +37,7 @@
   </div>
 </template>
 <script>
-import SidebarItem from "./SidebarItem.vue"
+import SidebarItem from './SidebarItem.vue'
 
 export default {
   components: { SidebarItem },

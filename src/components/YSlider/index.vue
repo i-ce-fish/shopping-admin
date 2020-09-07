@@ -4,7 +4,6 @@
       v-model="result"
       :min="min"
       :max="max"
-      @change="change"
       :step="step"
       :show-input="showInput"
       :show-input-controls="showInputControls"
@@ -15,12 +14,12 @@
       :disabled="disabled"
       :range="range"
       :vertical="vertical"
+      @change="change"
       :height="height"
       :debounce="debounce"
       :label="label"
       :tooltip-class="tooltipClass"
       :marks="marks"
-
     />
   </y-tooltip>
 </template>
@@ -53,7 +52,7 @@ export default {
     },
     inputSize: {
       type: String,
-      default: "small"
+      default: 'small'
     },
     showStops: {
       type: Boolean,
@@ -91,7 +90,7 @@ export default {
     // 输入提示
     tips: {
       type: String,
-      default: ""
+      default: ''
     }
   },
   data() {
@@ -106,7 +105,7 @@ export default {
   },
   methods: {
     change() {
-      this.$emit("input", this.result)
+      this.$emit('input', this.result)
     }
   }
 }

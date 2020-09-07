@@ -1,9 +1,9 @@
-import request from "@/utils/request"
+import request from '@/utils/request'
 
 export function getCustomers(params) {
   return request({
-    url: "/api/customers",
-    method: "get",
+    url: '/api/customers',
+    method: 'get',
     params
   })
 }
@@ -11,14 +11,14 @@ export function getCustomers(params) {
 export function getCustomer(id) {
   return request({
     url: `/api/customers/${id}`,
-    method: "get"
+    method: 'get'
   })
 }
 
 export function addCustomer(data) {
   return request({
-    url: "/api/customers",
-    method: "post",
+    url: '/api/customers',
+    method: 'post',
     data
   })
 }
@@ -26,7 +26,7 @@ export function addCustomer(data) {
 export function putCustomer(id, data) {
   return request({
     url: `/api/customers/${id}`,
-    method: "put",
+    method: 'put',
     data
   })
 }
@@ -34,6 +34,6 @@ export function putCustomer(id, data) {
 export function delCustomer(id) {
   return request({
     url: `/api/customers/${id}`,
-    method: "delete"
+    method: 'delete'
   })
 }

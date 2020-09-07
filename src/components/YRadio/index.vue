@@ -1,27 +1,26 @@
 <template>
-  <y-tooltip :tips="tips" >
+  <y-tooltip :tips="tips">
 
-  <el-radio-group
-    v-model="result"
-    @change="change"
-    :size="size"
-    :fill="fill"
-    :text-color="textColor"
-    :disabled="disabled"
-  >
-    <el-radio
-      v-for="item of options"
-      :key="item.value"
-      :label="item.value"
+    <el-radio-group
+      v-model="result"
+      :size="size"
+      :fill="fill"
+      :text-color="textColor"
+      :disabled="disabled"
+      @change="change"
+    >
+      <el-radio
+        v-for="item of options"
+        :key="item.value"
+        :label="item.value"
 
-      :disabled="item.disabled"
-      :name="item.name"
-      :border="item.border"
-      :size="item.size"
-
-    >{{ item.label }}
-    </el-radio>
-  </el-radio-group>
+        :disabled="item.disabled"
+        :name="item.name"
+        :border="item.border"
+        :size="item.size"
+      >{{ item.label }}
+      </el-radio>
+    </el-radio-group>
   </y-tooltip>
 </template>
 <script>
@@ -36,11 +35,11 @@ export default {
         default: () => [
           {
             value: true,
-            label: "是"
+            label: '是'
           },
           {
             value: false,
-            label: "否"
+            label: '否'
           }
         ]
       },
@@ -51,7 +50,7 @@ export default {
     // 输入提示
     tips: {
       type: String,
-      default: ""
+      default: ''
     }
   },
   data() {
@@ -68,7 +67,7 @@ export default {
   },
   methods: {
     change() {
-      this.$emit("input", this.result)
+      this.$emit('input', this.result)
     }
   }
 }

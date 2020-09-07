@@ -1,9 +1,9 @@
-import request from "@/utils/request"
+import request from '@/utils/request'
 
 export function getOrderitems(params) {
   return request({
-    url: "/api/orderitems",
-    method: "get",
+    url: '/api/orderitems',
+    method: 'get',
     params
   })
 }
@@ -11,14 +11,14 @@ export function getOrderitems(params) {
 export function getOrderitem(id) {
   return request({
     url: `/api/orderitems/${id}`,
-    method: "get"
+    method: 'get'
   })
 }
 
 export function addOrderitem(data) {
   return request({
-    url: "/api/orderitems",
-    method: "post",
+    url: '/api/orderitems',
+    method: 'post',
     data
   })
 }
@@ -26,7 +26,7 @@ export function addOrderitem(data) {
 export function putOrderitem(id, data) {
   return request({
     url: `/api/orderitems/${id}`,
-    method: "put",
+    method: 'put',
     data
   })
 }
@@ -34,6 +34,6 @@ export function putOrderitem(id, data) {
 export function delOrderitem(id) {
   return request({
     url: `/api/orderitems/${id}`,
-    method: "delete"
+    method: 'delete'
   })
 }

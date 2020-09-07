@@ -1,9 +1,8 @@
 <template>
-  <y-tooltip :tips="tips" >
+  <y-tooltip :tips="tips">
     <el-input
       v-model="result"
       :size="size"
-      @input="input"
       :placeholder="placeholder"
       :disabled="disabled"
       :resize="resize"
@@ -14,6 +13,7 @@
       :autocomplete="autocomplete"
       :validate-event="validateEvent"
       :suffix-icon="suffixIcon"
+      @input="input"
       :prefix-icon="prefixIcon"
       :label="label"
       :clearable="clearable"
@@ -31,7 +31,7 @@ export default {
     value: [String, Number],
     size: {
       type: String,
-      default: "small",
+      default: 'small',
       required: false
     },
     disabled: {
@@ -41,7 +41,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "请输入",
+      default: '请输入',
       required: false
     },
 
@@ -50,7 +50,7 @@ export default {
     readonly: Boolean,
     type: {
       type: String,
-      default: "text"
+      default: 'text'
     },
     autosize: {
       type: [Boolean, Object],
@@ -58,7 +58,7 @@ export default {
     },
     autocomplete: {
       type: String,
-      default: "off"
+      default: 'off'
     },
     validateEvent: {
       type: Boolean,
@@ -83,7 +83,7 @@ export default {
     // 输入提示
     tips: {
       type: String,
-      default: ""
+      default: ''
     }
   },
   data() {
@@ -103,7 +103,7 @@ export default {
   },
   methods: {
     input() {
-      this.$emit("input", this.result)
+      this.$emit('input', this.result)
     }
   }
 }

@@ -12,7 +12,7 @@ body {
 //}
 //html {
 //  height: 100%;
-  //box-sizing: border-box;
+//box-sizing: border-box;
 //}
 //#app {
 //  height: 100%;
@@ -20,7 +20,7 @@ body {
 //*,
 //*:before,
 //*:after {
-  //box-sizing: inherit;
+//box-sizing: inherit;
 //}
 
 a:focus,
@@ -52,9 +52,10 @@ div:focus {
   }
 }
 
-p{
+p {
   margin: auto;
 }
+
 // main-container global css
 .app-container {
   padding: 20px;
@@ -70,4 +71,91 @@ p{
 
 
 // todo 添加自己的常用全局样式.
+/**
+布局
+ */
+.y-flex {
+  display: flex;
+}
 
+.y-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.y-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.y-flex-1 {
+  flex: 1;
+}
+
+.y-align-center {
+  justify-content: center;
+}
+
+.y-align-left {
+  justify-content: flex-start;
+}
+
+.y-align-right {
+  justify-content: flex-end;
+}
+
+.y-align-between {
+  justify-content: space-between;
+}
+
+.y-align-around {
+  justify-content: space-around;
+}
+
+.y-vertical-center {
+  align-items: center;
+}
+
+.y-vertical-top {
+  align-items: flex-start;
+}
+
+.y-vertical-bottom {
+  align-items: flex-end;
+}
+
+/*怪异盒子模型*/
+.y-box {
+  box-sizing: border-box;
+}
+
+/**
+边距
+ */
+//常用分隔间距
+.y-m-l-10 {
+  margin-left: 10px;
+}
+.y-m-r-10 {
+  margin-right: 10px;
+}
+.y-p-r-10{
+  padding-right: 10px;
+}
+.y-p-r-20{
+  padding-right: 20px;
+}
+.y-p-r-30{
+  padding-right: 30px;
+}
+
+/**
+字体
+ */
+//布局
+.y-center {
+  text-align: center;
+}
+
+.y-width-full {
+  width: 100%;
+}

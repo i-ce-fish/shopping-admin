@@ -1,9 +1,9 @@
-import request from "@/utils/request"
+import request from '@/utils/request'
 
 export function getAddresses(params) {
   return request({
-    url: "/api/addresses",
-    method: "get",
+    url: '/api/addresses',
+    method: 'get',
     params
   })
 }
@@ -11,14 +11,14 @@ export function getAddresses(params) {
 export function getAddress(id) {
   return request({
     url: `/api/addresses/${id}`,
-    method: "get"
+    method: 'get'
   })
 }
 
 export function addAddress(data) {
   return request({
-    url: "/api/addresses",
-    method: "post",
+    url: '/api/addresses',
+    method: 'post',
     data
   })
 }
@@ -26,7 +26,7 @@ export function addAddress(data) {
 export function putAddress(id, data) {
   return request({
     url: `/api/addresses/${id}`,
-    method: "put",
+    method: 'put',
     data
   })
 }
@@ -34,6 +34,6 @@ export function putAddress(id, data) {
 export function delAddress(id) {
   return request({
     url: `/api/addresses/${id}`,
-    method: "delete"
+    method: 'delete'
   })
 }

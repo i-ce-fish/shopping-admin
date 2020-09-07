@@ -1,9 +1,9 @@
-import request from "@/utils/request"
+import request from '@/utils/request'
 
 export function getGoodcolors(params) {
   return request({
-    url: "/api/goodcolors",
-    method: "get",
+    url: '/api/goodcolors',
+    method: 'get',
     params
   })
 }
@@ -11,14 +11,14 @@ export function getGoodcolors(params) {
 export function getGoodcolor(id) {
   return request({
     url: `/api/goodcolors/${id}`,
-    method: "get"
+    method: 'get'
   })
 }
 
 export function addGoodcolor(data) {
   return request({
-    url: "/api/goodcolors",
-    method: "post",
+    url: '/api/goodcolors',
+    method: 'post',
     data
   })
 }
@@ -26,7 +26,7 @@ export function addGoodcolor(data) {
 export function putGoodcolor(id, data) {
   return request({
     url: `/api/goodcolors/${id}`,
-    method: "put",
+    method: 'put',
     data
   })
 }
@@ -34,6 +34,6 @@ export function putGoodcolor(id, data) {
 export function delGoodcolor(id) {
   return request({
     url: `/api/goodcolors/${id}`,
-    method: "delete"
+    method: 'delete'
   })
 }

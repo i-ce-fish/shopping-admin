@@ -16,7 +16,6 @@
               <y-input
 
                 v-model="goodorderForm.cusutomer_id"
-
               />
             </el-form-item>
           </el-col>
@@ -27,7 +26,6 @@
               <y-input
 
                 v-model="goodorderForm.total_amount"
-
               />
             </el-form-item>
           </el-col>
@@ -45,7 +43,7 @@
 </template>
 
 <script>
-import { addGoodorder } from "../../api/goodorder"
+import { addGoodorder } from '../../api/goodorder'
 
 export default {
 
@@ -61,11 +59,11 @@ export default {
   methods: {
     async addGoodorder() {
       await addGoodorder(this.goodorderForm)
-      this.$router.push({ path: "/goodorder" })
+      this.$router.push({ path: '/goodorder' })
 
       this.$message({
-        message: "添加成功",
-        type: "success"
+        message: '添加成功',
+        type: 'success'
       })
     },
 
@@ -73,10 +71,7 @@ export default {
       this.$refs.goodorderForm.check((valid) => {
         if (valid) {
           this.addGoodorder()
-        } else {
-          return false
         }
-        return undefined
       })
     }
   }

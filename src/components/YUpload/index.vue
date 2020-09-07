@@ -38,12 +38,12 @@
 <script>
 
 export default {
-  name: "EditorSlideUpload",
+  name: 'EditorSlideUpload',
   props: {
     value: Array,
     color: {
       type: String,
-      default: "#1890ff"
+      default: '#1890ff'
     },
     // todo bug 多选时不能同时上传
     multiple: {
@@ -62,9 +62,9 @@ export default {
     return {
       dialogVisible: false,
       // 上传路径
-      uploadUrl: "http://shop.cdb99.com:8088/api/upload",
+      uploadUrl: 'http://shop.cdb99.com:8088/api/upload',
       // 访问路径
-      readFileUrl: "http://shop.cdb99.com",
+      readFileUrl: 'http://shop.cdb99.com',
       result: [],
       // has bug 上传框默认值 fileList: this.value
       fileList: []
@@ -81,7 +81,7 @@ export default {
         .every((item) => this.listObj[item].hasSuccess)
     },
     handleSubmit() {
-      this.$emit("success", this.result)
+      this.$emit('success', this.result)
       this.dialogVisible = false
     },
     handleSuccess(response, file) {
@@ -100,10 +100,10 @@ export default {
     handleChange(file, fileList) {
     },
     handleError() {
-      console.log("上传失败,设置假路径")
-      this.result.push({ url: "https://www.uniqlo.cn/hmall/test/u0000000005575/chip/22/COL00.jpg" })
+      console.log('上传失败,设置假路径')
+      this.result.push({ url: 'https://www.uniqlo.cn/hmall/test/u0000000005575/chip/22/COL00.jpg' })
       if (!this.multiple) {
-        this.result = [{ url: "https://www.uniqlo.cn/hmall/test/u0000000005575/chip/22/COL00.jpg" }]
+        this.result = [{ url: 'https://www.uniqlo.cn/hmall/test/u0000000005575/chip/22/COL00.jpg' }]
         this.fileList = this.result
       }
     }

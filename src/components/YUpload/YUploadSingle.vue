@@ -11,9 +11,9 @@
       <el-col :span="6">
         <YUpload
           :value="resultList"
-          @success="onSuccess"
           :multiple="false"
           :modal="modal"
+          @success="onSuccess"
         />
       </el-col>
     </el-row>
@@ -21,6 +21,7 @@
 </template>
 <script>
 export default {
+  components: {},
   props: {
     value: String,
     // 是否显示遮罩层
@@ -31,7 +32,6 @@ export default {
     }
 
   },
-  components: {},
   data() {
     return {
       result: this.value,
@@ -59,8 +59,8 @@ export default {
       // 可选链运算符
       // todo 删除后设置成啥
       this.result = (res?.[0]?.url) ?? null
-      console.log("result", this.result)
-      this.$emit("input", this.result)
+      console.log('result', this.result)
+      this.$emit('input', this.result)
     }
   }
 }

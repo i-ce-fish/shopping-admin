@@ -1,58 +1,56 @@
 <template>
-    <div class="card-container">
-        <el-card class="box-card">
-            <h3>修改catalog</h3>
-            <y-form
-                    ref="catalogForm"
-                    :model="catalogForm"
-                    :rules="catalogRules"
-                    label-width="100px"
-            >
-                <el-row>
+  <div class="card-container">
+    <el-card class="box-card">
+      <h3>修改catalog</h3>
+      <y-form
+        ref="catalogForm"
+        :model="catalogForm"
+        :rules="catalogRules"
+        label-width="100px"
+      >
+        <el-row>
 
-                    <el-col :span="12">
-                        <el-form-item label="类别名:" prop="catalog_name">
+          <el-col :span="12">
+            <el-form-item label="类别名:" prop="catalog_name">
 
-                          <el-tooltip  content="请输入图文分类名称 " placement="top-start">
+              <el-tooltip content="请输入图文分类名称 " placement="top-start">
 
-                                <y-input
+                <y-input
 
-                            v-model="catalogForm.catalog_name"
+                  v-model="catalogForm.catalog_name"
+                />
 
-                            />
+              </el-tooltip>
 
-                          </el-tooltip>
+            </el-form-item>
+          </el-col>
 
-                        </el-form-item>
-                    </el-col>
+          <el-col :span="12">
+            <el-form-item label="介绍:" prop="description">
 
-                    <el-col :span="12">
-                        <el-form-item label="介绍:" prop="description">
+              <y-input
 
-                                <y-input
+                v-model="catalogForm.description"
+              />
 
-                            v-model="catalogForm.description"
+            </el-form-item>
+          </el-col>
 
-                            />
-
-                        </el-form-item>
-                    </el-col>
-
-                    <el-col :span="24">
-                        <el-form-item>
-                            <el-button @click="submit('catalogForm')">提交</el-button>
-                            <el-button @click="back">返回</el-button>
-                        </el-form-item>
-                    </el-col>
-                </el-row>
-            </y-form>
-        </el-card>
-    </div>
+          <el-col :span="24">
+            <el-form-item>
+              <el-button @click="submit('catalogForm')">提交</el-button>
+              <el-button @click="back">返回</el-button>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </y-form>
+    </el-card>
+  </div>
 </template>
 
 <script>
 
-import { putCatalog, getCatalog } from "../../api/catalog"
+import { putCatalog, getCatalog } from '../../api/catalog'
 
 export default {
 
@@ -65,15 +63,15 @@ export default {
 
           {
             required: true,
-            message: "请输入类别名",
-            trigger: "blur"
+            message: '请输入类别名',
+            trigger: 'blur'
           },
 
           {
-            type: "string",
+            type: 'string',
             max: 255,
-            message: "请输入长度小于255的类别名",
-            trigger: "blur"
+            message: '请输入长度小于255的类别名',
+            trigger: 'blur'
           }
 
         ],
@@ -81,10 +79,10 @@ export default {
         description: [
 
           {
-            type: "string",
+            type: 'string',
             max: 255,
-            message: "请输入长度小于255的介绍",
-            trigger: "blur"
+            message: '请输入长度小于255的介绍',
+            trigger: 'blur'
           }
 
         ]
@@ -104,11 +102,11 @@ export default {
 
     async putCatalog() {
       await putCatalog(this.$route.query.id, this.catalogForm)
-      this.$router.push({ path: "/catalog" })
+      this.$router.push({ path: '/catalog' })
 
       this.$message({
-        message: "修改成功",
-        type: "success"
+        message: '修改成功',
+        type: 'success'
       })
     },
 

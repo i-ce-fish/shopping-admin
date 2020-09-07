@@ -1,22 +1,38 @@
 <template>
-  <div class="navbar">
+  <div class="y-flex y-align-between">
     <!--    <hamburger :is-active="sidebar.opened" class="hamburger-container"@toggleClick="toggleSideBar" />-->
     <breadcrumb class="breadcrumb-container"/>
+    <div class="y-flex y-align-center y-vertical-center ">
+      <div class="y-p-r-10">
+        <el-popover
+          placement="bottom"
+          title="未读消息"
+          width="300"
+          trigger="click"
+        >
+          <el-badge :value="msgs.length" slot="reference">
+            <i style="font-size:25px " class="el-icon-message"/>
+          </el-badge>
+          <div class="y-flex y-align-between " v-for=" (o,i) in msgs" :key="i">
 
-    <div class="right-menu">
-      <el-dropdown class="avatar-container" trigger="click">
-        <div class="avatar-wrapper">
+            <div class="">{{o.content}}</div>
+            <div class="">删除</div>
+          </div>
+        </el-popover>
+      </div>
+      <el-dropdown class="" trigger="click">
+        <div class="">
           <i style="font-size:25px " class="el-icon-user"/>
           <i class="el-icon-caret-bottom"/>
         </div>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
+        <el-dropdown-menu slot="dropdown" class="">
           <router-link to="/">
             <el-dropdown-item>
-              Home
+              首页
             </el-dropdown-item>
           </router-link>
           <el-dropdown-item divided>
-            <span style="display:block;" @click="logout">Log Out</span>
+            <span style="display:block;" @click="logout">退出</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -24,8 +40,8 @@
   </div>
 </template>
 <script>
-import Breadcrumb from "@/components/Breadcrumb/index.vue"
-import { mapGetters } from "vuex"
+import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   components: { Breadcrumb },
@@ -34,7 +50,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      "token"
+      'token',
+      'msgs'
     ])
   },
   watch: {},
@@ -44,68 +61,16 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch("user/resetToken")
-      this.$router.push("/login")
-      console.log("logout")
+      this.$store.dispatch('user/resetToken')
+      this.$router.push('/login')
+    },
+    add() {
+      this.$store.dispatch('msgSocket/add')
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.navbar {
-  display: flex;
-  justify-content: space-between;
 
-}
-
-.right-menu {
-  float: right;
-  height: 100%;
-  line-height: 50px;
-
-  &:focus {
-    outline: none;
-  }
-
-  .right-menu-item {
-    display: inline-block;
-    padding: 0 8px;
-    height: 100%;
-    font-size: 18px;
-    color: #5a5e66;
-    vertical-align: text-bottom;
-
-    &.hover-effect {
-      cursor: pointer;
-      transition: background .3s;
-
-      &:hover {
-        background: rgba(0, 0, 0, .025)
-      }
-    }
-  }
-
-  .avatar-container {
-    margin-right: 30px;
-
-    .avatar-wrapper {
-      margin-top: 5px;
-      position: relative;
-      cursor: pointer;
-
-      .user-avatar {
-        cursor: pointer;
-      }
-
-      .el-icon-caret-bottom {
-        cursor: pointer;
-        position: absolute;
-        right: -20px;
-        top: 25px;
-        font-size: 12px;
-      }
-    }
-  }
-}
 </style>

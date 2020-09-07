@@ -16,7 +16,6 @@
               <y-input
 
                 v-model="addressForm.province"
-
               />
             </el-form-item>
           </el-col>
@@ -27,7 +26,6 @@
               <y-input
 
                 v-model="addressForm.city"
-
               />
             </el-form-item>
           </el-col>
@@ -38,7 +36,6 @@
               <y-input
 
                 v-model="addressForm.detail"
-
               />
             </el-form-item>
           </el-col>
@@ -49,7 +46,6 @@
               <y-input
 
                 v-model="addressForm.customer_id"
-
               />
             </el-form-item>
           </el-col>
@@ -62,7 +58,6 @@
                 v-model="addressForm.is_default"
 
                 :options="[{value: 1,label: '是'},{value: 0,label: '否'}]"
-
               />
             </el-form-item>
           </el-col>
@@ -80,7 +75,7 @@
 </template>
 
 <script>
-import { addAddress } from "../../api/address"
+import { addAddress } from '../../api/address'
 
 export default {
 
@@ -92,10 +87,10 @@ export default {
         province: [
 
           {
-            type: "string",
+            type: 'string',
             max: 60,
-            message: "请输入长度小于60的省",
-            trigger: "blur"
+            message: '请输入长度小于60的省',
+            trigger: 'blur'
           }
 
         ],
@@ -103,10 +98,10 @@ export default {
         city: [
 
           {
-            type: "string",
+            type: 'string',
             max: 60,
-            message: "请输入长度小于60的市",
-            trigger: "blur"
+            message: '请输入长度小于60的市',
+            trigger: 'blur'
           }
 
         ],
@@ -114,10 +109,10 @@ export default {
         detail: [
 
           {
-            type: "string",
+            type: 'string',
             max: 255,
-            message: "请输入长度小于255的详细地址",
-            trigger: "blur"
+            message: '请输入长度小于255的详细地址',
+            trigger: 'blur'
           }
 
         ]
@@ -131,11 +126,11 @@ export default {
   methods: {
     async addAddress() {
       await addAddress(this.addressForm)
-      this.$router.push({ path: "/address" })
+      this.$router.push({ path: '/address' })
 
       this.$message({
-        message: "添加成功",
-        type: "success"
+        message: '添加成功',
+        type: 'success'
       })
     },
 
@@ -143,10 +138,7 @@ export default {
       this.$refs.addressForm.check((valid) => {
         if (valid) {
           this.addAddress()
-        } else {
-          return false
         }
-        return undefined
       })
     }
   }

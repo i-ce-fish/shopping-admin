@@ -1,14 +1,13 @@
 <template>
-  <y-tooltip :tips="tips" >
+  <y-tooltip :tips="tips">
 
-  <el-select
+    <el-select
+      :id="id"
       v-model="result"
       :placeholder="placeholder"
       :disabled="disabled"
-      @change="change"
       :size="size"
       :name="name"
-      :id="id"
       :autocomplete="autocomplete"
       :automatic-dropdown="automaticDropdown"
       :clearable="clearable"
@@ -16,6 +15,7 @@
       :allow-create="allowCreate"
       :loading="loading"
       :popper-class="popperClass"
+      @change="change"
       :remote="remote"
       :loading-text="loadingText"
       :no-match-text="noMatchText"
@@ -35,12 +35,13 @@
         :key="item.value"
         :label="item.label"
         :value="item.value"
-        :disabled="item.disabled"/>
+        :disabled="item.disabled"
+      />
     </el-select>
   </y-tooltip>
 </template>
 <script>
-import request from "@/utils/request"
+import request from '@/utils/request'
 
 export default {
   components: {},
@@ -59,36 +60,36 @@ export default {
     // api 数据格式与组件数据格式转换
     valueName: {
       String,
-      default: "value"
+      default: 'value'
     },
     labelName: {
       String,
-      default: "label"
+      default: 'label'
     },
     config: Object,
     // 初始化数据
     options: {
       type: Array,
       default: () => [{
-        value: "选项1",
-        label: "黄金糕"
+        value: '选项1',
+        label: '黄金糕'
       }, {
-        value: "选项2",
-        label: "双皮奶"
+        value: '选项2',
+        label: '双皮奶'
       }, {
-        value: "选项3",
-        label: "蚵仔煎"
+        value: '选项3',
+        label: '蚵仔煎'
       }, {
-        value: "选项4",
-        label: "龙须面"
+        value: '选项4',
+        label: '龙须面'
       }, {
-        value: "选项5",
-        label: "北京烤鸭"
+        value: '选项5',
+        label: '北京烤鸭'
       }]
     },
     size: {
       type: String,
-      default: "small",
+      default: 'small',
       required: false
     },
 
@@ -97,7 +98,7 @@ export default {
 
     autocomplete: {
       type: String,
-      default: "off"
+      default: 'off'
     },
     automaticDropdown: Boolean,
     clearable: Boolean,
@@ -118,13 +119,13 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "请选择"
+      default: '请选择'
     },
     defaultFirstOption: Boolean,
     reserveKeyword: Boolean,
     valueKey: {
       type: String,
-      default: "value"
+      default: 'value'
     },
     collapseTags: Boolean,
     popperAppendToBody: {
@@ -134,7 +135,7 @@ export default {
     // 输入提示
     tips: {
       type: String,
-      default: ""
+      default: ''
     }
 
   },
@@ -162,13 +163,13 @@ export default {
   },
   methods: {
     change() {
-      this.$emit("input", this.result.toString())
+      this.$emit('input', this.result.toString())
     },
     async initData() {
       if (this.api) {
         const res = await request({
           url: this.api,
-          method: "get"
+          method: 'get'
         })
         this.innerOptions = res.data.list.map((item) => ({
           label: item[this.labelName],

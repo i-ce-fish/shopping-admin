@@ -2,20 +2,21 @@
   <div class="YUploadMultiple">
     <el-row type="flex" :gutter="10">
       <el-col>
-        <span class="img" v-for="(o,i) in result" :key="i">
+        <span v-for="(o,i) in result" :key="i" class="img">
           <el-image
             style="width: 100px; height: 100px;padding-right: 10px"
             :src="o.url"
-            fit="contain"></el-image>
+            fit="contain"
+          />
 
         </span>
       </el-col>
       <el-col :span="6">
         <YUpload
           :value="result"
-          @success="onSuccess"
           :multiple="true"
           :modal="modal"
+          @success="onSuccess"
         />
       </el-col>
     </el-row>
@@ -23,6 +24,7 @@
 </template>
 <script>
 export default {
+  components: {},
   props: {
     value: Array,
     // 是否显示遮罩层
@@ -33,7 +35,6 @@ export default {
     }
 
   },
-  components: {},
   data() {
     return {
       result: this.value
@@ -58,7 +59,7 @@ export default {
     },
     onSuccess(res) {
       this.result = res
-      this.$emit("input", this.result)
+      this.$emit('input', this.result)
     }
 
   }
