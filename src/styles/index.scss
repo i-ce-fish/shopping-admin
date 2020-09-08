@@ -135,17 +135,28 @@ p {
 .y-m-l-10 {
   margin-left: 10px;
 }
+
 .y-m-r-10 {
   margin-right: 10px;
 }
-.y-p-r-10{
+.y-m-t-10 {
+  margin-top: 10px;
+}
+
+.y-p-r-10 {
   padding-right: 10px;
 }
-.y-p-r-20{
-  padding-right: 20px;
+
+.y-p-t-10 {
+  padding-top: 10px;
 }
-.y-p-r-30{
-  padding-right: 30px;
+
+.y-p-r-15 {
+  padding-right: 15px;
+}
+
+.y-p-15 {
+  padding: 15px;
 }
 
 /**
@@ -155,7 +166,19 @@ p {
 .y-center {
   text-align: center;
 }
-
+.y-right {
+  text-align: right;
+}
 .y-width-full {
   width: 100%;
+}
+
+//
+.y-bgc-white {
+  background-color: white;
+}
+
+.y-hover{
+  cursor: pointer;
+
 }

@@ -1,0 +1,139 @@
+/**
+*为了使预览的效果与小程序商城的效果一致
+*将小程序商城部分css样式贴过来
+ */
+.page {
+  width: 375px;
+  height: 667px;
+  background-color: #eee;
+  font-size: 14px;
+  color: #1b1b1b;
+}
+
+.shadow {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.16);
+}
+
+.card-box {
+  background-color: white;
+  margin-top: 10px;
+  border-bottom: 1px solid #dadada;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
+}
+
+
+.y-col-12 {
+  width: 100%;
+}
+
+.y-col-11 {
+  width: 91.66666667%;
+}
+
+.y-col-10 {
+  width: 83.33333333%;
+}
+
+.y-col-9 {
+  width: 75%;
+}
+
+.y-col-8 {
+  width: 66.66666667%;
+}
+
+.y-col-7 {
+  width: 58.33333333%;
+}
+
+.y-col-6 {
+  width: 50%;
+}
+
+.y-col-5 {
+  width: 41.66666667%;
+}
+
+.y-col-4 {
+  width: 33.33333333%;
+}
+
+.y-col-3 {
+  width: 25%;
+}
+
+.y-col-2 {
+  width: 16.66666667%;
+}
+
+.y-col-1 {
+  width: 8.33333333%;
+}
+
+/*其他字体效果*/
+/*下划线*/
+.y-underline {
+  text-decoration: underline;
+
+}
+
+.y-border-lr {
+  border-right: 0.5px solid #dadada;
+  border-left: 0.5px solid #dadada;
+}
+
+.y-border-tb {
+  border-top: 0.5px solid #dadada;
+  border-bottom: 0.5px solid #dadada;
+}
+
+.y-border-b {
+  border-bottom: 0.5px solid #dadada;
+}
+
+.y-border-t {
+  border-top: 0.5px solid #dadada;
+
+}
+
+.y-border-all {
+  border: 0.5px solid #dadada;
+}
+/*阴影*/
+/*底部阴影*/
+.y-shadow-b {
+  box-shadow: 0 2rpx 4rpx 0 rgba(0, 0, 0, 0.16);
+}
+/* 用于未付款金额等的显示 */
+.y-color-red {
+  color: #ff0000;
+}
+
+/*颜色*/
+.y-color-black {
+  color: #1b1b1b;
+
+}
+
+/*次要文字颜色*/
+.y-color-gray {
+  color: #7d7d7d;
+
+}
+
+/*行高*/
+.y-line-height-200 {
+  line-height: 200%;
+}
+
+//.y-line-height-180 {
+//  line-height: 180%;
+//}
+//
+//.y-line-height-150 {
+//  line-height: 150%;
+//}
+
+.y-line-height-100 {
+  line-height: 100%;
+}

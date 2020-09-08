@@ -882,26 +882,23 @@ export default {
   }
 
   /**
-  * 增加商品详情轮播图的介绍, 强行把方框加大, 把文字放在上面
+  * 增加商品详情轮播图的介绍, 组件已清除overflow:hidden
   * 类选择器+深度选择器+子元素选择器+伪元素+scss数组循环(基1)
    */
   $contents: '正面图', '侧面图', '背面图';
   @each $c in $contents {
     $i: index($contents, $c);
     .upload-carousels /deep/ .el-upload-list--picture-card .el-upload-list__item:nth-child(#{$i}):before {
-      position: absolute;
-      top: 0;
       content: $c;
-      width: 100%;
-      height: 25px;
-      text-align: center;
-    }
-  }
+      position: absolute;
+      bottom: -30px;
+      right: 50px;
 
-  .upload-carousels /deep/ .el-upload-list--picture-card .el-upload-list__item {
-    padding-top: 25px;
-    //原高度146+25=171
-    height: 171px;
+      //width: 100%;
+      height: 25px;
+
+      //text-align: center;
+    }
   }
 }
 </style>
