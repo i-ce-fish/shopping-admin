@@ -1,6 +1,6 @@
 <template>
   <div class="page shadow ">
-    <div class="header " >
+    <div class="header ">
       <div class="y-flex y-align-center y-vertical-center" style="height: 25px">
         00:00
       </div>
@@ -69,6 +69,65 @@
             <div class="y-padding-none y-line-height-200">
               <div v-for="(o,i) in ['店铺新品对您88折','您生日当月享受一件7.5折','享受新品8.8折']" :key="i"> {{o}}</div>
             </div>
+          </div>
+        </div>
+        <div class="y-flex y-align-around y-vertical-center  card-box" style="position: sticky;top: 0;height: 60px">
+          <div>
+            <div class="y-center">
+              <i class="el-icon-goods" style="font-size: 20px"></i>
+            </div>
+            今日特惠
+          </div>
+          <div>
+            <div class="y-center">
+              <i class="el-icon-goods" style="font-size: 20px"></i>
+            </div>
+            最新穿法
+          </div>
+          <div>
+            <div class="y-center">
+              <i class="el-icon-goods" style="font-size: 20px"></i>
+            </div>
+            新品上架
+          </div>
+          <div>
+            <div class="y-center">
+              <i class="el-icon-goods" style="font-size: 20px"></i>
+            </div>
+            老板娘说
+          </div>
+        </div>
+
+        <!--        今日特惠-->
+        <div class="card-box">
+          <div
+            class="y-flex y-align-between y-vertical-center y-p-tb-10 y-border-b"
+            style="height:27px;">
+            <div class="y-p-l-15">
+              <i class="el-icon-house" style="font-size: 20px"></i>
+              <span style="font-size: 16px">
+                              今日门店会员优惠
+              </span>
+            </div>
+            <div>
+              <i class="el-icon-arrow-right" style="font-size: 16px"></i>
+            </div>
+          </div>
+          <!--          todo add for-->
+          <div style="height: 67px" class="y-flex-col y-align-between y-p-tb-10 y-p-r-15 y-p-l-15 y-border-b">
+            <div>全场货品</div>
+            <div class="y-center" style="font-size: 17px;font-weight: bold;color: #ff0000;line-height: 200%;">
+              满500元立减100元
+            </div>
+            <div class="y-right y-underline ">详情 <i class="el-icon-arrow-right" style="font-size: 16px"></i>
+            </div>
+          </div>
+          <!--          todo add css-->
+          <div class="y-flex y-flex-wrap">
+            <div class="y-col-5">123</div>
+            <div class="y-col-5">123</div>
+            <div class="y-col-5">123</div>
+
           </div>
         </div>
 

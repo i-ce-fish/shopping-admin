@@ -139,6 +139,7 @@ p {
 .y-m-r-10 {
   margin-right: 10px;
 }
+
 .y-m-t-10 {
   margin-top: 10px;
 }
@@ -149,6 +150,17 @@ p {
 
 .y-p-t-10 {
   padding-top: 10px;
+}
+
+.y-p-tb-10 {
+  //不使用简写, 避免覆盖
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+
+.y-p-l-15 {
+  padding-left: 15px;
 }
 
 .y-p-r-15 {
@@ -166,9 +178,11 @@ p {
 .y-center {
   text-align: center;
 }
+
 .y-right {
   text-align: right;
 }
+
 .y-width-full {
   width: 100%;
 }
@@ -178,7 +192,7 @@ p {
   background-color: white;
 }
 
-.y-hover{
+.y-hover {
   cursor: pointer;
 
 }

@@ -24,8 +24,10 @@ function ajaxBefore() {
 
 /**
  * 关闭圆圈
+ * @param loadingId 圆圈事件的定时器id
  */
-function ajaxAfter() {
+function ajaxAfter(loadingId) {
+  clearTimeout(loadingId)
   if (loading) {
     loadTotal--
     if (loadTotal === 0) {
@@ -122,9 +124,15 @@ service.interceptors.response.use(
 )
 
 async function http(params = {}) {
-  ajaxBefore()
+  /**
+   * 100ms后才执行,过滤请求时间<100ms的loading
+   */
+  const loadingId = setTimeout(ajaxBefore, 50)
+
   const data = await service(params)
-  ajaxAfter()
+
+  ajaxAfter(loadingId)
+
   return data
 }
 
