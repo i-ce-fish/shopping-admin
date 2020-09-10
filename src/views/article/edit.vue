@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce/tinymce.vue'
+import Tinymce from '@/components/tinymce/tinymce.vue'
 
 import { putArticle, getArticle } from '../../api/article'
 
@@ -203,8 +203,6 @@ export default {
       this.$refs.articleForm.check((valid) => {
         if (valid) {
           this.putArticle()
-        } else {
-          return false
         }
       })
     }

@@ -51,6 +51,8 @@ const routes = [
     component: () => import('@/views/Register')
   },
   articleRouter,
+  articleRouter,
+  articleRouter,
   catalogRouter,
   customerRouter,
   goodRouter,

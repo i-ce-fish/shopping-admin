@@ -594,7 +594,7 @@
 <script>
 import { objToJson } from '@/utils/index'
 import categoryFrom from '@/views/category/addForm.vue'
-import dialogForm from '@/components/DialogForm/index.vue'
+import dialogForm from '@/components/dialog-form/index.vue'
 import { addGood } from '../../api/good'
 import { addGoodsize } from '../../api/goodsize'
 

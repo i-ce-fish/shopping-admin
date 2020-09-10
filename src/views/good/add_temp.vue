@@ -461,7 +461,7 @@
 </template>
 
 <script>
-import DialogForm from '@/components/DialogForm/index.vue'
+import DialogForm from '@/components/dialog-form/index.vue'
 import { listRemoveItem, objToJson } from '@/utils/index'
 import { addGood } from '../../api/good'
 

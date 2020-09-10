@@ -459,7 +459,7 @@
 
 <script>
 
-import DialogForm from '@/components/DialogForm/index.vue'
+import DialogForm from '@/components/dialog-form/index.vue'
 import { listRemoveItem, jsonToObj, objToJson } from '@/utils/index'
 import { putGood, getGood } from '../../api/good'
 

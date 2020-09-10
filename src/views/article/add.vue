@@ -151,7 +151,7 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce/tinymce.vue'
+import Tinymce from '@/components/tinymce/tinymce.vue'
 import { addArticle } from '@/api/article'
 
 export default {

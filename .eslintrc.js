@@ -251,6 +251,7 @@ module.exports = {
     "import/no-cycle": 0,//依赖循环
     "no-shadow": 1,//变量声明重复警告
     "vue/no-unused-components": 1,
+    "vue/require-component-is":1,//解决动态组件没法用
     "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
     "no-use-before-define": ["error", {
       "functions": false,

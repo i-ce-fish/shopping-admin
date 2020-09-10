@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar" >
+  <div class="sidebar" style="width: 217px;overflow-x: hidden;overflow-y: scroll">
     <el-menu
       class="el-menu-vertical-demo"
       background-color="#304156"
@@ -18,29 +18,18 @@
         :base-path="route.path"
       />
 
-      <!--      <el-menu-item index="/home" v-for="route in routes" :key="route.path">-->
-      <!--      <el-menu-item index="/home">-->
-      <!--        <i class="el-icon-menu"></i>-->
-      <!--        <span slot="title">首页{{item}}</span>-->
-      <!--      </el-menu-item>-->
-      <!--      <el-submenu index="/test">-->
-      <!--        <template slot="title">-->
-      <!--          <i class="el-icon-location"></i>-->
-      <!--          <span>导航一</span>-->
-      <!--        </template>-->
-      <!--        <el-menu-item-group>-->
-      <!--          <el-menu-item index="/paper" >论文</el-menu-item>-->
-      <!--        </el-menu-item-group>-->
-      <!--      </el-submenu>-->
-
     </el-menu>
   </div>
 </template>
 <script>
+import Item from '@/components/sidebar/Item.vue'
 import SidebarItem from './SidebarItem.vue'
 
 export default {
-  components: { SidebarItem },
+  components: {
+    SidebarItem,
+    Item
+  },
   data() {
     return {}
   },

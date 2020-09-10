@@ -24,6 +24,7 @@
       </el-col>
     </el-row>
     <el-row :gutter="10">
+      <div ></div>
       <div class="">
         <wx-home></wx-home>
       </div>
@@ -153,8 +154,8 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce/tinymce.vue'
-import wxHome from '@/views/mockWX/home.vue'
+import Tinymce from '@/components/tinymce/tinymce.vue'
+import wxHome from '@/views/mock-wx/home.vue'
 
 export default {
   components: {

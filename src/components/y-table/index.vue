@@ -4,10 +4,8 @@
     <el-table
       :data="data"
       style="width: 100%"
-      row-key="id"
       :default-expand-all="defaultExpandAll"
       :size="size"
-
       :width="width"
       :height="height"
       :max-height="maxHeight"

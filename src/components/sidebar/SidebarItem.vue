@@ -1,5 +1,13 @@
 <template>
   <div v-if="!item.hidden" class="menu-wrapper">
+    <div style="color: white">
+      <!--      {{hasOneShowingChild(item.children, item) }}-->
+      <!--      {{ !onlyOneChild.children}}-->
+      <!--      {{ onlyOneChild.noShowingChildren}}-->
+      <!--      {{!item.alwaysShow}}-->
+      <!--      {{hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !item.alwaysShow
+      }}-->
+    </div>
     <template
       v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow"
     >
@@ -8,16 +16,15 @@
           :index="resolvePath(onlyOneChild.path)"
           :class="{'submenu-title-noDropdown':!isNest}"
         >
-          <i :class="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" />
-          {{ onlyOneChild.meta.title }}
+          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title"/>
+
         </el-menu-item>
       </div>
     </template>
 
     <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)" popper-append-to-body>
       <template slot="title">
-        <i :class="item.meta.icon" />
-        {{ item.meta.title }}
+        <item v-if="item.meta" :icon="item.meta && item.meta.icon" :title="item.meta.title"/>
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -33,9 +40,13 @@
 
 <script>
 import path from 'path'
+import Item from './Item.vue'
 
 export default {
   name: 'SidebarItem',
+  components: {
+    Item
+  },
   props: {
     // route object
     item: {
@@ -95,6 +106,11 @@ export default {
       return path.resolve(this.basePath, routePath)
     },
 
+    /**
+     * 动态组件,绑定属性  v-bind={is: }= <div is= ></div>
+     * @param url
+     * @returns {{is: string, to: *}|{rel: string, is: string, href: *, target: string}}
+     */
     linkProps(url) {
       if (this.isExternal(url)) {
         return {
@@ -113,6 +129,9 @@ export default {
       return /^(https?:|mailto:|tel:)/.test(path)
     }
 
+  },
+  created() {
+    console.log(this.item?.meta?.icon)
   }
 }
 </script>

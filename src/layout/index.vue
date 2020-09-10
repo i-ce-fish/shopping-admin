@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <el-container>
-      <el-aside width="200px">
+      <el-aside  style="width: 200px;overflow-y: hidden;">
         <sidebar />
       </el-aside>
       <el-container>
@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import Sidebar from '@/components/Sidebar/index.vue'
-import Navbar from '@/components/Navbar/index.vue'
+import Sidebar from '@/components/sidebar/index.vue'
+import Navbar from '@/components/navbar/index.vue'
 
 export default {
   name: 'Layout',

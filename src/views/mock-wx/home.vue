@@ -15,7 +15,7 @@
           class="y-flex y-center y-align-center y-vertical-center y-bgc-white">会员内购
         </div>
         <div>
-          <el-carousel interval="5000" height="187px" arrow="never" indicator-position="none">
+          <el-carousel :interval="5000" height="187px" arrow="never" indicator-position="none">
             <el-carousel-item v-for="(o,i) in imgs" :key="i" class="y-bgc-white" style="height: 187px">
               <img height="187.5px" width="375px" fit="fill" :src="o.url">
             </el-carousel-item>
@@ -203,7 +203,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~@/views/mockWX/index.scss";
+@import "~@/views/mock-wx/index.scss";
 
 .header {
   height: 65px;

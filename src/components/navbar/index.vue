@@ -40,7 +40,7 @@
   </div>
 </template>
 <script>
-import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import Breadcrumb from '@/components/breadcrumb/index.vue'
 import { mapGetters } from 'vuex'
 
 export default {
