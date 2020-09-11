@@ -131,7 +131,6 @@ export default {
 
   },
   created() {
-    console.log(this.item?.meta?.icon)
   }
 }
 </script>

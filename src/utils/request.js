@@ -78,8 +78,6 @@ service.interceptors.response.use(
    * You can also judge the status by HTTP Status Code
    */
   (response) => {
-    ajaxAfter()
-
     const res = response.data
     console.warn('返回并处理过的数据', res)
     // if the custom code is not 20000, it is judged as an error.
@@ -91,28 +89,28 @@ service.interceptors.response.use(
       })
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       if (res.code === 401 || res.code === 500) {
-        const map = new Map([[401, '没有授权'], [5000, '登录已过期']])
+        const map = new Map([[401, '没有授权'], [500, '登录已过期']])
+
         // to re-login
         MessageBox.confirm(map.get(res.code), '前往登录', {
           confirmButtonText: '登录',
           cancelButtonText: '取消',
           type: 'warning'
         })
-          .then(() => {
-            // store.dispatch('user/resetToken')
-            //   .then(() => {
-            //     location.reload()
-            //   })
+          .then(async() => {
+            /**
+             * 本地token未过期, 服务器的token过期了, 需要重置并登陆
+             * TODO 未测试
+             */
+            await store.dispatch('user/resetToken')
             router.push('/login')
           })
       }
-
       return Promise.reject(new Error(res.msg || 'Error '))
     }
     return res
   },
   (error) => {
-    ajaxAfter()
     console.log(`res${error}`) // for debug
     Message({
       message: error.message,
@@ -124,15 +122,13 @@ service.interceptors.response.use(
 )
 
 async function http(params = {}) {
-  /**
-   * 100ms后才执行,过滤请求时间<100ms的loading
-   */
+  //  100ms后才执行,过滤请求时间<100ms的loading
   const loadingId = setTimeout(ajaxBefore, 50)
-
+  // 无论请求结果如何, 都会执行finally
   const data = await service(params)
-
-  ajaxAfter(loadingId)
-
+    .finally(() => {
+      ajaxAfter(loadingId)
+    })
   return data
 }
 

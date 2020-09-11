@@ -1,5 +1,6 @@
 <template>
-  <div class="sidebar" style="width: 217px;overflow-x: hidden;overflow-y: scroll">
+  <!--  width = 父容器200px + 滚动条宽度20px(18px+)-->
+  <div class="sidebar" style="height:100%;width: 220px;overflow-x: hidden;overflow-y: scroll">
     <el-menu
       class="el-menu-vertical-demo"
       background-color="#304156"

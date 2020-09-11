@@ -51,8 +51,6 @@ const routes = [
     component: () => import('@/views/Register')
   },
   articleRouter,
-  articleRouter,
-  articleRouter,
   catalogRouter,
   customerRouter,
   goodRouter,
@@ -71,8 +69,23 @@ const routes = [
     path: '/test',
     name: 'test',
     component: () => import('@/views/Test')
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/error-page/404'),
+    hidden: true
+  },
+  {
+    path: '/401',
+    component: () => import('@/views/error-page/401'),
+    hidden: true
+  },
+  // 404 page must be placed at the end !!!
+  {
+    path: '*',
+    redirect: '/404',
+    hidden: true
   }
-//  todo 404
 ]
 
 const router = new VueRouter({

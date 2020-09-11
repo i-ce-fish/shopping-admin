@@ -22,6 +22,30 @@
 }
 
 
+.y-m-15 {
+  margin: 15px;
+}
+
+.y-m-t-15 {
+  margin-top: 15px;
+}
+
+.y-m-b-15 {
+  margin-bottom: 15px;
+}
+
+.y-p-l-15 {
+  padding-left: 15px;
+}
+
+.y-p-r-15 {
+  padding-right: 15px;
+}
+
+.y-p-15 {
+  padding: 15px;
+}
+
 .y-col-12 {
   width: 100%;
 }
@@ -99,11 +123,13 @@
 .y-border-all {
   border: 0.5px solid #dadada;
 }
+
 /*阴影*/
 /*底部阴影*/
 .y-shadow-b {
-  box-shadow: 0 2rpx 4rpx 0 rgba(0, 0, 0, 0.16);
+  box-shadow: 0 2 rpx 4 rpx 0 rgba(0, 0, 0, 0.16);
 }
+
 /* 用于未付款金额等的显示 */
 .y-color-red {
   color: #ff0000;

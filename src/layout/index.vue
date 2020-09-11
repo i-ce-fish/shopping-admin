@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <el-container>
-      <el-aside  style="width: 200px;overflow-y: hidden;">
+      <el-aside  style="width: 200px;overflow: hidden;">
         <sidebar />
       </el-aside>
       <el-container>

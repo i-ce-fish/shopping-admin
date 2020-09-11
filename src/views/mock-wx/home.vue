@@ -114,7 +114,11 @@
             </div>
           </div>
           <!--          todo add for-->
-          <div style="height: 67px" class="y-flex-col y-align-between y-p-tb-10 y-p-r-15 y-p-l-15 y-border-b">
+          <div
+            style="height: 67px"
+            class="y-flex-col y-align-between y-p-tb-10 y-p-r-15 y-p-l-15 y-border-b"
+            v-for="(o,i) in 4"
+            :key="i">
             <div>全场货品</div>
             <div class="y-center" style="font-size: 17px;font-weight: bold;color: #ff0000;line-height: 200%;">
               满500元立减100元
@@ -123,14 +127,42 @@
             </div>
           </div>
           <!--          todo add css-->
-          <div class="y-flex y-flex-wrap">
-            <div class="y-col-5">123</div>
-            <div class="y-col-5">123</div>
-            <div class="y-col-5">123</div>
+          <div class="y-flex y-flex-wrap  ">
+            <div
+              class="y-col-4  y-flex-col y-align-between y-border-all y-m-15 y-p-15"
+              style="background-color:#f5e3e3;"
+              v-for="(o,i) in 4"
+              :key="i"
+            >
+              <div style="">全场货品</div>
+              <div
+                class="y-center y-color-red "
+                style="padding: 15px 0;line-height:200%;font-size: 17px;font-weight: bold; ">
+                满500立减100元
+              </div>
+              <div class="y-right y-underline">详情</div>
+            </div>
 
           </div>
         </div>
+        <!--最新穿法-->
+        <div class="card-box">
+          <div
+            class="y-flex y-align-between y-vertical-center y-p-tb-10 y-border-b"
+            style="height:27px;">
+            <div class="y-p-l-15">
+              <i class="el-icon-house" style="font-size: 20px"></i>
+              <span style="font-size: 16px">
+                              最新穿法
+              </span>
+            </div>
+            <div>
+              <i class="el-icon-arrow-right" style="font-size: 16px"></i>
+            </div>
+          </div>
+        </div>
 
+        <!--        新品上架-->
         <div class="y-flex  y-align-center y-vertical-center" style="height: 40px">
           永康美特斯邦威店
         </div>
