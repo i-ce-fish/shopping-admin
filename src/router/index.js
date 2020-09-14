@@ -80,6 +80,10 @@ const routes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
+  {
+    path: '/test/index',
+    component: () => import('@/views/test/index')
+  },
   // 404 page must be placed at the end !!!
   {
     path: '*',

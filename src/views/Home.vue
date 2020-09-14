@@ -24,7 +24,7 @@
       </el-col>
     </el-row>
     <el-row :gutter="10">
-      <div ></div>
+      <div></div>
       <div class="">
         <wx-home></wx-home>
       </div>
@@ -173,6 +173,11 @@ export default {
     }
   },
   created() {
+    this.check()
+    // this.login()
+  },
+
+  methods: {
   }
 }
 </script>
