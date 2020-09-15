@@ -98,8 +98,6 @@ export default {
       this.$refs.orderitemForm.check((valid) => {
         if (valid) {
           this.putOrderitem()
-        } else {
-          return false
         }
       })
     }

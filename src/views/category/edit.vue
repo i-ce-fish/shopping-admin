@@ -125,8 +125,6 @@ export default {
       this.$refs.categoryForm.check((valid) => {
         if (valid) {
           this.putCategory()
-        } else {
-          return false
         }
       })
     }

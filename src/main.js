@@ -22,11 +22,15 @@ import YUploadImage from '@/components/y-upload-image/index.vue'
 import YUploadFile from '@/components/y-upload-file/index.vue'
 import YTooltip from '@/components/y-tooltip/index.vue'
 
+// 按钮级权限指令
+import permission from '@/directive/permission/index'
+
 // store
 import store from './store'
 import router from './router'
 import App from './App.vue'
 
+// 页面级权限判断
 import './permission'
 
 Vue.component('YRadio', YRadio)
@@ -46,7 +50,8 @@ Vue.component('YUploadFile', YUploadFile)
 Vue.component('YTooltip', YTooltip)
 
 Vue.use(ElementUI)
-
+// 全局指令---按钮级权限判断
+Vue.use(permission)
 // 全局lodash
 Vue.prototype._ = _
 

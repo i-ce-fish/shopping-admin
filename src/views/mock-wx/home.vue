@@ -1,5 +1,10 @@
+<!--局部引入vant (移动端) 作为模拟小程序 vant(小程序端)的组件-->
 <template>
+
   <div class="page shadow ">
+    <span v-permission="['admin']">管理员 </span>
+    <span v-permission="['admin','guider']">导购 </span>
+    <span v-permission="['cannot']">空的 </span>
     <div class="header ">
       <div class="y-flex y-align-center y-vertical-center" style="height: 25px">
         00:00
@@ -9,6 +14,7 @@
       </div>
     </div>
     <div class="" style="width:375px;overflow: hidden">
+
       <div class="body">
         <div
           style="height: 40px;font-size: 16px;font-weight: bold"
@@ -57,11 +63,11 @@
                 </div>
                 <div class="right-box y-col-2 y-flex-col y-align-between">
                   <div class="">
-                    <i class="el-icon-full-screen" style="font-size: 32px"></i>
+                    <van-icon name="qr" style="font-size: 32px"/>
                   </div>
                   <div class="detail y-flex y-align-right y-center y-vertical-center">
                     <div>详情</div>
-                    <i class="el-icon-arrow-right" style="font-size: 15px"></i>
+                    <van-icon name="arrow" style="font-size: 15px"></van-icon>
                   </div>
                 </div>
               </div>
@@ -166,6 +172,7 @@
         <div class="y-flex  y-align-center y-vertical-center" style="height: 40px">
           永康美特斯邦威店
         </div>
+
         <div class="y-flex y-align-center y-vertical-center" style="height: 40px">
           永康美特斯邦威店
         </div>
@@ -220,7 +227,21 @@
   </div>
 </template>
 <script>
+import 'vant/lib/button/style'
+import {
+  Swipe, SwipeItem, Icon, Button
+} from 'vant'
+
 export default {
+
+  components: {
+    // 这里需注意
+    [Button.name]: Button,
+    [Icon.name]: Icon,
+    [Swipe.name]: Swipe,
+    [SwipeItem.name]: SwipeItem
+  },
+
   data() {
     return { // 首页轮播图
       imgs: [

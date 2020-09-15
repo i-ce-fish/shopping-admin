@@ -114,8 +114,6 @@ export default {
       this.$refs.catalogForm.check((valid) => {
         if (valid) {
           this.putCatalog()
-        } else {
-          return false
         }
       })
     }

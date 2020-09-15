@@ -159,8 +159,6 @@ export default {
       this.$refs.goodsizeForm.check((valid) => {
         if (valid) {
           this.addGoodsize()
-        } else {
-          return false
         }
       })
     }

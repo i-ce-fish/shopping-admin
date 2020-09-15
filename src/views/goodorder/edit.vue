@@ -78,8 +78,6 @@ export default {
       this.$refs.goodorderForm.check((valid) => {
         if (valid) {
           this.putGoodorder()
-        } else {
-          return false
         }
       })
     }

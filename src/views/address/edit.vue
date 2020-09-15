@@ -145,8 +145,6 @@ export default {
       this.$refs.addressForm.check((valid) => {
         if (valid) {
           this.putAddress()
-        } else {
-          return false
         }
       })
     }

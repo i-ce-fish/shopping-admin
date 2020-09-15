@@ -563,8 +563,6 @@ export default {
       this.$refs.goodForm.check((valid) => {
         if (valid) {
           this.addGood()
-        } else {
-          return false
         }
       })
     },

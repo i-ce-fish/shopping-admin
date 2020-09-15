@@ -4,7 +4,8 @@
     <el-menu
       class="el-menu-vertical-demo"
       background-color="#304156"
-      text-color="#bfcbd9"
+      text-color="#ffffff"
+      active-text-color="#ffffff"
       :router="true"
       :default-active="activeMenu"
       :collapse="false"
@@ -62,8 +63,11 @@ export default {
 }
 </script>
 
-<style scoped>
-.sidebar {
+<style lang="scss" scoped>
 
+/deep/ .el-menu-item.is-active {
+  background-color: #3D73B9 !important;
+  transition: all 0.8s ease;
+  transform: translateX(10px);
 }
 </style>

@@ -137,8 +137,6 @@ export default {
       this.$refs.goodcolorForm.check((valid) => {
         if (valid) {
           this.putGoodcolor()
-        } else {
-          return false
         }
       })
     }

@@ -173,8 +173,6 @@ export default {
     }
   },
   created() {
-    this.check()
-    // this.login()
   },
 
   methods: {

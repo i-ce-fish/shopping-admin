@@ -136,8 +136,6 @@ export default {
       this.$refs.customerForm.check((valid) => {
         if (valid) {
           this.putCustomer()
-        } else {
-          return false
         }
       })
     }

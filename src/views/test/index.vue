@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <div>
-
+  <div class="form">
+    <div class="name">
+      name
       <!--      <el-input type="text" v-model="username"/>-->
       <el-input v-model="username" placeholder="请输入内容"></el-input>
       <!--       : => v-bind-->
       <!--      @ => v-on -->
     </div>
-    <div>
+    <div class="pswd">
       密码
       <el-input type="text" v-model="password" show-password/>
     </div>
@@ -53,5 +53,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.form {
+  .name {
+    color: red;
+  }
+  .pswd {
+    color: #00feff;
+  }
+}
 
 </style>
