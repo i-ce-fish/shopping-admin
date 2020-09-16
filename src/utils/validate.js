@@ -41,6 +41,7 @@ export const regular = {
       return callback(new Error('请输入正确的xx'))
     }
     callback()
+    return undefined
   }
 }
 /**
@@ -51,4 +52,5 @@ export const validateOrder = function(rule, value, callback) {
     return callback(new Error('排序值不可以大于255'))
   }
   callback()
+  return undefined
 }

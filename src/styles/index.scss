@@ -161,6 +161,10 @@ p {
 
 }
 
+.y-p-t-20{
+  padding-top: 20px;
+}
+
 
 /**
 字体
@@ -185,5 +189,9 @@ p {
 
 .y-hover {
   cursor: pointer;
+}
 
+//布局
+.y-inline-block{
+  display: inline-block;
 }

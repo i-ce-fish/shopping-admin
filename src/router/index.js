@@ -16,7 +16,7 @@ import colorRouter from './modules/color'
 import patternRouter from './modules/pattern'
 import materialRouter from './modules/material'
 import supplyRouter from './modules/supply'
-import brandRouter from './modules/brand'
+import goodbrandRouter from './modules/goodbrand'
 
 Vue.use(VueRouter)
 
@@ -50,11 +50,12 @@ const routes = [
     name: 'Register',
     component: () => import('@/views/Register')
   },
+  goodsizeRouter,
+  goodbrandRouter,
   articleRouter,
   catalogRouter,
   customerRouter,
   goodRouter,
-  goodsizeRouter,
   goodcolorRouter,
   addressRouter,
   goodorderRouter,
@@ -63,7 +64,6 @@ const routes = [
   colorRouter,
   materialRouter,
   patternRouter,
-  brandRouter,
   supplyRouter,
   {
     path: '/test',

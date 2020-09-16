@@ -10,73 +10,94 @@
         label-width="80px"
       >
 
-        <el-row type="flex" justify="space-between">
-          <el-row>
+        <el-row>
 
-            <el-col>
-              <el-form-item label="库存数量:" prop="inventory">
+          <el-col :span="6">
+            <el-form-item label="库存数量:" prop="inventory">
 
-                <y-input
+              <y-input
 
-                  v-model="goodsizeForm.inventory"
-                />
-              </el-form-item>
-            </el-col>
+                v-model="goodsizeForm.inventory"
 
-          </el-row>
+              />
+            </el-form-item>
+          </el-col>
 
         </el-row>
 
         <el-row type="flex" align="space-between">
           <el-col>
             <el-button type="primary" @click="onSearch">查询</el-button>
-            <el-button class="no-margin" @click="reset">重置</el-button>
+            <el-button @click="reset" class="y-mr-l-10">重置</el-button>
           </el-col>
-          <el-button type="success" @click="add">添加尺码表</el-button>
+          <el-button type="success" @click="add">添加商品尺码</el-button>
 
         </el-row>
       </y-form>
     </el-card>
-    <y-table :data="goodsizesData" :pagination="pagination" @sortBy="sortBy" @changePage4List="getList">
+    <y-table
+      :data="goodsizesData"
+      :pagination="pagination"
+      @sortBy="sortBy"
+      @changePage4List="getList"
+      class="y-p-t-20"
+    >
       <template>
 
         <el-table-column
           prop="size_name"
           label="尺码名"
-        />
+          align="center"
+
+          width="200px"
+        >
+
+        </el-table-column>
 
         <el-table-column
           prop="display_name"
           label="尺寸显示名"
-        />
+          align="center"
+
+          width="250px"
+        >
+
+        </el-table-column>
 
         <el-table-column
           prop="description"
           label="尺寸解释"
-        />
-
-        <el-table-column
-          prop="color_id"
-          label="ColorID"
-
-          width="100px"
           align="center"
-        />
+
+        >
+
+        </el-table-column>
 
         <el-table-column
           prop="inventory"
           label="库存数量"
-        />
+          align="center"
+
+          width="120px"
+        >
+
+        </el-table-column>
 
         <el-table-column
-          prop="good_id"
-          label="货品ID"
+          prop="size_type"
+          label="尺码类别"
+          align="center"
 
+          width="120px"
+        >
+
+        </el-table-column>
+
+        <el-table-column
+          label="操作"
           width="100px"
           align="center"
-        />
-
-        <el-table-column label="操作" width="100px">
+        >
           <template slot-scope="{row}">
             <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
             <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
@@ -121,7 +142,10 @@ export default {
       this.$router.push({ path: 'add' })
     },
     edit(id) {
-      this.$router.push({ path: 'edit', query: { id }})
+      this.$router.push({
+        path: 'edit',
+        query: { id }
+      })
     },
     del(id) {
       this.$confirm('是否删除?', '提示', {
@@ -130,13 +154,14 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          delGoodsize(id).then((response) => {
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
+          delGoodsize(id)
+            .then((response) => {
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              })
+              this.getList()
             })
-            this.getList()
-          })
         })
         .catch(() => {
           this.$message({
@@ -160,10 +185,11 @@ export default {
 </script>
 
 <style lang='scss' scope>
-    .app-container {
-        padding: 20px;
-        .no-margin{
-            margin: 0;
-        }
-    }
+.app-container {
+  padding: 20px;
+
+  .no-margin {
+    margin: 0;
+  }
+}
 </style>

@@ -1,101 +1,103 @@
 <template>
-  <div class="card-container">
-    <el-card class="box-card">
-      <h3>修改goodsize</h3>
-      <y-form
-        ref="goodsizeForm"
-        :model="goodsizeForm"
-        :rules="goodsizeRules"
-        label-width="100px"
-      >
-        <el-row>
+    <div class="card-container">
+        <el-card class="box-card">
+            <h3>修改商品尺码</h3>
+            <y-form
+                    ref="goodsizeForm"
+                    :model="goodsizeForm"
+                    :rules="goodsizeRules"
+                    label-width="100px"
+            >
+                <el-row>
 
-          <el-col :span="12">
-            <el-form-item label="尺码名:" prop="size_name">
+                    <el-col :span="12">
+                        <el-form-item label="尺码名:" prop="size_name">
 
-              <y-input
+                                <y-input
 
-                v-model="goodsizeForm.size_name"
-              />
+                            v-model="goodsizeForm.size_name"
 
-            </el-form-item>
-          </el-col>
+                          placeholder="XS"
 
-          <el-col :span="12">
-            <el-form-item label="尺寸显示名:" prop="display_name">
+                            />
 
-              <y-input
+                        </el-form-item>
+                    </el-col>
 
-                v-model="goodsizeForm.display_name"
-              />
+                    <el-col :span="12">
+                        <el-form-item label="尺寸显示名:" prop="display_name">
 
-            </el-form-item>
-          </el-col>
+                                <y-input
 
-          <el-col :span="12">
-            <el-form-item label="尺寸解释:" prop="description">
+                            v-model="goodsizeForm.display_name"
 
-              <y-input
+                          placeholder="160/84A/XS"
 
-                v-model="goodsizeForm.description"
-              />
+                            />
 
-            </el-form-item>
-          </el-col>
+                        </el-form-item>
+                    </el-col>
 
-          <el-col :span="12">
-            <el-form-item label="ColorID:" prop="color_id">
+                    <el-col :span="12">
+                        <el-form-item label="尺寸解释:" prop="description">
 
-              <y-select
+                                <y-input
 
-                v-model="goodsizeForm.color_id"
-              />
+                            v-model="goodsizeForm.description"
 
-            </el-form-item>
-          </el-col>
+                          placeholder="肩宽：50.5   身宽：52    后肩衣长72   连肩袖长：79.5"
 
-          <el-col :span="12">
-            <el-form-item label="库存数量:" prop="inventory">
+                            />
 
-              <y-input
+                        </el-form-item>
+                    </el-col>
 
-                v-model="goodsizeForm.inventory"
-              />
+                    <el-col :span="12">
+                        <el-form-item label="库存数量:" prop="inventory">
 
-            </el-form-item>
-          </el-col>
+                                <y-input
 
-          <el-col :span="12">
-            <el-form-item label="货品ID:" prop="good_id">
+                            v-model.number="goodsizeForm.inventory"
 
-              <y-select
+                          placeholder="10"
 
-                v-model="goodsizeForm.good_id"
+                            />
 
-                api="/api/goods"
+                        </el-form-item>
+                    </el-col>
 
-                value-name="id"
-                label-name="product_name"
-              />
+                    <el-col :span="12">
+                        <el-form-item label="尺码类别:" prop="size_type">
 
-            </el-form-item>
-          </el-col>
+                                <y-select
 
-          <el-col :span="24">
-            <el-form-item>
-              <el-button @click="submit('goodsizeForm')">提交</el-button>
-              <el-button @click="back">返回</el-button>
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </y-form>
-    </el-card>
-  </div>
+                            v-model="goodsizeForm.size_type"
+
+                            />
+
+                        </el-form-item>
+                    </el-col>
+
+                    <el-col >
+                      <el-row type="flex" justify="end">
+
+                      <el-form-item>
+                            <el-button @click="submit('goodsizeForm')">提交</el-button>
+                            <el-button @click="back">返回</el-button>
+                        </el-form-item>
+                      </el-row>
+                    </el-col>
+                </el-row>
+            </y-form>
+        </el-card>
+    </div>
 </template>
 
 <script>
 
-import { putGoodsize, getGoodsize } from '../../api/goodsize'
+import { putGoodsize, getGoodsize } from '@/api/goodsize'
+
+import { regular } from '../../utils/validate'
 
 export default {
 
@@ -108,8 +110,8 @@ export default {
 
           {
             type: 'string',
-            max: 60,
-            message: '请输入长度小于60的尺码名',
+            max: 255,
+            message: '请输入长度小于255的尺码名',
             trigger: 'blur'
           }
 
@@ -135,11 +137,26 @@ export default {
             trigger: 'blur'
           }
 
+        ],
+
+        inventory: [
+
+          { type: 'number', message: '请输入正确的数字' }
+
+        ],
+
+        size_type: [
+
+          {
+            type: 'string',
+            max: 69,
+            message: '请输入长度小于69的尺码类别',
+            trigger: 'blur'
+          }
+
         ]
 
-      },
-
-      good_idOptions: []
+      }
 
     }
   },
