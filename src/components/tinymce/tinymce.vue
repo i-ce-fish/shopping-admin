@@ -57,8 +57,11 @@ export default {
         selector: '#tinydemo',
         // 给body设置class
         body_class: 'tinymce_class',
-        // 自定义css样式, 多个样式间隔不需要分号
-        content_style: '.tinymce_class {font-size:14px;line-height:180%}   p{margin: 0}',
+        /**
+         * 尽量与小程序展示效果保持一致
+         * 自定义css样式, 多个样式间隔不需要分号
+         */
+        content_style: '.tinymce_class {font-size:14px;line-height:180%;white-space: nowrap;}   p{margin: 0}',
         language_url: '/tinymce/langs/zh_CN.js',
         language: 'zh_CN',
         skin: 'oxide',
@@ -71,10 +74,11 @@ export default {
         toolbar: this.toolbar,
         branding: false,
         menubar: false,
+        // 工具栏抽屉模式
+        toolbar_mode: 'sliding',
         // 字体
         fontsize_formats: '12px 14px 16px 18px 24px 36px 48px 56px 72px',
         font_formats: '微软雅黑=Microsoft YaHei,Helvetica Neue,PingFang SC,sans-serif;苹果苹方=PingFang SC,Microsoft YaHei,sans-serif;宋体=simsun,serif;仿宋体=FangSong,serif;黑体=SimHei,sans-serif;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;',
-
         // 行高数组
         lineheight_val: '1 1.1 1.2 1.3 1.4 1.5 1.6 1.7 1.8 1.9 2',
         // 此处为图片上传处理函数，这个直接用了base64的图片形式上传图片，

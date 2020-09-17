@@ -3,6 +3,7 @@
     <el-input
       v-model="result"
       :size="size"
+      :rows="rows"
       :placeholder="placeholder"
       :disabled="disabled"
       :resize="resize"
@@ -84,6 +85,10 @@ export default {
     tips: {
       type: String,
       default: ''
+    },
+    rows: {
+      type: [String, Number],
+      default: 2
     }
   },
   data() {

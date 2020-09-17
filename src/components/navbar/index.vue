@@ -3,6 +3,7 @@
     <!--    <hamburger :is-active="sidebar.opened" class="hamburger-container"@toggleClick="toggleSideBar" />-->
     <breadcrumb class="breadcrumb-container"/>
     <div class="y-flex y-align-center y-vertical-center ">
+      <div>天气</div>
       <div class="y-p-r-10">
         <el-popover
           placement="bottom"
@@ -11,7 +12,8 @@
           trigger="click"
         >
           <el-badge :value="msgs.length" slot="reference">
-            <i style="font-size:25px " class="el-icon-message"/>
+            <i style="font-size:25px " class="el-icon-bell"/>
+
           </el-badge>
           <div class="y-flex y-align-between " v-for=" (o,i) in msgs" :key="i">
 
@@ -22,7 +24,7 @@
       </div>
       <el-dropdown class="" trigger="click">
         <div class="">
-          <i style="font-size:25px " class="el-icon-user"/>
+          <i style="font-size:25px " class=" el-icon-user"/>
           <i class="el-icon-caret-bottom"/>
         </div>
         <el-dropdown-menu slot="dropdown" class="">

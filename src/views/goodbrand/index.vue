@@ -29,7 +29,7 @@
             <el-form-item label="品牌类型:" prop="brand_type">
               <y-select
                 v-model="goodbrandForm.brand_type"
-                :options="[{value: '1',label: '1'},{value: '0',label: '2'}]"
+                :options="GOOD_BRAND.TYPE"
               />
             </el-form-item>
           </el-col>
@@ -37,23 +37,23 @@
             <el-form-item label="价格定位:" prop="price_object">
               <y-select
                 v-model="goodbrandForm.price_object"
-                :options="[{value: '1',label: '1'},{value: '0',label: '2'}]"
+                :options="GOOD_BRAND.PRICE"
               />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="客群年龄:" prop="age_object">
               <y-select
-                v-model="goodbrandForm.brand_type"
-                :options="[{value: '1',label: '1'},{value: '0',label: '2'}]"
+                v-model="goodbrandForm.age_object"
+                :options="GOOD_BRAND.AGE"
               />
             </el-form-item>
           </el-col>
           <el-col :span="6">
             <el-form-item label="风格定位:" prop="style_object">
               <y-select
-                v-model="goodbrandForm.brand_type"
-                :options="[{value: '1',label: '1'},{value: '0',label: '2'}]"
+                v-model="goodbrandForm.style_object"
+                :options="GOOD_BRAND.STYLE"
               />
             </el-form-item>
           </el-col>
@@ -165,6 +165,7 @@
 </template>
 <script>
 import { getGoodbrands, delGoodbrand } from '@/api/goodbrand'
+import { GOOD_BRAND } from '@/utils/options'
 
 export default {
   data() {
@@ -174,8 +175,8 @@ export default {
       pagination: {
         pageNumber: 1,
         pageSize: 10
-      }
-
+      },
+      GOOD_BRAND
     }
   },
   created() {
