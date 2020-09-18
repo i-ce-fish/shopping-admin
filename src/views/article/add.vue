@@ -1,18 +1,6 @@
 <template>
   <div class="card-container">
     <el-card class="box-card">
-      <!--      <div slot="header" class="">-->
-      <!--        <el-row type="flex" justify="end">-->
-      <!--          <el-col>-->
-      <!--            <h3>添加article</h3>-->
-      <!--          </el-col>-->
-      <!--          <el-col :span="8" style="min-width: 280px">-->
-      <!--            <el-button type="success" @click="submit('articleForm')">发布</el-button>-->
-      <!--            <el-button type="primary" @click="submit('articleForm')">存为草稿</el-button>-->
-      <!--            <el-button @click="back">返回</el-button>-->
-      <!--          </el-col>-->
-      <!--        </el-row>-->
-      <!--      </div>-->
       <el-row type="flex" justify="space-between">
         <el-col :span="14">
           <y-form
@@ -54,12 +42,24 @@
 
                 <el-col>
                   <el-form-item label="文章标签:">
-                    <y-radio v-model="articleForm.tag" :options="ARTICLE.TAG">
+                    <y-radio v-model="articleForm.tag" :options="ARTICLE.TAG" border>
                     </y-radio>
-                    <div>添加标签</div>
+                    <div>
+                      <el-button size="small" type="primary" plain @click="onTagForm">添加标签</el-button>
+                    </div>
+                    <y-dialog class="test" v-model="showTagForm" title="添加标签/关键词" @confirm="submitTagForm">
+                      <!--  todo 完善-->
+                      <y-form>
+                        <el-form-item label="标签/关键词">
+                          <y-input></y-input>
+                        </el-form-item>
+                      </y-form>
+                    </y-dialog>
                   </el-form-item>
                 </el-col>
                 <el-col>
+
+                  <!--                  添加标签的表单弹窗-->
 
                   <el-form-item label="拟发布日期: ">
 
@@ -82,16 +82,16 @@
                 </el-col>
 
               </el-col>
-              <el-col >
+              <el-col>
                 <el-form-item label="" prop="body">
                   <div class="preview-box-title">
                     编辑正文
                   </div>
                   <Tinymce ref="editor" v-model="articleForm.body"/>
-                  <el-row  type="flex" justify="space-around" class="y-p-t-10 width-phone" >
-                      <el-button type="danger">未完成</el-button>
-                      <el-button type="primary">待发布</el-button>
-                      <el-button type="success">立即发布</el-button>
+                  <el-row type="flex" justify="space-around" class="y-p-t-10 width-phone">
+                    <el-button type="danger">未完成</el-button>
+                    <el-button type="primary">待发布</el-button>
+                    <el-button type="success">立即发布</el-button>
                   </el-row>
                 </el-form-item>
               </el-col>
@@ -108,8 +108,8 @@
             </div>
             <div v-html="articleForm.body"/>
           </el-card>
-          <el-row  type="flex" justify="end" class="y-p-t-10 width-phone" >
-            <el-button >返回</el-button>
+          <el-row type="flex" justify="end" class="y-p-t-10 width-phone">
+            <el-button @click="back">返回</el-button>
           </el-row>
         </el-col>
       </el-row>
@@ -122,9 +122,13 @@
 import Tinymce from '@/components/tinymce/tinymce.vue'
 import { addArticle } from '@/api/article'
 import { ARTICLE } from '@/utils/options'
+import YDialog from '@/components/y-dialog/index.vue'
 
 export default {
-  components: { Tinymce },
+  components: {
+    Tinymce,
+    YDialog
+  },
 
   data() {
     return {
@@ -136,7 +140,14 @@ export default {
       ARTICLE,
       articleForm: {},
       articleRules: {
-
+        catalog_id: [{
+          required: true,
+          message: '请输入所属栏目'
+        }],
+        intro: [{
+          required: true,
+          message: '请输入内容简介'
+        }],
         title: [
 
           {
@@ -147,38 +158,29 @@ export default {
 
           {
             type: 'string',
-            max: 255,
-            message: '请输入长度小于255的标题',
-            trigger: 'blur'
+            max: 30,
+            message: '请输入长度小于30的标题',
+            trigger: 'change'
           }
 
         ],
-
+        post_date: [
+          {
+            required: true,
+            message: '请输入拟发布日期'
+          }
+        ],
         front_pic: [
-
           {
             type: 'string',
             max: 255,
             message: '请输入长度小于255的首页图',
             trigger: 'blur'
           }
-
-        ],
-
-        author: [
-
-          {
-            type: 'string',
-            max: 80,
-            message: '请输入长度小于80的作者',
-            trigger: 'blur'
-          }
-
         ]
-
       },
-
-      catalog_idOptions: []
+      // 添加标签对话框
+      showTagForm: false
 
     }
   },
@@ -201,6 +203,12 @@ export default {
           this.addArticle()
         }
       })
+    },
+    onTagForm() {
+      this.showTagForm = !this.showTagForm
+    },
+    submitTagForm() {
+      console.log('todo add tag form ')
     }
   }
 }
@@ -241,8 +249,14 @@ export default {
 
   }
 }
-.width-phone{
+
+.width-phone {
   width: 375px;
+}
+
+.y-radio /deep/ .el-radio {
+    padding: 7px 0;
+
 }
 
 </style>

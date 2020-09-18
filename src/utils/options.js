@@ -77,7 +77,7 @@ const ARTICLE = {
       value: '3',
       label: '明星穿搭'
     }, {
-      value: '0',
+      value: '4',
       label: '显瘦'
     }
   ],

@@ -92,12 +92,12 @@
                 </el-button>
 
               </div>
-              <dialog-form
+              <y-dialog
                 v-model="showCategoryFrom"
                 @confirm="submitDialogForm('categoryFrom','showCategoryFrom','getCategoryList')"
               >
                 <categoryFrom ref="categoryFrom"/>
-              </dialog-form>
+              </y-dialog>
             </el-form-item>
           </el-col>
 
@@ -594,7 +594,7 @@
 <script>
 import { objToJson } from '@/utils/index'
 import categoryFrom from '@/views/category/addForm.vue'
-import dialogForm from '@/components/dialog-form/index.vue'
+import YDialog from '@/components/y-dialog/index.vue'
 import { addGood } from '../../api/good'
 import { addGoodsize } from '../../api/goodsize'
 
@@ -602,7 +602,7 @@ export default {
   components: {
 
     categoryFrom,
-    dialogForm
+    YDialog
   },
 
   data() {

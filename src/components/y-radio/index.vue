@@ -1,5 +1,5 @@
 <template>
-  <y-tooltip :tips="tips">
+  <y-tooltip :tips="tips" class="y-radio">
 
     <el-radio-group
       v-model="result"
@@ -74,6 +74,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.yradio {
+.y-radio {
 }
+
 </style>

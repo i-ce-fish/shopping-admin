@@ -4,6 +4,7 @@ import store from 'store'
 const WEB_NAME = 'STORE'
 
 export const storage = {
+  // eslint-disable-next-line accessor-pairs
   set setLocalStorageName(val) {
     if (!val) {
       store.remove(WEB_NAME)

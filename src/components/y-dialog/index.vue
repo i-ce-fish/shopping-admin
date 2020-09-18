@@ -2,25 +2,11 @@
   <el-dialog
     :title="title"
     :visible.sync="dialogShow"
-    width="70%"
-    :before-close="handleClose"
+    :width="width"
+    :before-close="beforeClose"
     :modal="modal"
   >
-    <div class="dialogForm">
-
-      <slot />
-
-      <!--      <y-form-->
-      <!--        ref="dialogForm"-->
-      <!--        :model="dialogForm"-->
-      <!--        :rules="dialogRules"-->
-      <!--        label-width="100px"-->
-      <!--      >-->
-      <!--        <el-row>-->
-      <!--        </el-row>-->
-      <!--      </y-form>-->
-
-    </div>
+    <slot/>
     <span slot="footer" class="dialog-footer">
       <el-button @click="close">取 消</el-button>
       <el-button type="primary" @click="confirm">确 定</el-button>
@@ -45,12 +31,16 @@ export default {
     modal: {
       type: Boolean,
       default: true
+    },
+    // 宽度
+    width: {
+      type: String,
+      default: '70%',
+      required: false
     }
   },
   data() {
     return {
-      // dialogForm: {},
-      // dialogRules: {},
       dialogShow: this.value
     }
   },
@@ -62,18 +52,8 @@ export default {
   created() {
   },
   methods: {
-    handleClose(done) {
-      this.$emit('test', this.dialogShow)
-
-      this.$confirm('确认关闭？')
-        .then((_) => {
-          done()
-        })
-        .catch((_) => {
-        })
-    },
     beforeClose() {
-      // this.$emit("input", this.dialogShow)
+      this.close()
     },
     close() {
       this.dialogShow = false
@@ -81,12 +61,10 @@ export default {
       this.$emit('close')
     },
     confirm() {
-      // 父组件控制是否添加成功, 然后关闭
-      this.$emit('input', this.dialogShow)
+      // 父组件控制是否添加成功后决定是否隐藏
       this.$emit('confirm')
     }
   }
-
 }
 </script>
 <style lang='scss' scope>

@@ -1,10 +1,9 @@
 <template>
   <!--todo 删除图片-->
-
   <y-tooltip :tips="tips">
     <div class="">
       <el-upload
-        action="https://jsonplaceholder.typicode.com/posts/"
+        :action="serve+'/api/upload'"
         list-type="picture-card"
         :limit="limit"
         :on-exceed="onExceed"
@@ -12,6 +11,7 @@
         :multiple="limit>1||limit===0"
         :on-preview="handlePictureCardPreview"
         :on-remove="handleRemove"
+        :on-success="handleSuccess"
       >
         <i class="el-icon-plus"/>
 
@@ -48,6 +48,10 @@ export default {
 
   props: {
 
+    value: {
+      type: Array,
+      default: () => []
+    },
     // 上传图片数量限制, 0 为无限制
     limit: {
       type: Number,
@@ -62,15 +66,21 @@ export default {
 
   data() {
     return {
+      fileList: this.value,
       dialogImageUrl: '',
       dialogVisible: false,
-      fileList: []
+      // 服务器路径
+      serve: 'http://shop.cdb99.com:8088'
+    }
+  },
+  watch: {
+    value(val) {
+      this.fileList = val
     }
   },
   methods: {
     handleRemove(file, fileList) {
-      console.log(file)
-      console.log(fileList)
+      this.fileList = this._.remove(fileList, file)
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url
@@ -81,6 +91,12 @@ export default {
         type: 'warning',
         message: `最多只能上传${this.limit}张图片`
       })
+    },
+    handleSuccess(res, file, fileList) {
+      // todo pre
+      // 保存绝对路径
+      // this.fileList.push({ name: file.name, url: this.serve + res.data })
+      this.fileList.push(file)
     }
   }
 

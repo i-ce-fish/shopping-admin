@@ -334,7 +334,7 @@
 
           <!--    添加编辑材质1级属性-->
 
-          <DialogForm
+          <y-dialog
             v-model="materialDialog1"
             :title="materialTitle"
             @confirm="confirmMaterial('1')"
@@ -349,10 +349,10 @@
                 </el-form-item>
               </el-col>
             </template>
-          </DialogForm>
+          </y-dialog>
 
           <!--    添加编辑材质二级属性-->
-          <DialogForm
+          <y-dialog
             v-model="materialDialog2"
             :title="materialTitle"
             @confirm="confirmMaterial('2')"
@@ -374,10 +374,10 @@
                 </el-form-item>
               </el-col>
             </template>
-          </DialogForm>
+          </y-dialog>
 
           <!--    添加编辑颜色-->
-          <DialogForm
+          <y-dialog
             v-model="colorDialog"
             :title="colorSizeTitle"
             @confirm="confirmColorSize('color')"
@@ -409,10 +409,10 @@
                 </el-form-item>
               </el-col>
             </template>
-          </DialogForm>
+          </y-dialog>
 
           <!--    添加编辑尺码-->
-          <DialogForm
+          <y-dialog
             v-model="sizeDialog"
             :title="colorSizeTitle"
             @confirm="confirmColorSize('size')"
@@ -443,7 +443,7 @@
               </el-col>
 
             </template>
-          </DialogForm>
+          </y-dialog>
 
           <el-col :span="24">
             <el-form-item>
@@ -459,12 +459,12 @@
 
 <script>
 
-import DialogForm from '@/components/dialog-form/index.vue'
+import YDialog from '@/components/y-dialog/index.vue'
 import { listRemoveItem, jsonToObj, objToJson } from '@/utils/index'
 import { putGood, getGood } from '../../api/good'
 
 export default {
-  components: { DialogForm },
+  components: { YDialog },
 
   data() {
     return {
@@ -533,7 +533,7 @@ export default {
       materialDialog1: false,
       materialDialog2: false,
 
-      //  临时中转的数据, 通过temp存储add、edit 的数据，分离dialogForm数据和视图
+      //  临时中转的数据, 通过temp存储add、edit 的数据，分离y-dialog数据和视图
       // remark 分开两个避免input框v-model类型错误的bug，一级属性是数组，二级属性的string
       materialTemp1: {},
       materialTemp2: {},
