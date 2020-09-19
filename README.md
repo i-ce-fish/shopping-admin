@@ -1,7 +1,8 @@
 # cms
 
-##首次运行
+## 安装依赖
 npm install 
+## 启动项目
 npm run serve
 
 ## 新项目构建流程
@@ -29,12 +30,12 @@ import "normalize.css"
 ```$xslt
 dist    打包后的文件
 src 
-    api             统一封装请求url           每个模块对应一个文件
+    api             统一封装请求url,每个模块对应一个文件
     components      组件封装                
         Breadcrumb         面包屑
         Navbar             顶部导航
         Sidebar            侧边栏
-        tinymce             富文本编辑器
+        tinymce            富文本编辑器
         以及一系列对element表单组件的封装, 属性和element文档的基本一致(可能有遗漏)                     
     layout          页面布局
     directive       自定义指令
@@ -46,7 +47,7 @@ src
             user                用户登录等相关
         getters             get  state的封装
         index         vuex主文件
-    style             全局样式文件
+    style           全局样式文件
         index         全局样式文件, 常用的样式都会进行封装
         variables     全局css变量文件
     utils           工具类
@@ -55,11 +56,9 @@ src
         options             常量
         validate            常用表单验证
     views            页面, 各个模块对应一个文件夹
-
     App.vue     
     main.js         入口文件
     permission      路由导航守卫
-    
 .eslintrc.js    eslint配置
 package.json    项目依赖
 vue.config.js   webpack配置
@@ -90,11 +89,12 @@ vue.config.js   webpack配置
 
 <a href="http://css.cuishifeng.cn/">CSS</a>
 
-<a href="https://youzan.github.io/vant-weapp/#/field">Vant</a>部分模拟小程序展示效果的页面使用vantUI(移动端), 而小程序商城项目也是使用vantUI(小程序端) 
+<a href="https://youzan.github.io/vant-weapp/#/field">Vant</a>
+部分模拟小程序展示效果的页面使用vantUI(移动端), 而小程序商城项目也是使用vantUI(小程序端) 
 
 
 
-### 几个文件样例
+### 几个文件DEMO
 
 router写法
 ```javascript

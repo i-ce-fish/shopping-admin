@@ -876,29 +876,25 @@ export default {
   }
 
   //加大颜色选择组件尺寸
-  .color-picker /deep/ .el-color-picker__trigger {
-    width: 500px;
-    height: 200px;
-  }
+  //.color-picker /deep/ .el-color-picker__trigger {
+  //  width: 500px;
+  //  height: 200px;
+  //}
 
   /**
   * 增加商品详情轮播图的介绍, 组件已清除overflow:hidden
   * 类选择器+深度选择器+子元素选择器+伪元素+scss数组循环(基1)
    */
-  $contents: '正面图', '侧面图', '背面图';
-  @each $c in $contents {
-    $i: index($contents, $c);
-    .upload-carousels /deep/ .el-upload-list--picture-card .el-upload-list__item:nth-child(#{$i}):before {
-      content: $c;
-      position: absolute;
-      bottom: -30px;
-      right: 50px;
-
-      //width: 100%;
-      height: 25px;
-
-      //text-align: center;
-    }
-  }
+  //$contents: '正面图', '侧面图', '背面图';
+  //@each $c in $contents {
+  //  $i: index($contents, $c);
+  //  .upload-carousels /deep/ .el-upload-list--picture-card .el-upload-list__item:nth-child(#{$i}):before {
+  //    content: $c;
+  //    position: absolute;
+  //    bottom: -30px;
+  //    right: 50px;
+  //    height: 25px;
+  //  }
+  //}
 }
 </style>

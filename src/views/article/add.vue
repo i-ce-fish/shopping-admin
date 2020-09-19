@@ -45,7 +45,7 @@
                     <y-radio v-model="articleForm.tag" :options="ARTICLE.TAG" border>
                     </y-radio>
                     <div>
-                      <el-button size="small" type="primary" plain @click="onTagForm">添加标签</el-button>
+                      <el-button size="small" type="primary" plain @click="showTagForm =!showTagForm">添加标签</el-button>
                     </div>
                     <y-dialog class="test" v-model="showTagForm" title="添加标签/关键词" @confirm="submitTagForm">
                       <!--  todo 完善-->
