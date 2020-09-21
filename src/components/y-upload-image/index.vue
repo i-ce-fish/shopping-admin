@@ -6,14 +6,15 @@
         :action="serve+'/api/upload'"
         list-type="picture-card"
         :limit="limit"
-        :on-exceed="onExceed"
         :file-list="fileList"
+        :on-exceed="onExceed"
         :multiple="limit>1||limit===0"
         :on-preview="onPictureCardPreview"
         :on-remove="onRemove"
         :on-success="onSuccess"
       >
-        <i class="el-icon-plus"/>
+
+        <i class="el-icon-plus" />
 
         <div slot="file" slot-scope="{file}">
           <img
@@ -134,7 +135,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-// fix 图片不占满方框
+// fix 图片无法占满方框
 /deep/ .el-upload-list__item > div {
   height: 100%;
 }

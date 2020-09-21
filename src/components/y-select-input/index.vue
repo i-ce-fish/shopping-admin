@@ -32,7 +32,7 @@ export default {
     },
     config: Object,
     options: {
-      type: Array,
+      type: [Array, Object],
       default: () => [{
         value: '选项1',
         label: '黄金糕'

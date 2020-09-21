@@ -69,7 +69,7 @@ export default {
     config: Object,
     // 初始化数据
     options: {
-      type: Array,
+      type: [Array, Object],
       default: () => [{
         value: '选项1',
         label: '黄金糕'

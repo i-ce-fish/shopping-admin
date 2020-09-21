@@ -171,9 +171,10 @@
               </el-col>
               <el-col :span="6">
                 <el-form-item label="主色代码:" prop="code">
-                  <y-input
+                  <y-select
                     v-model="colorForm.code"
                     tips="请输入该色系范围内的数字"
+                    :options="[{value:0,label:0},{value:1,label:1},{value:2,label:2},{value:3,label:3},{value:4,label:4},{value:5,label:5}]"
                   />
                 </el-form-item>
               </el-col>

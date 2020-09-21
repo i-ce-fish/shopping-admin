@@ -165,7 +165,7 @@
 </template>
 <script>
 import { getGoodbrands, delGoodbrand } from '@/api/goodbrand'
-import { GOOD_BRAND } from '@/utils/options'
+import { GOOD_BRAND } from '@/utils/const'
 
 export default {
   data() {

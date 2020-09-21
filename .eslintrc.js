@@ -252,6 +252,7 @@ module.exports = {
     "no-shadow": 1,//变量声明重复警告
     "vue/no-unused-components": 1,
     "vue/require-component-is":1,//解决动态组件没法用
+    "array-callback-return":0,
     "import/no-extraneous-dependencies": [2, { "devDependencies": true }],
     "no-use-before-define": ["error", {
       "functions": false,

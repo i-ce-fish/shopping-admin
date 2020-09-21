@@ -21,67 +21,67 @@
           </el-form-item>
         </el-col>
 
-        <el-button type="primary">展开</el-button>
+        <el-button type="primary" @click="showCondition = !showCondition">展开</el-button>
 
         <!--          todo  展开收起-->
         <el-row>
-          <el-row>
-            <el-col>
-              <el-form-item label="按推文状态筛选:" prop="type">
-                <y-checkbox
-                  v-model="articleForm.catalogSelected"
-                  :options="ARTICLE.TYPE"
-                />
-              </el-form-item>
-            </el-col>
+          <transition name="condition">
+            <el-row v-show="showCondition">
+              <el-col>
+                <el-form-item label="按推文状态筛选:" prop="type">
+                  <y-checkbox
+                    v-model="articleForm.catalogSelected"
+                    :options="ARTICLE.TYPE"
+                  />
+                </el-form-item>
+              </el-col>
 
-            <el-col>
-              <el-form-item label="栏目ID:" prop="catalog_id">
-                <y-checkbox
-                  v-model="articleForm.catalogSelected"
-                  :options="catalogOption"
-                />
-              </el-form-item>
-            </el-col>
+              <el-col>
+                <el-form-item label="栏目ID:" prop="catalog_id">
+                  <y-checkbox
+                    v-model="articleForm.catalogSelected"
+                    :options="catalogOption"
+                  />
+                </el-form-item>
+              </el-col>
 
-            <el-col>
-              <el-form-item label="按发布天数筛选:" prop="type">
-                <y-checkbox
-                  v-model="articleForm.catalogSelected"
-                  :options="ARTICLE.POST_DAY"
-                />
-              </el-form-item>
-            </el-col>
+              <el-col>
+                <el-form-item label="按发布天数筛选:" prop="type">
+                  <y-checkbox
+                    v-model="articleForm.catalogSelected"
+                    :options="ARTICLE.POST_DAY"
+                  />
+                </el-form-item>
+              </el-col>
 
-            <el-col :span="6">
-              <el-form-item label="自定义日期:" prop="title">
-                <y-datepicker
-                  v-model="articleForm.value123"
-                  type="datetimerange"
-                  range-separator="至"
-                  start-placeholder="开始日期"
-                  end-placeholder="结束日期"
-                />
-              </el-form-item>
-            </el-col>
+              <el-col :span="6">
+                <el-form-item label="自定义日期:" prop="title">
+                  <y-datepicker
+                    v-model="articleForm.value123"
+                    type="datetimerange"
+                    range-separator="至"
+                    start-placeholder="开始日期"
+                    end-placeholder="结束日期"
+                  />
+                </el-form-item>
+              </el-col>
 
-          </el-row>
-          <el-row type="flex" align="space-between">
-            <el-col>
+            </el-row>
+          </transition>
 
-              <el-button type="primary" @click="onSearch">查询</el-button>
-              <el-button @click="reset">重置</el-button>
-            </el-col>
+        </el-row>
+        <el-row type="flex" align="space-between">
+          <el-col>
+            <el-button type="primary" @click="onSearch">查询</el-button>
+            <el-button @click="reset">重置</el-button>
+          </el-col>
+          <el-button type="success" @click="add">编写推文</el-button>
 
-            <el-button type="success" @click="add">编写推文</el-button>
-
-          </el-row>
         </el-row>
 
       </y-form>
 
     </el-card>
-
     <y-table
       :data="articlesData"
       row-key="id"
@@ -91,7 +91,7 @@
       <template>
 
         <el-table-column
-          prop="catalog_name"
+          prop="is_editing_label"
           label="推文状态"
           align="center"
           width="100px"
@@ -105,7 +105,7 @@
 
         />
         <el-table-column
-          prop="catalog_name"
+          prop="post_date"
           label="发布天数"
           sortable
           align="center"
@@ -113,7 +113,7 @@
 
         />
         <el-table-column
-          prop="time_post"
+          prop="published_at"
           sortable
           label="发布时间"
           width="150px"
@@ -133,7 +133,7 @@
           align="center"
         />
         <el-table-column
-          prop="likes"
+          prop="push_numbers"
           sortable
           align="center"
           label="推送数"
@@ -151,7 +151,13 @@
         <el-table-column label="操作" width="150px" align="center">
           <template slot-scope="{row}">
             <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
-            <el-button type="text" size="small" @click="post(row.id)">发布</el-button>
+            <div v-if="row.is_editing===ARTICLE.TYPE.POSTED.value">
+              <el-button type="text" size="small" @click="updateType(row.id,ARTICLE.TYPE.OFF_SHELF.value)">下架
+              </el-button>
+            </div>
+            <div v-else>
+              <el-button type="text" size="small" @click="updateType(row.id,ARTICLE.TYPE.POSTED.value)">发布</el-button>
+            </div>
             <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
           </template>
         </el-table-column>
@@ -160,9 +166,9 @@
   </div>
 </template>
 <script>
-import { getArticles, delArticle } from '@/api/article'
+import { getArticles, delArticle, putArticle } from '@/api/article'
 import { getCatalogs } from '@/api/catalog'
-import { ARTICLE } from '@/utils/options'
+import { ARTICLE } from '@/utils/const'
 
 export default {
   data() {
@@ -176,36 +182,33 @@ export default {
         pageNumber: 1,
         pageSize: 10
       },
-      catalogOption: [{ label: 123 }]
+      catalogOption: [],
+      showCondition: false
     }
   },
-  async created() {
-    await this.getCatalogOption()
+  created() {
+    this.getCatalogOption()
     this.getList()
   },
   methods: {
     async getList(param) {
-      const res = await getArticles(
-        {
-          ...param,
-          page: this.pagination.pageNumber,
-          pagesize: this.pagination.pageSize
-        }
-      )
-
-      // 根据接口筛选出catalog_name
-      res.data.list.forEach((o) => {
-        // eslint-disable-next-line
-        o.catalog_name = this._.filter(this.catalogOption, { "id": o.catalog_id.toString() })[0]?.catalog_name
+      const res = await getArticles({
+        ...param,
+        page: this.pagination.pageNumber,
+        pagesize: this.pagination.pageSize
       })
-
-      // const a = this._.chain(this.catalogOption)
-      //   .forEach((i) => {
-      //     i.children = this._.filter(res.data.list, ["catalog_id", Number.parseInt(i.id, 10)])
-      //   })
-      //   .value()
+      // 将is_editing的value根据const.js的常量映射转换成label
+      const typeMap = new Map()
+      // 根据const.js创建map
+      Object.values(this.ARTICLE.TYPE)
+        .forEach((item) => {
+          typeMap.set(item.value, item.label)
+        })
+      // 赋值
+      res.data.list.map((item) => {
+        item.is_editing_label = typeMap.get(item.is_editing)
+      })
       this.articlesData = res.data.list
-      this.pagination.total = parseInt(res.data.pagination.total, 10)
     },
 
     add() {
@@ -258,6 +261,11 @@ export default {
         label: item.catalog_name,
         value: item.id.toString()
       }))
+    },
+    async updateType(id, is_editing) {
+      const res = await putArticle(id, { is_editing })
+      console.log(res)
+      await this.getList()
     }
   }
 }
@@ -271,4 +279,15 @@ export default {
     margin: 0;
   }
 }
+
+//展开收起动画
+.condition-enter-active, .condition-leave-active {
+  transition: all .5s linear //类名：隐藏到显示过程所需要的时间
+}
+
+.condition-enter, .condition-leave-to { // 类名:初始化状态
+  opacity: 0.3;
+  transform: translateY(-20px);
+}
+
 </style>

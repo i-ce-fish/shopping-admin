@@ -30,7 +30,7 @@ export default {
     value: [Boolean, String],
     options:
       {
-        type: Array,
+        type: [Array, Object],
         require: false,
         default: () => [
           {

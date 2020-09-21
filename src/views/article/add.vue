@@ -42,13 +42,13 @@
 
                 <el-col>
                   <el-form-item label="文章标签:">
-                    <y-radio v-model="articleForm.tag" :options="ARTICLE.TAG" border>
+                    <y-radio v-model="articleForm.tag" :options="TESTOBJ" border>
                     </y-radio>
                     <div>
                       <el-button size="small" type="primary" plain @click="showTagForm =!showTagForm">添加标签</el-button>
                     </div>
                     <y-dialog class="test" v-model="showTagForm" title="添加标签/关键词" @confirm="submitTagForm">
-                      <!--  todo 完善-->
+                      <!--  todo api完善-->
                       <y-form>
                         <el-form-item label="标签/关键词">
                           <y-input></y-input>
@@ -89,9 +89,15 @@
                   </div>
                   <Tinymce ref="editor" v-model="articleForm.body"/>
                   <el-row type="flex" justify="space-around" class="y-p-t-10 width-phone">
-                    <el-button type="danger">未完成</el-button>
-                    <el-button type="primary">待发布</el-button>
-                    <el-button type="success">立即发布</el-button>
+                    <el-button type="danger" @click="submit({is_editing:ARTICLE.TYPE.UN_FINISH.value})">
+                     未完成
+                    </el-button>
+                    <el-button type="primary" @click="submit({is_editing:ARTICLE.TYPE.TO_BE_POST.value})">
+                     待发布
+                    </el-button>
+                    <el-button type="success" @click="submit({is_editing:ARTICLE.TYPE.POSTED.value})">
+                     立即发布
+                    </el-button>
                   </el-row>
                 </el-form-item>
               </el-col>
@@ -121,7 +127,8 @@
 <script>
 import Tinymce from '@/components/tinymce/tinymce.vue'
 import { addArticle } from '@/api/article'
-import { ARTICLE } from '@/utils/options'
+import { ARTICLE } from '@/utils/const'
+
 import YDialog from '@/components/y-dialog/index.vue'
 
 export default {
@@ -132,12 +139,12 @@ export default {
 
   data() {
     return {
+      ARTICLE,
       datePickerOptions: {
         disabledDate(time) {
           return time.getTime() < Date.now()
         }
       },
-      ARTICLE,
       articleForm: {},
       articleRules: {
         catalog_id: [{
@@ -187,20 +194,19 @@ export default {
   created() {
   },
   methods: {
-    async addArticle() {
-      await addArticle(this.articleForm)
+    async addArticle(obj) {
+      await addArticle({ ...this.articleForm, ...obj })
       this.$router.push({ path: '/article' })
-
       this.$message({
         message: '添加成功',
         type: 'success'
       })
     },
 
-    async submit() {
+    async submit(obj) {
       this.$refs.articleForm.check((valid) => {
         if (valid) {
-          this.addArticle()
+          this.addArticle(obj)
         }
       })
     },
@@ -255,7 +261,7 @@ export default {
 }
 
 .y-radio /deep/ .el-radio {
-    padding: 7px 0;
+  padding: 7px 0;
 
 }
 
