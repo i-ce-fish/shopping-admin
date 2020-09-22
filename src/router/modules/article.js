@@ -1,4 +1,5 @@
 import Layout from '@/layout'
+import catalogRouter from '@/router/modules/catalog'
 
 const articleRouter = {
   path: '/article',
@@ -45,6 +46,26 @@ const articleRouter = {
       icon: 'el-icon-s-operation'
 
     }
+  },
+  {
+    path: 'catalog',
+    name: 'catalog',
+    component: () => import('@/views/catalog/index'),
+    meta: {
+      title: '栏目管理',
+      icon: 'tree'
+    }
+  }, {
+    path: 'catalog/edit',
+    component: () => import('@/views/catalog/edit'),
+    hidden: true,
+    meta: { title: '修改栏目' }
+  },
+  {
+    path: 'catalog/add',
+    component: () => import('@/views/catalog/add'),
+    hidden: true,
+    meta: { title: '添加栏目' }
   }
   ]
 }

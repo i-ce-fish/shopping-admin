@@ -53,7 +53,6 @@ const routes = [
   goodsizeRouter,
   goodbrandRouter,
   articleRouter,
-  catalogRouter,
   goodRouter,
   // customerRouter,
   // goodcolorRouter,

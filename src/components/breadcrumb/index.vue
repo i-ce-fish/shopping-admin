@@ -41,7 +41,7 @@ export default {
       if (!this.isDashboard(first)) {
         matched = [{
           path: '/home',
-          meta: { title: '欢迎使用云想后台管理系统' }
+          meta: { title: '首页' }
         }].concat(matched)
       }
 

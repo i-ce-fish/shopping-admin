@@ -1,15 +1,15 @@
 <template>
   <div class="layout">
     <el-container>
-      <el-aside  style="width: 200px;overflow: hidden;">
-        <sidebar />
+      <el-aside style="width: 200px;overflow: hidden;">
+        <sidebar/>
       </el-aside>
       <el-container>
-        <el-header>
-          <Navbar />
+        <el-header class="shadow">
+          <Navbar/>
         </el-header>
         <el-main>
-          <router-view />
+          <router-view/>
         </el-main>
       </el-container>
     </el-container>
@@ -49,6 +49,13 @@ body,
   /*清楚默认的边距*/
   .el-main {
     padding: 0;
+  }
+
+  .shadow {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
+  //  会被contain挡住
+    z-index: 9999;
+
   }
 
 }
