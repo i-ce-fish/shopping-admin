@@ -2,12 +2,13 @@
  * 常量集中处理
  *
  * 格式固定为
- * @type {{MODULE: {FIELD: [{label: string, value: string}]}}}
+ * @type {{MODULE: {FIELD: {label: string, value: string}}}}
  *
  * label为显示内容, value为实际传参
  *
+ *  使用对象格式以便获取value/label , 而且v-for支持遍历对象(Object.keys)
+ *
  */
-
 // 品牌管理
 const GOOD_BRAND = {
   // 品牌类型
