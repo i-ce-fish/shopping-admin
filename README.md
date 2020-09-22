@@ -2,7 +2,7 @@
 
 ## 安装依赖
 npm install 
-ps: 还需要单独下载从<a href='http://tinymce.ax-z.cn/more-plugins/lineheight.php'>lineheight</a>并解压后放入到node_modules/tinymce/plugins中
+ps: 还需要单独从<a href='http://tinymce.ax-z.cn/more-plugins/lineheight.php'>lineheight</a>下载并解压后放入到node_modules/tinymce/plugins中
 ## 启动项目
 npm run serve
 
