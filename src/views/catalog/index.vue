@@ -10,36 +10,33 @@
       label-width="80px"
     >
       <el-row type="flex" justify="end">
-        <el-form-item>
 
-          <el-button type="success" @click="add">添加图文分类</el-button>
-
-        </el-form-item>
       </el-row>
 
       <el-row type="flex" justify="space-between">
         <el-col :span="20">
-          <el-row>
+          <el-col :span="6" class="y-p-r-10">
+            <el-form-item label="类别名:" prop="catalog_name">
+              <y-input
+                prefix-icon="el-icon-search"
+                placeholder="按栏目名称搜索"
+                v-model="catalogForm.catalog_name"
+              />
+            </el-form-item>
+          </el-col>
 
-            <el-col :span="6">
-              <el-form-item label="类别名:" prop="catalog_name">
-
-                <y-input
-
-                  v-model="catalogForm.catalog_name"
-                />
-              </el-form-item>
-            </el-col>
-
-          </el-row>
+          <el-button type="primary" plain @click="onSearch">查询</el-button>
+          <div class="y-p-l-10" style="display: inline-block">
+            <el-alert
+              title="按栏目名称来查找, 请在右边的搜索框内输入正确的品牌名称,否则搜不到"
+              type="info"
+              :closable="false"
+            >
+            </el-alert>
+          </div>
         </el-col>
         <el-col :span="4">
-          <el-row type="flex" justify="end">
-            <el-form-item>
-              <el-button type="primary" @click="onSearch">查询</el-button>
-              <el-button class="no-margin" @click="reset">重置</el-button>
-            </el-form-item>
-          </el-row>
+          <el-button type="success" @click="add">新增栏目</el-button>
         </el-col>
       </el-row>
 
@@ -103,7 +100,7 @@ export default {
     },
 
     add() {
-      this.$router.push({ path: 'add' })
+      this.$router.push({ path: 'catalog/add' })
     },
     edit(id) {
       this.$router.push({

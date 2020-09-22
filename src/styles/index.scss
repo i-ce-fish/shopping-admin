@@ -86,6 +86,11 @@ p {
 .y-flex-wrap {
   flex-wrap: wrap;
 }
+.y-flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+
 
 .y-flex-1 {
   flex: 1;
@@ -144,12 +149,17 @@ p {
   margin-top: 10px;
 }
 
+.y-m-r-15{
+  margin-right: 15px;
+}
 
 
 .y-p-r-10 {
   padding-right: 10px;
 }
-
+.y-p-l-10{
+  padding-left: 10px;
+}
 .y-p-t-10 {
   padding-top: 10px;
 }
