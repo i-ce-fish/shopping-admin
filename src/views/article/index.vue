@@ -8,10 +8,10 @@
       <y-form
         ref="articleForm"
         :model="articleForm"
-        label-width="130px"
+        label-width="120px"
       >
         <el-col :span="6" class="y-p-r-10">
-          <el-form-item label="标题:" prop="title">
+          <el-form-item label="标题:" prop="title"  label-width="50px">
             <y-input
               v-model="articleForm.title"
               prefix-icon="el-icon-search"
@@ -28,7 +28,7 @@
           <transition name="condition">
             <el-row v-show="showCondition">
               <el-col>
-                <el-form-item label="按推文状态筛选:" prop="type">
+                <el-form-item label="按推文状态筛选:" prop="type" >
                   <y-checkbox
                     v-model="articleForm.catalogSelected"
                     :options="ARTICLE.TYPE"

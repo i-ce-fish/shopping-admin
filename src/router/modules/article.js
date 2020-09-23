@@ -39,15 +39,6 @@ const articleRouter = {
   },
   // extral
   {
-    path: 'time-table',
-    component: () => import('@/views/article/time-table/index'),
-    meta: {
-      title: '时间表',
-      icon: 'el-icon-s-operation'
-
-    }
-  },
-  {
     path: 'catalog',
     name: 'catalog',
     component: () => import('@/views/catalog/index'),

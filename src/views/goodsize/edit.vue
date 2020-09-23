@@ -53,20 +53,6 @@
                     </el-col>
 
                     <el-col :span="12">
-                        <el-form-item label="库存数量:" prop="inventory">
-
-                                <y-input
-
-                            v-model.number="goodsizeForm.inventory"
-
-                          placeholder="10"
-
-                            />
-
-                        </el-form-item>
-                    </el-col>
-
-                    <el-col :span="12">
                         <el-form-item label="尺码类别:" prop="size_type">
 
                                 <y-select
@@ -96,8 +82,6 @@
 <script>
 
 import { putGoodsize, getGoodsize } from '@/api/goodsize'
-
-import { regular } from '../../utils/validate'
 
 export default {
 
@@ -136,12 +120,6 @@ export default {
             message: '请输入长度小于255的尺寸解释',
             trigger: 'blur'
           }
-
-        ],
-
-        inventory: [
-
-          { type: 'number', message: '请输入正确的数字' }
 
         ],
 

@@ -37,7 +37,8 @@ src
         Navbar             顶部导航
         Sidebar            侧边栏
         tinymce            富文本编辑器
-        以及一系列对element表单组件的封装, 属性和element文档的基本一致(可能有遗漏)                     
+        以及一系列对element表单组件的二次封装, 属性和element文档的保持一致(可能有遗漏)
+        【特别注意: 原生属性尚未封装,需要用到时自行添加】                     
     layout          页面布局
     directive       自定义指令
     router          路由

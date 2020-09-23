@@ -21,6 +21,8 @@
       :show-password="showPassword"
       :show-word-limit="showWordLimit"
       :tabindex="tabindex"
+      :maxlength="maxlength"
+      :minlength="minlength"
     />
   </y-tooltip>
 
@@ -32,7 +34,7 @@ export default {
     value: [String, Number],
     size: {
       type: String,
-      default: 'small',
+      // default: 'small',
       required: false
     },
     disabled: {
@@ -89,7 +91,14 @@ export default {
     rows: {
       type: [String, Number],
       default: 2
+    },
+    maxlength: {
+      type: [String, Number]
+    },
+    minlength: {
+      type: [String, Number]
     }
+
   },
   data() {
     return {

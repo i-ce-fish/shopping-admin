@@ -26,6 +26,8 @@
                     <y-input
                       v-model="articleForm.intro"
                       type="textarea"
+                      show-word-limit
+                      maxlength="50"
                       :rows="4"
                       placeholder="介绍最新的上海流行穿法，中学生的最潮穿法，哈佛等等常青藤名校的学生，非常阳光帅气，非常值得模仿等等等"
                     />
@@ -35,19 +37,23 @@
                   <el-form-item label="标题:" prop="title">
                     <y-input
                       v-model="articleForm.title"
-                      placeholder="标题(可显示30字)"
+                      type="textarea"
+                      maxlength="30"
+                      :rows="3"
+                      show-word-limit
+                      placeholder="标题(最多可显示30字)"
                     />
                   </el-form-item>
                 </el-col>
 
                 <el-col>
                   <el-form-item label="文章标签:">
-                    <y-radio v-model="articleForm.tag" :options="TESTOBJ" border>
+                    <y-radio v-model="articleForm.tag" :options="ARTICLE.TAG" border>
                     </y-radio>
                     <div>
                       <el-button size="small" type="primary" plain @click="showTagForm =!showTagForm">添加标签</el-button>
                     </div>
-                    <y-dialog class="test" v-model="showTagForm" title="添加标签/关键词" @confirm="submitTagForm">
+                    <y-dialog v-model="showTagForm" title="添加标签/关键词" @confirm="submitTagForm">
                       <!--  todo api完善-->
                       <y-form>
                         <el-form-item label="标签/关键词">
@@ -88,15 +94,15 @@
                     编辑正文
                   </div>
                   <Tinymce ref="editor" v-model="articleForm.body"/>
-                  <el-row type="flex" justify="space-around" class="y-p-t-10 width-phone">
+                  <el-row type="flex" justify="space-around" class="y-p-t-10 width-phone z-index">
                     <el-button type="danger" @click="submit({is_editing:ARTICLE.TYPE.UN_FINISH.value})">
-                     未完成
+                      未完成
                     </el-button>
                     <el-button type="primary" @click="submit({is_editing:ARTICLE.TYPE.TO_BE_POST.value})">
-                     待发布
+                      待发布
                     </el-button>
                     <el-button type="success" @click="submit({is_editing:ARTICLE.TYPE.POSTED.value})">
-                     立即发布
+                      立即发布
                     </el-button>
                   </el-row>
                 </el-form-item>
@@ -153,14 +159,16 @@ export default {
         }],
         intro: [{
           required: true,
-          message: '请输入内容简介'
+          message: '请输入小于50只字的内容简介',
+          max: 50
         }],
         title: [
 
           {
             required: true,
             message: '请输入标题',
-            trigger: 'blur'
+            trigger: 'blur',
+            max: 36
           },
 
           {
@@ -263,6 +271,10 @@ export default {
 .y-radio /deep/ .el-radio {
   padding: 7px 0;
 
+}
+
+.z-index {
+  z-index: 1;
 }
 
 </style>

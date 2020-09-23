@@ -14,7 +14,7 @@
       </el-row>
 
       <el-row type="flex" justify="space-between">
-        <el-col :span="20">
+        <el-col>
           <el-col :span="6" class="y-p-r-10">
             <el-form-item label="类别名:" prop="catalog_name">
               <y-input
@@ -35,9 +35,9 @@
             </el-alert>
           </div>
         </el-col>
-        <el-col :span="4">
+        <div>
           <el-button type="success" @click="add">新增栏目</el-button>
-        </el-col>
+        </div>
       </el-row>
 
     </y-form>
@@ -48,19 +48,23 @@
         <el-table-column
           prop="catalog_name"
           label="类别名"
+          align="center"
+          width="150px"
         />
 
         <el-table-column
           prop="description"
+          align="center"
           label="介绍"
         />
-        <el-table-column
-          prop="sort"
-          label="排序"
-        />
+<!--        <el-table-column-->
+<!--          prop="parent_id"-->
+<!--          label="父级id"-->
+<!--        />-->
         <el-table-column label="操作" width="100px">
           <template slot-scope="{row}">
             <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
+            <el-divider direction="vertical"></el-divider>
             <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
           </template>
         </el-table-column>
@@ -104,7 +108,7 @@ export default {
     },
     edit(id) {
       this.$router.push({
-        path: 'edit',
+        path: 'catalog/edit',
         query: { id }
       })
     },

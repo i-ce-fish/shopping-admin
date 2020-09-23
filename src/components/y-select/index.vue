@@ -89,7 +89,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'small',
+      // default: 'small',
       required: false
     },
 

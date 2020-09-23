@@ -1,5 +1,5 @@
 <template>
-  <div class="y-flex y-align-between y-flex-no1wrap">
+  <div class="y-flex y-align-between y-flex-no1wrap" style="height: 60px">
     <breadcrumb class="breadcrumb-container"/>
     <div
       class="y-flex y-align-center y-vertical-center y-flex-no1wrap y-p-r-10 y-p-l-10"

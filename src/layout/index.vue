@@ -53,9 +53,8 @@ body,
 
   .shadow {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
-  //  会被contain挡住
-    z-index: 9999;
-
+  //  会被contain挡住, 而且不能超过弹窗的的z-index(2029)
+    z-index: 999;
   }
 
 }
