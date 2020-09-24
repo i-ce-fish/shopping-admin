@@ -31,7 +31,10 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
-    }
+    },
+    plugins: [
+
+    ]
   },
   //  配置全局scss变量
   css: {

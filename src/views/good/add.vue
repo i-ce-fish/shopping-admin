@@ -1,12 +1,26 @@
 <template>
 
-  <!--  todo  商品分类  : 增加1个别名   品类编码   上一级分类 -->
-  <!--  todo  颜色  : 颜色编码-->
-  <!--  todo 尺码表-->
   <div class="card-container">
     <el-card class="box-card">
-      <h3>添加商品</h3>
+      <!--      <h3>添加商品</h3>-->
+      <div slot="header">
+        <el-row type="flex" justify="start" align="middle">
+          <el-col :span="6" class="y-p-r-10">
+            <y-input prefix-icon="el-icon-search" placeholder="请输入款号编码"></y-input>
+          </el-col>
+          <el-col :span="2">
+            <el-button type="primary" plain>确定</el-button>
+          </el-col>
+          <el-col :span="6">
+            <el-alert :closable="false" type="info">
+              小贴士:<br/>
+              1.同款下的每种颜色，系统支持建各自颜色的商品资料。<br/>
+              2.有同款其他颜色货品，录入过商品资料的，请输入款号编码。
+            </el-alert>
+          </el-col>
+        </el-row>
 
+      </div>
       <y-form
         ref="goodForm"
         :model="goodForm"
@@ -18,9 +32,9 @@
           <el-col :span="6">
             <el-alert
               type="info">
-              上传1张商品主图(正面图)
+              上传商品主图(正面图)
             </el-alert>
-            <el-form-item label="商品列表图:" prop="main_pic">
+            <el-form-item label="" prop="main_pic" label-width="0">
               <y-upload-image
                 v-model="goodForm.main_pic"
                 :limit="1"
@@ -35,12 +49,17 @@
             </el-alert>
             <el-form-item label="详情轮播图:" prop="carousels">
 
-              <y-upload-image
-                v-model="goodForm.carousels"
-                class="upload-carousels"
-              />
-              <el-divider></el-divider>
+              <div style="width:400px;height:400px;overflow-x: scroll;">
+                <div style="width: 600px">
+                  <y-upload-image
+                    v-model="goodForm.carousels"
+                    class="upload-carousels"
+                  />
+
+                </div>
+              </div>
             </el-form-item>
+            <el-divider></el-divider>
           </el-col>
 
           <el-col :span="24">
@@ -188,7 +207,7 @@
                     closable
                     :disable-transitions="false"
                     @close="handleClose(tag)">
-                    {{tag}}
+                    {{ tag }}
                   </el-tag>
                   <el-input
                     class="input-new-tag"

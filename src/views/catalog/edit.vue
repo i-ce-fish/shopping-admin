@@ -16,7 +16,6 @@
               <el-tooltip content="请输入图文分类名称 " placement="top-start">
 
                 <y-input
-
                   v-model="catalogForm.catalog_name"
                 />
 

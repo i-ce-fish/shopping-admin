@@ -3,7 +3,7 @@
   <y-tooltip :tips="tips">
     <div class="">
       <el-upload
-        :action="serve+'/api/upload'"
+        :action="serve"
         list-type="picture-card"
         :limit="limit"
         :file-list="fileList"
@@ -12,9 +12,10 @@
         :on-preview="onPictureCardPreview"
         :on-remove="onRemove"
         :on-success="onSuccess"
+        :with-credentials="true"
       >
 
-        <i class="el-icon-plus" />
+        <i class="el-icon-plus"/>
 
         <div slot="file" slot-scope="{file}">
           <img
@@ -73,11 +74,12 @@ export default {
 
   data() {
     return {
-      fileList: this.value,
+      // fileList: this.value,
+      fileList: [{ url: 'https://www.duohui.cn/img/events/rubyconf.png' }],
       dialogImageUrl: '',
       dialogVisible: false,
-      // 服务器路径
-      serve: 'http://shop.cdb99.com:8088'
+      // 上传文件的服务器路径  todo  加入到webpack中
+      serve: 'http://shop.cdb99.com:8088/api/upload'
     }
   },
   watch: {
@@ -91,8 +93,9 @@ export default {
       this.fileList.splice(index, 1)
     },
     onPictureCardPreview(file) {
-      this.dialogImageUrl = file.url
-      this.dialogVisible = true
+      this.fileList.push({ url: 'https://www.duohui.cn/img/events/rubyconf.png' })
+      // this.dialogImageUrl = file.url
+      // this.dialogVisible = true
     },
     onExceed() {
       this.$message({

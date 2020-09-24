@@ -1,11 +1,15 @@
 <template>
-  <div class="tinymce-box">
+  <div class="tinymce-box" >
     <editor
       v-model="myValue"
       :init="init"
       :disabled="disabled"
       @onClick="onClick"
-    />
+    >
+    </editor>
+    <div style="position:absolute;right: 0;top: 0">
+      <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK" />
+    </div>
   </div>
 </template>
 
@@ -22,12 +26,15 @@ import 'tinymce/plugins/lists'// 列表插件
 import 'tinymce/plugins/autoresize'// 自适应尺寸
 import 'tinymce/plugins/wordcount'// 字数统计
 import 'tinymce/icons/default'// 解决图标显示为!notFound
-import 'tinymce/plugins/lineheight/plugin.min'// 行高插件
+import './plugins/lineheight/plugin.min'// 本地行高插件
+import './plugins/axupimgs/plugin.min' // 本地多图片上传
+import editorImage from './components/EditorImage'
+
 // 字数统计插件
 export default {
   name: 'Tinymce',
   components: {
-    Editor
+    Editor, editorImage
   },
   props: {
     value: {
@@ -43,12 +50,12 @@ export default {
      */
     plugins: {
       type: [String, Array],
-      default: 'lists image  media table wordcount lineheight autoresize  '
+      default: 'lists image  media table wordcount lineheight autoresize  axupimgs'
     },
     // 工具栏设置
     toolbar: {
       type: [String, Array],
-      default: '   undo redo |  formatselect |  fontselect |fontsizeselect| bold italic forecolor backcolor |lineheight alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table | removeformat'
+      default: '   undo redo |  formatselect |  fontselect |fontsizeselect| bold italic forecolor backcolor |lineheight alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image axupimgs media table | removeformat'
     }
   },
   data() {
@@ -92,6 +99,7 @@ export default {
           xhr.withCredentials = false
           xhr.open('POST', 'http://shop.cdb99.com:8088/api/upload')
           xhr.onload = function() {
+            console.log(xhr)
             if (xhr.status !== 200) {
               failFun(`HTTP Error: ${xhr.status}`)
               return
@@ -188,6 +196,12 @@ export default {
     // 可以添加一些自己的自定义事件，如清空内容
     clear() {
       this.myValue = ''
+    },
+    imageSuccessCBK(arr) {
+      const _this = this
+      arr.forEach((v) => {
+        tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`)
+      })
     }
   }
 }

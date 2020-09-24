@@ -31,16 +31,6 @@
 
             </el-form-item>
           </el-col>
-          <el-col :span="12">
-            <el-form-item label="排序:" prop="description">
-
-              <y-input
-                v-model="catalogForm.value123"
-                tips="数值越大, 排序越前"
-              />
-
-            </el-form-item>
-          </el-col>
 
           <el-col :span="24">
             <el-form-item>
