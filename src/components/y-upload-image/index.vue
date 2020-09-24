@@ -75,7 +75,7 @@ export default {
   data() {
     return {
       // fileList: this.value,
-      fileList: [{ url: 'https://www.duohui.cn/img/events/rubyconf.png' }],
+      fileList: [],
       dialogImageUrl: '',
       dialogVisible: false,
       // 上传文件的服务器路径  todo  加入到webpack中
