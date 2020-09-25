@@ -28,7 +28,7 @@ a:active {
   outline: none;
 }
 
-//清楚浏览器默认样式
+//清除浏览器默认样式
 a,
 a:focus,
 a:hover {
@@ -69,7 +69,12 @@ p {
   float: right
 }
 
-
+// 表单添加页的全局样式
+.card-container {
+  background-color: #f0f2f5;
+  padding: 30px;
+  min-height: 100vh;
+}
 // todo 添加自己的常用全局样式.
 /**
 布局

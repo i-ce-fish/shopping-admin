@@ -1,20 +1,19 @@
 <template>
-  <!--todo 删除图片-->
   <y-tooltip :tips="tips">
     <div class="">
+      <!--      todo  多图片上传-->
+<!--      {{ fileList }}-->
       <el-upload
         :action="serve"
         list-type="picture-card"
         :limit="limit"
         :file-list="fileList"
+        :multiple="multiple"
         :on-exceed="onExceed"
-        :multiple="limit>1||limit===0"
         :on-preview="onPictureCardPreview"
         :on-remove="onRemove"
         :on-success="onSuccess"
-        :with-credentials="true"
       >
-
         <i class="el-icon-plus"/>
 
         <div slot="file" slot-scope="{file}">
@@ -52,6 +51,8 @@
   </y-tooltip>
 </template>
 <script>
+import { UPLOAD_URL } from '@/settings'
+
 export default {
 
   props: {
@@ -71,15 +72,21 @@ export default {
       default: ''
     }
   },
-
+  computed: {
+    // 单图片还是多图片
+    multiple() {
+      return this.limit !== 1
+    }
+  },
   data() {
     return {
-      // fileList: this.value,
-      fileList: [],
+      fileList: this.value,
+      uploadList: [], // 自定义的数组，用于处理fileList，fileList是只读的
+      // fileList: [],
       dialogImageUrl: '',
       dialogVisible: false,
       // 上传文件的服务器路径  todo  加入到webpack中
-      serve: 'http://shop.cdb99.com:8088/api/upload'
+      serve: UPLOAD_URL
     }
   },
   watch: {
@@ -93,9 +100,8 @@ export default {
       this.fileList.splice(index, 1)
     },
     onPictureCardPreview(file) {
-      this.fileList.push({ url: 'https://www.duohui.cn/img/events/rubyconf.png' })
-      // this.dialogImageUrl = file.url
-      // this.dialogVisible = true
+      this.dialogImageUrl = file.url
+      this.dialogVisible = true
     },
     onExceed() {
       this.$message({
@@ -107,7 +113,8 @@ export default {
       // todo pre
       // 保存绝对路径
       // this.fileList.push({ name: file.name, url: this.serve + res.data })
-      this.fileList.push(file)
+      this.uploadList.push(file)
+      this.emitData(this.uploadList)
     },
     /**
      * 交换index及index-1的元素
@@ -132,6 +139,9 @@ export default {
       const curO = this.fileList[curI]
       this.fileList.splice(nexI, 1, curO)
       this.fileList.splice(curI, 1, nexO)
+    },
+    emitData(list) {
+      this.$emit('input', list)
     }
   }
 

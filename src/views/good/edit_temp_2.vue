@@ -12,9 +12,7 @@
 
           <el-col :span="12">
             <el-form-item label="商品名称:" prop="product_name">
-
               <y-input
-
                 v-model="goodForm.product_name"
               />
             </el-form-item>
@@ -34,7 +32,6 @@
             <el-form-item label="款式编号:" prop="type_sn">
 
               <y-input
-
                 v-model="goodForm.type_sn"
               />
             </el-form-item>
@@ -237,58 +234,16 @@
 
           <!--          颜色尺码-->
           <el-col :span="24">
-            <el-form-item label="颜色尺码:" prop="colors">
+            <el-form-item label="颜色:" prop="colors">
 
               <el-table
                 id="colorSizeTable"
                 :data="goodForm.colors"
                 style="width: 100%"
-                :default-expand-all="colorExpand"
-                row-class-name="table-grey"
               >
-                <el-table-column type="expand">
-                  <template slot-scope="props">
-                    <el-table
-                      :data="goodForm.colors[props.$index].value"
-                      style="width: 100%"
-                    >
-                      <el-table-column
-                        label="尺码名"
-                        prop="name"
-                      />
-                      <el-table-column
-                        label="尺码显示名"
-                        prop="display_name"
-                      />
-                      <el-table-column
-                        label="尺寸解释"
-                        prop="description"
-                      />
-
-                      <el-table-column label="操作">
-                        <template slot-scope="scope">
-                          <el-button
-                            size="mini"
-                            @click="editColorSize(props.$index,scope.$index, 'size')"
-                          >编辑二级属性
-                          </el-button>
-
-                          <el-button
-                            size="mini"
-                            type="danger"
-                            @click="delColorSize(props.$index,scope.$index, 'size')"
-                          >删除
-                          </el-button>
-                        </template>
-                      </el-table-column>
-                    </el-table>
-
-                  </template>
-                </el-table-column>
-
                 <el-table-column
                   label="颜色名字"
-                  prop="name"
+                  prop="color_name"
                 />
                 <el-table-column
                   label="颜色缩略图"
@@ -303,32 +258,75 @@
                   <template slot-scope="scope">
                     <el-button
                       size="mini"
-                      @click="editColorSize(scope.$index, scope.row,'color')"
+                      @click="editColorSize(scope.$index,'color')"
                     >编辑颜色
                     </el-button>
 
                     <el-button
                       size="mini"
                       type="danger"
-                      @click="delColorSize(scope.$index,null,'color')"
+                      @click="delColorSize(scope.$index,'color')"
                     >删除颜色
                     </el-button>
 
-                    <el-button
-                      size="mini"
-                      @click="addColorSize(scope.$index, scope.row,'size')"
-                    >添加尺码
-                    </el-button>
                   </template>
                 </el-table-column>
               </el-table>
 
               <el-button
                 size="mini"
-                @click="addColorSize(null,null,'color')"
+                @click="addColorSize('color')"
               >添加颜色
               </el-button>
 
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="24">
+            <el-form-item label="尺码:" prop="sizes">
+              <el-table
+                :data="goodForm.sizes"
+                style="width: 100%"
+              >
+                <el-table-column
+                  label="尺码名"
+                  prop="size_name"
+                />
+                <el-table-column
+                  label="尺码显示名"
+                  prop="display_name"
+                />
+                <el-table-column
+                  label="尺寸解释"
+                  prop="description"
+                />
+
+                <el-table-column label="操作">
+                  <template slot-scope="scope">
+                    <el-button
+                      size="mini"
+                      @click="editColorSize(scope.$index, 'size')"
+                    >编辑
+                    </el-button>
+
+                    <el-button
+                      size="mini"
+                      type="danger"
+                      @click="delColorSize(scope.$index, 'size')"
+                    >删除
+                    </el-button>
+
+                  </template>
+
+                </el-table-column>
+
+              </el-table>
+
+              <el-button
+                size="mini"
+                @click="addColorSize('size')"
+              >添加尺码
+              </el-button>
             </el-form-item>
           </el-col>
 
@@ -388,13 +386,13 @@
 
                 <el-form-item label="颜色名字">
                   <YInput
-                    v-model="colorTemp.name"
+                    v-model="colorTemp.color_name"
                   />
                 </el-form-item>
               </el-col>
               <el-col :span="24">
                 <el-form-item label="颜色缩略图">
-                  <YUploadSingle
+                  <YUploadImage
                     v-model="colorTemp.color_thumbnail"
                     :modal="false"
                   />
@@ -402,7 +400,7 @@
               </el-col>
               <el-col :span="24">
                 <el-form-item label="图片缩略图">
-                  <YUploadSingle
+                  <YUploadImage
                     v-model="colorTemp.good_thumbnail"
                     :modal="false"
                   />
@@ -422,7 +420,7 @@
               <el-col :span="12">
                 <el-form-item label="尺码名">
                   <YInput
-                    v-model="sizeTemp.name"
+                    v-model="sizeTemp.size_name"
                   />
                 </el-form-item>
               </el-col>
@@ -549,7 +547,6 @@ export default {
   methods: {
     async getGood() {
       const res = await getGood(this.$route.query.id)
-
       // 反序列化对象
       this.goodForm = jsonToObj(res.data, ['material', 'colors', 'carousels', 'product_parameter', 'sizes'])
     },
@@ -559,12 +556,12 @@ export default {
       this.$router.push({ path: '/good' })
 
       this.$message({
-        message: '添加成功',
+        message: '修改成功',
         type: 'success'
       })
     },
 
-    async submit(goodForm) {
+    async submit() {
       this.$refs.goodForm.check((valid) => {
         if (valid) {
           this.putGood()
@@ -585,13 +582,13 @@ export default {
     },
 
     // 材质方法
-    delMaterial(index, index2, lev) {
+    delMaterial(id, id2, lev) {
       if (lev === '1') {
-        this.goodForm.material.splice(index, 1)
+        this.goodForm.material.splice(id, 1)
         // listRemoveItem(this.goodForm.product_parameter, item)
       }
       if (lev === '2') {
-        this.goodForm.material[index].value.splice(index2, 1)
+        this.goodForm.material[id].value.splice(id2, 1)
       }
       this.$forceUpdate()
     },
@@ -614,18 +611,18 @@ export default {
         }
         if (this.materialTemp1.type === 'edit') {
           // 必须手动刷新
-          this.$set(this.goodForm.material, this.materialTemp1.index, { ...this.materialTemp1 })
+          this.$set(this.goodForm.material, this.materialTemp1.id, { ...this.materialTemp1 })
         }
       }
       //  处理二级属性
       if (lev === '2') {
         if (this.materialTemp2.type === 'add') {
           // 数组为空的时候初始化
-          if (!this.goodForm.material[this.materialTemp2.index].value) {
-            this.goodForm.material[this.materialTemp2.index].value = []
+          if (!this.goodForm.material[this.materialTemp2.id].value) {
+            this.goodForm.material[this.materialTemp2.id].value = []
           }
           // 添加到数组
-          this.goodForm.material[this.materialTemp2.index].value.push({ ...this.materialTemp2 })
+          this.goodForm.material[this.materialTemp2.id].value.push({ ...this.materialTemp2 })
           //  添加数组到数据后，自动展开表格，通过另一个变量控制表格只在第一次添加二级属性的时候需要手动展开
           if (!this.materialExpand) {
             this.materialExpand = true
@@ -639,40 +636,41 @@ export default {
           }
         }
         if (this.materialTemp2.type === 'edit') {
-          this.$set(this.goodForm.material[this.materialTemp2.index].value, this.materialTemp2.index2, { ...this.materialTemp2 })
+          this.$set(this.goodForm.material[this.materialTemp2.id].value, this.materialTemp2.id2, { ...this.materialTemp2 })
         }
       }
       this[`materialTemp${lev}`] = {}
     },
     /**
      *
-     * @param index  一级属性数组索引
-     * @param index2 二级属性数组索引
+     * @param id  一级属性数组索引
+     * @param id2 二级属性数组索引
      * @param lev 一级还是二级
      */
-    editMaterial(index, index2, lev) {
+    editMaterial(id, id2, lev) {
       if (lev === '1') {
-        this.materialTemp1 = { ...this.goodForm.material[index] }
+        this.materialTemp1 = { ...this.goodForm.material[id] }
         this.materialTitle = `编辑一级属性：${this.materialTemp1.key}`
       }
       if (lev === '2') {
-        this.materialTemp2 = { ...this.goodForm.material[index].value[index2] }
+        this.materialTemp2 = { ...this.goodForm.material[id].value[id2] }
         this.materialTitle = `编辑二级属性：${this.materialTemp2.key}`
       }
       this[`materialTemp${lev}`].type = 'edit'
-      this[`materialTemp${lev}`].index = index
-      this[`materialTemp${lev}`].index2 = index2
+      this[`materialTemp${lev}`].id = id
+      this[`materialTemp${lev}`].id2 = id2
       this[`materialDialog${lev}`] = true
     },
-    addMaterial(index, row, lev) {
+    addMaterial(id, row, lev) {
       if (lev === '1') {
         this.materialDialog1 = true
         this.materialTitle = '添加一级属性'
+        this.materialTemp1.id = this.goodForm.material?.length ?? 0
       }
       if (lev === '2') {
         this.materialDialog2 = true
         // 添加二级属性时候设置一级属性id
-        this.materialTemp2.index = index
+        this.materialTemp2.id = id
         this.materialTitle = '添加二级属性'
       }
       this[`materialTemp${lev}`].type = 'add'
@@ -684,105 +682,57 @@ export default {
 
     //  颜色尺码方法
 
-    delColorSize(index, index2, lev) {
-      if (lev === 'color') {
-        this.goodForm.colors.splice(index, 1)
-        // listRemoveItem(this.goodForm.product_parameter, item)
-      }
-      if (lev === 'size') {
-        this.goodForm.colors[index].value.splice(index2, 1)
-      }
+    delColorSize(index, type) {
+      this.goodForm[`${type}s`].splice(index, 1)
       this.$forceUpdate()
     },
 
     // todo 先展开表格后，再添加二级属性，列表数据无法刷新
     /**   点击确认时将数据添加到goodForm.material
      *  在点击添加或编辑按钮时设置当前操作类型
-     * @param lev 判断是一级属性还是二级属性
+     * @param type 判断是一级属性还是二级属性
      */
-    confirmColorSize(lev) {
+    confirmColorSize(type) {
       // 处理一级属性
-      if (lev === 'color') {
-        if (this.colorTemp.type === 'add') {
-          // 空数组初始化
-          if (!this.goodForm.colors) {
-            this.goodForm.colors = []
-          }
-          // 浅拷贝
-          this.goodForm.colors.push({ ...this.colorTemp })
+      // if (type === 'color') {
+      if (this[`${type}Temp`].type === 'add') {
+        // 空数组初始化
+        if (!this.goodForm[`${type}s`]) {
+          this.goodForm[`${type}s`] = []
         }
-        if (this.colorTemp.type === 'edit') {
-          // 必须手动刷新
-          this.$set(this.goodForm.colors, this.colorTemp.index, { ...this.colorTemp })
-        }
+        // 浅拷贝
+        this.goodForm[`${type}s`].push({ ...this[`${type}Temp`] })
       }
-      //  处理二级属性
-      if (lev === 'size') {
-        if (this.sizeTemp.type === 'add') {
-          // 数组为空的时候初始化
-          if (!this.goodForm.colors[this.sizeTemp.index].value) {
-            this.goodForm.colors[this.sizeTemp.index].value = []
-          }
-          // 添加到数组
-          this.goodForm.colors[this.sizeTemp.index].value.push({ ...this.sizeTemp })
-
-          //  添加数组到数据后，自动展开表格，通过另一个变量控制表格只在第一次添加二级属性的时候需要手动展开
-          if (!this.colorExpand) {
-            this.colorExpand = true
-            // 绑定变表格展开的数据改变了，但是表格没展开，需要手动展开
-            // 先获取materialId，不影响colors表格
-            document.getElementById('colorSizeTable')
-              .getElementsByClassName('el-table__expand-icon')
-              .forEach((item) => {
-                item.click()
-              })
-          }
-        }
-        if (this.sizeTemp.type === 'edit') {
-          this.$set(this.goodForm.colors[this.sizeTemp.index].value, this.sizeTemp.index2, { ...this.sizeTemp })
-        }
+      if (this[`${type}Temp`].type === 'edit') {
+        // 必须手动刷新
+        this.$set(this.goodForm[`${type}s`], this[`${type}Temp`].id, { ...this[`${type}Temp`] })
       }
-      this[`${lev}Temp`] = {}
+      this[`${type}Temp`] = {}
     },
     /**
      *
-     * @param index  一级属性数组索引
-     * @param index2 二级属性数组索引
-     * @param lev 一级还是二级
+     * @param id  一级属性数组索引
+     * @param type 一级还是二级
      */
-    editColorSize(index, index2, lev) {
-      if (lev === 'color') {
-        this.colorTemp = { ...this.goodForm.colors[index] }
-        this.materialTitle = `编辑颜色：${this.colorTemp.key}`
-      }
-      if (lev === 'size') {
-        this.sizeTemp = { ...this.goodForm.colors[index].value[index2] }
-        this.materialTitle = `编辑尺码：${this.sizeTemp.key}`
-      }
-      this[`${lev}Temp`].type = 'edit'
-      this[`${lev}Temp`].index = index
-      this[`${lev}Temp`].index2 = index2
-      this[`${lev}Dialog`] = true
+    editColorSize(id, type) {
+      this[`${type}Temp`] = { ...this.goodForm[`${type}s`][id] }
+      this.colorSizeTitle = `编辑${type === 'color' ? '颜色' : '尺码'}`
+      this[`${type}Temp`].type = 'edit'
+      this[`${type}Temp`].id = id
+      this[`${type}Dialog`] = true
     },
-    addColorSize(index, row, lev) {
-      if (lev === 'color') {
-        this.colorDialog = true
-        this.colorSizeTitle = '添加颜色'
-      }
-      if (lev === 'size') {
-        this.sizeDialog = true
-        // 添加二级属性时候设置一级属性id
-        this.sizeTemp.index = index
-        this.colorSizeTitle = '添加尺码'
-      }
-      this[`${lev}Temp`].type = 'add'
+    addColorSize(type) {
+      this[`${type}Dialog`] = true
+      this.colorSizeTitle = `添加${type === 'color' ? '颜色' : '尺码'}`
+      this[`${type}Temp`].type = 'add'
+      // 设置颜色id
+      this[`${type}Temp`].id = this.goodForm[`${type}s`]?.length ?? 0
     },
     // 点击取消的时候重置前一步设置的数据（添加或者编辑），否则影响下一步操作
-    closeColorSize(lev) {
-      this[`${lev}Temp`] = {}
+    closeColorSize(type) {
+      this[`${type}Temp`] = {}
     }
   }
-
 }
 </script>
 <style lang='scss' scope>

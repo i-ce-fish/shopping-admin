@@ -16,6 +16,7 @@ module.exports = {
         // ws: false,
         changeOrigin: true
       },
+      // todo remove
       '/uploads': {
         target: 'http://localhost:5000/',
         changeOrigin: true
@@ -31,10 +32,7 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
-    },
-    plugins: [
-
-    ]
+    }
   },
   //  配置全局scss变量
   css: {

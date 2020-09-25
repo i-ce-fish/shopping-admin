@@ -37,6 +37,8 @@
 <script>
 // import { getToken } from 'api/qiniu'
 
+import { UPLOAD_URL } from '@/settings'
+
 export default {
   name: 'EditorSlideUpload',
   props: {
@@ -50,7 +52,7 @@ export default {
       dialogVisible: false,
       listObj: {},
       fileList: [],
-      serve: 'http://shop.cdb99.com:8088/api/upload'
+      serve: UPLOAD_URL
 
     }
   },
