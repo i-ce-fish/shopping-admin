@@ -255,6 +255,8 @@ module.exports = {
     'array-callback-return': 0, // 箭头函数必须返回
     'import/extensions': 0,//导入文件必须拓展名
     "linebreak-style": ["error", "windows"],//  统一为/r/n换行符,
+    "consistent-return": 0,//  必须返回 ,
+
     'import/no-extraneous-dependencies': [2, { 'devDependencies': true }],
     'no-use-before-define': ['error', {
       'functions': false,

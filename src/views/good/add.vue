@@ -6,9 +6,8 @@
 
           <el-col>
             <el-alert :closable="false" type="info">
-              小贴士:<br/>
-              1.同款下的每种颜色，系统支持建各自颜色的商品资料。<br/>
-              2.有同款其他颜色货品，录入过商品资料的，请输入款号编码。
+              1. 有同款或类似货品，录入过商品资料的，请输入款号编码，调出商品资料，在这个基础上修改，可以省事。<br/>
+              2. 同款下的每个颜色，视为不同货品，需要制作商品资料。
             </el-alert>
           </el-col>
           <el-col>
@@ -17,68 +16,123 @@
                 <y-input prefix-icon="el-icon-search" placeholder="请输入款号编码"></y-input>
               </el-col>
               <el-col :span="4">
-                <el-button type="primary" plain>确定</el-button>
+                <el-button type="primary">确定</el-button>
               </el-col>
             </el-row>
           </el-col>
         </el-row>
       </div>
       <y-form
-        ref="goodForm"
-        :model="goodForm"
-        :rules="goodRules"
-        label-width="100px"
+          ref="goodForm"
+          :model="goodForm"
+          :rules="goodRules"
+          label-width="100px"
       >
-        <el-collapse v-model="activeName">
-          <el-collapse-item title="上传商品图片" name="1">
-            <div>
-              <el-col :span="8" class="y-p-r-10">
-
-                <el-form-item label="" prop="main_pic" label-width="0">
+        <el-collapse v-model="activeName1">
+          <el-collapse-item name="1">
+            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+              <div class=" y-flex ">
+                <div class="coll-item-title">上传商品图片</div>
+                <el-button @click.stop="showTips1=!showTips1" icon="el-icon-thumb" plain>点我, 教你做
+                </el-button>
+              </div>
+              <div>已选择信息3 已选择信息2 已选择信息1</div>
+            </div>
+            <el-row :gutter="20" type="flex" justify="space-between">
+              <el-col>
+                <div><span style="color: red">*</span>&nbsp;上传商品主图</div>
+                <el-form-item label="" prop="main_pic" label-width="">
                   <y-upload-image-single
-                    v-model="goodForm.main_pic"
-                    tips="上传1张商品正面图"
+                      v-model="goodForm.main_pic"
+                      width="400px"
+                      height="400px"
                   />
-                  <!--                  <el-upload-->
-                  <!--                    class="avatar-uploader"-->
-                  <!--                    :action="require('@/settings').UPLOAD_URL"-->
-                  <!--                    :show-file-list="false"-->
-                  <!--                    type="picture-card"-->
-                  <!--                    :on-success="handleAvatarSuccess"-->
-                  <!--                    :before-upload="beforeAvatarUpload">-->
-                  <!--                    <img v-if="imageUrl" :src="imageUrl" width="300px" height="300px" class="avatar">-->
-                  <!--                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
-                  <!--                  </el-upload>-->
                 </el-form-item>
                 <el-alert
-                  type="info">
-                  上传商品主图(正面图)
+                    v-if="showTips1"
+                    type="info">
+                  小贴士: <br/>
+                  1. 上传的第1张图片，叫主图。相当于货品的“身份证照片”。<br/>
+                  2. 主图只能是 1 张图，若上传 2 张图，后一张图将替换掉前一张。<br/>
+                  3. 若更换主图，请点击图片，按提示操作。
                 </el-alert>
               </el-col>
-              <el-col :span="16">
+              <el-col>
 
                 <el-form-item label="详情轮播图:" prop="carousels">
 
                   <div style="width:485px;max-height:420px;overflow-y: scroll;">
                     <y-upload-image
-                      v-model="goodForm.carousels"
-                      class="upload-carousels"
+                        v-model="goodForm.carousels"
+                        class="upload-carousels"
                     />
 
                   </div>
                 </el-form-item>
                 <el-alert
-                  type="info">
-                  上传商品侧面图、背后图、模特图、细节图(用于轮播,请排好顺序, 商品主图为第1张轮播图)
+                    v-if="showTips1"
+                    type="info"
+                    style="max-width: 485px;"
+                >
+                  建议上传商品的：侧面图、背后图、模特搭配穿法图、细节图等等。
                 </el-alert>
               </el-col>
-            </div>
+            </el-row>
+
           </el-collapse-item>
         </el-collapse>
-        <el-collapse v-model="activeName1" accordion>
-          <el-collapse-item title="一致性 Consistency" name="1">
-            <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-            <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+        <el-collapse v-model="activeName2" accordion>
+          <el-collapse-item name="1">
+            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+              <div class=" y-flex ">
+                <div class="coll-item-title">选择品牌</div>
+                <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" plain>点我, 教你做
+                </el-button>
+              </div>
+              <div>已选择信息3 已选择信息2 已选择信息1</div>
+            </div>
+            <div>
+              <el-row :gutter="20">
+                <el-col :span="12">
+                  <el-form-item label="进货品牌" prop="brand" label-width="100px">
+                    <y-select
+                        v-model="goodForm.brand"
+                        :options="brandOptions"
+                        filterable
+                        class="y-p-r-10"
+                    ></y-select>
+                    <el-button type="primary" plain>新增品牌名称</el-button>
+
+                  </el-form-item>
+                  <el-alert
+                      v-if="showTips2"
+                      type="info"
+                  >
+                    小贴士:<br/>
+                    1. 把进货品牌换掉后的品牌叫展示品牌。<br/>
+                    2. 若进货商品没有品牌，请选择“无品牌”。<br/>
+                    3. 若下拉框中没有要的品牌，请点“新增品牌名称”。
+                  </el-alert>
+                </el-col>
+                <el-col :span="12">
+                  <el-form-item label="品牌说头" prop="value15" label-width="100px">
+                    <y-input
+                        v-model="goodForm.value132"
+                        placeholder="请输入（举例：美国新起的潮牌）"
+                    ></y-input>
+                  </el-form-item>
+                  <el-alert
+                      v-if="showTips2"
+                      type="info"
+                  >
+                    小贴士:<br/>
+                    1. 随手输入简短的几个字，为编写产品故事提供灵感。<br/>
+                    2. 这些字会被保存在“卖点备忘录”中供你随时调用。
+                  </el-alert>
+                </el-col>
+              </el-row>
+
+            </div>
           </el-collapse-item>
           <el-collapse-item title="反馈 Feedback" name="2">
             <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
@@ -103,12 +157,16 @@
 import YUploadImageSingle from '@/components/y-upload-image-single'
 
 export default {
-  components: { YUploadImageSingle },
+  components: {
+    YUploadImageSingle
+  },
   data() {
     return {
-      activeName: '1',
+      // 图片上传项默认展开
       activeName1: '1',
-      imageUrl: '',
+      // 手风琴效果默认展开项
+      activeName2: '1',
+
       goodForm: {},
       goodRules: {
 
@@ -157,35 +215,44 @@ export default {
             type: 'string',
             max: 255,
             message: '请输入长度小于255的页面主图',
-            trigger: 'blur'
+            trigger: 'blur',
+            required: true
           }
 
+        ],
+        brand: [
+          {
+            required: true,
+            message: '请选择进货品牌'
+          }
         ]
 
-      }
+      },
+      showTips1: false,
+      // 因为手风琴每次只打开一个, 所以一个值就可以控制所有的 tips
+      showTips2: false,
+      brandOptions: [{
+        value: '01',
+        label: '美邦01'
+      }, {
+        value: '02',
+        label: '森马02'
+      }, {
+        value: '03',
+        label: '以纯03'
+      }]
     }
   },
-  methods: {
-    handleAvatarSuccess(res, file) {
-      this.imageUrl = URL.createObjectURL(file.raw)
-    },
-    beforeAvatarUpload(file) {
-      // const isJPG = file.type === 'image/jpeg'
-      // const isLt2M = file.size / 1024 / 1024 < 2
-      //
-      // if (!isJPG) {
-      //   this.$message.error('上传头像图片只能是 JPG 格式!')
-      // }
-      // if (!isLt2M) {
-      //   this.$message.error('上传头像图片大小不能超过 2MB!')
-      // }
-      // return isJPG && isLt2M
-    }
-  }
+  created() {
+  },
+  methods: {}
 }
 </script>
 
-<style lang="scss" scoped>
-.add {
+<style lang="scss">
+
+.coll-item-title {
+  font-weight: 700;
+  width: 150px
 }
 </style>

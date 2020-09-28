@@ -2,40 +2,41 @@
   <y-tooltip :tips="tips">
 
     <el-select
-      :id="id"
-      v-model="result"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :size="size"
-      :name="name"
-      :autocomplete="autocomplete"
-      :automatic-dropdown="automaticDropdown"
-      :clearable="clearable"
-      :filterable="filterable"
-      :allow-create="allowCreate"
-      :loading="loading"
-      :popper-class="popperClass"
-      @change="change"
-      :remote="remote"
-      :loading-text="loadingText"
-      :no-match-text="noMatchText"
-      :no-data-text="noDataText"
-      :remote-method="remoteMethod"
-      :filter-method="filterMethod"
-      :multiple="multiple"
-      :multiple-limit="multipleLimit"
-      :default-first-option="defaultFirstOption"
-      :reserve-keyword="reserveKeyword"
-      :value-key="valueKey"
-      :collapse-tags="collapseTags"
-      :popper-append-to-body="popperAppendToBody"
+        :id="id"
+        v-model="result"
+        :placeholder="placeholder"
+        :disabled="disabled"
+        :size="size"
+        :name="name"
+        :autocomplete="autocomplete"
+        :automatic-dropdown="automaticDropdown"
+        :clearable="clearable"
+        :filterable="filterable"
+        :allow-create="allowCreate"
+        :loading="loading"
+        :popper-class="popperClass"
+        @change="change"
+        @focus="focus"
+        :remote="remote"
+        :loading-text="loadingText"
+        :no-match-text="noMatchText"
+        :no-data-text="noDataText"
+        :remote-method="remoteMethod"
+        :filter-method="filterMethod"
+        :multiple="multiple"
+        :multiple-limit="multipleLimit"
+        :default-first-option="defaultFirstOption"
+        :reserve-keyword="reserveKeyword"
+        :value-key="valueKey"
+        :collapse-tags="collapseTags"
+        :popper-append-to-body="popperAppendToBody"
     >
       <el-option
-        v-for="item in innerOptions"
-        :key="item.value"
-        :label="item.label"
-        :value="item.value"
-        :disabled="item.disabled"
+          v-for="item in innerOptions"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+          :disabled="item.disabled"
       />
     </el-select>
   </y-tooltip>
@@ -164,6 +165,9 @@ export default {
   methods: {
     change() {
       this.$emit('input', this.result.toString())
+    },
+    focus(e) {
+      this.$emit('focus', e)
     },
     async initData() {
       if (this.api) {

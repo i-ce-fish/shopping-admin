@@ -1,14 +1,13 @@
+<!--不支持多选, 由于fileList不能修改, 用uploadList作为间接变量又无法左右移动 -->
 <template>
   <y-tooltip :tips="tips">
     <div class="">
-      <!--      todo  多图片上传-->
-<!--      {{ fileList }}-->
       <el-upload
         :action="serve"
         list-type="picture-card"
         :limit="limit"
         :file-list="fileList"
-        :multiple="multiple"
+        :multiple="false"
         :on-exceed="onExceed"
         :on-preview="onPictureCardPreview"
         :on-remove="onRemove"
@@ -81,8 +80,17 @@ export default {
   data() {
     return {
       fileList: this.value,
-      uploadList: [], // 自定义的数组，用于处理fileList，fileList是只读的
-      // fileList: [],
+      /**
+       * todo
+       * BUG: 无法多选文件
+       * 原因: fileList是只读的, 无法进行修改
+       * 解决方案:
+       * uploadList才是真正上传的数据
+       * fileList 是用来展示的
+       *
+       * 缺点: fileList实际为空, 无法进行左右移动
+       * */
+      uploadList: [],
       dialogImageUrl: '',
       dialogVisible: false,
       // 上传文件的服务器路径  todo  加入到webpack中
@@ -112,9 +120,8 @@ export default {
     onSuccess(res, file, fileList) {
       // todo pre
       // 保存绝对路径
-      // this.fileList.push({ name: file.name, url: this.serve + res.data })
-      this.uploadList.push(file)
-      this.emitData(this.uploadList)
+      this.fileList.push(file)
+      // this.uploadList.push(file)
     },
     /**
      * 交换index及index-1的元素
@@ -139,9 +146,6 @@ export default {
       const curO = this.fileList[curI]
       this.fileList.splice(nexI, 1, curO)
       this.fileList.splice(curI, 1, nexO)
-    },
-    emitData(list) {
-      this.$emit('input', list)
     }
   }
 

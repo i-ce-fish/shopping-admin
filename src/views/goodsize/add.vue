@@ -1,81 +1,81 @@
 <template>
-    <div class="card-container">
-        <el-card class="box-card">
-            <h3>添加商品尺码</h3>
-            <y-form
-                    ref="goodsizeForm"
-                    :model="goodsizeForm"
-                    :rules="goodsizeRules"
-                    label-width="100px"
-            >
-                <el-row>
+  <div class="card-container">
+    <el-card class="box-card">
+      <h3>添加商品尺码</h3>
+      <y-form
+        ref="goodsizeForm"
+        :model="goodsizeForm"
+        :rules="goodsizeRules"
+        label-width="100px"
+      >
+        <el-row>
 
-                    <el-col :span="12">
-                        <el-form-item label="尺码名:" prop="size_name">
+          <el-col :span="12">
+            <el-form-item label="尺码名:" prop="size_name">
 
-                            <y-input
+              <y-input
 
-                                v-model="goodsizeForm.size_name"
+                v-model="goodsizeForm.size_name"
 
-                                placeholder="XS"
+                placeholder="XS"
 
-                            />
+              />
 
-                        </el-form-item>
-                    </el-col>
+            </el-form-item>
+          </el-col>
 
-                    <el-col :span="12">
-                        <el-form-item label="尺寸显示名:" prop="display_name">
+          <el-col :span="12">
+            <el-form-item label="尺寸显示名:" prop="display_name">
 
-                            <y-input
+              <y-input
 
-                                v-model="goodsizeForm.display_name"
+                v-model="goodsizeForm.display_name"
 
-                                placeholder="160/84A/XS"
+                placeholder="160/84A/XS"
 
-                            />
+              />
 
-                        </el-form-item>
-                    </el-col>
+            </el-form-item>
+          </el-col>
 
-                    <el-col :span="12">
-                        <el-form-item label="尺寸解释:" prop="description">
+          <el-col :span="12">
+            <el-form-item label="尺寸解释:" prop="description">
 
-                            <y-input
+              <y-input
 
-                                v-model="goodsizeForm.description"
+                v-model="goodsizeForm.description"
 
-                                placeholder="肩宽：50.5   身宽：52    后肩衣长72   连肩袖长：79.5"
+                placeholder="肩宽：50.5   身宽：52    后肩衣长72   连肩袖长：79.5"
 
-                            />
+              />
 
-                        </el-form-item>
-                    </el-col>
+            </el-form-item>
+          </el-col>
 
-                    <el-col :span="12">
-                        <el-form-item label="尺码类别:" prop="size_type">
+          <el-col :span="12">
+            <el-form-item label="尺码类别:" prop="size_type">
 
-                            <y-select
+              <y-select
 
-                                v-model="goodsizeForm.size_type"
+                v-model="goodsizeForm.size_type"
 
-                            />
+              />
 
-                        </el-form-item>
-                    </el-col>
+            </el-form-item>
+          </el-col>
 
-                    <el-col>
-                      <el-row type="flex" justify="end">
-                        <el-form-item>
-                              <el-button @click="submit('goodsizeForm')">提交</el-button>
-                              <el-button @click="back">返回</el-button>
-                          </el-form-item>
-                      </el-row>
-                    </el-col>
-                </el-row>
-            </y-form>
-        </el-card>
-    </div>
+          <el-col>
+            <el-row type="flex" justify="end">
+              <el-form-item>
+                <el-button @click="submit('goodsizeForm')">提交</el-button>
+                <el-button @click="back">返回</el-button>
+              </el-form-item>
+            </el-row>
+          </el-col>
+        </el-row>
+      </y-form>
+    </el-card>
+  </div>
 </template>
 
 <script>
@@ -160,10 +160,10 @@ export default {
 }
 </script>
 <style lang='scss' scope>
-    .card-container {
+.card-container {
 
-        .box-card {
+  .box-card {
 
-        }
-    }
+  }
+}
 </style>
