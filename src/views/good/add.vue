@@ -33,12 +33,12 @@
             <div slot="title" style="width: 100%" class="y-flex y-align-between">
               <div class=" y-flex ">
                 <div class="coll-item-title">上传商品图片</div>
-                <el-button @click.stop="showTips1=!showTips1" icon="el-icon-thumb" plain>点我, 教你做
+                <el-button @click.stop="showTips1=!showTips1" icon="el-icon-thumb" plain>操作说明
                 </el-button>
               </div>
               <div>已选择信息3 已选择信息2 已选择信息1</div>
             </div>
-            <el-row :gutter="20" type="flex" justify="space-between">
+            <el-row class="coll-item-body" :gutter="20" type="flex" justify="space-between">
               <el-col>
                 <div><span style="color: red">*</span>&nbsp;上传商品主图</div>
                 <el-form-item label="" prop="main_pic" label-width="">
@@ -83,15 +83,15 @@
         </el-collapse>
         <el-collapse v-model="activeName2" accordion>
           <el-collapse-item name="1">
-            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+            <div slot="title" style="width: 100%;" class="y-flex y-align-between">
               <div class=" y-flex ">
                 <div class="coll-item-title">选择品牌</div>
-                <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" plain>点我, 教你做
+                <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" plain>操作说明
                 </el-button>
               </div>
               <div>已选择信息3 已选择信息2 已选择信息1</div>
             </div>
-            <div>
+            <div class="coll-item-body">
               <el-row :gutter="20">
                 <el-col :span="12">
                   <el-form-item label="进货品牌" prop="brand" label-width="100px">
@@ -101,7 +101,10 @@
                         filterable
                         class="y-p-r-10"
                     ></y-select>
-                    <el-button type="primary" plain>新增品牌名称</el-button>
+                    <el-button type="primary" plain @click="showBrandForm=!showBrandForm">新增品牌名称</el-button>
+                    <y-dialog v-model="showBrandForm" title="新增品牌名称" @confirm="cfmAddBrand">
+                      <add-form-brand ref="addFormBrand" style="line-height: 1"></add-form-brand>
+                    </y-dialog>
 
                   </el-form-item>
                   <el-alert
@@ -134,19 +137,135 @@
 
             </div>
           </el-collapse-item>
-          <el-collapse-item title="反馈 Feedback" name="2">
-            <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-            <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+          <el-collapse-item name="2">
+            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+              <div class=" y-flex ">
+                <div class="coll-item-title">选择性别</div>
+                <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" plain>操作说明
+                </el-button>
+              </div>
+              <div>已选择信息3 已选择信息2 已选择信息1</div>
+            </div>
+            <div class="coll-item-body">
+              <el-row :gutter="20">
+                <el-col :span="12">
+                  <el-form-item label="选择性别: " prop="field123" label-width="100px">
+                    <y-radio
+                        v-model="goodForm.brand"
+                        :options="SEX"
+                        class="y-p-r-10"
+                    ></y-radio>
+                  </el-form-item>
+                  <el-alert
+                      v-if="showTips2"
+                      type="info"
+                  >
+                    小贴士:<br/>
+                    如打包纸袋、纸箱等，性别为“其他”
+                  </el-alert>
+                </el-col>
+                <el-col :span="12">
+                  <el-form-item label="性别说头" prop="value15" label-width="100px">
+                    <y-input
+                        v-model="goodForm.value132"
+                        placeholder="请输入（举例：中性款但偏男性 ）"
+                    ></y-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+
+            </div>
           </el-collapse-item>
-          <el-collapse-item title="效率 Efficiency" name="3">
-            <div>简化流程：设计简洁直观的操作流程；</div>
-            <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
-            <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
+          <el-collapse-item name="3">
+
+            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+              <div class=" y-flex ">
+                <div class="coll-item-title">选择商品品类</div>
+                <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" plain>操作说明
+                </el-button>
+              </div>
+              <div>已选择信息3 已选择信息2 已选择信息1</div>
+            </div>
+            <div class="coll-item-body">
+              <el-row :gutter="20">
+                <el-col>
+                  <el-form-item label="选择三级分类:" prop="field123" label-width="100px">
+                    <el-row :gutter="10" type="flex" justify="space-between">
+                      <el-col :span="4">
+                        <!--                        todo 三级分类-->
+                        <el-button type="primary">选择分类</el-button>
+                      </el-col>
+                      <el-col :span="12">
+                        <el-row :gutter="10" type="flex" class="tag-category">
+                          <el-col :span="8">
+                            <div>
+                              <el-tag
+
+                                  effect="plain"
+                                  type="info"
+                                  color="">大类
+                              </el-tag>
+                            </div>
+                            <div>
+                              <el-tag effect="light" type="info">
+                                裤子
+                              </el-tag>
+                            </div>
+                          </el-col>
+                          <el-col :span="8">
+                            <div>
+                              <el-tag effect="plain" type="info">
+                                小类
+                              </el-tag>
+                            </div>
+                            <div>
+                              <el-tag effect="light" type="info">
+                                牛仔裤
+                              </el-tag>
+                            </div>
+                          </el-col>
+                          <el-col :span="8">
+                            <div>
+                              <el-tag effect="plain" type="info">
+                                品类
+                              </el-tag>
+                              <el-tag style="width: 50px;" effect="plain" type="info">
+                                代码
+                              </el-tag>
+                            </div>
+                            <div>
+                              <el-tag effect="light" type="info">
+                                牛仔长裤
+                              </el-tag>
+                              <el-tag style="width: 50px;" effect="light" type="info">
+                                66
+                              </el-tag>
+                            </div>
+                          </el-col>
+
+                        </el-row>
+                      </el-col>
+                      <el-col :span="4">
+                        <el-button type="primary" plain>新增大类</el-button>
+                        <el-button type="primary" plain>新增小类</el-button>
+                        <el-button type="primary" plain>新增品类</el-button>
+                      </el-col>
+                    </el-row>
+                  </el-form-item>
+                  <el-alert
+                      v-if="showTips2"
+                      type="info"
+                  >
+                    小贴士:<br/>
+                    如打包纸袋、纸箱等，性别为“其他”
+                  </el-alert>
+                </el-col>
+              </el-row>
+
+            </div>
+
           </el-collapse-item>
-          <el-collapse-item title="可控 Controllability" name="4">
-            <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-            <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
-          </el-collapse-item>
+          <el-collapse-item name="4"></el-collapse-item>
         </el-collapse>
       </y-form>
     </el-card>
@@ -155,10 +274,15 @@
 </template>
 <script>
 import YUploadImageSingle from '@/components/y-upload-image-single'
+import YDialog from '@/components/y-dialog'
+import addForm from '@/views/goodbrand/addForm'
+import { SEX } from '@/utils/const'
 
 export default {
   components: {
-    YUploadImageSingle
+    YUploadImageSingle,
+    YDialog,
+    addFormBrand: addForm
   },
   data() {
     return {
@@ -166,7 +290,10 @@ export default {
       activeName1: '1',
       // 手风琴效果默认展开项
       activeName2: '1',
-
+      // 显示添加品牌对话框
+      showBrandForm: false,
+      // sex options
+      SEX,
       goodForm: {},
       goodRules: {
 
@@ -245,7 +372,14 @@ export default {
   },
   created() {
   },
-  methods: {}
+  methods: {
+
+    cfmAddBrand() {
+      this.$refs.addFormBrand.submit(() => {
+        this.showBrandForm = false
+      })
+    }
+  }
 }
 </script>
 
@@ -254,5 +388,19 @@ export default {
 .coll-item-title {
   font-weight: 700;
   width: 150px
+}
+
+.coll-item-body {
+  margin: 20px 0
+}
+
+.tag-category {
+  line-height: 1;
+
+  /deep/ .el-tag--plain.el-tag--info, .el-tag.el-tag--info {
+    width: 100px;
+    text-align: center;
+    color: #606266
+  }
 }
 </style>

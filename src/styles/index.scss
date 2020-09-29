@@ -71,10 +71,12 @@ p {
 
 // 表单添加页的全局样式
 .card-container {
-  background-color: #f0f2f5;
+  background-color: $colorBgGrey;
+  color: $colorPrimaryFont;
   padding: 30px;
   min-height: 100vh;
 }
+
 // todo 添加自己的常用全局样式.
 /**
 布局
@@ -91,10 +93,10 @@ p {
 .y-flex-wrap {
   flex-wrap: wrap;
 }
+
 .y-flex-nowrap {
   flex-wrap: nowrap;
 }
-
 
 
 .y-flex-1 {
@@ -154,7 +156,7 @@ p {
   margin-top: 10px;
 }
 
-.y-m-r-15{
+.y-m-r-15 {
   margin-right: 15px;
 }
 
@@ -162,9 +164,11 @@ p {
 .y-p-r-10 {
   padding-right: 10px;
 }
-.y-p-l-10{
+
+.y-p-l-10 {
   padding-left: 10px;
 }
+
 .y-p-t-10 {
   padding-top: 10px;
 }
@@ -176,7 +180,7 @@ p {
 
 }
 
-.y-p-t-20{
+.y-p-t-20 {
   padding-top: 20px;
 }
 
@@ -207,7 +211,57 @@ p {
 }
 
 //布局
-.y-inline-block{
+.y-inline-block {
   display: inline-block;
 }
 
+// 颜色方案
+.y-color-danger {
+  color: $colorDanger
+}
+
+.y-color-info {
+  color: $colorInfo;
+}
+
+.y-color-warning {
+  color: $colorWarning;
+}
+
+.y-color-success {
+  color: $colorSuccess;
+}
+
+// 文字颜色
+.y-color-primary {
+  color: $colorPrimaryFont;
+}
+
+.y-color-common {
+  color: $colorCommonFont;
+}
+
+.y-color-minor {
+  color: $colorMinorFont;
+}
+
+.y-color-placeholder {
+  color: $colorPlaceholderFont;
+}
+
+.y-color-border-1 {
+  color: $colorBorder1;
+}
+
+//字体大小
+.y-font-default {
+  font-size: 14px;
+}
+
+.y-font-16 {
+  font-size: 16px;
+}
+
+.y-font-12 {
+  font-size: 12px;
+}

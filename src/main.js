@@ -17,6 +17,7 @@ import YSlider from '@/components/y-slider/index.vue'
 import YSwitch from '@/components/y-switch/index.vue'
 import YTable from '@/components/y-table/index.vue'
 import YForm from '@/components/y-form/index.vue'
+// todo 去掉没用的upload
 import YUpload from '@/components/y-upload/index.vue'
 import YUploadImage from '@/components/y-upload-image/index.vue'
 import YUploadFile from '@/components/y-upload-file/index.vue'

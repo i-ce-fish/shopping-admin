@@ -9,6 +9,27 @@
  *  使用对象格式以便获取value/label , 而且v-for支持遍历对象(Object.keys)
  *
  */
+// 性别选项
+const SEX = {
+  MALE: {
+    value: '0',
+    label: '男'
+  },
+  FEMALE: {
+    value: '1',
+    label: '女'
+  },
+  NEUTRAL: {
+    value: '2',
+    label: '中性'
+  },
+  OHTER: {
+    value: '3',
+    label: '其他'
+  }
+
+}
+// todo remove
 // 品牌管理
 const GOOD_BRAND = {
   // 品牌类型
@@ -149,5 +170,6 @@ const ARTICLE = {
 }
 export {
   GOOD_BRAND,
-  ARTICLE
+  ARTICLE,
+  SEX
 }
