@@ -28,13 +28,17 @@
           :rules="goodRules"
           label-width="100px"
       >
-        <el-collapse v-model="activeName1">
+        <el-collapse v-model="activeName1" class="coll">
           <el-collapse-item name="1">
             <div slot="title" style="width: 100%" class="y-flex y-align-between">
               <div class=" y-flex ">
-                <div class="coll-item-title">上传商品图片</div>
-                <el-button @click.stop="showTips1=!showTips1" icon="el-icon-thumb" plain>操作说明
-                </el-button>
+                <div class="coll-item-title"><span class="y-p-r-10">上传商品图片</span>
+                </div>
+                <div>
+                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明
+                  </el-button>
+                </div>
               </div>
               <div>已选择信息3 已选择信息2 已选择信息1</div>
             </div>
@@ -85,15 +89,20 @@
           <el-collapse-item name="1">
             <div slot="title" style="width: 100%;" class="y-flex y-align-between">
               <div class=" y-flex ">
-                <div class="coll-item-title">选择品牌</div>
-                <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" plain>操作说明
-                </el-button>
+                <div class="coll-item-title">
+                  <span class="y-p-r-10">选择品牌</span>
+                </div>
+                <div>
+                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明
+                  </el-button>
+                </div>
               </div>
               <div>已选择信息3 已选择信息2 已选择信息1</div>
             </div>
             <div class="coll-item-body">
               <el-row :gutter="20">
-                <el-col :span="12">
+                <el-col :span="14">
                   <el-form-item label="进货品牌" prop="brand" label-width="100px">
                     <y-select
                         v-model="goodForm.brand"
@@ -117,11 +126,13 @@
                     3. 若下拉框中没有要的品牌，请点“新增品牌名称”。
                   </el-alert>
                 </el-col>
-                <el-col :span="12">
+                <el-col :span="10">
                   <el-form-item label="品牌说头" prop="value15" label-width="100px">
                     <y-input
                         v-model="goodForm.value132"
                         placeholder="请输入（举例：美国新起的潮牌）"
+                        type="textarea"
+                        rows="1"
                     ></y-input>
                   </el-form-item>
                   <el-alert
@@ -140,15 +151,19 @@
           <el-collapse-item name="2">
             <div slot="title" style="width: 100%" class="y-flex y-align-between">
               <div class=" y-flex ">
-                <div class="coll-item-title">选择性别</div>
-                <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" plain>操作说明
-                </el-button>
+                <div class="coll-item-title"><span class="y-p-r-10">选择性别</span>
+                </div>
+                <div>
+                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明
+                  </el-button>
+                </div>
               </div>
               <div>已选择信息3 已选择信息2 已选择信息1</div>
             </div>
             <div class="coll-item-body">
               <el-row :gutter="20">
-                <el-col :span="12">
+                <el-col :span="14">
                   <el-form-item label="选择性别: " prop="field123" label-width="100px">
                     <y-radio
                         v-model="goodForm.brand"
@@ -164,11 +179,13 @@
                     如打包纸袋、纸箱等，性别为“其他”
                   </el-alert>
                 </el-col>
-                <el-col :span="12">
+                <el-col :span="10">
                   <el-form-item label="性别说头" prop="value15" label-width="100px">
                     <y-input
                         v-model="goodForm.value132"
                         placeholder="请输入（举例：中性款但偏男性 ）"
+                        type="textarea"
+                        rows="1"
                     ></y-input>
                   </el-form-item>
                 </el-col>
@@ -180,9 +197,13 @@
 
             <div slot="title" style="width: 100%" class="y-flex y-align-between">
               <div class=" y-flex ">
-                <div class="coll-item-title">选择商品品类</div>
-                <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" plain>操作说明
-                </el-button>
+                <div class="coll-item-title"><span class="y-p-r-10">选择商品品类</span>
+                </div>
+                <div>
+                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明
+                  </el-button>
+                </div>
               </div>
               <div>已选择信息3 已选择信息2 已选择信息1</div>
             </div>
@@ -192,15 +213,26 @@
                   <el-form-item label="选择三级分类:" prop="field123" label-width="100px">
                     <el-row :gutter="10" type="flex" justify="space-between">
                       <el-col :span="4">
-                        <!--                        todo 三级分类-->
-                        <el-button type="primary">选择分类</el-button>
+                        <el-button type="primary" @click="showCategory=true">选择分类</el-button>
                       </el-col>
-                      <el-col :span="12">
+                      <y-dialog class="category-form" v-model="showCategory" title="选择分类">
+                        <el-tabs tab-position="left" style="height: 100%;">
+                          <el-tab-pane :label="o1.label" v-for="(o1,i1) in categoryOptions" :key="i1">
+                            <div v-for="(o2,i2) in o1.children " :key="i2">
+                              <div>{{o2.label}}</div>
+                              <div>
+                                <y-radio v-model="goodForm.category" :options="o2.children"></y-radio>
+                              </div>
+                              <el-divider></el-divider>
+                            </div>
+                          </el-tab-pane>
+                        </el-tabs>
+                      </y-dialog>
+                      <el-col style="width: 500px">
                         <el-row :gutter="10" type="flex" class="tag-category">
                           <el-col :span="8">
                             <div>
                               <el-tag
-
                                   effect="plain"
                                   type="info"
                                   color="">大类
@@ -242,7 +274,6 @@
                               </el-tag>
                             </div>
                           </el-col>
-
                         </el-row>
                       </el-col>
                       <el-col :span="4">
@@ -261,11 +292,117 @@
                   </el-alert>
                 </el-col>
               </el-row>
-
             </div>
-
           </el-collapse-item>
-          <el-collapse-item name="4"></el-collapse-item>
+          <el-collapse-item name="4">
+            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+              <div class=" y-flex ">
+                <div class="coll-item-title"><span class="y-p-r-10">选择颜色</span>
+                </div>
+                <div>
+                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明
+                  </el-button>
+                </div>
+              </div>
+              <div>已选择信息3 已选择信息2 已选择信息1</div>
+            </div>
+            <div class="coll-item-body">
+              <el-row :gutter="20">
+                <el-col :span="14">
+                  <el-row :gutter="10">
+                    <el-col :span="12">
+                      <el-form-item label="主色色系" prop="value15" label-width="100px">
+                        <y-select
+                            v-model="goodForm.value132"
+                        ></y-select>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="8">
+
+                      <el-form-item label="色系编码" prop="value15" label-width="100px">
+                        <y-select
+                            v-model="goodForm.value132"
+                            disabled
+                        ></y-select>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                      <el-form-item label="主色名称" prop="value15" label-width="100px">
+                        <y-select
+                            v-model="goodForm.value132"
+                            filterable
+                        ></y-select>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="8">
+
+                      <el-form-item label="主色编码" prop="value15" label-width="100px">
+                        <y-select
+                            v-model="goodForm.value132"
+                        ></y-select>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :span="2">
+                      <el-button type="primary" plain>新增颜色名</el-button>
+                    </el-col>
+                    <el-col :span="8">
+
+                      <el-form-item label="辅色色系" prop="value15" label-width="100px">
+                        <y-select
+                            v-model="goodForm.value132"
+                        ></y-select>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-alert>小贴士：<br/>主色：货品的主要颜色。辅色：货品的次要颜色</el-alert>
+                </el-col>
+                <el-col :span="8">
+                  <el-form-item label="颜色说头" prop="value15" label-width="100px">
+                    <y-input
+                        v-model="goodForm.value132"
+                        type="textarea"
+                        rows="2"
+                    ></y-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </div>
+          </el-collapse-item><el-collapse-item name="5">
+            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+              <div class=" y-flex ">
+                <div class="coll-item-title"><span class="y-p-r-10">商品图案</span>
+                </div>
+                <div>
+                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明
+                  </el-button>
+                </div>
+              </div>
+              <div>已选择信息3 已选择信息2 已选择信息1</div>
+            </div>
+            <div class="coll-item-body">
+              <el-row :gutter="20">
+                <el-col :span="14">
+                  <el-form-item label="商品图案" prop="value15" label-width="100px">
+                    <y-select
+                        v-model="goodForm.value132"
+                    ></y-select>
+                  </el-form-item>
+                  <el-alert>小贴士：<br/>图案名称是区别货品的主要特征之一。进入商品名称字段。 </el-alert>
+                </el-col>
+                <el-col :span="10">
+                  <el-form-item label="图案说头" prop="value15" label-width="100px">
+                    <y-input
+                        v-model="goodForm.value132"
+                        type="textarea"
+                        rows="2"
+                    ></y-input>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+            </div>
+          </el-collapse-item>
         </el-collapse>
       </y-form>
     </el-card>
@@ -289,9 +426,171 @@ export default {
       // 图片上传项默认展开
       activeName1: '1',
       // 手风琴效果默认展开项
-      activeName2: '1',
+      activeName2: '4',
       // 显示添加品牌对话框
       showBrandForm: false,
+      // 展示选择分类框
+      showCategory: false,
+      // 假的分类数据
+      categoryOptions: [
+        {
+          value: '1',
+          label: '大类1',
+          children: [{
+            value: '11',
+            label: '小类1',
+            children: [{
+              value: '111',
+              label: '品类1'
+            }, {
+              value: '112',
+              label: '品类2'
+            }, {
+              value: '113',
+              label: '品类3'
+            }, {
+              value: '114',
+              label: '品类4'
+            }]
+          }, {
+            value: '12',
+            label: '小类2',
+            children: [{
+              value: '121',
+              label: '品类21'
+            }, {
+              value: '122',
+              label: '品类122'
+            }, {
+              value: '123',
+              label: '品类1223'
+            }, {
+              value: '124',
+              label: '品类1225'
+            }]
+          }, {
+            value: '112312312313',
+            label: '小类13',
+            children: [{
+              value: '1231231231',
+              label: '品类1'
+            }, {
+              value: '132',
+              label: '品类1'
+            }, {
+              value: '133',
+              label: '品类1'
+            }, {
+              value: '134',
+              label: '品类1'
+            }]
+          }]
+        }, {
+          value: '123122',
+          label: '大类02',
+          children: [{
+            value: '231231',
+            label: '小类121',
+            children: [{
+              value: '212311',
+              label: '品类4541'
+            }, {
+              value: '221312312',
+              label: '品类4561'
+            }, {
+              value: '212312313',
+              label: '品类6456.'
+            }, {
+              value: '111',
+              label: '品类4561'
+            }]
+          }, {
+            value: '11123213',
+            label: '小类1',
+            children: [{
+              value: '11312311',
+              label: '品类1'
+            }, {
+              value: '111231231231231',
+              label: '品类1'
+            }, {
+              value: '121312311',
+              label: '品类1'
+            }, {
+              value: '123123123123111',
+              label: '品类1'
+            }]
+          }, {
+            value: '12321311',
+            label: '小类1',
+            children: [{
+              value: '111231231',
+              label: '品类1'
+            }, {
+              value: '112312312312311',
+              label: '品类1'
+            }, {
+              value: '112312312311',
+              label: '品类1'
+            }, {
+              value: '11231232132112312311',
+              label: '品类1'
+            }]
+          }]
+        }, {
+          value: '1',
+          label: '大类13',
+          children: [{
+            value: '11',
+            label: '小类1',
+            children: [{
+              value: '11231232111',
+              label: '品类1'
+            }, {
+              value: '1131232131',
+              label: '品类1'
+            }, {
+              value: '123123111',
+              label: '品类1'
+            }, {
+              value: '11213213213123123211',
+              label: '品类1'
+            }]
+          }, {
+            value: '11',
+            label: '小类1',
+            children: [{
+              value: '1312312321311',
+              label: '品类1'
+            }, {
+              value: '121312345354611',
+              label: '品类1'
+            }, {
+              value: '114564561',
+              label: '品类4561'
+            }, {
+              value: '11456455461',
+              label: '品类4564561'
+            }]
+          }, {
+            value: '145654645641',
+            label: '小类1',
+            children: [{
+              value: '5645645456111',
+              label: '品类4564561'
+            }, {
+              value: '14564564511',
+              label: '品类16456456'
+            }, {
+              value: '116456451',
+              label: '品类456456451'
+            }, {
+              value: '11645546451',
+              label: '品类1456'
+            }]
+          }]
+        }
+      ],
       // sex options
       SEX,
       goodForm: {},
@@ -387,6 +686,7 @@ export default {
 
 .coll-item-title {
   font-weight: 700;
+  font-size: 15px;
   width: 150px
 }
 
@@ -397,10 +697,20 @@ export default {
 .tag-category {
   line-height: 1;
 
-  /deep/ .el-tag--plain.el-tag--info, .el-tag.el-tag--info {
+  .el-tag--plain.el-tag--info, .el-tag.el-tag--info {
     width: 100px;
     text-align: center;
     color: #606266
   }
+}
+
+// 折叠项高度
+.el-collapse-item__header {
+  height: 60px;
+  line-height: 60px;
+}
+
+.category-form .el-divider--horizontal {
+  margin: 10px 0;
 }
 </style>

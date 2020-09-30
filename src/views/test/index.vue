@@ -2,9 +2,9 @@
   <div class="app-container">
     <el-card>
       <y-form
-        ref="testForm"
-        :model="testForm"
-        label-width="80px"
+          ref="testForm"
+          :model="testForm"
+          label-width="80px"
       >
 
         <el-row type="flex" align="space-between">
@@ -18,36 +18,36 @@
       </y-form>
     </el-card>
     <y-table
-      :data="testsData"
-      :pagination="pagination"
-      @sortBy="sortBy"
-      @changePage4List="getList"
-      class="y-p-t-20"
+        :data="testsData"
+        :pagination="pagination"
+        @sortBy="sortBy"
+        @changePage4List="getList"
+        class="y-p-t-20"
     >
       <template>
 
         <el-table-column
-          prop="field1"
-          label="字段1"
-          align="center"
+            prop="field1"
+            label="字段1"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-          prop="field2"
-          label="字段2"
-          align="center"
+            prop="field2"
+            label="字段2"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-          prop="field3"
-          label="字段2"
-          align="center"
+            prop="field3"
+            label="字段2"
+            align="center"
 
         >
 

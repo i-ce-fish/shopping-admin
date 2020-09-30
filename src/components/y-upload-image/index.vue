@@ -19,6 +19,7 @@
           <img
             class="el-upload-list__item-thumbnail"
             :src="file.url"
+            style="object-fit: contain;"
             alt=""
           >
           <div class="y-flex y-align-around">
