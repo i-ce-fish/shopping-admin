@@ -23,14 +23,14 @@
         </el-row>
       </div>
       <y-form
-          ref="goodForm"
-          :model="goodForm"
-          :rules="goodRules"
-          label-width="100px"
+        ref="goodForm"
+        :model="goodForm"
+        :rules="goodRules"
+        label-width="100px"
       >
         <el-collapse v-model="activeName1" class="coll">
           <el-collapse-item name="1">
-            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+            <div slot="title" class="y-flex y-align-between title-slot">
               <div class=" y-flex ">
                 <div class="coll-item-title"><span class="y-p-r-10">上传商品图片</span>
                 </div>
@@ -47,14 +47,14 @@
                 <div><span style="color: red">*</span>&nbsp;上传商品主图</div>
                 <el-form-item label="" prop="main_pic" label-width="">
                   <y-upload-image-single
-                      v-model="goodForm.main_pic"
-                      width="400px"
-                      height="400px"
+                    v-model="goodForm.main_pic"
+                    width="400px"
+                    height="400px"
                   />
                 </el-form-item>
                 <el-alert
-                    v-if="showTips1"
-                    type="info">
+                  v-if="showTips1"
+                  type="info">
                   小贴士: <br/>
                   1. 上传的第1张图片，叫主图。相当于货品的“身份证照片”。<br/>
                   2. 主图只能是 1 张图，若上传 2 张图，后一张图将替换掉前一张。<br/>
@@ -67,16 +67,16 @@
 
                   <div style="width:485px;max-height:420px;overflow-y: scroll;">
                     <y-upload-image
-                        v-model="goodForm.carousels"
-                        class="upload-carousels"
+                      v-model="goodForm.carousels"
+                      class="upload-carousels"
                     />
 
                   </div>
                 </el-form-item>
                 <el-alert
-                    v-if="showTips1"
-                    type="info"
-                    style="max-width: 485px;"
+                  v-if="showTips1"
+                  type="info"
+                  style="max-width: 485px;"
                 >
                   建议上传商品的：侧面图、背后图、模特搭配穿法图、细节图等等。
                 </el-alert>
@@ -87,7 +87,7 @@
         </el-collapse>
         <el-collapse v-model="activeName2" accordion>
           <el-collapse-item name="1">
-            <div slot="title" style="width: 100%;" class="y-flex y-align-between">
+            <div slot="title" class="y-flex y-align-between title-slot">
               <div class=" y-flex ">
                 <div class="coll-item-title">
                   <span class="y-p-r-10">选择品牌</span>
@@ -105,10 +105,10 @@
                 <el-col :span="14">
                   <el-form-item label="进货品牌" prop="brand" label-width="100px">
                     <y-select
-                        v-model="goodForm.brand"
-                        :options="brandOptions"
-                        filterable
-                        class="y-p-r-10"
+                      v-model="goodForm.brand"
+                      :options="brandOptions"
+                      filterable
+                      class="y-p-r-10"
                     ></y-select>
                     <el-button type="primary" plain @click="showBrandForm=!showBrandForm">新增品牌名称</el-button>
                     <y-dialog v-model="showBrandForm" title="新增品牌名称" @confirm="cfmAddBrand">
@@ -117,8 +117,8 @@
 
                   </el-form-item>
                   <el-alert
-                      v-if="showTips2"
-                      type="info"
+                    v-if="showTips2"
+                    type="info"
                   >
                     小贴士:<br/>
                     1. 把进货品牌换掉后的品牌叫展示品牌。<br/>
@@ -129,15 +129,15 @@
                 <el-col :span="10">
                   <el-form-item label="品牌说头" prop="value15" label-width="100px">
                     <y-input
-                        v-model="goodForm.value132"
-                        placeholder="请输入（举例：美国新起的潮牌）"
-                        type="textarea"
-                        rows="1"
+                      v-model="goodForm.value132"
+                      placeholder="请输入（举例：美国新起的潮牌）"
+                      type="textarea"
+                      rows="1"
                     ></y-input>
                   </el-form-item>
                   <el-alert
-                      v-if="showTips2"
-                      type="info"
+                    v-if="showTips2"
+                    type="info"
                   >
                     小贴士:<br/>
                     1. 随手输入简短的几个字，为编写产品故事提供灵感。<br/>
@@ -149,7 +149,7 @@
             </div>
           </el-collapse-item>
           <el-collapse-item name="2">
-            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+            <div slot="title" class="y-flex y-align-between title-slot">
               <div class=" y-flex ">
                 <div class="coll-item-title"><span class="y-p-r-10">选择性别</span>
                 </div>
@@ -166,14 +166,14 @@
                 <el-col :span="14">
                   <el-form-item label="选择性别: " prop="field123" label-width="100px">
                     <y-radio
-                        v-model="goodForm.brand"
-                        :options="SEX"
-                        class="y-p-r-10"
+                      v-model="goodForm.brand"
+                      :options="SEX"
+                      class="y-p-r-10"
                     ></y-radio>
                   </el-form-item>
                   <el-alert
-                      v-if="showTips2"
-                      type="info"
+                    v-if="showTips2"
+                    type="info"
                   >
                     小贴士:<br/>
                     如打包纸袋、纸箱等，性别为“其他”
@@ -182,10 +182,10 @@
                 <el-col :span="10">
                   <el-form-item label="性别说头" prop="value15" label-width="100px">
                     <y-input
-                        v-model="goodForm.value132"
-                        placeholder="请输入（举例：中性款但偏男性 ）"
-                        type="textarea"
-                        rows="1"
+                      v-model="goodForm.value132"
+                      placeholder="请输入（举例：中性款但偏男性 ）"
+                      type="textarea"
+                      rows="1"
                     ></y-input>
                   </el-form-item>
                 </el-col>
@@ -195,7 +195,7 @@
           </el-collapse-item>
           <el-collapse-item name="3">
 
-            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+            <div slot="title" class="y-flex y-align-between title-slot">
               <div class=" y-flex ">
                 <div class="coll-item-title"><span class="y-p-r-10">选择商品品类</span>
                 </div>
@@ -219,7 +219,7 @@
                         <el-tabs tab-position="left" style="height: 100%;">
                           <el-tab-pane :label="o1.label" v-for="(o1,i1) in categoryOptions" :key="i1">
                             <div v-for="(o2,i2) in o1.children " :key="i2">
-                              <div>{{o2.label}}</div>
+                              <div>{{ o2.label }}</div>
                               <div>
                                 <y-radio v-model="goodForm.category" :options="o2.children"></y-radio>
                               </div>
@@ -233,9 +233,9 @@
                           <el-col :span="8">
                             <div>
                               <el-tag
-                                  effect="plain"
-                                  type="info"
-                                  color="">大类
+                                effect="plain"
+                                type="info"
+                                color="">大类
                               </el-tag>
                             </div>
                             <div>
@@ -284,8 +284,8 @@
                     </el-row>
                   </el-form-item>
                   <el-alert
-                      v-if="showTips2"
-                      type="info"
+                    v-if="showTips2"
+                    type="info"
                   >
                     小贴士:<br/>
                     如打包纸袋、纸箱等，性别为“其他”
@@ -295,7 +295,7 @@
             </div>
           </el-collapse-item>
           <el-collapse-item name="4">
-            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+            <div slot="title" class="y-flex y-align-between title-slot">
               <div class=" y-flex ">
                 <div class="coll-item-title"><span class="y-p-r-10">选择颜色</span>
                 </div>
@@ -314,7 +314,7 @@
                     <el-col :span="12">
                       <el-form-item label="主色色系" prop="value15" label-width="100px">
                         <y-select
-                            v-model="goodForm.value132"
+                          v-model="goodForm.value132"
                         ></y-select>
                       </el-form-item>
                     </el-col>
@@ -322,16 +322,16 @@
 
                       <el-form-item label="色系编码" prop="value15" label-width="100px">
                         <y-select
-                            v-model="goodForm.value132"
-                            disabled
+                          v-model="goodForm.value132"
+                          disabled
                         ></y-select>
                       </el-form-item>
                     </el-col>
                     <el-col :span="12">
                       <el-form-item label="主色名称" prop="value15" label-width="100px">
                         <y-select
-                            v-model="goodForm.value132"
-                            filterable
+                          v-model="goodForm.value132"
+                          filterable
                         ></y-select>
                       </el-form-item>
                     </el-col>
@@ -339,7 +339,7 @@
 
                       <el-form-item label="主色编码" prop="value15" label-width="100px">
                         <y-select
-                            v-model="goodForm.value132"
+                          v-model="goodForm.value132"
                         ></y-select>
                       </el-form-item>
                     </el-col>
@@ -350,7 +350,7 @@
 
                       <el-form-item label="辅色色系" prop="value15" label-width="100px">
                         <y-select
-                            v-model="goodForm.value132"
+                          v-model="goodForm.value132"
                         ></y-select>
                       </el-form-item>
                     </el-col>
@@ -360,16 +360,17 @@
                 <el-col :span="8">
                   <el-form-item label="颜色说头" prop="value15" label-width="100px">
                     <y-input
-                        v-model="goodForm.value132"
-                        type="textarea"
-                        rows="2"
+                      v-model="goodForm.value132"
+                      type="textarea"
+                      rows="2"
                     ></y-input>
                   </el-form-item>
                 </el-col>
               </el-row>
             </div>
-          </el-collapse-item><el-collapse-item name="5">
-            <div slot="title" style="width: 100%" class="y-flex y-align-between">
+          </el-collapse-item>
+          <el-collapse-item name="5">
+            <div slot="title" class="y-flex y-align-between title-slot">
               <div class=" y-flex ">
                 <div class="coll-item-title"><span class="y-p-r-10">商品图案</span>
                 </div>
@@ -386,20 +387,95 @@
                 <el-col :span="14">
                   <el-form-item label="商品图案" prop="value15" label-width="100px">
                     <y-select
-                        v-model="goodForm.value132"
+                      v-model="goodForm.value132"
+                      class="y-p-r-10"
                     ></y-select>
+                    <el-button type="primary" plain>新增图案名</el-button>
                   </el-form-item>
-                  <el-alert>小贴士：<br/>图案名称是区别货品的主要特征之一。进入商品名称字段。 </el-alert>
+
+                  <el-alert>小贴士：<br/>图案名称是区别货品的主要特征之一。进入商品名称字段。无图案+无辅色=净色</el-alert>
                 </el-col>
                 <el-col :span="10">
                   <el-form-item label="图案说头" prop="value15" label-width="100px">
                     <y-input
-                        v-model="goodForm.value132"
-                        type="textarea"
-                        rows="2"
+                      v-model="goodForm.value132"
+                      type="textarea"
+                      rows="2"
                     ></y-input>
                   </el-form-item>
                 </el-col>
+              </el-row>
+            </div>
+          </el-collapse-item>
+
+          <el-collapse-item name="6">
+            <div slot="title" class="y-flex y-align-between title-slot">
+              <div class=" y-flex ">
+                <div class="coll-item-title"><span class="y-p-r-10">面料名称</span>
+                </div>
+                <div>
+                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明
+                  </el-button>
+                </div>
+              </div>
+              <div>已选择信息3 已选择信息2 已选择信息1</div>
+            </div>
+            <div class="coll-item-body">
+              <el-row :gutter="20">
+                <el-col :span="14">
+                  <el-form-item label="大身名称" prop="value15" label-width="100px">
+                    <y-select
+                      v-model="goodForm.value132"
+                      class="y-p-r-10"
+                    ></y-select>
+                  </el-form-item>
+
+                  <el-alert>小贴士：<br/>大身指货品外面的、主要部分的面料。这个名称可以用带营销味的很别致的名词，但不可以夸大其词，避免消费者误解而被投诉。</el-alert>
+                </el-col>
+                <el-col :span="10">
+                  <el-form-item label="面料名称说头" prop="value15" label-width="100px">
+                    <y-input
+                      v-model="goodForm.value132"
+                      type="textarea"
+                      rows="2"
+                    ></y-input>
+                  </el-form-item>
+                </el-col>
+
+              </el-row>
+
+              <el-row class="inner-coll">
+                <el-collapse>
+                  <el-collapse-item>
+                    <div slot="title" class="y-flex-1">
+                      <el-divider class="y-center">
+                        <div><i class="el-icon-d-arrow-right arrow-icon"></i>
+                        </div>
+                        <div class="y-color-info y-font-12">点击填写衬里填充物</div>
+                      </el-divider>
+                    </div>
+                    <div>
+
+                      <el-col :span="13">
+                        <el-form-item label="衬里名称" prop="value11235" label-width="100px">
+                          <y-input
+                            v-model="goodForm.value132"
+                          ></y-input>
+                        </el-form-item>
+                      </el-col>
+                      <el-col :span="13">
+                        <el-form-item label="填充物名称" prop="value11235" label-width="100px">
+                          <y-input
+                            v-model="goodForm.value132"
+                          ></y-input>
+                        </el-form-item>
+                      </el-col>
+
+                    </div>
+
+                  </el-collapse-item>
+                </el-collapse>
               </el-row>
             </div>
           </el-collapse-item>
@@ -426,7 +502,7 @@ export default {
       // 图片上传项默认展开
       activeName1: '1',
       // 手风琴效果默认展开项
-      activeName2: '4',
+      activeName2: '6',
       // 显示添加品牌对话框
       showBrandForm: false,
       // 展示选择分类框
@@ -704,6 +780,10 @@ export default {
   }
 }
 
+.title-slot {
+  width: 100%
+}
+
 // 折叠项高度
 .el-collapse-item__header {
   height: 60px;
@@ -713,4 +793,30 @@ export default {
 .category-form .el-divider--horizontal {
   margin: 10px 0;
 }
+
+//折叠面板内部的折叠
+.inner-coll {
+  margin: 0 40px;
+  //上边框
+  .el-collapse {
+    border: 0;
+  }
+
+  //下边框
+  .el-collapse-item__header {
+    border: 0;
+  }
+
+  // 标题slot
+  .el-collapse-item__header {
+    height: 60px;
+    line-height: 20px;
+  }
+
+  .arrow-icon {
+    font-size: 20px;
+    transform: rotate(0.25turn);
+  }
+}
+
 </style>
