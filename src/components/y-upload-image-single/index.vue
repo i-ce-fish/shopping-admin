@@ -9,7 +9,7 @@
         :on-Remove="onRemove"
       >
         <div v-if="imageUrl">
-          <img :src="imageUrl" :width="width" :height="height" class="avatar"/>
+          <img :src="imageUrl"  style="object-fit: contain;" :width="width" :height="height" class="avatar"/>
 
         </div>
         <div v-else>
