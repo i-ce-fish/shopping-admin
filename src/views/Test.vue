@@ -3,7 +3,6 @@
 </template>
 
 <script>
-// TEST
 import echarts from 'echarts'
 
 export default {

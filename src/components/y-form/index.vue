@@ -14,7 +14,7 @@
     :validate-on-rule-change="validateOnRuleChange"
     :hide-required-asterisk="hideRequiredAsterisk"
   >
-    <slot />
+    <slot/>
   </el-form>
 </template>
 
