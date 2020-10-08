@@ -479,6 +479,207 @@
               </el-row>
             </div>
           </el-collapse-item>
+
+          <el-collapse-item name="7">
+            <div slot="title" class="y-flex y-align-between title-slot">
+              <div class=" y-flex ">
+                <div class="coll-item-title"><span class="y-p-r-10">材质和含量</span>
+                </div>
+                <div>
+                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
+                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明
+                  </el-button>
+                </div>
+              </div>
+              <div>已选择信息3 已选择信息2 已选择信息1</div>
+            </div>
+            <div class="coll-item-body">
+              <el-row :gutter="20">
+                <el-col :span="14">
+                  <el-row>
+
+                    <el-col :span="18">
+                      <el-form-item label="大身材质1:" prop="value15" label-width="100px">
+                        <y-select
+                          v-model="goodForm.value132"
+                          filterable
+                          placeholder="请选择/输入"
+
+                        ></y-select>
+                      </el-form-item>
+                      <el-form-item label="材质2:" prop="value15" label-width="100px">
+                        <y-select
+                          v-model="goodForm.value132"
+                          filterable
+                          placeholder="请选择/输入"
+
+                        ></y-select>
+                      </el-form-item>
+
+                    </el-col>
+                    <el-col :span="6">
+                      <el-form-item label="占比:" prop="value15" label-width="50px">
+                        <y-number
+                          v-model="goodForm.value112332"
+                          :precision="1"
+                        ></y-number>
+                      </el-form-item>
+                      <el-form-item label="占比:" prop="value15" label-width="50px">
+                        <y-number
+                          v-model="goodForm.value112312332"
+                          :precision="1"
+                        ></y-number>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+
+                  <el-alert>小贴士：<br/>这里是雷区，所填字段将显示在线上商城和服装吊牌上。若填写失实，将会被国家监管部门处罚。请向供货方核实数据，若无把握，宁可填写得低调一些。材质这项是必填项。
+                  </el-alert>
+
+                </el-col>
+
+                <el-col :span="10">
+                  <el-form-item label="材质说头" prop="value15" label-width="100px">
+                    <y-input
+                      v-model="goodForm.value132"
+                      type="textarea"
+                      rows="2"
+                    ></y-input>
+                  </el-form-item>
+                </el-col>
+
+              </el-row>
+
+              <el-row class="inner-coll">
+                <el-collapse>
+                  <el-collapse-item>
+                    <div slot="title" class="y-flex-1">
+                      <el-divider class="y-center">
+                        <div><i class="el-icon-d-arrow-right arrow-icon"></i>
+                        </div>
+                        <div class="y-color-info y-font-12">点击填写衬里填充物</div>
+                      </el-divider>
+                    </div>
+                    <el-row :gutter="20">
+                      <el-col :span="14">
+                        <el-row>
+
+                          <el-col :span="16">
+                            <el-form-item label="衬里材质:" prop="value15" label-width="100px">
+                              <y-select
+                                v-model="goodForm.value132"
+                                filterable
+                                placeholder="请选择/输入"
+
+                              ></y-select>
+                            </el-form-item>
+                            <el-form-item label="填充物材质:" prop="value15" label-width="100px">
+                              <y-select
+                                v-model="goodForm.value132"
+                                filterable
+                                placeholder="请选择/输入"
+                              ></y-select>
+                            </el-form-item>
+
+                          </el-col>
+                          <el-col :span="8">
+                            <el-form-item label="占比:" prop="value15" label-width="100px">
+                              <y-number
+                                v-model="goodForm.value112332"
+                                :precision="1"
+                              ></y-number>
+                            </el-form-item>
+                            <el-form-item label="填充物数量:" prop="value15" label-width="100px">
+                              <y-number
+                                v-model="goodForm.value112312332"
+                                :precision="1"
+                              ></y-number>
+                            </el-form-item>
+                            <el-form-item label="填充物重量:" prop="value15" label-width="100px">
+                              <y-number
+                                v-model="goodForm.value112312332"
+                                :precision="1"
+                              ></y-number>
+                            </el-form-item>
+                          </el-col>
+                        </el-row>
+
+                      </el-col>
+
+                      <el-col :span="10">
+                        <el-form-item label="材质说头" prop="value15" label-width="100px">
+                          <y-input
+                            v-model="goodForm.value132"
+                            type="textarea"
+                            rows="2"
+                          ></y-input>
+                        </el-form-item>
+                      </el-col>
+
+                    </el-row>
+
+                  </el-collapse-item>
+                </el-collapse>
+              </el-row>
+            </div>
+          </el-collapse-item>
+          <el-collapse-item name="8">
+            <div slot="title" class="y-flex y-align-between title-slot">
+              <div class=" y-flex ">
+                <div class="coll-item-title" style="width: 250px">
+                  <span class="y-p-r-10">材质特征、纺织工艺、缝制工艺</span>
+                </div>
+                <!--                <div>-->
+                <!--                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>-->
+                <!--                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明-->
+                <!--                  </el-button>-->
+                <!--                </div>-->
+              </div>
+              <div>已选择信息3 已选择信息2 已选择信息1</div>
+            </div>
+            <div class="coll-item-body">
+              <el-card class="box-card">
+                <div>
+                  <h4>材质1-棉花</h4>
+                  <el-form-item label="基本功能特点:">
+                    <y-tag-input
+                      @del="test"
+                      @cfm="test"
+                      :options="[{id: 1,value: 1,label: 'tag1'}]"></y-tag-input>
+                  </el-form-item>
+                  <el-form-item label="基本功能缺点:">
+                    <y-tag-input @del="test" @cfm="test">
+                    </y-tag-input>
+                  </el-form-item>
+                </div>
+                <!--                TODO  添加条件判断, 有材质2才显示-->
+                <div>
+                  <el-divider></el-divider>
+                  <h4>材质2-化纤</h4>
+                  <el-form-item label="常规优点:">
+                    <y-tag-input
+                      @del="test"
+                      @cfm="test"
+                      :options="[{id: 1,value: 1,label: 'tag1'}]"></y-tag-input>
+                  </el-form-item>
+                  <el-form-item label="常规缺点:">
+                    <y-tag-input @del="test" @cfm="test">
+                    </y-tag-input>
+                  </el-form-item>
+
+                </div>
+              </el-card>
+
+              <el-row  class="y-m-t-10">
+                <el-form-item label="本产品特殊功能:" label-width="150px">
+                  <y-tag-input
+                    @del="test"
+                    @cfm="test"
+                  ></y-tag-input>
+                </el-form-item>
+              </el-row>
+            </div>
+          </el-collapse-item>
         </el-collapse>
       </y-form>
     </el-card>
@@ -490,11 +691,13 @@ import YUploadImageSingle from '@/components/y-upload-image-single'
 import YDialog from '@/components/y-dialog'
 import addForm from '@/views/goodbrand/addForm'
 import { SEX } from '@/utils/const'
+import YTagInput from '@/components/y-tag-input'
 
 export default {
   components: {
     YUploadImageSingle,
     YDialog,
+    YTagInput,
     addFormBrand: addForm
   },
   data() {
@@ -502,7 +705,7 @@ export default {
       // 图片上传项默认展开
       activeName1: '1',
       // 手风琴效果默认展开项
-      activeName2: '6',
+      activeName2: '8',
       // 显示添加品牌对话框
       showBrandForm: false,
       // 展示选择分类框
@@ -796,32 +999,27 @@ export default {
 
 //折叠面板内部的折叠
 .inner-coll {
-  .el-collapse-item__header is-active{
-    color: red!important;
-  }
   margin: 0 40px;
 
-  //展开
-
   //上边框
-  .el-collapse {
+  /deep/ .el-collapse {
     border: 0;
   }
 
   //下边框
-  .el-collapse-item__header {
+  /deep/ .el-collapse-item__header {
     border: 0;
   }
 
   // 标题slot
-  .el-collapse-item__header {
+  /deep/ .el-collapse-item__header {
     height: 60px;
     line-height: 20px;
   }
 
-  .arrow-icon {
+  /deep/ .arrow-icon {
     font-size: 20px;
-    transform: rotate(0.25turn);
+    transform: rotate(90deg);
   }
 }
 

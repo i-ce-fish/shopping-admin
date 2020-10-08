@@ -1,6 +1,8 @@
 /**
 *为了使预览的效果与小程序商城的效果一致
 *将小程序商城部分css样式贴过来
+*
+* @Date 2020.10.08  这个功能可能会砍掉
  */
 .page {
   width: 375px;
@@ -21,30 +23,6 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
 }
 
-
-.y-m-15 {
-  margin: 15px;
-}
-
-.y-m-t-15 {
-  margin-top: 15px;
-}
-
-.y-m-b-15 {
-  margin-bottom: 15px;
-}
-
-.y-p-l-15 {
-  padding-left: 15px;
-}
-
-.y-p-r-15 {
-  padding-right: 15px;
-}
-
-.y-p-15 {
-  padding: 15px;
-}
 
 .y-col-12 {
   width: 100%;

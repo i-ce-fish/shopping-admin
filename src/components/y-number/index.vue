@@ -3,7 +3,6 @@
 
     <el-input-number
       v-model="result"
-      controls-position="right"
       :min="min"
       :max="max"
       :step="step"
@@ -39,7 +38,7 @@ export default {
     },
     min: {
       type: Number,
-      default: 1
+      default: 0
     },
     disabled: Boolean,
     size: String,
@@ -84,6 +83,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ynumber {
-}
 </style>

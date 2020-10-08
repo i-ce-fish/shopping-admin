@@ -273,11 +273,7 @@ export default {
 
 <style lang='scss' scoped>
 .app-container {
-  padding: 20px;
 
-  .no-margin {
-    margin: 0;
-  }
 }
 
 //展开收起动画

@@ -67,7 +67,7 @@
           <el-col>
             <el-row type="flex" justify="end">
               <el-form-item>
-                <el-button @click="submit('goodsizeForm')">提交</el-button>
+                <el-button @click="submit('testForm','sdf')">提交</el-button>
                 <el-button @click="back">返回</el-button>
               </el-form-item>
             </el-row>
