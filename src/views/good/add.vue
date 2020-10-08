@@ -758,7 +758,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 .coll-item-title {
   font-weight: 700;
@@ -796,7 +796,13 @@ export default {
 
 //折叠面板内部的折叠
 .inner-coll {
+  .el-collapse-item__header is-active{
+    color: red!important;
+  }
   margin: 0 40px;
+
+  //展开
+
   //上边框
   .el-collapse {
     border: 0;

@@ -168,7 +168,7 @@ export default {
 }
 </script>
 
-<style lang='scss' scope>
+<style lang='scss' scoped>
 .app-container {
   padding: 20px;
 
