@@ -2,23 +2,24 @@
 <template>
   <div>
     <el-tag
-      v-for="(o,i) in options"
-      :key="i"
-      closable
-      :disable-transitions="false"
-      @close="handleClose(o)"
-      effect="plain"
+        v-for="(o,i) in options"
+        :key="i"
+        closable
+        :disable-transitions="false"
+        @close="handleClose(o)"
+        effect="plain"
     >
       {{ o.label }}
     </el-tag>
     <el-input
-      class="input-new-tag"
-      v-if="inputVisible"
-      v-model="inputValue"
-      ref="saveTagInput"
-      size="small"
-      @keyup.enter.native="$event.target.blur"
-      @blur="handleInputConfirm"
+        class="input-new-tag"
+        v-if="inputVisible"
+        v-model="inputValue"
+        ref="saveTagInput"
+        size="small"
+        @keyup.enter.native="$event.target.blur"
+        @blur="handleInputConfirm"
+        :style="{width:inputWidth+'rem'}"
     >
     </el-input>
     <el-button v-else class="button-new-tag" size="small" @click="showInput">+ 自定义</el-button>
@@ -43,12 +44,24 @@ export default {
         value: 3,
         label: 'tag3'
       }]
+    },
+    // 输入框的宽度随输入文本变化,宽度随文字变化是1:1
+    autoWidth: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   data() {
     return {
       inputVisible: false,
-      inputValue: ''
+      inputValue: '',
+      inputWidth: 7
+    }
+  },
+  watch: {
+    inputValue(val) {
+      this.inputWidth = val.length
     }
   },
   methods: {
@@ -90,7 +103,7 @@ export default {
 }
 
 .input-new-tag {
-  width: 90px;
+  min-width: 7rem;
   margin-left: 10px;
   vertical-align: bottom;
 }

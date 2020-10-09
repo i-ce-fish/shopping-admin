@@ -483,7 +483,7 @@
           <el-collapse-item name="7">
             <div slot="title" class="y-flex y-align-between title-slot">
               <div class=" y-flex ">
-                <div class="coll-item-title"><span class="y-p-r-10">材质和含量</span>
+                <div class="coll-item-title" style="width: 175px"><span class="y-p-r-10">材质纤维名称+成分含量</span>
                 </div>
                 <div>
                   <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>
@@ -496,9 +496,9 @@
             <div class="coll-item-body">
               <el-row :gutter="20">
                 <el-col :span="14">
-                  <el-row>
+                  <el-row type="flex">
 
-                    <el-col :span="18">
+                    <el-col >
                       <el-form-item label="大身材质1:" prop="value15" label-width="100px">
                         <y-select
                           v-model="goodForm.value132"
@@ -517,7 +517,7 @@
                       </el-form-item>
 
                     </el-col>
-                    <el-col :span="6">
+                    <el-col >
                       <el-form-item label="占比:" prop="value15" label-width="50px">
                         <y-number
                           v-model="goodForm.value112332"
@@ -562,9 +562,9 @@
                     </div>
                     <el-row :gutter="20">
                       <el-col :span="14">
-                        <el-row>
+                        <el-row type="flex">
 
-                          <el-col :span="16">
+                          <el-col >
                             <el-form-item label="衬里材质:" prop="value15" label-width="100px">
                               <y-select
                                 v-model="goodForm.value132"
@@ -582,7 +582,7 @@
                             </el-form-item>
 
                           </el-col>
-                          <el-col :span="8">
+                          <el-col >
                             <el-form-item label="占比:" prop="value15" label-width="100px">
                               <y-number
                                 v-model="goodForm.value112332"
@@ -627,7 +627,7 @@
             <div slot="title" class="y-flex y-align-between title-slot">
               <div class=" y-flex ">
                 <div class="coll-item-title" style="width: 250px">
-                  <span class="y-p-r-10">材质特征、纺织工艺、缝制工艺</span>
+                  <span class="y-p-r-10">材质纤维特性</span>
                 </div>
                 <!--                <div>-->
                 <!--                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>-->
@@ -660,7 +660,7 @@
                     <y-tag-input
                       @del="test"
                       @cfm="test"
-                      :options="[{id: 1,value: 1,label: 'tag1'}]"></y-tag-input>
+                      :options="[{id: 1,value: 1,label: 'tag1111111111111'}]"></y-tag-input>
                   </el-form-item>
                   <el-form-item label="常规缺点:">
                     <y-tag-input @del="test" @cfm="test">
@@ -677,6 +677,45 @@
                     @cfm="test"
                   ></y-tag-input>
                 </el-form-item>
+              </el-row>
+            </div>
+          </el-collapse-item>
+
+          <el-collapse-item name="9">
+            <div slot="title" class="y-flex y-align-between title-slot">
+              <div class=" y-flex ">
+                <div class="coll-item-title"><span class="y-p-r-10">纺织特征</span>
+                </div>
+<!--                <div>-->
+<!--                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>-->
+<!--                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明-->
+<!--                  </el-button>-->
+<!--                </div>-->
+              </div>
+              <div>已选择信息3 已选择信息2 已选择信息1</div>
+            </div>
+            <div class="coll-item-body">
+              <el-row :gutter="20">
+                <el-col :span="14">
+                  <el-form-item label="商品图案" prop="value15" label-width="100px">
+                    <y-select
+                        v-model="goodForm.value132"
+                        class="y-p-r-10"
+                    ></y-select>
+                    <el-button type="primary" plain>新增图案名</el-button>
+                  </el-form-item>
+
+<!--                  <el-alert>小贴士：<br/>图案名称是区别货品的主要特征之一。进入商品名称字段。无图案+无辅色=净色</el-alert>-->
+                </el-col>
+                <el-col :span="10">
+                  <el-form-item label="面料工艺说头" prop="value15" label-width="100px">
+                    <y-input
+                        v-model="goodForm.value132"
+                        type="textarea"
+                        rows="2"
+                    ></y-input>
+                  </el-form-item>
+                </el-col>
               </el-row>
             </div>
           </el-collapse-item>
