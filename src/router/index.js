@@ -66,11 +66,11 @@ const routes = [
   // materialRouter,
   // patternRouter,
   // supplyRouter,
-  // {
-  //   path: '/test',
-  //   name: 'test',
-  //   component: () => import('@/views/Test')
-  // },
+  {
+    path: '/demo',
+    name: 'test',
+    component: () => import('@/views/Test')
+  },
   {
     path: '/404',
     component: () => import('@/views/error-page/404'),
