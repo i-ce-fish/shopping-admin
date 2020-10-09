@@ -111,15 +111,15 @@ export default {
   },
   methods: {
     async getList(param) {
-      const response = await getGoodsizes(
+      const { data } = await getGoodsizes(
         {
           ...param,
           page: this.pagination.pageNumber,
           pagesize: this.pagination.pageSize
         }
       )
-      this.goodsizesData = response.data.list
-      this.pagination.total = parseInt(response.data.pagination.total, 10)
+      this.goodsizesData = data.list
+      this.pagination.total = data.pagination.total
     },
 
     add() {

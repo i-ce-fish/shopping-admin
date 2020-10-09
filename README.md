@@ -26,7 +26,7 @@ import "normalize.css"
 
 
 
-###文件目录结构
+### 文件目录结构
 ```$xslt
 dist    打包后的文件
 src 
@@ -66,7 +66,7 @@ vue.config.js   webpack配置
 
 ``` 
 
-###涉及的技术栈
+### 涉及的技术栈
 
 <a href="https://cn.vuejs.org/v2/guide/">Vue</a>
 

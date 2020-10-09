@@ -79,7 +79,7 @@ export default {
         }
       )
       this.customersData = response.data.list
-      this.pagination.total = parseInt(response.data.pagination.total, 10)
+      this.pagination.total = response.data.pagination.total
     },
 
     add() {
