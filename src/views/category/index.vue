@@ -98,7 +98,7 @@ export default {
         }
       )
       this.categoriesData = response.data.list
-      this.pagination.total = parseInt(response.data.pagination.total, 10)
+      this.pagination.total = response.data.pagination.total
     },
 
     add() {
@@ -149,10 +149,6 @@ export default {
 
 <style lang='scss' scoped>
 .app-container {
-  padding: 20px;
 
-  .no-margin {
-    margin: 0;
-  }
 }
 </style>

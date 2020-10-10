@@ -1,5 +1,10 @@
 import request from '@/utils/request'
 
+/**
+ * 获取列表
+ * @param params 分页参数
+ * @return {Promise<*>}
+ */
 export function getGoodsizes(params) {
   return request({
     url: '/api/goodsizes',

@@ -17,48 +17,61 @@
         </el-row>
       </y-form>
     </el-card>
-    <el-table
-      :data="testData"
-      :pagination="pagination"
-      @sortBy="sortBy"
-      @changePage4List="getList"
-      style="width: 100%">
-      <el-table-column
-        prop="size_name"
-          label="尺码名"
-        width="300">
-      </el-table-column>
-      <el-table-column
-        prop="display_name"
-        label="尺码显示名"
-        width="500">
-      </el-table-column>
-      <el-table-column
-        prop="description"
-        label="尺码解释"
-        width="1000">
-      </el-table-column>
-      <el-table-column
-        prop="sizetype"
-        label="尺码类别"
-        width="400">
-      </el-table-column>
-      <el-table-column
-        prop="operation"
-        label="操作"
-        width="100">
-      </el-table-column>
-    </el-table>
+    <y-table
+        :data="testsData"
+        :pagination="pagination"
+        @sortBy="sortBy"
+        @changePage4List="getList"
+        class="y-p-t-20"
+    >
+      <template>
+
+        <el-table-column
+            prop="field1"
+            label="字段1"
+            align="center"
+
+        >
+
+        </el-table-column>
+
+        <el-table-column
+            prop="field2"
+            label="字段2"
+            align="center"
+
+        >
+
+        </el-table-column>
+
+        <el-table-column
+            prop="field3"
+            label="字段2"
+            align="center"
+
+        >
+
+        </el-table-column>
+
+        <el-table-column label="操作" width="100px" align="center">
+          <template slot-scope="{row}">
+            <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
+            <el-divider direction="vertical"></el-divider>
+            <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
+          </template>
+        </el-table-column>
+      </template>
+    </y-table>
   </div>
 </template>
 <script>
-import { getGoodsizes, delGoodsize } from '@/api/goodsize'
+import { getTests, delTest } from '@/api/test'
 
 export default {
   data() {
     return {
       testForm: {},
-      testData: [],
+      testsData: [],
       pagination: {
         pageNumber: 1,
         pageSize: 10
@@ -100,7 +113,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          delGoodsize(id)
+          delTest(id)
             .then((response) => {
               this.$message({
                 type: 'success',

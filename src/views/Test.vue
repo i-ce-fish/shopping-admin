@@ -1,224 +1,149 @@
 <template>
-  <div :id="id" :class="className" :style="{height:height,width:width}" />
+  <div>
+    <!--    <el-table-->
+    <!--        :data="tableData"-->
+    <!--        :span-method="arraySpanMethod"-->
+    <!--        border-->
+    <!--        style="width: 100%">-->
+    <!--      <el-table-column-->
+    <!--          prop="id"-->
+    <!--          label="ID"-->
+    <!--          width="180">-->
+    <!--      </el-table-column>-->
+    <!--      <el-table-column-->
+    <!--          prop="name"-->
+    <!--          label="姓名">-->
+    <!--      </el-table-column>-->
+    <!--      <el-table-column-->
+    <!--          prop="amount1"-->
+    <!--          sortable-->
+    <!--          label="数值 1">-->
+    <!--      </el-table-column>-->
+    <!--      <el-table-column-->
+    <!--          prop="amount2"-->
+    <!--          sortable-->
+    <!--          label="数值 2">-->
+    <!--      </el-table-column>-->
+    <!--      <el-table-column-->
+    <!--          prop="amount3"-->
+    <!--          sortable-->
+    <!--          label="数值 3">-->
+    <!--      </el-table-column>-->
+    <!--    </el-table>-->
+
+    <el-table
+        :data="tableData"
+        :span-method="objectSpanMethod"
+        border
+        style="width: 100%; margin-top: 20px">
+
+      <el-table-column
+          prop="amount1"
+          label="数值 1（元）">
+      </el-table-column>
+      <el-table-column
+          prop="amount2"
+          label="数值 2（元）">
+      </el-table-column>
+      <el-table-column
+          prop="amount3"
+          label="数值 3（元）">
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 
 <script>
-import echarts from 'echarts'
-
 export default {
-  props: {
-    className: {
-      type: String,
-      default: 'chart'
-    },
-    id: {
-      type: String,
-      default: 'chart'
-    },
-    width: {
-      type: String,
-      default: '900px'
-    },
-    height: {
-      type: String,
-      default: '600px'
-    }
-  },
   data() {
     return {
-      chart: null
+      tableData: [{
+        id: '12987122',
+        amount1: '大类1',
+        amount2: '小类1',
+        amount3: '品类1'
+      }, {
+        id: '12987122',
+        amount1: '大类1',
+        amount2: '小类1',
+        amount3: '品类2'
+      }, {
+        id: '12987124',
+        amount1: '大类1',
+        amount2: '小类2',
+        amount3: '品类1'
+      }, {
+        id: '12987125',
+        amount1: '大类1',
+        amount2: '小类2',
+        amount3: '品类2'
+      }, {
+        id: '12987126',
+        amount1: '大类1',
+        amount2: '小类2',
+        amount3: '品类3'
+      }, {
+        id: '12987126111',
+        amount1: '大类2',
+        amount2: '小类1',
+        amount3: '品类1'
+      }, {
+        id: '12987126222',
+        amount1: '大类',
+        amount2: '小类',
+        amount3: '品类'
+      }, {
+        id: '12987126333',
+        amount1: '大类',
+        amount2: '小类',
+        amount3: '品类'
+      }, {
+        id: '12987126444',
+        amount1: '大类',
+        amount2: '小类',
+        amount3: '品类'
+      }]
     }
-  },
-  mounted() {
-    this.initChart()
-  },
-  beforeDestroy() {
-    if (!this.chart) {
-      return
-    }
-    this.chart.dispose()
-    this.chart = null
   },
   methods: {
-    initChart() {
-      this.chart = echarts.init(document.getElementById(this.id))
+    // arraySpanMethod({
+    //   row, column, rowIndex, columnIndex
+    // }) {
+    //   if (rowIndex % 2 === 0) {
+    //     if (columnIndex === 0) {
+    //       return [1, 2]
+    //     } if (columnIndex === 1) {
+    //       return [0, 0]
+    //     }
+    //   }
+    // },
 
-      this.chart.setOption({
-        backgroundColor: '#394056',
-        title: {
-          top: 20,
-          text: 'TEST',
-          textStyle: {
-            fontWeight: 'normal',
-            fontSize: 16,
-            color: '#F1F1F3'
-          },
-          left: '1%'
-        },
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            lineStyle: {
-              color: '#57617B'
-            }
-          }
-        },
-        legend: {
-          top: 20,
-          icon: 'rect',
-          itemWidth: 14,
-          itemHeight: 5,
-          itemGap: 13,
-          data: ['CMCC', 'CTCC', 'CUCC'],
-          right: '4%',
-          textStyle: {
-            fontSize: 12,
-            color: '#F1F1F3'
-          }
-        },
-        grid: {
-          top: 100,
-          left: '2%',
-          right: '2%',
-          bottom: '2%',
-          containLabel: true
-        },
-        xAxis: [{
-          type: 'category',
-          boundaryGap: false,
-          axisLine: {
-            lineStyle: {
-              color: '#57617B'
-            }
-          },
-          data: ['13:00', '13:05', '13:10', '13:15', '13:20', '13:25', '13:30', '13:35', '13:40', '13:45', '13:50', '13:55']
-        }],
-        yAxis: [{
-          type: 'value',
-          name: '(%)',
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            lineStyle: {
-              color: '#57617B'
-            }
-          },
-          axisLabel: {
-            margin: 10,
-            textStyle: {
-              fontSize: 14
-            }
-          },
-          splitLine: {
-            lineStyle: {
-              color: '#57617B'
-            }
-          }
-        }],
-        series: [{
-          name: 'CMCC',
-          type: 'line',
-          smooth: true,
-          symbol: 'circle',
-          symbolSize: 5,
-          showSymbol: false,
-          lineStyle: {
-            normal: {
-              width: 1
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgba(137, 189, 27, 0.3)'
-              }, {
-                offset: 0.8,
-                color: 'rgba(137, 189, 27, 0)'
-              }], false),
-              shadowColor: 'rgba(0, 0, 0, 0.1)',
-              shadowBlur: 10
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: 'rgb(137,189,27)',
-              borderColor: 'rgba(137,189,2,0.27)',
-              borderWidth: 12
+    objectSpanMethod({
+      row, column, rowIndex, columnIndex
+    }) {
+      // console.log(row)
+      // console.log(column)
+      // console.log(rowIndex)
+      // console.log(columnIndex)
 
-            }
-          },
-          data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122]
-        }, {
-          name: 'CTCC',
-          type: 'line',
-          smooth: true,
-          symbol: 'circle',
-          symbolSize: 5,
-          showSymbol: false,
-          lineStyle: {
-            normal: {
-              width: 1
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgba(0, 136, 212, 0.3)'
-              }, {
-                offset: 0.8,
-                color: 'rgba(0, 136, 212, 0)'
-              }], false),
-              shadowColor: 'rgba(0, 0, 0, 0.1)',
-              shadowBlur: 10
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: 'rgb(0,136,212)',
-              borderColor: 'rgba(0,136,212,0.2)',
-              borderWidth: 12
+      console.log(rowIndex === 0 && columnIndex === 0)
+      if (rowIndex === 0 && columnIndex === 0) {
+        console.log(rowIndex)
+        // console.log(columnIndex)
+        return {
+          rowspan: 2,
+          colspan: 1
+        }
+      }
 
-            }
-          },
-          data: [120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150]
-        }, {
-          name: 'CUCC',
-          type: 'line',
-          smooth: true,
-          symbol: 'circle',
-          symbolSize: 5,
-          showSymbol: false,
-          lineStyle: {
-            normal: {
-              width: 1
-            }
-          },
-          areaStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                offset: 0,
-                color: 'rgba(219, 50, 51, 0.3)'
-              }, {
-                offset: 0.8,
-                color: 'rgba(219, 50, 51, 0)'
-              }], false),
-              shadowColor: 'rgba(0, 0, 0, 0.1)',
-              shadowBlur: 10
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: 'rgb(219,50,51)',
-              borderColor: 'rgba(219,50,51,0.2)',
-              borderWidth: 12
-            }
-          },
-          data: [220, 182, 125, 145, 122, 191, 134, 150, 120, 110, 165, 122]
-        }]
-      })
+      // if (columnIndex === 1 && rowIndex === 0) {
+      //   return { rowspan: 3, colspan: 1 }
+      // }
+
+      // return {
+      //   rowspan: 1,
+      //   colspan: 1
+      // }
     }
   }
 }
