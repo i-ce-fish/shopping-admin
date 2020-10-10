@@ -149,7 +149,7 @@ export default {
 
     async putGoodsize() {
       await putGoodsize(this.$route.query.id, this.goodsizeForm)
-      await this.$router.push({ path: '/goodsize' })
+      this.$router.push({ path: '/goodsize' })
 
       this.$message({
         message: '修改成功',
