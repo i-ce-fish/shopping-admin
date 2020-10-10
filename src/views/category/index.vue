@@ -1,92 +1,284 @@
 <template>
   <div class="app-container">
-
     <el-card>
-      <div slot="header">
-        <span>搜索条件</span>
-      </div>
-      <div>
-        <y-form
+      <y-form
           ref="categoryForm"
           :model="categoryForm"
-          label-width="80px"
-        >
-          <el-row>
+          label-wvalueth="80px"
+      >
+        <el-col :span="6">
+          <el-form-item label="大类:" prop="label">
+            <y-input
+                v-model="categoryForm.label"
+            />
+          </el-form-item>
+        </el-col>
+        <el-row type="flex" align="space-between">
+          <el-col>
+            <el-button type="primary" @click="onSearch">查询</el-button>
+            <el-button @click="reset" class="y-mr-l-10">重置</el-button>
+          </el-col>
+          <el-button type="success" @click="add">添加测试模板</el-button>
 
-            <el-col :span="6">
-              <el-form-item label="类别名:" prop="name">
-
-                <y-input
-
-                  v-model="categoryForm.name"
-                />
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row type="flex" align="space-between">
-            <el-col>
-
-              <el-button type="primary" @click="onSearch">查询</el-button>
-              <el-button @click="reset">重置</el-button>
-            </el-col>
-
-            <el-button type="success" @click="add">添加商品分类</el-button>
-
-          </el-row>
-
-        </y-form>
-
-      </div>
+        </el-row>
+      </y-form>
     </el-card>
 
-    <y-table :data="categoriesData" :pagination="pagination" @sortBy="sortBy" @changePage4List="getList">
-      <template>
+    <div>
+      <el-card>
+        <el-checkbox
+            v-model="o.selected"
+            :label="o.label"
+            v-for="(o,i) in bigCategory"
+            :key="i"
+            true-label="1"
+            false-label="0"
+        >
+        </el-checkbox>
+      </el-card>
 
-        <el-table-column
-          prop="name"
-          label="类别名"
-        />
+      <el-card
+          v-for="(o1,i1) in selectedBigCategory"
+          :key="i1"
+      >
+        {{o1.label}}
+        <el-checkbox
+            v-for="(o2,i2) in o1.children"
+            :key="i2"
+            v-model="o2.selected"
+            :label="o2.label"
+            true-label="1"
+            false-label="0">
+        </el-checkbox>
+      </el-card>
 
-        <el-table-column
-          prop="sort"
-          label="排序"
-        />
+      <!--       fix : key 重复-->
+      <div
+          v-for="(o1,i1) in selectedSmallCategory"
+          :key="i1+o1.id"
+      >
+        <el-card
+            v-for="(o2,i2) in o1.children"
+            :key="i2">
+          {{o1.label}}>{{o2.label}}
+          <el-checkbox
+              v-for="(o3,i3) in o2.children"
+              :key="i3"
+              v-model="o3.selected"
+              :label="o3.label"
+              true-label="1"
+              false-label="0">
+          </el-checkbox>
+        </el-card>
 
-        <el-table-column
-          prop="parent_id"
-          label="父ID"
+      </div>
+    </div>
 
-          width="100px"
-          align="center"
-        />
-
-        <el-table-column label="操作" width="100px">
-          <template slot-scope="{row}">
-            <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
-            <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
-          </template>
-        </el-table-column>
-      </template>
-    </y-table>
   </div>
 </template>
 <script>
 import { getCategories, delCategory } from '@/api/category'
 
 export default {
+  components: {},
   data() {
     return {
+
       categoryForm: {},
-      categoriesData: [],
+
       pagination: {
         pageNumber: 1,
         pageSize: 10
-      }
+      },
+
+      bigCategory: [{
+        label: '大类1',
+        id: '1',
+        children: [{
+          label: '小类1',
+          id: '1',
+          parent_id: '1',
+          children: [{
+            label: '品类1',
+            id: '1',
+            parent_id: '1'
+          }, {
+            label: '品类2',
+            id: '2',
+            parent_id: '1'
+          }, {
+            label: '品类3',
+            id: '3',
+            parent_id: '1'
+          }]
+        }, {
+          label: '小类2',
+          id: '2',
+          parent_id: '1',
+          children: [{
+            label: '品类1',
+            id: '1',
+            parent_id: '1'
+          }, {
+            label: '品类2',
+            id: '2',
+            parent_id: '1'
+          }, {
+            label: '品类3',
+            id: '3',
+            parent_id: '1'
+          }]
+        }, {
+          label: '小类3',
+          id: '3',
+          parent_id: '1',
+          children: [{
+            label: '品类1',
+            id: '1',
+            parent_id: '1'
+          }, {
+            label: '品类2',
+            id: '2',
+            parent_id: '1'
+          }, {
+            label: '品类3',
+            id: '3',
+            parent_id: '1'
+          }]
+        }]
+      }, {
+        label: '大类2',
+        id: '2',
+        children: [{
+          label: '小类1',
+          id: '4',
+          parent_id: '2',
+          children: [{
+            label: '品类1',
+            id: '1',
+            parent_id: '1'
+          }, {
+            label: '品类2',
+            id: '2',
+            parent_id: '1'
+          }, {
+            label: '品类3',
+            id: '3',
+            parent_id: '1'
+          }]
+        }, {
+          label: '小类2',
+          id: '5',
+          parent_id: '2',
+          children: [{
+            label: '品类1',
+            id: '1',
+            parent_id: '1'
+          }, {
+            label: '品类2',
+            id: '2',
+            parent_id: '1'
+          }, {
+            label: '品类3',
+            id: '3',
+            parent_id: '1'
+          }]
+        }, {
+          label: '小类3',
+          id: '6',
+          parent_id: '2',
+          children: [{
+            label: '品类1',
+            id: '1',
+            parent_id: '1'
+          }, {
+            label: '品类2',
+            id: '2',
+            parent_id: '1'
+          }, {
+            label: '品类3',
+            id: '3',
+            parent_id: '1'
+          }]
+        }]
+      }, {
+        label: '大类3',
+        id: '3',
+        children: [{
+          label: '小类1',
+          id: '4',
+          parent_id: '3',
+          children: [{
+            label: '品类1',
+            id: '1',
+            parent_id: '1'
+          }, {
+            label: '品类2',
+            id: '2',
+            parent_id: '1'
+          }, {
+            label: '品类3',
+            id: '3',
+            parent_id: '1'
+          }]
+        }, {
+          label: '小类2',
+          id: '5',
+          parent_id: '3',
+          children: [{
+            label: '品类1',
+            id: '1',
+            parent_id: '1'
+          }, {
+            label: '品类2',
+            id: '2',
+            parent_id: '1'
+          }, {
+            label: '品类3',
+            id: '3',
+            parent_id: '1'
+          }]
+        }, {
+          label: '小类3',
+          id: '6',
+          parent_id: '3',
+          children: [{
+            label: '品类1',
+            id: '1',
+            parent_id: '1'
+          }, {
+            label: '品类2',
+            id: '2',
+            parent_id: '1'
+          }]
+        }]
+      }],
+      selectedBigCategory: [],
+      selectedSmallCategory: []
 
     }
   },
   created() {
     this.getList()
+  },
+  watch: {
+
+    // 侦听勾选的选项
+    bigCategory: {
+      handler(val, oldVal) {
+        // 设置已选中的大类, 过滤selected==='1'
+        this.selectedBigCategory = this._.filter(this.bigCategory, (o) => o.selected === '1')
+
+        // 深拷贝, 否则会循环监听bigCategory, 后续会修改o.children
+        this.selectedSmallCategory = JSON.parse(JSON.stringify(this.selectedBigCategory))
+
+        // 设置已勾选的小类, 过滤selected==='1'
+        this._.forEach(this.selectedSmallCategory, (o) => {
+          o.children = this._.filter(o.children, (o1) => o1.selected === '1')
+        })
+      },
+      deep: true
+    }
   },
   methods: {
     async getList(param) {
@@ -104,20 +296,20 @@ export default {
     add() {
       this.$router.push({ path: 'add' })
     },
-    edit(id) {
+    edit(value) {
       this.$router.push({
         path: 'edit',
-        query: { id }
+        query: { value }
       })
     },
-    del(id) {
+    del(value) {
       this.$confirm('是否删除?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       })
         .then(() => {
-          delCategory(id)
+          delCategory(value)
             .then((response) => {
               this.$message({
                 type: 'success',

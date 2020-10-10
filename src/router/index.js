@@ -61,7 +61,7 @@ const routes = [
   // addressRouter,
   // goodorderRouter,
   // orderitemRouter,
-  // categoryRouter,
+  categoryRouter,
   // colorRouter,
   // materialRouter,
   // patternRouter,
