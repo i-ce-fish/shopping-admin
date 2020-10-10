@@ -18,7 +18,7 @@
       </y-form>
     </el-card>
     <y-table
-        :data="testsData"
+        :data="testData"
         :pagination="pagination"
         @sortBy="sortBy"
         @changePage4List="getList"
@@ -27,8 +27,8 @@
       <template>
 
         <el-table-column
-            prop="field1"
-            label="字段1"
+            prop="id"
+            label="id"
             align="center"
 
         >
@@ -36,8 +36,8 @@
         </el-table-column>
 
         <el-table-column
-            prop="field2"
-            label="字段2"
+            prop="description"
+            label="description"
             align="center"
 
         >
@@ -45,8 +45,8 @@
         </el-table-column>
 
         <el-table-column
-            prop="field3"
-            label="字段2"
+            prop="display_name"
+            label="display_name"
             align="center"
 
         >
@@ -66,12 +66,13 @@
 </template>
 <script>
 import { getTests, delTest } from '@/api/test'
+import { getGoodsizes, delGoodsize } from '@/api/goodsize'
 
 export default {
   data() {
     return {
       testForm: {},
-      testsData: [],
+      testData: [],
       pagination: {
         pageNumber: 1,
         pageSize: 10
