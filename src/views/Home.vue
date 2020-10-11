@@ -1,5 +1,7 @@
 <template>
   <div class="dashboard app-container">
+    爷组件
+    <father></father>
     <el-row type="flex">
       <el-col v-for="i in 4" :key="i">
         <el-card class="box-card">
@@ -156,11 +158,13 @@
 <script>
 import Tinymce from '@/components/tinymce/tinymce.vue'
 import wxHome from '@/views/mock-wx/home.vue'
+import father from '@/views/test/demo/father'
 
 export default {
   components: {
     Tinymce,
-    wxHome
+    wxHome,
+    father
   },
   data() {
     return {
@@ -175,8 +179,7 @@ export default {
   created() {
   },
 
-  methods: {
-  }
+  methods: {}
 }
 </script>
 <style lang="scss" scoped>
