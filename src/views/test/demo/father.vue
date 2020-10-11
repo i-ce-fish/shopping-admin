@@ -9,6 +9,7 @@
 import input from '@/views/test/demo/input'
 
 export default {
+  // 注册组件
   components: { userInput: input },
   data() {
     return {
