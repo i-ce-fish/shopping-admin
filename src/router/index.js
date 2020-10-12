@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Layout from '@/layout'
 // import paperRouter from "./modules/paper"
+import goodpatternRouter from '@/router/modules/goodpattern'
 import articleRouter from './modules/article'
 import catalogRouter from './modules/catalog'
 import customerRouter from './modules/customer'
@@ -13,11 +14,11 @@ import goodorderRouter from './modules/goodorder'
 import orderitemRouter from './modules/orderitem'
 import categoryRouter from './modules/category'
 import colorRouter from './modules/color'
-import patternRouter from './modules/pattern'
 import materialRouter from './modules/material'
 import supplyRouter from './modules/supply'
 import goodbrandRouter from './modules/goodbrand'
 import testRouter from './modules/test'
+import goodfabricRouter from './modules/goodfabric'
 
 Vue.use(VueRouter)
 
@@ -66,6 +67,9 @@ const routes = [
   // materialRouter,
   // patternRouter,
   // supplyRouter,
+
+  goodpatternRouter,
+  goodfabricRouter,
   {
     path: '/demo',
     name: 'test',

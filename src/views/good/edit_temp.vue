@@ -337,7 +337,7 @@
           <y-dialog
             v-model="materialDialog1"
             :title="materialTitle"
-            @confirm="confirmMaterial('1')"
+            @cfm="confirmMaterial('1')"
             @close="closeMaterial('1')"
           >
             <template slot="body">
@@ -355,7 +355,7 @@
           <y-dialog
             v-model="materialDialog2"
             :title="materialTitle"
-            @confirm="confirmMaterial('2')"
+            @cfm="confirmMaterial('2')"
             @close="closeMaterial('2')"
           >
             <template slot="body">
@@ -380,7 +380,7 @@
           <y-dialog
             v-model="colorDialog"
             :title="colorSizeTitle"
-            @confirm="confirmColorSize('color')"
+            @cfm="confirmColorSize('color')"
             @close="closeColorSize('color')"
           >
             <template slot="body">
@@ -415,7 +415,7 @@
           <y-dialog
             v-model="sizeDialog"
             :title="colorSizeTitle"
-            @confirm="confirmColorSize('size')"
+            @cfm="confirmColorSize('size')"
             @close="closeColorSize('size')"
           >
             <template slot="body">

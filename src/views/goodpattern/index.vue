@@ -1,23 +1,20 @@
 <template>
   <div class="app-container">
-    <el-card>
-      <div slot="header">
-        <span>搜索条件</span>
-      </div>
-      <y-form
-        ref="patternForm"
-        :model="patternForm"
-        label-width="80px"
-      >
 
+    <el-card>
+      <y-form
+          ref="goodpatternForm"
+          :model="goodpatternForm"
+          label-width="80px"
+      >
         <el-row>
 
           <el-col :span="6">
-            <el-form-item label="图案名称:" prop="name">
+            <el-form-item label="图案名称:" prop="pattern_name">
 
               <y-input
 
-                v-model="patternForm.name"
+                  v-model="goodpatternForm.pattern_name"
 
               />
             </el-form-item>
@@ -28,7 +25,7 @@
         <el-row type="flex" align="space-between">
           <el-col>
             <el-button type="primary" @click="onSearch">查询</el-button>
-            <el-button @click="reset" class="y-m-l-10">重置</el-button>
+            <el-button @click="reset" class="y-mr-l-10">重置</el-button>
           </el-col>
           <el-button type="success" @click="add">添加图案</el-button>
 
@@ -36,31 +33,37 @@
       </y-form>
     </el-card>
     <y-table
-      :data="patternsData"
-      :pagination="pagination"
-      @sortBy="sortBy"
-      @changePage4List="getList">
+        :data="goodpatternsData"
+        :pagination="pagination"
+        @sortBy="sortBy"
+        @changePage4List="getList"
+        class="y-p-t-20"
+    >
       <template>
 
         <el-table-column
-          prop="name"
-          label="图案名称"
+            prop="pattern_name"
+            label="图案名称"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-          prop="pic"
-          label="图案图片"
+            v-if="$route.meta.children"
+            prop="parent_id"
+            label="父级图案名称"
+            align="center"
 
         >
 
         </el-table-column>
 
-        <el-table-column label="操作" width="100px">
+        <el-table-column label="操作" width="100px" align="center">
           <template slot-scope="{row}">
             <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
+            <el-divider direction="vertical"></el-divider>
             <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
           </template>
         </el-table-column>
@@ -69,13 +72,13 @@
   </div>
 </template>
 <script>
-import { getPatterns, delPattern } from '@/api/pattern'
+import { getGoodpatterns, delGoodpattern } from '@/api/goodpattern'
 
 export default {
   data() {
     return {
-      patternForm: {},
-      patternsData: [],
+      goodpatternForm: {},
+      goodpatternsData: [],
       pagination: {
         pageNumber: 1,
         pageSize: 10
@@ -84,27 +87,29 @@ export default {
     }
   },
   created() {
-    this.getList()
+    this.getList(this.$route.meta.children ? '' : { parent_id: 0 })
   },
   methods: {
     async getList(param) {
-      const response = await getPatterns(
+      const { data } = await getGoodpatterns(
         {
           ...param,
           page: this.pagination.pageNumber,
           pagesize: this.pagination.pageSize
         }
       )
-      this.patternsData = response.data.list
-      this.pagination.total = response.data.pagination.total
+      this.goodpatternsData = data.list
+      this.pagination.total = data.pagination.total
     },
 
     add() {
-      this.$router.push({ path: 'add' })
+      this.$router.push({
+        path: this.$route.meta.children ? 'children/add' : 'add'
+      })
     },
     edit(id) {
       this.$router.push({
-        path: 'edit',
+        path: this.$route.meta.children ? 'children/edit' : 'edit',
         query: { id }
       })
     },
@@ -115,7 +120,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          delPattern(id)
+          delGoodpattern(id)
             .then((response) => {
               this.$message({
                 type: 'success',
@@ -132,13 +137,13 @@ export default {
         })
     },
     onSearch(sort) {
-      this.getList({ ...this.patternForm, ...sort })
+      this.getList({ ...this.goodpatternForm, ...sort })
     },
     sortBy(e) {
       this.onSearch(e)
     },
     reset() {
-      this.patternForm = {}
+      this.goodpatternForm = {}
       this.getList()
     }
   }

@@ -63,7 +63,7 @@ export default {
     },
     confirm() {
       // 父组件控制是否添加成功后决定是否隐藏
-      this.$emit('confirm')
+      this.$emit('cfm')
     }
   }
 }

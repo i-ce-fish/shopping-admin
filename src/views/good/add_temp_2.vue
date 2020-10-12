@@ -111,7 +111,7 @@
               </div>
               <y-dialog
                 v-model="showCategoryFrom"
-                @confirm="submitDialogForm('categoryFrom','showCategoryFrom','getCategoryList')"
+                @cfm="submitDialogForm('categoryFrom','showCategoryFrom','getCategoryList')"
               >
                 <categoryFrom ref="categoryFrom"/>
               </y-dialog>

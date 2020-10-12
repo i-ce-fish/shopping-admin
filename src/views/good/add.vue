@@ -23,10 +23,10 @@
         </el-row>
       </div>
       <y-form
-        ref="goodForm"
-        :model="goodForm"
-        :rules="goodRules"
-        label-width="100px"
+          ref="goodForm"
+          :model="goodForm"
+          :rules="goodRules"
+          label-width="100px"
       >
         <el-collapse v-model="activeName1" class="coll">
           <el-collapse-item name="1">
@@ -47,14 +47,14 @@
                 <div><span style="color: red">*</span>&nbsp;上传商品主图</div>
                 <el-form-item label="" prop="main_pic" label-width="">
                   <y-upload-image-single
-                    v-model="goodForm.main_pic"
-                    width="400px"
-                    height="400px"
+                      v-model="goodForm.main_pic"
+                      width="400px"
+                      height="400px"
                   />
                 </el-form-item>
                 <el-alert
-                  v-if="showTips1"
-                  type="info">
+                    v-if="showTips1"
+                    type="info">
                   小贴士: <br/>
                   1. 上传的第1张图片，叫主图。相当于货品的“身份证照片”。<br/>
                   2. 主图只能是 1 张图，若上传 2 张图，后一张图将替换掉前一张。<br/>
@@ -67,16 +67,16 @@
 
                   <div style="width:485px;max-height:420px;overflow-y: scroll;">
                     <y-upload-image
-                      v-model="goodForm.carousels"
-                      class="upload-carousels"
+                        v-model="goodForm.carousels"
+                        class="upload-carousels"
                     />
 
                   </div>
                 </el-form-item>
                 <el-alert
-                  v-if="showTips1"
-                  type="info"
-                  style="max-width: 485px;"
+                    v-if="showTips1"
+                    type="info"
+                    style="max-width: 485px;"
                 >
                   建议上传商品的：侧面图、背后图、模特搭配穿法图、细节图等等。
                 </el-alert>
@@ -105,20 +105,20 @@
                 <el-col :span="14">
                   <el-form-item label="进货品牌" prop="brand" label-width="100px">
                     <y-select
-                      v-model="goodForm.brand"
-                      :options="brandOptions"
-                      filterable
-                      class="y-p-r-10"
+                        v-model="goodForm.brand"
+                        :options="brandOptions"
+                        filterable
+                        class="y-p-r-10"
                     ></y-select>
                     <el-button type="primary" plain @click="showBrandForm=!showBrandForm">新增品牌名称</el-button>
-                    <y-dialog v-model="showBrandForm" title="新增品牌名称" @confirm="cfmAddBrand">
+                    <y-dialog v-model="showBrandForm" title="新增品牌名称"   @cfm="cfmAddForm('addFormBrand','showBrandForm')">
                       <add-form-brand ref="addFormBrand" style="line-height: 1"></add-form-brand>
                     </y-dialog>
 
                   </el-form-item>
                   <el-alert
-                    v-if="showTips2"
-                    type="info"
+                      v-if="showTips2"
+                      type="info"
                   >
                     小贴士:<br/>
                     1. 把进货品牌换掉后的品牌叫展示品牌。<br/>
@@ -129,15 +129,15 @@
                 <el-col :span="10">
                   <el-form-item label="品牌说头" prop="value15" label-width="100px">
                     <y-input
-                      v-model="goodForm.value132"
-                      placeholder="请输入（举例：美国新起的潮牌）"
-                      type="textarea"
-                      rows="1"
+                        v-model="goodForm.value132"
+                        placeholder="请输入（举例：美国新起的潮牌）"
+                        type="textarea"
+                        rows="1"
                     ></y-input>
                   </el-form-item>
                   <el-alert
-                    v-if="showTips2"
-                    type="info"
+                      v-if="showTips2"
+                      type="info"
                   >
                     小贴士:<br/>
                     1. 随手输入简短的几个字，为编写产品故事提供灵感。<br/>
@@ -166,14 +166,14 @@
                 <el-col :span="14">
                   <el-form-item label="选择性别: " prop="field123" label-width="100px">
                     <y-radio
-                      v-model="goodForm.brand"
-                      :options="SEX"
-                      class="y-p-r-10"
+                        v-model="goodForm.brand"
+                        :options="SEX"
+                        class="y-p-r-10"
                     ></y-radio>
                   </el-form-item>
                   <el-alert
-                    v-if="showTips2"
-                    type="info"
+                      v-if="showTips2"
+                      type="info"
                   >
                     小贴士:<br/>
                     如打包纸袋、纸箱等，性别为“其他”
@@ -182,10 +182,10 @@
                 <el-col :span="10">
                   <el-form-item label="性别说头" prop="value15" label-width="100px">
                     <y-input
-                      v-model="goodForm.value132"
-                      placeholder="请输入（举例：中性款但偏男性 ）"
-                      type="textarea"
-                      rows="1"
+                        v-model="goodForm.value132"
+                        placeholder="请输入（举例：中性款但偏男性 ）"
+                        type="textarea"
+                        rows="1"
                     ></y-input>
                   </el-form-item>
                 </el-col>
@@ -233,9 +233,9 @@
                           <el-col :span="8">
                             <div>
                               <el-tag
-                                effect="plain"
-                                type="info"
-                                color="">大类
+                                  effect="plain"
+                                  type="info"
+                                  color="">大类
                               </el-tag>
                             </div>
                             <div>
@@ -284,8 +284,8 @@
                     </el-row>
                   </el-form-item>
                   <el-alert
-                    v-if="showTips2"
-                    type="info"
+                      v-if="showTips2"
+                      type="info"
                   >
                     小贴士:<br/>
                     如打包纸袋、纸箱等，性别为“其他”
@@ -314,7 +314,7 @@
                     <el-col :span="12">
                       <el-form-item label="主色色系" prop="value15" label-width="100px">
                         <y-select
-                          v-model="goodForm.value132"
+                            v-model="goodForm.value132"
                         ></y-select>
                       </el-form-item>
                     </el-col>
@@ -322,16 +322,16 @@
 
                       <el-form-item label="色系编码" prop="value15" label-width="100px">
                         <y-select
-                          v-model="goodForm.value132"
-                          disabled
+                            v-model="goodForm.value132"
+                            disabled
                         ></y-select>
                       </el-form-item>
                     </el-col>
                     <el-col :span="12">
                       <el-form-item label="主色名称" prop="value15" label-width="100px">
                         <y-select
-                          v-model="goodForm.value132"
-                          filterable
+                            v-model="goodForm.value132"
+                            filterable
                         ></y-select>
                       </el-form-item>
                     </el-col>
@@ -339,7 +339,7 @@
 
                       <el-form-item label="主色编码" prop="value15" label-width="100px">
                         <y-select
-                          v-model="goodForm.value132"
+                            v-model="goodForm.value132"
                         ></y-select>
                       </el-form-item>
                     </el-col>
@@ -350,7 +350,7 @@
 
                       <el-form-item label="辅色色系" prop="value15" label-width="100px">
                         <y-select
-                          v-model="goodForm.value132"
+                            v-model="goodForm.value132"
                         ></y-select>
                       </el-form-item>
                     </el-col>
@@ -360,9 +360,9 @@
                 <el-col :span="8">
                   <el-form-item label="颜色说头" prop="value15" label-width="100px">
                     <y-input
-                      v-model="goodForm.value132"
-                      type="textarea"
-                      rows="2"
+                        v-model="goodForm.value132"
+                        type="textarea"
+                        rows="2"
                     ></y-input>
                   </el-form-item>
                 </el-col>
@@ -387,20 +387,36 @@
                 <el-col :span="14">
                   <el-form-item label="商品图案" prop="value15" label-width="100px">
                     <y-select
-                      v-model="goodForm.value132"
-                      class="y-p-r-10"
+                        v-model="goodForm.value132"
+                        class="y-p-r-10"
                     ></y-select>
-                    <el-button type="primary" plain>新增图案名</el-button>
+                    <el-button type="primary" @click="showPattern2=true" plain>新增图案名称</el-button>
                   </el-form-item>
 
+                  <y-dialog
+                      class="category-form"
+                      v-model="showPattern2"
+                      title="新增二级图案名称"
+                      @cfm="cfmAddForm('addFormPattern2','showPattern2')">
+                    <add-form-pattern ref="addFormPattern2" :children="true"></add-form-pattern>
+                    <el-button slot="footer" type="primary" @click="showPattern1=true">添加一级分类名称</el-button>
+                  </y-dialog>
+                  <y-dialog
+                      class="category-form"
+                      v-model="showPattern1"
+                      title="新增一级图案名称"
+                      width="60%"
+                      @cfm="cfmAddForm('addFormPattern1','showPattern1')">
+                    <add-form-pattern ref="addFormPattern1" :children="false"></add-form-pattern>
+                  </y-dialog>
                   <el-alert>小贴士：<br/>图案名称是区别货品的主要特征之一。进入商品名称字段。无图案+无辅色=净色</el-alert>
                 </el-col>
                 <el-col :span="10">
                   <el-form-item label="图案说头" prop="value15" label-width="100px">
                     <y-input
-                      v-model="goodForm.value132"
-                      type="textarea"
-                      rows="2"
+                        v-model="goodForm.value132"
+                        type="textarea"
+                        rows="2"
                     ></y-input>
                   </el-form-item>
                 </el-col>
@@ -426,8 +442,8 @@
                 <el-col :span="14">
                   <el-form-item label="大身名称" prop="value15" label-width="100px">
                     <y-select
-                      v-model="goodForm.value132"
-                      class="y-p-r-10"
+                        v-model="goodForm.value132"
+                        class="y-p-r-10"
                     ></y-select>
                   </el-form-item>
 
@@ -436,9 +452,9 @@
                 <el-col :span="10">
                   <el-form-item label="面料名称说头" prop="value15" label-width="100px">
                     <y-input
-                      v-model="goodForm.value132"
-                      type="textarea"
-                      rows="2"
+                        v-model="goodForm.value132"
+                        type="textarea"
+                        rows="2"
                     ></y-input>
                   </el-form-item>
                 </el-col>
@@ -460,14 +476,14 @@
                       <el-col :span="13">
                         <el-form-item label="衬里名称" prop="value11235" label-width="100px">
                           <y-input
-                            v-model="goodForm.value132"
+                              v-model="goodForm.value132"
                           ></y-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="13">
                         <el-form-item label="填充物名称" prop="value11235" label-width="100px">
                           <y-input
-                            v-model="goodForm.value132"
+                              v-model="goodForm.value132"
                           ></y-input>
                         </el-form-item>
                       </el-col>
@@ -498,36 +514,36 @@
                 <el-col :span="14">
                   <el-row type="flex">
 
-                    <el-col >
+                    <el-col>
                       <el-form-item label="大身材质1:" prop="value15" label-width="100px">
                         <y-select
-                          v-model="goodForm.value132"
-                          filterable
-                          placeholder="请选择/输入"
+                            v-model="goodForm.value132"
+                            filterable
+                            placeholder="请选择/输入"
 
                         ></y-select>
                       </el-form-item>
                       <el-form-item label="材质2:" prop="value15" label-width="100px">
                         <y-select
-                          v-model="goodForm.value132"
-                          filterable
-                          placeholder="请选择/输入"
+                            v-model="goodForm.value132"
+                            filterable
+                            placeholder="请选择/输入"
 
                         ></y-select>
                       </el-form-item>
 
                     </el-col>
-                    <el-col >
+                    <el-col>
                       <el-form-item label="占比:" prop="value15" label-width="50px">
                         <y-number
-                          v-model="goodForm.value112332"
-                          :precision="1"
+                            v-model="goodForm.value112332"
+                            :precision="1"
                         ></y-number>
                       </el-form-item>
                       <el-form-item label="占比:" prop="value15" label-width="50px">
                         <y-number
-                          v-model="goodForm.value112312332"
-                          :precision="1"
+                            v-model="goodForm.value112312332"
+                            :precision="1"
                         ></y-number>
                       </el-form-item>
                     </el-col>
@@ -541,9 +557,9 @@
                 <el-col :span="10">
                   <el-form-item label="材质说头" prop="value15" label-width="100px">
                     <y-input
-                      v-model="goodForm.value132"
-                      type="textarea"
-                      rows="2"
+                        v-model="goodForm.value132"
+                        type="textarea"
+                        rows="2"
                     ></y-input>
                   </el-form-item>
                 </el-col>
@@ -564,41 +580,41 @@
                       <el-col :span="14">
                         <el-row type="flex">
 
-                          <el-col >
+                          <el-col>
                             <el-form-item label="衬里材质:" prop="value15" label-width="100px">
                               <y-select
-                                v-model="goodForm.value132"
-                                filterable
-                                placeholder="请选择/输入"
+                                  v-model="goodForm.value132"
+                                  filterable
+                                  placeholder="请选择/输入"
 
                               ></y-select>
                             </el-form-item>
                             <el-form-item label="填充物材质:" prop="value15" label-width="100px">
                               <y-select
-                                v-model="goodForm.value132"
-                                filterable
-                                placeholder="请选择/输入"
+                                  v-model="goodForm.value132"
+                                  filterable
+                                  placeholder="请选择/输入"
                               ></y-select>
                             </el-form-item>
 
                           </el-col>
-                          <el-col >
+                          <el-col>
                             <el-form-item label="占比:" prop="value15" label-width="100px">
                               <y-number
-                                v-model="goodForm.value112332"
-                                :precision="1"
+                                  v-model="goodForm.value112332"
+                                  :precision="1"
                               ></y-number>
                             </el-form-item>
                             <el-form-item label="填充物数量:" prop="value15" label-width="100px">
                               <y-number
-                                v-model="goodForm.value112312332"
-                                :precision="1"
+                                  v-model="goodForm.value112312332"
+                                  :precision="1"
                               ></y-number>
                             </el-form-item>
                             <el-form-item label="填充物重量:" prop="value15" label-width="100px">
                               <y-number
-                                v-model="goodForm.value112312332"
-                                :precision="1"
+                                  v-model="goodForm.value112312332"
+                                  :precision="1"
                               ></y-number>
                             </el-form-item>
                           </el-col>
@@ -609,9 +625,9 @@
                       <el-col :span="10">
                         <el-form-item label="材质说头" prop="value15" label-width="100px">
                           <y-input
-                            v-model="goodForm.value132"
-                            type="textarea"
-                            rows="2"
+                              v-model="goodForm.value132"
+                              type="textarea"
+                              rows="2"
                           ></y-input>
                         </el-form-item>
                       </el-col>
@@ -643,9 +659,9 @@
                   <h4>材质1-棉花</h4>
                   <el-form-item label="基本功能特点:">
                     <y-tag-input
-                      @del="test"
-                      @cfm="test"
-                      :options="[{id: 1,value: 1,label: 'tag1'}]"></y-tag-input>
+                        @del="test"
+                        @cfm="test"
+                        :options="[{id: 1,value: 1,label: 'tag1'}]"></y-tag-input>
                   </el-form-item>
                   <el-form-item label="基本功能缺点:">
                     <y-tag-input @del="test" @cfm="test">
@@ -658,9 +674,9 @@
                   <h4>材质2-化纤</h4>
                   <el-form-item label="常规优点:">
                     <y-tag-input
-                      @del="test"
-                      @cfm="test"
-                      :options="[{id: 1,value: 1,label: 'tag1111111111111'}]"></y-tag-input>
+                        @del="test"
+                        @cfm="test"
+                        :options="[{id: 1,value: 1,label: 'tag1111111111111'}]"></y-tag-input>
                   </el-form-item>
                   <el-form-item label="常规缺点:">
                     <y-tag-input @del="test" @cfm="test">
@@ -670,11 +686,11 @@
                 </div>
               </el-card>
 
-              <el-row  class="y-m-t-10">
+              <el-row class="y-m-t-10">
                 <el-form-item label="本产品特殊功能:" label-width="150px">
                   <y-tag-input
-                    @del="test"
-                    @cfm="test"
+                      @del="test"
+                      @cfm="test"
                   ></y-tag-input>
                 </el-form-item>
               </el-row>
@@ -686,11 +702,11 @@
               <div class=" y-flex ">
                 <div class="coll-item-title"><span class="y-p-r-10">纺织特征</span>
                 </div>
-<!--                <div>-->
-<!--                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>-->
-<!--                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明-->
-<!--                  </el-button>-->
-<!--                </div>-->
+                <!--                <div>-->
+                <!--                  <el-button type="primary" icon="el-icon-edit" size="mini"></el-button>-->
+                <!--                  <el-button @click.stop="showTips2=!showTips2" icon="el-icon-thumb" size="mini" plain>操作说明-->
+                <!--                  </el-button>-->
+                <!--                </div>-->
               </div>
               <div>已选择信息3 已选择信息2 已选择信息1</div>
             </div>
@@ -705,7 +721,7 @@
                     <el-button type="primary" plain>新增图案名</el-button>
                   </el-form-item>
 
-<!--                  <el-alert>小贴士：<br/>图案名称是区别货品的主要特征之一。进入商品名称字段。无图案+无辅色=净色</el-alert>-->
+                  <!--                  <el-alert>小贴士：<br/>图案名称是区别货品的主要特征之一。进入商品名称字段。无图案+无辅色=净色</el-alert>-->
                 </el-col>
                 <el-col :span="10">
                   <el-form-item label="面料工艺说头" prop="value15" label-width="100px">
@@ -728,7 +744,8 @@
 <script>
 import YUploadImageSingle from '@/components/y-upload-image-single'
 import YDialog from '@/components/y-dialog'
-import addForm from '@/views/goodbrand/addForm'
+import addFormBrand from '@/views/goodbrand/addForm'
+import addFormPattern from '@/views/goodpattern/addForm'
 import { SEX } from '@/utils/const'
 import YTagInput from '@/components/y-tag-input'
 
@@ -737,7 +754,8 @@ export default {
     YUploadImageSingle,
     YDialog,
     YTagInput,
-    addFormBrand: addForm
+    addFormBrand,
+    addFormPattern
   },
   data() {
     return {
@@ -984,7 +1002,11 @@ export default {
       }, {
         value: '03',
         label: '以纯03'
-      }]
+      }],
+      // 展示添加二级图案对话框
+      showPattern2: false,
+      // 展示添加一级图案对话框
+      showPattern1: false
     }
   },
   created() {
@@ -994,6 +1016,11 @@ export default {
     cfmAddBrand() {
       this.$refs.addFormBrand.submit(() => {
         this.showBrandForm = false
+      })
+    },
+    cfmAddForm(ref, showForm) {
+      this.$refs[ref].submit(() => {
+        this[showForm] = false
       })
     }
   }

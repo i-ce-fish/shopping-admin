@@ -30,48 +30,52 @@
             v-model="o.selected"
             :label="o.label"
             v-for="(o,i) in bigCategory"
-            :key="i"
+            :key="o+i"
             true-label="1"
             false-label="0"
         >
         </el-checkbox>
-      </el-card>
 
-      <el-card
-          v-for="(o1,i1) in selectedBigCategory"
-          :key="i1"
-      >
-        {{o1.label}}
-        <el-checkbox
-            v-for="(o2,i2) in o1.children"
-            :key="i2"
-            v-model="o2.selected"
-            :label="o2.label"
-            true-label="1"
-            false-label="0">
-        </el-checkbox>
-      </el-card>
-
-      <!--       fix : key 重复-->
-      <div
-          v-for="(o1,i1) in selectedSmallCategory"
-          :key="i1+o1.id"
-      >
         <el-card
-            v-for="(o2,i2) in o1.children"
-            :key="i2">
-          {{o1.label}}>{{o2.label}}
+            v-for="(bigCategory1,i1) in selectedBigCategory"
+            :key="i1"
+        >
+          {{bigCategory1.label}}
           <el-checkbox
-              v-for="(o3,i3) in o2.children"
-              :key="i3"
-              v-model="o3.selected"
-              :label="o3.label"
+              v-for="(smallCategory,i2) in bigCategory1.children"
+              :key="i2"
+              v-model="smallCategory.selected"
+              :label="smallCategory.label"
               true-label="1"
               false-label="0">
           </el-checkbox>
-        </el-card>
 
-      </div>
+          <!--       :key="i1+o1.id" =>  fix  key 重复-->
+          <div
+              v-for="(bigCategory2,i1) in selectedSmallCategory"
+              :key="i1+bigCategory2.id"
+          >
+            <!-- todo 用id做判断-->
+            <div v-if="bigCategory1.label===bigCategory2.label">
+              <el-card
+                  v-for="(smallCategory,i2) in bigCategory2.children"
+                  :key="i2">
+                {{bigCategory1.label}}>{{smallCategory.label}}
+                <el-checkbox
+                    v-for="(category,i3) in smallCategory.children"
+                    :key="i3"
+                    v-model="category.selected"
+                    :label="category.label"
+                    true-label="1"
+                    false-label="0">
+                </el-checkbox>
+              </el-card>
+            </div>
+
+          </div>
+        </el-card>
+      </el-card>
+
     </div>
 
   </div>
