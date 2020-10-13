@@ -8,7 +8,7 @@
                     :rules="goodtextureRules"
                     label-width="100px"
             >
-                <el-row>
+                <el-row :gutter="20">
 
                     <el-col :span="12">
                         <el-form-item

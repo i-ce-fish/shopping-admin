@@ -54,9 +54,19 @@
             prop="texture_alias"
             label="材质纤维大类别名"
             align="center"
-
         >
-
+        </el-table-column>
+        <el-table-column
+            prop="texture2nd"
+            label="材质纤维小类名称"
+            align="center"
+        >
+        </el-table-column>
+        <el-table-column
+            prop="texture2ndAlias"
+            label="材质纤维小类别名"
+            align="center"
+        >
         </el-table-column>
 
         <el-table-column
@@ -64,9 +74,11 @@
             label="是否需要填写成分含量"
             align="center"
 
-            width="150px"
+            width="200px"
         >
-
+          <template slot-scope="{row}">
+            {{row.filled_content == 0 ? "否" : "是"}}
+          </template>
         </el-table-column>
 
         <el-table-column label="操作" width="100px" align="center">
@@ -99,6 +111,7 @@ export default {
     this.getList()
   },
   methods: {
+
     async getList(param) {
       const { data } = await getGoodtextures(
         {
@@ -107,7 +120,8 @@ export default {
           pagesize: this.pagination.pageSize
         }
       )
-      this.goodtexturesData = data.list
+
+      this.goodtexturesData = this._.filter(data.list, (o) => o.parent.id !== 0)
       this.pagination.total = data.pagination.total
     },
 

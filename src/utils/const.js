@@ -9,6 +9,18 @@
  *  使用对象格式以便获取value/label , 而且v-for支持遍历对象(Object.keys)
  *
  */
+
+// 判断是否选项
+const JUDGE = {
+  TRUE: {
+    value: '1',
+    label: '是'
+  },
+  FALSE: {
+    value: '0',
+    label: '否'
+  }
+}
 // 性别选项
 const SEX = {
   MALE: {
@@ -171,5 +183,6 @@ const ARTICLE = {
 export {
   GOOD_BRAND,
   ARTICLE,
-  SEX
+  SEX,
+  JUDGE
 }

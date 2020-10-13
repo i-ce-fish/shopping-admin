@@ -8,7 +8,7 @@
           :rules="goodtextureRules"
           label-width="100px"
       >
-        <el-row>
+        <el-row :gutter="20">
 
           <el-col :span="12">
             <el-form-item
@@ -46,10 +46,11 @@
             <el-form-item
                 label="是否需要填写成分含量:"
                 prop="filled_content"
+                label-width="160px"
 
             >
 
-              <y-select
+              <y-radio
 
                   v-model="goodtextureForm.filled_content"
 
@@ -64,16 +65,17 @@
                 prop="parent_id"
 
             >
-
               <y-select
 
                   v-model="goodtextureForm.parent_id"
+                  :options="goodtextures1"
+                  valueName="id"
+                  labelName="texture"
 
               />
-
             </el-form-item>
-          </el-col>
 
+          </el-col>
           <el-col>
             <el-row type="flex" justify="end">
               <el-form-item>
@@ -89,20 +91,46 @@
 </template>
 
 <script>
-import { addGoodtexture } from '@/api/goodtexture'
+import { addGoodtexture, getGoodtextures } from '@/api/goodtexture'
 
 export default {
 
   data() {
     return {
-      goodtextureForm: {},
-      goodtextureRules: {}
+      goodtextureForm: {
+        parent_id: 1
+      },
+      goodtextureRules: {},
+      // 第1级材质纤维
+      goodtextures1: [],
+      options: [{
+        value: '选项1',
+        label: '黄金糕'
+      }, {
+        value: '选项2',
+        label: '双皮奶'
+      }, {
+        value: '选项3',
+        label: '蚵仔煎'
+      }, {
+        value: '选项4',
+        label: '龙须面'
+      }, {
+        value: '选项5',
+        label: '北京烤鸭'
+      }],
+      value: '选项1'
 
     }
   },
   created() {
+    this.getTextures({ parent_id: 0 })
   },
   methods: {
+    async getTextures(param) {
+      const { data } = await getGoodtextures({ ...param })
+      this.goodtextures1 = data.list
+    },
     async addGoodtexture() {
       await addGoodtexture(this.goodtextureForm)
       this.$router.push({ path: '/goodtexture' })

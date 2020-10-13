@@ -1,6 +1,5 @@
 <template>
   <y-tooltip :tips="tips">
-
     <el-select
         :id="id"
         v-model="result"
@@ -34,8 +33,8 @@
       <el-option
           v-for="item in innerOptions"
           :key="item.value"
-          :label="item.label"
-          :value="item.value"
+          :label="labelName?item[labelName]:item.label"
+          :value="valueName?item[valueName]:item.value"
           :disabled="item.disabled"
       />
     </el-select>
@@ -53,9 +52,8 @@ export default {
       type: Boolean,
       default: false
     },
-    // 数字类型的value有bug，导致选中后label不显示
+    // 严格区分类型
     value: {
-      String,
       required: true
     },
     // api 数据格式与组件数据格式转换
@@ -143,8 +141,7 @@ export default {
   data() {
     return {
       // ajax数据滞后，要加非空判断
-      // value 为id 时是Number类型
-      result: this.value?.toString(),
+      result: this.value,
       // 作为内部数据使用
       innerOptions: this.options
     }
@@ -153,8 +150,10 @@ export default {
   watch: {
     value(val) {
       // 搜索表单重置后为空，要有非空判断
-      // value 为id 时是Number类型
-      this.result = val?.toString()
+      this.result = val
+    },
+    options(val) {
+      this.innerOptions = val
     }
   },
   created() {
@@ -164,7 +163,7 @@ export default {
   },
   methods: {
     change() {
-      this.$emit('input', this.result.toString())
+      this.$emit('input', this.result)
     },
     focus(e) {
       this.$emit('focus', e)
@@ -175,10 +174,12 @@ export default {
           url: this.api,
           method: 'get'
         })
-        this.innerOptions = res.data.list.map((item) => ({
-          label: item[this.labelName],
-          value: item[this.valueName]?.toString()
-        }))
+        // todo 未测试
+        this.innerOptions = res.data.list
+        //     .map((item) => ({
+        //   label: item[this.labelName],
+        //   value: item[this.valueName]?.toString()
+        // }))
       }
     }
   }
