@@ -14,11 +14,11 @@ import goodorderRouter from './modules/goodorder'
 import orderitemRouter from './modules/orderitem'
 import categoryRouter from './modules/category'
 import colorRouter from './modules/color'
-import materialRouter from './modules/material'
 import supplyRouter from './modules/supply'
 import goodbrandRouter from './modules/goodbrand'
 import testRouter from './modules/test'
 import goodfabricRouter from './modules/goodfabric'
+import goodtextureRouter from './modules/goodtexture'
 
 Vue.use(VueRouter)
 
@@ -70,6 +70,7 @@ const routes = [
 
   goodpatternRouter,
   goodfabricRouter,
+  goodtextureRouter,
   {
     path: '/demo',
     name: 'test',
