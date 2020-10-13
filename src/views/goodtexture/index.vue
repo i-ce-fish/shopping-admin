@@ -121,7 +121,7 @@ export default {
         }
       )
 
-      this.goodtexturesData = this._.filter(data.list, (o) => o.parent.id !== 0)
+      this.goodtexturesData = this._.filter(data.list, (o) => o.parent_id !== 0)
       this.pagination.total = data.pagination.total
     },
 
