@@ -6,28 +6,21 @@
           :model="goodtextureForm"
           label-width="80px"
       >
-
         <el-row>
-
           <el-col :span="6">
             <el-form-item label="材质纤维大类:" prop="texture">
-
               <y-input
-
                   v-model="goodtextureForm.texture"
-
               />
             </el-form-item>
           </el-col>
-
         </el-row>
-
         <el-row type="flex" align="space-between">
           <el-col>
             <el-button type="primary" @click="onSearch">查询</el-button>
             <el-button @click="reset" class="y-mr-l-10">重置</el-button>
           </el-col>
-          <el-button type="success" @click="add">添加材质名称</el-button>
+          <el-button type="success" @click="add">添加材质纤维小类名称</el-button>
 
         </el-row>
       </y-form>
@@ -57,13 +50,13 @@
         >
         </el-table-column>
         <el-table-column
-            prop="texture2nd"
+            prop="texture2"
             label="材质纤维小类名称"
             align="center"
         >
         </el-table-column>
         <el-table-column
-            prop="texture2ndAlias"
+            prop="texture2Alias"
             label="材质纤维小类别名"
             align="center"
         >
@@ -94,12 +87,15 @@
 </template>
 <script>
 import { getGoodtextures, delGoodtexture } from '@/api/goodtexture'
+import { isInteger } from 'lodash'
 
 export default {
   data() {
     return {
       goodtextureForm: {},
       goodtexturesData: [],
+      // 大类
+      goodtextures1Map: new Map(),
       pagination: {
         pageNumber: 1,
         pageSize: 10
@@ -107,10 +103,24 @@ export default {
 
     }
   },
-  created() {
-    this.getList()
+  async created() {
+    // 获取1级分类, 不带分页
+    await this.getAllList()
+    // todo parent_id !==0
+    await this.getList()
   },
   methods: {
+    async getAllList() {
+      const { data } = await getGoodtextures({ parent_id: 0 })
+      // todo 接口完善后remove filter
+      this.goodtextures1Map = new Map()
+      this._.chain(data.list)
+        .filter((o) => o.parent_id === 0)
+        .forEach((o) => {
+          this.goodtextures1Map.set(o.id, { ...o })
+        })
+        .value()
+    },
 
     async getList(param) {
       const { data } = await getGoodtextures(
@@ -120,8 +130,20 @@ export default {
           pagesize: this.pagination.pageSize
         }
       )
-
-      this.goodtexturesData = this._.filter(data.list, (o) => o.parent_id !== 0)
+      this._.forEach(data.list, (o) => {
+        // todo remove [if]after new api
+        // if (o.parent_id !== 0) {
+        o.texture2 = o.texture
+        o.texture2Alias = o.texture_alias
+        const father = this.goodtextures1Map.get(o.parent_id)
+        // todo remove after new api
+        if (father) {
+          o.texture = father.texture
+          o.texture_alias = father.texture_alias
+        }
+        // }
+      })
+      this.goodtexturesData = data.list
       this.pagination.total = data.pagination.total
     },
 
@@ -135,11 +157,12 @@ export default {
       })
     },
     del(id) {
-      this.$confirm('是否删除?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
+      this.$confirm('是否删除?', '提示',
+        {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
         .then(() => {
           delGoodtexture(id)
             .then((response) => {

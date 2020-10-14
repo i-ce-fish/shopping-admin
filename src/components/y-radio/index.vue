@@ -28,7 +28,7 @@ import { JUDGE } from '@/utils/const'
 
 export default {
   props: {
-    value: [Boolean, String],
+    value: [Boolean, String, Number],
     options:
         {
           type: [Array, Object],

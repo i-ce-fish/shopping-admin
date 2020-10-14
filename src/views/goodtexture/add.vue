@@ -97,30 +97,10 @@ export default {
 
   data() {
     return {
-      goodtextureForm: {
-        parent_id: 1
-      },
+      goodtextureForm: {},
       goodtextureRules: {},
       // 第1级材质纤维
-      goodtextures1: [],
-      options: [{
-        value: '选项1',
-        label: '黄金糕'
-      }, {
-        value: '选项2',
-        label: '双皮奶'
-      }, {
-        value: '选项3',
-        label: '蚵仔煎'
-      }, {
-        value: '选项4',
-        label: '龙须面'
-      }, {
-        value: '选项5',
-        label: '北京烤鸭'
-      }],
-      value: '选项1'
-
+      goodtextures1: []
     }
   },
   created() {

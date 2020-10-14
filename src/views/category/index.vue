@@ -26,54 +26,73 @@
 
     <div>
       <el-card>
-        <el-checkbox
-            v-model="o.selected"
-            :label="o.label"
-            v-for="(o,i) in bigCategory"
-            :key="o+i"
-            true-label="1"
-            false-label="0"
-        >
-        </el-checkbox>
+        <el-collapse v-model="collapse1">
 
-        <el-card
-            v-for="(bigCategory1,i1) in selectedBigCategory"
-            :key="i1"
-        >
-          {{bigCategory1.label}}
-          <el-checkbox
-              v-for="(smallCategory,i2) in bigCategory1.children"
-              :key="i2"
-              v-model="smallCategory.selected"
-              :label="smallCategory.label"
-              true-label="1"
-              false-label="0">
-          </el-checkbox>
+          <el-collapse-item :name="1">
 
-          <!--       :key="i1+o1.id" =>  fix  key 重复-->
-          <div
-              v-for="(bigCategory2,i1) in selectedSmallCategory"
-              :key="i1+bigCategory2.id"
-          >
-            <!-- todo 用id做判断-->
-            <div v-if="bigCategory1.label===bigCategory2.label">
-              <el-card
-                  v-for="(smallCategory,i2) in bigCategory2.children"
-                  :key="i2">
-                {{bigCategory1.label}}>{{smallCategory.label}}
-                <el-checkbox
-                    v-for="(category,i3) in smallCategory.children"
-                    :key="i3"
-                    v-model="category.selected"
-                    :label="category.label"
-                    true-label="1"
-                    false-label="0">
-                </el-checkbox>
-              </el-card>
+            <el-checkbox
+                v-model="o.selected"
+                :label="o.label"
+                v-for="(o,i) in bigCategory"
+                :key="o+i"
+                true-label="1"
+                false-label="0"
+            >
+            </el-checkbox>
+          </el-collapse-item>
+        </el-collapse>
+        <el-collapse v-model="collapse2">
+
+          <el-card
+              v-for="(bigCategory1,i1) in selectedBigCategory"
+              :key="i1">
+
+            <el-collapse-item
+
+                :name="bigCategory1.id"
+                :title="bigCategory1.label"
+            >
+              <el-checkbox
+                  v-for="(smallCategory,i2) in bigCategory1.children"
+                  :key="i2"
+                  v-model="smallCategory.selected"
+                  :label="smallCategory.label"
+                  true-label="1"
+                  false-label="0"
+                  @change="onChange1"
+              >
+              </el-checkbox>
+
+            </el-collapse-item>
+
+            <!--       :key="i1+o1.id" =>  fix  key 重复-->
+            <div
+                v-for="(bigCategory2,i1) in selectedSmallCategory"
+                :key="i1+bigCategory2.id"
+            >
+              <!-- todo 用id做判断-->
+              <div v-if="bigCategory1.label===bigCategory2.label">
+                <el-card
+                    v-for="(smallCategory,i2) in bigCategory2.children"
+                    :key="i2">
+                  <el-checkbox
+                      v-for="(category,i3) in smallCategory.children"
+                      :key="i3"
+                      v-model="category.selected"
+                      :label="category.label"
+                      true-label="1"
+                      false-label="0"
+                      @change="onChange2(bigCategory1.id)"
+                  >
+                  </el-checkbox>
+                </el-card>
+              </div>
+
             </div>
+          </el-card>
 
-          </div>
-        </el-card>
+        </el-collapse>
+
       </el-card>
 
     </div>
@@ -258,12 +277,16 @@ export default {
         }]
       }],
       selectedBigCategory: [],
-      selectedSmallCategory: []
-
+      selectedSmallCategory: [],
+      // 控制大类折叠
+      collapse1: [1],
+      // 控制小类折叠 , 循环组件的索引是数字类型
+      collapse2: [0, 1, 2]
     }
   },
   created() {
     this.getList()
+    this.initCollData()
   },
   watch: {
 
@@ -338,6 +361,23 @@ export default {
     reset() {
       this.categoryForm = {}
       this.getList()
+    },
+    initCollData() {
+      this._.forEach(this.bigCategory, (o) => {
+        this.collapse2.push(o.id)
+      })
+      // this.collapse2 = [...new Array(this.bigCategory.length).keys()]
+    },
+    // 折叠大类
+    onChange1(e) {
+      this.collapse1 = ''
+    },
+    // 折叠当前品类的父级小类
+    onChange2(fatherId) {
+      const idx = this.collapse2.indexOf(fatherId)
+      if (idx > -1) {
+        this.collapse2.splice(idx, 1)
+      }
     }
   }
 }

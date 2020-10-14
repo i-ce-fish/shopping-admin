@@ -13,11 +13,11 @@
 // 判断是否选项
 const JUDGE = {
   TRUE: {
-    value: '1',
+    value: 1,
     label: '是'
   },
   FALSE: {
-    value: '0',
+    value: 0,
     label: '否'
   }
 }
