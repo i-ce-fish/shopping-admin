@@ -24,11 +24,17 @@
       </y-form>
     </el-card>
 
-    <div>
-      <el-card>
+    <div class="y-p-t-20">
+      <el-card
+          class="bigCategory"
+      >
         <el-collapse v-model="collapse1">
 
           <el-collapse-item :name="1">
+            <div slot="title" class="y-flex y-align-between y-col-24">
+              <div class="y-font-16 y-font-blod">商品大类</div>
+              <div>已选择大类1</div>
+            </div>
 
             <el-checkbox
                 v-model="o.selected"
@@ -45,13 +51,18 @@
 
           <el-card
               v-for="(bigCategory1,i1) in selectedBigCategory"
-              :key="i1">
+              :key="i1"
+          >
 
             <el-collapse-item
 
                 :name="bigCategory1.id"
-                :title="bigCategory1.label"
             >
+
+              <div slot="title" class="y-flex y-align-between y-col-24">
+                <div class="y-font-14 y-font-blod">商品小类</div>
+                <div>已选择小类</div>
+              </div>
               <el-checkbox
                   v-for="(smallCategory,i2) in bigCategory1.children"
                   :key="i2"
@@ -75,16 +86,24 @@
                 <el-card
                     v-for="(smallCategory,i2) in bigCategory2.children"
                     :key="i2">
-                  <el-checkbox
-                      v-for="(category,i3) in smallCategory.children"
-                      :key="i3"
-                      v-model="category.selected"
-                      :label="category.label"
-                      true-label="1"
-                      false-label="0"
-                      @change="onChange2(bigCategory1.id)"
-                  >
-                  </el-checkbox>
+                  <el-collapse v-model="collapse3">
+                    <el-collapse-item :name="i2">
+                      <div slot="title" class="y-flex y-align-between y-col-24">
+                        <div class="y-font-14 y-font-blod">商品品类</div>
+                      </div>
+                      <el-checkbox
+                          v-for="(category,i3) in smallCategory.children"
+                          :key="i3"
+                          v-model="category.selected"
+                          :label="category.label"
+                          true-label="1"
+                          false-label="0"
+                          @change="onChange2(bigCategory1.id)"
+                      ></el-checkbox>
+
+                    </el-collapse-item>
+                  </el-collapse>
+
                 </el-card>
               </div>
 
@@ -281,7 +300,9 @@ export default {
       // 控制大类折叠
       collapse1: [1],
       // 控制小类折叠 , 循环组件的索引是数字类型
-      collapse2: [0, 1, 2]
+      collapse2: [0, 1, 2],
+      // 控制品类折叠
+      collapse3: []
     }
   },
   created() {
@@ -363,10 +384,17 @@ export default {
       this.getList()
     },
     initCollData() {
+      let maxCategoryLen = 1
       this._.forEach(this.bigCategory, (o) => {
         this.collapse2.push(o.id)
+        // 计算所有大类中小类的最大数量, 用于默认展开品类的折叠面板 , 不同大类的小类都根据这个最大值来进行默认展开, 否则嵌套再嵌套太麻烦了
+        this._.forEach(o.children, (o2) => {
+          const { length } = o2.children
+          maxCategoryLen = length > maxCategoryLen ? length : maxCategoryLen
+        })
       })
-      // this.collapse2 = [...new Array(this.bigCategory.length).keys()]
+      // 根据length生成[0-length] 的数组
+      this.collapse3 = [...new Array(maxCategoryLen).keys()]
     },
     // 折叠大类
     onChange1(e) {
@@ -385,6 +413,23 @@ export default {
 
 <style lang='scss' scoped>
 .app-container {
+  // 清除element组件默认的样式
+  /deep/ .el-collapse-item__header,
+  /deep/ .el-collapse-item__wrap,
+  /deep/ .el-collapse {
+    background-color: transparent;
+    border: 0;
+  }
 
+  .bigCategory {
+    /deep/ .el-card__body {
+      background-color: #dfeefe
+    }
+
+    /deep/ .el-collapse {
+      background-color: #dfeefe
+
+    }
+  }
 }
 </style>
