@@ -6,20 +6,35 @@
           :model="categoryForm"
           label-wvalueth="80px"
       >
-        <el-col :span="6">
-          <el-form-item label="大类:" prop="label">
-            <y-input
-                v-model="categoryForm.label"
-            />
-          </el-form-item>
-        </el-col>
-        <el-row type="flex" align="space-between">
-          <el-col>
-            <el-button type="primary" @click="onSearch">查询</el-button>
-            <el-button @click="reset" class="y-mr-l-10">重置</el-button>
-          </el-col>
-          <el-button type="success" @click="add">添加测试模板</el-button>
+        <el-row>
 
+          <el-col :span="12">
+            <el-row :gutter="10" type="flex">
+              <y-select
+                  v-model="categoryForm.label"
+              />
+              <el-col>
+                <el-form-item label="" label-width="0" prop="label">
+                  <y-input placeholder="请输入"></y-input>
+                </el-form-item>
+              </el-col>
+              <el-col>
+                <el-button type="primary" @click="onSearch">查询</el-button>
+                <el-button @click="reset" class="y-mr-l-10">重置</el-button>
+              </el-col>
+            </el-row>
+
+          </el-col>
+
+          <el-col :span="12">
+
+            <el-alert>小贴士: 本店的商品分类分为三级。举例:</el-alert>
+            <div class="y-m-t-10">
+
+              <categoryDemo lCategory="裤子" sCategory="牛仔裤" xs-category="牛仔长裤" xs-code="66"></categoryDemo>
+
+            </div>
+          </el-col>
         </el-row>
       </y-form>
     </el-card>
@@ -43,8 +58,15 @@
                 :key="o+i"
                 true-label="1"
                 false-label="0"
+                border
             >
             </el-checkbox>
+
+            <el-row type="flex" justify="end">
+              <el-button type="primary">修改大类</el-button>
+              <el-button type="danger">选定删除</el-button>
+              <el-button type="success">新增大类</el-button>
+            </el-row>
           </el-collapse-item>
         </el-collapse>
         <el-collapse v-model="collapse2">
@@ -52,6 +74,7 @@
           <el-card
               v-for="(bigCategory1,i1) in selectedBigCategory"
               :key="i1"
+              class="smallCategory"
           >
 
             <el-collapse-item
@@ -70,10 +93,15 @@
                   :label="smallCategory.label"
                   true-label="1"
                   false-label="0"
+                  border
                   @change="onChange1"
               >
               </el-checkbox>
-
+              <el-row type="flex" justify="end">
+                <el-button type="primary">修改大类</el-button>
+                <el-button type="danger">选定删除</el-button>
+                <el-button type="success">新增大类</el-button>
+              </el-row>
             </el-collapse-item>
 
             <!--       :key="i1+o1.id" =>  fix  key 重复-->
@@ -85,22 +113,29 @@
               <div v-if="bigCategory1.label===bigCategory2.label">
                 <el-card
                     v-for="(smallCategory,i2) in bigCategory2.children"
-                    :key="i2">
-                  <el-collapse v-model="collapse3">
+                    :key="i2"
+                    class="XSCategory"
+                >
+                  <el-collapse v-model="collapse3[i1]">
                     <el-collapse-item :name="i2">
                       <div slot="title" class="y-flex y-align-between y-col-24">
                         <div class="y-font-14 y-font-blod">商品品类</div>
                       </div>
                       <el-checkbox
-                          v-for="(category,i3) in smallCategory.children"
+                          v-for="(XSCategory,i3) in smallCategory.children"
                           :key="i3"
-                          v-model="category.selected"
-                          :label="category.label"
+                          v-model="XSCategory.selected"
+                          :label="XSCategory.label"
                           true-label="1"
                           false-label="0"
+                          border
                           @change="onChange2(bigCategory1.id)"
                       ></el-checkbox>
-
+                      <el-row type="flex" justify="end">
+                        <el-button type="primary">修改大类</el-button>
+                        <el-button type="danger">选定删除</el-button>
+                        <el-button type="success">新增大类</el-button>
+                      </el-row>
                     </el-collapse-item>
                   </el-collapse>
 
@@ -120,9 +155,10 @@
 </template>
 <script>
 import { getCategories, delCategory } from '@/api/category'
+import categoryDemo from '@/views/category/component/demo'
 
 export default {
-  components: {},
+  components: { categoryDemo },
   data() {
     return {
 
@@ -384,17 +420,16 @@ export default {
       this.getList()
     },
     initCollData() {
-      let maxCategoryLen = 1
-      this._.forEach(this.bigCategory, (o) => {
+      this._.forEach(this.bigCategory, (o, i) => {
         this.collapse2.push(o.id)
-        // 计算所有大类中小类的最大数量, 用于默认展开品类的折叠面板 , 不同大类的小类都根据这个最大值来进行默认展开, 否则嵌套再嵌套太麻烦了
+
+        // 将大类中的小类的品类折叠设置成默认展开; eg:[[1,2,3],[1,2]]
         this._.forEach(o.children, (o2) => {
           const { length } = o2.children
-          maxCategoryLen = length > maxCategoryLen ? length : maxCategoryLen
+          // 数组索引赋值不是响应式的, 要手动更新
+          this.$set(this.collapse3, i, [...new Array(length).keys()])
         })
       })
-      // 根据length生成[0-length] 的数组
-      this.collapse3 = [...new Array(maxCategoryLen).keys()]
     },
     // 折叠大类
     onChange1(e) {
@@ -421,15 +456,100 @@ export default {
     border: 0;
   }
 
+  // 文字颜色
+  /deep/ .el-checkbox__label {
+    color: #606266;
+  }
+
+  // 大类
   .bigCategory {
+    // el-card的20px背景色
     /deep/ .el-card__body {
       background-color: #dfeefe
     }
 
     /deep/ .el-collapse {
       background-color: #dfeefe
+    }
+
+    //  未激活的边框颜色
+    /deep/ .el-checkbox.is-bordered {
+      border-color: #298DF833;
+    }
+
+    // 激活后的背景颜色
+    /deep/ .el-checkbox.is-bordered.is-checked {
+      background-color: #298DF833
+    }
+
+    // 文字颜色
+    /deep/ .el-checkbox__label {
+      color: #606266;
+    }
+
+  }
+
+  .smallCategory {
+    /deep/ .el-card__body {
+      background-color: #FFE1DD
+    }
+
+    /deep/ .el-collapse {
+      background-color: #FFE1DD
+    }
+
+    //  未激活的边框颜色
+    /deep/ .el-checkbox.is-bordered {
+      border-color: #EF706033;
+    }
+
+    // 激活后的背景颜色
+    /deep/ .el-checkbox.is-bordered.is-checked {
+      background-color: #EF706033
+    }
+
+    // 勾选框的边框颜色
+    /deep/ .el-checkbox__inner {
+      border-color: #EF7060;
+    }
+
+    // 激活后的勾选框的背景颜色
+    /deep/ .is-checked .el-checkbox__inner {
+      background-color: #EF7060;
+    }
+
+  }
+
+  .XSCategory {
+    /deep/ .el-card__body {
+      background-color: #D6E1D0
+    }
+
+    /deep/ .el-collapse {
+      background-color: #D6E1D0
 
     }
+
+    //  未激活的边框颜色
+    /deep/ .el-checkbox.is-bordered {
+      border-color: #badaaa;
+    }
+
+    // 激活后的背景颜色
+    /deep/ .el-checkbox.is-bordered.is-checked {
+      background-color: #badaaa
+    }
+
+    // 勾选框的边框颜色
+    /deep/ .el-checkbox__inner {
+      border-color: #66C23940;
+    }
+
+    // 激活后的勾选框的背景颜色
+    /deep/ .is-checked .el-checkbox__inner {
+      background-color: #66c239;
+    }
+
   }
 }
 </style>

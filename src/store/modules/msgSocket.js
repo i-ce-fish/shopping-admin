@@ -23,6 +23,7 @@ const actions = {
   init({ commit, state, dispatch }, user) {
     return new Promise((resolve) => {
       const ws = new WebSocket('ws://127.0.0.1:8887')
+      console.log('init')
       commit('SET_SOCKET', ws)
       dispatch('receive')
       resolve()

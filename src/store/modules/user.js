@@ -1,5 +1,6 @@
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { login } from '@/api/login'
+import store from '@/store'
 
 const state = {
   token: getToken(),
@@ -40,7 +41,7 @@ const actions = {
     return new Promise(async(resolve) => {
       const res = await login(userForm)
       commit('SET_TOKEN', res.data.token)
-      dispatch('initWebsocket')
+      store.dispatch('msgSocket/init')
       resolve()
     })
   }
