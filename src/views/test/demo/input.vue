@@ -1,10 +1,12 @@
 <template>
-  <div style="background-color:#00ff80;padding: 5px">
+  <div style="background-color:#a8f3ce;padding: 5px">
     子组件<br/>
     接收的外部参数width:{{ width }}<br/>
     内部参数:innerData:{{ innerData }}<br/>
     <input v-model="innerData" @input="onInput" :style="{width:width}"/>
-
+    <slot  :childData="childData2" :otherData="{name:'576767'}"></slot>
+    <br/>
+    <slot name="footer"></slot>
   </div>
 </template>
 <script>
@@ -21,11 +23,18 @@ export default {
       default: '100px',
       // 是否必须
       required: false
+    },
+    method: {
+      type: Function,
+      default: () => {
+        console.log('son methos')
+      }
     }
   },
   data() {
     return {
-      innerData: ''
+      innerData: '',
+      childData2: '子组件的数据'
     }
   },
   methods: {
@@ -33,6 +42,7 @@ export default {
     // emit一个名为tigger的事件,并传出this.innerData作为参数,
     onInput() {
       this.$emit('trigger', this.innerData)
+      this.method(123)
     }
   }
 

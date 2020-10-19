@@ -27,6 +27,8 @@ const actions = {
       commit('SET_SOCKET', ws)
       dispatch('receive')
       resolve()
+    }).catch((rej) => {
+      console.log('init websocket error', rej)
     })
   },
   send({ commit, state }, msg) {

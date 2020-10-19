@@ -86,8 +86,16 @@ export default {
 
     }
   },
+  watch: {
+    $route: {
+      handler(newRouter) {
+        // 两个路由渲染相同的组件时候,复用的组件不会被重新创建, 生命周期也不会执行
+        this.getList(this.$route.meta.children ? '' : { parent_id: 0 })
+      },
+      immediate: true
+    }
+  },
   created() {
-    this.getList(this.$route.meta.children ? '' : { parent_id: 0 })
   },
   methods: {
     async getList(param) {
