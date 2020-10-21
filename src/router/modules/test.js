@@ -9,7 +9,10 @@ const testRouter = {
     path: 'index',
     name: 'index',
     component: () => import('@/views/test/index'),
-    meta: { title: '测试模板管理', icon: 'tree' }
+    meta: {
+      title: '测试模板管理',
+      icon: 'tree'
+    }
   }, {
     path: 'edit',
     component: () => import('@/views/test/edit'),
@@ -21,6 +24,10 @@ const testRouter = {
     component: () => import('@/views/test/add'),
     hidden: true,
     meta: { title: '添加测试模板' }
+  }, {
+    path: 'demo/index',
+    component: () => import('@/views/test/demo/index'),
+    hidden: true
   }
   ]
 }
