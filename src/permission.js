@@ -20,14 +20,15 @@ router.beforeEach(async(to, from, next) => {
   document.title = to.meta.title || 'cms'
 
   // determine whether the user has logged in
-  const hasToken = getToken()
-  // console.log('token',hasToken)
+  // const hasToken = getToken()
+  const hasToken = store.getters.token
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
       next({ path: '/' })
       NProgress.done()
     } else {
+      // todo 需要判断是否含有userinfo , 没有就通过token请求获取
       const hasGetUserInfo = store.getters.name
       if (hasGetUserInfo) {
         next()

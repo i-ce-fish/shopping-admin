@@ -42,29 +42,32 @@
       <template>
 
         <el-table-column
-prop="category"
-                         label="面料类别"
-                         align="center"
+            prop="category"
+            label="面料类别"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="name"
-                         label="面料名称"
-                         align="center"
+            prop="name"
+            label="面料名称"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="fabric_alias"
-                         label="面料别名"
-                         align="center"
+            prop="fabric_alias"
+            label="面料别名"
+            align="center"
 
         >
+<!--          <div style="font-size: 20px;">test-->
+<!--            <div>123</div>-->
+<!--          </div>-->
 
         </el-table-column>
 

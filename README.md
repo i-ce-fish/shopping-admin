@@ -97,7 +97,58 @@ vue.config.js   webpack配置
 
 ### 几个文件DEMO
 
-router写法
+#### api
+```javascript
+// 以品牌管理模块为例
+import request from '@/utils/request'
+
+export function getBrands(params) {
+  return request({
+    url: '/api/brands',
+    method: 'get',
+    params
+  })
+}
+
+export function getBrand(id) {
+  return request({
+    url: `/api/brands/${id}`,
+    method: 'get'
+  })
+}
+
+export function addBrand(data) {
+  return request({
+    url: '/api/brands',
+    method: 'post',
+    data
+  })
+}
+
+export function putBrand(id, data) {
+  return request({
+    url: `/api/brands/${id}`,
+    method: 'put',
+    data
+  })
+}
+
+export function delBrand(id) {
+  return request({
+    url: `/api/brands/${id}`,
+    method: 'delete'
+  })
+}
+
+```
+
+#### index列表页
+
+#### add
+
+#### edit
+
+#### router写法
 ```javascript
  {
     path: "/",
@@ -111,7 +162,7 @@ router写法
     }]
   }
 ```
-表单校验写法
+#### 表单校验写法
 ```javascript
       rules: {
         email: [
@@ -129,7 +180,7 @@ router写法
       }
 ```
 
-Vuex写法
+#### Vuex写法
 ```javascript
 
  computed: {

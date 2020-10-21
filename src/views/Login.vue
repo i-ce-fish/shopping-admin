@@ -51,11 +51,9 @@ export default {
       this.$router.push('/Register')
     },
     async login() {
-      const res = await login(this.form)
-      if (res.data.token) {
-        this.$store.dispatch('user/setToken', res.data.token)
-        this.$router.push('/')
-      }
+      // 含有ajax
+      await this.$store.dispatch('user/login', this.form)
+      this.$router.push('/')
     }
   }
 }

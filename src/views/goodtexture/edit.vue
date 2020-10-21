@@ -1,118 +1,126 @@
 <template>
-    <div class="card-container">
-        <el-card class="box-card">
-            <h3>修改材质名称</h3>
-            <y-form
-                    ref="goodtextureForm"
-                    :model="goodtextureForm"
-                    :rules="goodtextureRules"
-                    label-width="100px"
+  <div class="card-container">
+    <el-card class="box-card">
+      <h3>修改材质名称</h3>
+      <y-form
+          ref="goodtextureForm"
+          :model="goodtextureForm"
+          :rules="goodtextureRules"
+          label-width="100px"
+      >
+        <el-row :gutter="20">
+
+          <el-col :span="12">
+            <el-form-item
+                label="材质纤维大类:"
+                prop="texture"
+
             >
-                <el-row>
 
-                    <el-col :span="12">
-                        <el-form-item
-label="材质纤维大类:"
-prop="texture"
+              <y-input
 
-                        >
+                  v-model="goodtextureForm.texture"
 
-                                <y-input
+              />
 
-                            v-model="goodtextureForm.texture"
+            </el-form-item>
+          </el-col>
 
-                            />
+          <el-col :span="12">
+            <el-form-item
+                label="材质纤维大类别名:"
+                prop="texture_alias"
 
-                        </el-form-item>
-                    </el-col>
+            >
 
-                    <el-col :span="12">
-                        <el-form-item
-label="材质纤维大类别名:"
-prop="texture_alias"
+              <y-input
 
-                        >
+                  v-model="goodtextureForm.texture_alias"
 
-                                <y-input
+              />
 
-                            v-model="goodtextureForm.texture_alias"
+            </el-form-item>
+          </el-col>
 
-                            />
+          <el-col :span="12">
+            <el-form-item
+                label="是否需要填写成分含量:"
+                prop="filled_content"
+                label-width="160px"
 
-                        </el-form-item>
-                    </el-col>
+            >
 
-                    <el-col :span="12">
-                        <el-form-item
-label="是否需要填写成分含量:"
-prop="filled_content"
+              <y-radio
 
-                        >
+                  v-model="goodtextureForm.filled_content"
 
-                                <y-select
+              />
 
-                            v-model="goodtextureForm.filled_content"
+            </el-form-item>
+          </el-col>
 
-                            />
+          <el-col :span="12">
+            <el-form-item
+                label="归属材质大类:"
+                prop="parent_id"
 
-                        </el-form-item>
-                    </el-col>
+            >
 
-                    <el-col :span="12">
-                        <el-form-item
-label="归属材质大类:"
-prop="parent_id"
+              <y-select
 
-                        >
+                  v-model="goodtextureForm.parent_id"
+                  :options="goodtextures1"
+                  valueName="id"
+                  labelName="texture"
 
-                                <y-select
+              />
 
-                            v-model="goodtextureForm.parent_id"
+            </el-form-item>
+          </el-col>
 
-                            />
+          <el-col>
+            <el-row type="flex" justify="end">
 
-                        </el-form-item>
-                    </el-col>
-
-                    <el-col >
-                      <el-row type="flex" justify="end">
-
-                      <el-form-item>
-                            <el-button @click="submit('goodtextureForm')" type="primary">提交</el-button>
-                            <el-button @click="back">返回</el-button>
-                        </el-form-item>
-                      </el-row>
-                    </el-col>
-                </el-row>
-            </y-form>
-        </el-card>
-    </div>
+              <el-form-item>
+                <el-button @click="submit('goodtextureForm')" type="primary">提交</el-button>
+                <el-button @click="back">返回</el-button>
+              </el-form-item>
+            </el-row>
+          </el-col>
+        </el-row>
+      </y-form>
+    </el-card>
+  </div>
 </template>
 
 <script>
 
-import { putGoodtexture, getGoodtexture } from '@/api/goodtexture'
+import { putGoodtexture, getGoodtexture, getGoodtextures } from '@/api/goodtexture'
 
 export default {
 
   data() {
     return {
-      goodtextureForm: {},
-      goodtextureRules: {
-
-      }
-
+      goodtextureForm: {
+      },
+      goodtextureRules: {},
+      // 第1级材质纤维
+      goodtextures1: []
     }
   },
   created() {
+    this.getTextures({ parent_id: 0 })
     this.getGoodtexture()
   },
   methods: {
+    async getTextures(param) {
+      const { data } = await getGoodtextures({ ...param })
+      this.goodtextures1 = data.list
+    },
     async getGoodtexture() {
       const res = await getGoodtexture(this.$route.query.id)
       this.goodtextureForm = res.data
     },
-
     async putGoodtexture() {
       await putGoodtexture(this.$route.query.id, this.goodtextureForm)
       this.$router.push({ path: '/goodtexture' })
@@ -136,9 +144,9 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-    .card-container {
-        .box-card {
+.card-container {
+  .box-card {
 
-        }
-    }
+  }
+}
 </style>

@@ -78,12 +78,12 @@ export default {
   },
   methods: {
     change() {
-      this.$emit('input', this.result.toString())
+      this.$emit('input', this.result)
     },
     changeInput(e) {
       // todo tab键无效
       this.result = e.target.value
-      this.$emit('input', this.result.toString())
+      this.$emit('input', this.result)
     }
   }
 }

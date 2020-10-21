@@ -1,5 +1,6 @@
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { login } from '@/api/login'
+import store from '@/store'
 
 const state = {
   token: getToken(),
@@ -20,8 +21,6 @@ const actions = {
   setToken({ commit }, token) {
     return new Promise((resolve) => {
       commit('SET_TOKEN', token)
-      // todo 添加角色 v-permission需要用
-      commit('SET_ROLES', ['admin'])
       setToken(token)
       resolve()
     })
@@ -39,8 +38,11 @@ const actions = {
   login({ commit, dispatch }, userForm) {
     return new Promise(async(resolve) => {
       const res = await login(userForm)
-      commit('SET_TOKEN', res.data.token)
-      dispatch('initWebsocket')
+      store.dispatch('user/setToken', res.data.token)
+      // todo 添加角色 v-permission需要用
+      commit('SET_ROLES', ['admin'])
+
+      store.dispatch('msgSocket/init')
       resolve()
     })
   }

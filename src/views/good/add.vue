@@ -111,7 +111,7 @@
                         class="y-p-r-10"
                     ></y-select>
                     <el-button type="primary" plain @click="showBrandForm=!showBrandForm">新增品牌名称</el-button>
-                    <y-dialog v-model="showBrandForm" title="新增品牌名称"   @cfm="cfmAddForm('addFormBrand','showBrandForm')">
+                    <y-dialog v-model="showBrandForm" title="新增品牌名称" @cfm="cfmAddForm('addFormBrand','showBrandForm')">
                       <add-form-brand ref="addFormBrand" style="line-height: 1"></add-form-brand>
                     </y-dialog>
 
@@ -229,52 +229,7 @@
                         </el-tabs>
                       </y-dialog>
                       <el-col style="width: 500px">
-                        <el-row :gutter="10" type="flex" class="tag-category">
-                          <el-col :span="8">
-                            <div>
-                              <el-tag
-                                  effect="plain"
-                                  type="info"
-                                  color="">大类
-                              </el-tag>
-                            </div>
-                            <div>
-                              <el-tag effect="light" type="info">
-                                裤子
-                              </el-tag>
-                            </div>
-                          </el-col>
-                          <el-col :span="8">
-                            <div>
-                              <el-tag effect="plain" type="info">
-                                小类
-                              </el-tag>
-                            </div>
-                            <div>
-                              <el-tag effect="light" type="info">
-                                牛仔裤
-                              </el-tag>
-                            </div>
-                          </el-col>
-                          <el-col :span="8">
-                            <div>
-                              <el-tag effect="plain" type="info">
-                                品类
-                              </el-tag>
-                              <el-tag style="width: 50px;" effect="plain" type="info">
-                                代码
-                              </el-tag>
-                            </div>
-                            <div>
-                              <el-tag effect="light" type="info">
-                                牛仔长裤
-                              </el-tag>
-                              <el-tag style="width: 50px;" effect="light" type="info">
-                                66
-                              </el-tag>
-                            </div>
-                          </el-col>
-                        </el-row>
+                        <categoryDemo lCategory="裤子" sCategory="牛仔裤" xs-category="牛仔长裤" xs-code="66"></categoryDemo>
                       </el-col>
                       <el-col :span="4">
                         <el-button type="primary" plain>新增大类</el-button>
@@ -748,6 +703,7 @@ import addFormBrand from '@/views/goodbrand/addForm'
 import addFormPattern from '@/views/goodpattern/addForm'
 import { SEX } from '@/utils/const'
 import YTagInput from '@/components/y-tag-input'
+import categoryDemo from '@/views/category/component/demo'
 
 export default {
   components: {
@@ -755,7 +711,8 @@ export default {
     YDialog,
     YTagInput,
     addFormBrand,
-    addFormPattern
+    addFormPattern,
+    categoryDemo
   },
   data() {
     return {
@@ -1037,16 +994,6 @@ export default {
 
 .coll-item-body {
   margin: 20px 0
-}
-
-.tag-category {
-  line-height: 1;
-
-  .el-tag--plain.el-tag--info, .el-tag.el-tag--info {
-    width: 100px;
-    text-align: center;
-    color: #606266
-  }
 }
 
 .title-slot {
