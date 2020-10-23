@@ -1,268 +1,131 @@
 <template>
   <div class="app-container">
-    <el-card>
-      <y-form
-          ref="testForm"
-          :model="testForm"
-          label-width="80px"
-      >
+    {{checkedList}}
+    <el-collapse v-model="collapse">
 
-        <el-row type="flex" align="space-between">
-          <el-col>
-            <el-button type="primary" @click="onSearch">查询</el-button>
-            <el-button @click="reset" class="y-mr-l-10">重置</el-button>
-          </el-col>
-          <el-button type="success" @click="add">添加测试模板</el-button>
+      <el-collapse-item v-for="(o1,i1) in headerList" :key="i1" :name="i1" :title="'第'+i1+'组'">
+        <el-checkbox-group v-model="checkedList">
+          <el-checkbox
+              v-for="(o2,i2) in o1"
+              :key="i2"
+              :label="o2"
+              :checked="o2.checked"
+          >
+            {{o2.label}}
+          </el-checkbox>
+        </el-checkbox-group>
+      </el-collapse-item>
 
-        </el-row>
-      </y-form>
-    </el-card>
-    <!--    <y-table-->
-    <!--        :data="testData"-->
-    <!--        :pagination="pagination"-->
-    <!--        @sortBy="sortBy"-->
-    <!--        @changePage4List="getList"-->
-    <!--        class="y-p-t-20"-->
-    <!--    >-->
-    <!--      <template>-->
+    </el-collapse>
+    <div>
 
-    <!--        <el-table-column-->
-    <!--            prop="id"-->
-    <!--            label="id"-->
-    <!--            align="center"-->
+    </div>
+    <drag-table :header="checkedList" :table-data="tableData"></drag-table>
+    <!--    <div class="y-m-t-10"></div>-->
+    <!--    <el-radio-group v-model="test">-->
+    <!--      <el-popover-->
+    <!--          placement="top-start"-->
+    <!--          width="200"-->
+    <!--          trigger="hover">-->
+    <!--        <div>-->
+    <!--          <el-image-->
+    <!--              style="width: 100%; height: 100%"-->
+    <!--              src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"-->
+    <!--              fit="contain"></el-image>-->
+    <!--        </div>-->
+    <!--        <div slot="reference">-->
+    <!--          <el-radio :label="1">无袖</el-radio>-->
+    <!--        </div>-->
+    <!--      </el-popover>-->
+    <!--      <el-popover-->
+    <!--          placement="top-start"-->
+    <!--          width="200"-->
+    <!--          trigger="hover">-->
+    <!--        <div>-->
+    <!--          <el-image-->
+    <!--              style="width: 100%; height: 100%"-->
+    <!--              src="https://cdn4.buysellads.net/uu/1/3386/1525189943-38523.png"-->
+    <!--              fit="contain"></el-image>-->
+    <!--        </div>-->
+    <!--        <div slot="reference">-->
+    <!--          <el-radio :label="2" class="y-p-t-20">有袖</el-radio>-->
+    <!--        </div>-->
+    <!--      </el-popover>-->
+    <!--    </el-radio-group>-->
 
-    <!--        >-->
-
-    <!--        </el-table-column>-->
-
-    <!--        <el-table-column-->
-    <!--            prop="description"-->
-    <!--            label="description"-->
-    <!--            align="center"-->
-
-    <!--        >-->
-
-    <!--        </el-table-column>-->
-
-    <!--        <el-table-column-->
-    <!--            prop="display_name"-->
-    <!--            label="display_name"-->
-    <!--            align="center"-->
-
-    <!--        >-->
-
-    <!--        </el-table-column>-->
-
-    <!--        <el-table-column label="操作" width="100px" align="center">-->
-    <!--          <template slot-scope="{row}">-->
-    <!--            <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>-->
-    <!--            <el-divider direction="vertical"></el-divider>-->
-    <!--            <el-button type="text" size="small" @click="del(row.id)">删除</el-button>-->
-    <!--          </template>-->
-    <!--        </el-table-column>-->
-    <!--      </template>-->
-    <!--    </y-table>-->
-    <el-button>--</el-button>
-    {{col}}
-    <el-table
-        :data="tableData"
-        border
-        width="100%"
-        row-key="id"
-        align="left"
-    >
-      <el-table-column
-          v-for="(item, index) in col"
-          :key="`col_${index}`"
-          :prop="dropCol[index].prop"
-          :label="item.label">
-      </el-table-column>
-      <el-table-column label="操作" min-width="100"  fixed="right">
-        <template slot-scope="scope">
-          <el-button
-              size="mini"
-              @click="handleEdit(scope.$index, scope.row)">修改
-          </el-button>
-          <el-popover placement="top" v-model="scope.row.visible">
-            <p>确定要删除当前内容？</p>
-            <div style="text-align: right; margin: 0">
-              <el-button size="mini" plain @click="scope.row.visible = false">取消</el-button>
-              <el-button
-                  type="primary"
-                  size="mini"
-                  @click="handleDelete(scope.$index, scope.row), scope.row.visible = false">确定
-              </el-button>
-            </div>
-            <el-button
-                size="mini"
-                type="danger"
-                slot="reference">删除
-            </el-button>
-          </el-popover>
-
-          <el-button
-              size="mini"
-              type="primary"
-              @click="handleDefault(scope.$index, scope.row)"
-              v-show="scope.row.defaultValue === 0">默认
-          </el-button>
-          <el-button
-              size="mini"
-              type="primary"
-              @click="handleDefault(scope.$index, scope.row)"
-              v-show="scope.row.defaultValue === 1">取消
-          </el-button>
-        </template>
-      </el-table-column>
-    </el-table>
   </div>
 </template>
 <script>
-import { getTests, delTest } from '@/api/test'
-import { getGoodsizes, delGoodsize } from '@/api/goodsize'
-import Sortable from 'sortablejs'
+import dragTable from '@/components/drag-table'
 
 export default {
+  components: {
+    dragTable
+  },
   data() {
     return {
-      col: [
-        {
-          label: '值',
-          prop: 'dataKey'
-        },
-        {
-          label: '显示名',
-          prop: 'dataValue'
-        }
-      ],
-      dropCol: [
-        {
-          label: '值',
+      test: '',
+      // 已勾选
+      checkedList: [],
+      // 可勾选
+      headerList: [
+        [{
+          label: '键',
           prop: 'dataKey',
-          id: '1'
+          checked: true
         },
         {
-          label: '显示名',
-          prop: 'dataValue',
-          id: '2'
-        }
+          label: '值',
+          prop: 'dataValue'
+
+        },
+        {
+          label: '属性1',
+          prop: 'prop1',
+          width: '110px'
+        }],
+        [
+          {
+            label: '属性2',
+            prop: 'prop2',
+            width: '250px'
+
+          }], [
+          {
+            label: '属性3',
+            prop: 'prop3',
+            width: '200px'
+
+          }]
       ],
+      // 表格数据
       tableData: [{
-        dataKey: '123',
-        dataValue: '5456411111111',
+        dataKey: '键1',
+        dataValue: '值1',
+        prop1: '属性1-1',
+        prop2: '属性1-2',
+        prop3: '属性1-3',
         id: '1'
       }, {
-        dataKey: '22222222222222',
-        dataValue: '5456422222222222222',
+        dataKey: '键2',
+        dataValue: '值2',
+        prop1: '属性2-1',
+        prop2: '属性2-2',
+        prop3: '属性2-3',
         id: '2'
       }],
-      testForm: {},
-      testData: [],
-      pagination: {
-        pageNumber: 1,
-        pageSize: 10
-      }
 
+      collapse: []
     }
   },
   created() {
-    this.getList()
   },
-  methods: {
-    // 行拖拽
-    rowDrop() {
-      const tbody = document.querySelector('.el-table__body-wrapper tbody')
-      const _this = this
-      Sortable.create(tbody, {
-        onEnd({ newIndex, oldIndex }) {
-          const currRow = _this.tableData.splice(oldIndex, 1)[0]
-          _this.tableData.splice(newIndex, 0, currRow)
-        }
-      })
-    },
-    // 列拖拽
-    columnDrop() {
-      const wrapperTr = document.querySelector('.el-table__header-wrapper tr')
-      this.sortable = Sortable.create(wrapperTr, {
-        animation: 180,
-        delay: 0,
-        onEnd: (evt) => {
-          const oldItem = this.dropCol[evt.oldIndex]
-          this.dropCol.splice(evt.oldIndex, 1)
-          this.dropCol.splice(evt.newIndex, 0, oldItem)
-        }
-      })
-    },
-    async getList(param) {
-      const res = await getGoodsizes(
-        {
-          ...param,
-          page: this.pagination.pageNumber,
-          pagesize: this.pagination.pageSize
-        }
-      )
-      console.log(res)
-      this.testData = res.data.list
-      // this.pagination.total = parseInt(response.data.pagination.total, 10)
-      this.pagination.total = res.data.pagination.total
-      this.$nextTick(() => {
-        this.rowDrop()
-        this.columnDrop()
-      })
-    },
-
-    add() {
-      this.$router.push({ path: 'add' })
-    },
-    edit(id) {
-      this.$router.push({
-        path: 'edit',
-        query: { id }
-      })
-    },
-    del(id) {
-      this.$confirm('是否删除?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(() => {
-          delTest(id)
-            .then((response) => {
-              this.$message({
-                type: 'success',
-                message: '删除成功!'
-              })
-              this.getList()
-            })
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          })
-        })
-    },
-    onSearch(sort) {
-      this.getList({ ...this.testForm, ...sort })
-    },
-    sortBy(e) {
-      this.onSearch(e)
-    },
-    reset() {
-      this.testForm = {}
-      this.getList()
-    }
-  }
+  methods: {}
 }
 </script>
 
 <style lang='scss' scoped>
 .app-container {
-  padding: 20px;
 
-  .no-margin {
-    margin: 0;
-  }
 }
 </style>
