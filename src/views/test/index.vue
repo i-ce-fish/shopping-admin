@@ -1,155 +1,131 @@
 <template>
   <div class="app-container">
-    <el-card>
-      <y-form
-          ref="testForm"
-          :model="testForm"
-          label-width="80px"
-      >
+    {{checkedList}}
+    <el-collapse v-model="collapse">
 
-        <el-row type="flex" align="space-between">
-          <el-col>
-            <el-button type="primary" @click="onSearch">查询</el-button>
-            <el-button @click="reset" class="y-mr-l-10">重置</el-button>
-          </el-col>
-          <el-button type="success" @click="add">添加测试模板</el-button>
+      <el-collapse-item v-for="(o1,i1) in headerList" :key="i1" :name="i1" :title="'第'+i1+'组'">
+        <el-checkbox-group v-model="checkedList">
+          <el-checkbox
+              v-for="(o2,i2) in o1"
+              :key="i2"
+              :label="o2"
+              :checked="o2.checked"
+          >
+            {{o2.label}}
+          </el-checkbox>
+        </el-checkbox-group>
+      </el-collapse-item>
 
-        </el-row>
-      </y-form>
-    </el-card>
-    <y-table
-        :data="testData"
-        :pagination="pagination"
-        @sortBy="sortBy"
-        @changePage4List="getList"
-        class="y-p-t-20"
-    >
-      <template>
+    </el-collapse>
+    <div>
 
-        <el-table-column
-            prop="id"
-            label="id"
-            align="center"
+    </div>
+    <drag-table :header="checkedList" :table-data="tableData"></drag-table>
+    <!--    <div class="y-m-t-10"></div>-->
+    <!--    <el-radio-group v-model="test">-->
+    <!--      <el-popover-->
+    <!--          placement="top-start"-->
+    <!--          width="200"-->
+    <!--          trigger="hover">-->
+    <!--        <div>-->
+    <!--          <el-image-->
+    <!--              style="width: 100%; height: 100%"-->
+    <!--              src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"-->
+    <!--              fit="contain"></el-image>-->
+    <!--        </div>-->
+    <!--        <div slot="reference">-->
+    <!--          <el-radio :label="1">无袖</el-radio>-->
+    <!--        </div>-->
+    <!--      </el-popover>-->
+    <!--      <el-popover-->
+    <!--          placement="top-start"-->
+    <!--          width="200"-->
+    <!--          trigger="hover">-->
+    <!--        <div>-->
+    <!--          <el-image-->
+    <!--              style="width: 100%; height: 100%"-->
+    <!--              src="https://cdn4.buysellads.net/uu/1/3386/1525189943-38523.png"-->
+    <!--              fit="contain"></el-image>-->
+    <!--        </div>-->
+    <!--        <div slot="reference">-->
+    <!--          <el-radio :label="2" class="y-p-t-20">有袖</el-radio>-->
+    <!--        </div>-->
+    <!--      </el-popover>-->
+    <!--    </el-radio-group>-->
 
-        >
-
-        </el-table-column>
-
-        <el-table-column
-            prop="description"
-            label="description"
-            align="center"
-
-        >
-
-        </el-table-column>
-
-        <el-table-column
-            prop="display_name"
-            label="display_name"
-            align="center"
-
-        >
-
-        </el-table-column>
-
-        <el-table-column label="操作" width="100px" align="center">
-          <template slot-scope="{row}">
-            <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
-            <el-divider direction="vertical"></el-divider>
-            <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
-          </template>
-        </el-table-column>
-      </template>
-    </y-table>
   </div>
 </template>
 <script>
-import { getTests, delTest } from '@/api/test'
-import { getGoodsizes, delGoodsize } from '@/api/goodsize'
+import dragTable from '@/components/drag-table'
 
 export default {
+  components: {
+    dragTable
+  },
   data() {
     return {
-      testForm: {},
-      testData: [],
-      pagination: {
-        pageNumber: 1,
-        pageSize: 10
-      }
+      test: '',
+      // 已勾选
+      checkedList: [],
+      // 可勾选
+      headerList: [
+        [{
+          label: '键',
+          prop: 'dataKey',
+          checked: true
+        },
+        {
+          label: '值',
+          prop: 'dataValue'
 
+        },
+        {
+          label: '属性1',
+          prop: 'prop1',
+          width: '110px'
+        }],
+        [
+          {
+            label: '属性2',
+            prop: 'prop2',
+            width: '250px'
+
+          }], [
+          {
+            label: '属性3',
+            prop: 'prop3',
+            width: '200px'
+
+          }]
+      ],
+      // 表格数据
+      tableData: [{
+        dataKey: '键1',
+        dataValue: '值1',
+        prop1: '属性1-1',
+        prop2: '属性1-2',
+        prop3: '属性1-3',
+        id: '1'
+      }, {
+        dataKey: '键2',
+        dataValue: '值2',
+        prop1: '属性2-1',
+        prop2: '属性2-2',
+        prop3: '属性2-3',
+        id: '2'
+      }],
+
+      collapse: []
     }
   },
   created() {
-    this.getList()
   },
-  methods: {
-    async getList(param) {
-      const res = await getGoodsizes(
-        {
-          ...param,
-          page: this.pagination.pageNumber,
-          pagesize: this.pagination.pageSize
-        }
-      )
-      console.log(res)
-      this.testData = res.data.list
-      // this.pagination.total = parseInt(response.data.pagination.total, 10)
-      this.pagination.total = res.data.pagination.total
-    },
-
-    add() {
-      this.$router.push({ path: 'add' })
-    },
-    edit(id) {
-      this.$router.push({
-        path: 'edit',
-        query: { id }
-      })
-    },
-    del(id) {
-      this.$confirm('是否删除?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
-        .then(() => {
-          delTest(id)
-            .then((response) => {
-              this.$message({
-                type: 'success',
-                message: '删除成功!'
-              })
-              this.getList()
-            })
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          })
-        })
-    },
-    onSearch(sort) {
-      this.getList({ ...this.testForm, ...sort })
-    },
-    sortBy(e) {
-      this.onSearch(e)
-    },
-    reset() {
-      this.testForm = {}
-      this.getList()
-    }
-  }
+  methods: {}
 }
 </script>
 
 <style lang='scss' scoped>
 .app-container {
-  padding: 20px;
 
-  .no-margin {
-    margin: 0;
-  }
 }
 </style>

@@ -51,7 +51,7 @@ export default {
       this.$router.push('/Register')
     },
     async login() {
-      // 含有ajax
+      // 含有ajax, 需要异步
       await this.$store.dispatch('user/login', this.form)
       this.$router.push('/')
     }
