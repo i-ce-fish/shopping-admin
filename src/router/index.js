@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Layout from '@/layout'
 import goodpatternRouter from '@/router/modules/goodpattern'
-import newpageRouter from '@/router/modules/new'
 import goodtrimRouter from '@/router/modules/goodtrim'
 import articleRouter from './modules/article'
 import goodRouter from './modules/good'
@@ -66,7 +65,6 @@ const routes = [
   goodfabricRouter,
   goodtextureRouter,
   goodtrimRouter,
-  newpageRouter,
   {
     path: '/demo',
     name: 'test',

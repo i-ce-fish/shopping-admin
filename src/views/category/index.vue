@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-card>
+    <el-card >
       <y-form
           ref="categoryForm"
           :model="categoryForm"
@@ -42,6 +42,7 @@
     <div class="y-p-t-20">
       <el-card
           class="bigCategory"
+
       >
         <el-collapse v-model="collapse1">
 
