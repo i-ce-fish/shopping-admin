@@ -20,7 +20,7 @@
     <div>
 
     </div>
-    <drag-table :header="checkedList" :table-data="tableData"></drag-table>
+    <drag-table :header="checkedList" :header-temp="checkedList" :table-data="tableData"></drag-table>
     <!--    <div class="y-m-t-10"></div>-->
     <!--    <el-radio-group v-model="test">-->
     <!--      <el-popover-->
@@ -52,7 +52,7 @@
     <!--        </div>-->
     <!--      </el-popover>-->
     <!--    </el-radio-group>-->
-
+    <p>{{headerList[0][0].filter_array}}</p>
   </div>
 </template>
 <script>
@@ -72,7 +72,9 @@ export default {
         [{
           label: '键',
           prop: 'dataKey',
-          checked: true
+          checked: true,
+          sortable: true,
+          filters_array: [{ text: '加法', value: '加法' }, { text: 'aa', value: 'aa' }, { text: 'bb', value: 'bb' }]
         },
         {
           label: '值',

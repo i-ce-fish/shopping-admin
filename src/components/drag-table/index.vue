@@ -1,26 +1,35 @@
 <template>
-  <el-table
-      :class="tableClass"
-      :data="tableData"
-      border
-      row-key="id"
-      align="left"
-  >
-    <el-table-column
-        v-for="(item, index) in header"
-        :key="index"
-        :prop="header[index].prop"
-        :label="item.label"
-        :min-width="item.width"
+  <div>
+    {{header}}<br/>
+    {{dropHeader}}
+    <el-table
+        :class="tableClass"
+        :data="tableData"
+        border
+        row-key="id"
+        align="left"
+
     >
-    </el-table-column>
-    <el-table-column label="操作" width="100px" fixed="right">
-      <template slot-scope="{row}">
-        <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
-        <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
+
+      <el-table-column
+          v-for="(item, index) in header"
+          :key="index"
+          :prop="dropHeader[index].prop"
+          :label="item.label"
+          :min-width="item.width"
+          :sortable="item.sortable"
+          :filters="item.filters_array"
+          :filter-method="filterHandler"
+      >
+      </el-table-column>
+      <el-table-column label="操作" width="100px" fixed="right">
+        <template slot-scope="{row}">
+          <el-button type="text" size="small" @click="edit(row.id)">修改</el-button>
+          <el-button type="text" size="small" @click="del(row.id)">删除</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 <script>
 import Sortable from 'sortablejs'
@@ -35,7 +44,7 @@ export default {
       type: Array,
       required: true,
       validator: (val) => {
-        // 验证<header>中是否每个对象都包含了prop和label属性, width为可选属性
+        // 验证<dropHeader>中是否每个对象都包含了prop和label属性, width为可选属性
         let total = 0
         val.forEach((o) => {
           // eslint-disable-next-line no-prototype-builtins
@@ -59,7 +68,15 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      // 作为内部变量使用
+      dropHeader: JSON.parse(JSON.stringify(this.header))
+    }
+  },
+  watch: {
+    header(val) {
+      this.dropHeader = JSON.parse(JSON.stringify(val))
+    }
   },
   mounted() {
     this.initDragable()
@@ -94,9 +111,10 @@ export default {
         animation: 200,
         delay: 0,
         onEnd: ({ newIndex, oldIndex }) => {
-          const oldItem = _this.header[oldIndex]
-          _this.header.splice(oldIndex, 1)
-          _this.header.splice(newIndex, 0, oldItem)
+          const oldItem = _this.dropHeader[oldIndex]
+          _this.dropHeader.splice(oldIndex, 1)
+          _this.dropHeader.splice(newIndex, 0, oldItem)
+          console.log(_this.header === _this.dropHeader)
         }
       })
     },
@@ -106,6 +124,10 @@ export default {
     },
     del(id) {
       this.$emit('del', id)
+    },
+    filterHandler(value, row, column) {
+      const { property } = column
+      return row[property] === value
     }
   }
 }
