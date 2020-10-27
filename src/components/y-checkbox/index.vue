@@ -2,29 +2,29 @@
   <y-tooltip :tips="tips">
 
     <el-checkbox-group
-      v-model="result"
-      :disabled="disabled"
-      :min="min"
-      :max="max"
-      :size="size"
-      :fill="fill"
-      :text-color="textColor"
-      @change="change"
+        v-model="result"
+        :disabled="disabled"
+        :min="min"
+        :max="max"
+        :size="size"
+        :fill="fill"
+        :text-color="textColor"
+        @change="change"
     >
       <el-checkbox
-        v-for="item of options"
-        :id="item.id"
-        :key="item.value"
-        :label="item.label"
-        :indeterminate="item.indeterminate"
-        :disabled="item.disabled"
-        :checked="item.checked"
-        :name="item.name"
-        :true-label="item.trueLabel"
-        :false-label="item.falseLabel"
-        :controls="item.controls"
-        :border="item.border"
-        :size="item.size"
+          v-for="item of options"
+          :id="item.id"
+          :key="item.value"
+          :label="item.label"
+          :indeterminate="item.indeterminate"
+          :disabled="item.disabled"
+          :checked="item.checked"
+          :name="item.name"
+          :true-label="item.trueLabel"
+          :false-label="item.falseLabel"
+          :controls="item.controls"
+          :border="item.border"
+          :size="item.size"
       />
     </el-checkbox-group>
   </y-tooltip>
@@ -32,7 +32,10 @@
 <script>
 export default {
   props: {
-    value: Array,
+    value: {
+      type: Array,
+      default: () => []
+    },
     options: {
       type: [Array, Object],
       default: () => [{
