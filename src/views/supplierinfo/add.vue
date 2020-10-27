@@ -94,7 +94,7 @@
 
               <y-checkbox
                   v-model="supplierinfoForm.brand_level"
-
+                  :options="QUALITY"
               />
 
             </el-form-item>
@@ -109,7 +109,7 @@
 
               <y-checkbox
                   v-model="supplierinfoForm.mg_gender"
-
+                  :options="SEX"
               />
 
             </el-form-item>
@@ -124,7 +124,7 @@
 
               <y-checkbox
                   v-model="supplierinfoForm.mg_series"
-
+                  :options="SERIES"
               />
 
             </el-form-item>
@@ -199,7 +199,7 @@
 
               <y-radio
                   v-model="supplierinfoForm.cost_performance"
-
+                  :options="COST_PERFORMANCE"
               />
 
             </el-form-item>
@@ -222,14 +222,14 @@
 
           <el-col :span="12">
             <el-form-item
-                label="账期:"
+                label="付款方式/账期:"
                 prop="account_period"
 
             >
 
               <y-radio
                   v-model="supplierinfoForm.account_period"
-
+                  :options="TYPE_OF_PAYMENT"
               />
 
             </el-form-item>
@@ -242,9 +242,9 @@
 
             >
 
-              <y-select
+              <y-radio
                   v-model="supplierinfoForm.refundable"
-
+                  :options="IS_RETURNABLE"
               />
 
             </el-form-item>
@@ -296,6 +296,9 @@
 
 <script>
 import { addSupplierinfo } from '@/api/supplierinfo'
+import {
+  SEX, SERIES, QUALITY, COST_PERFORMANCE, TYPE_OF_PAYMENT, IS_RETURNABLE
+} from '@/utils/const'
 
 export default {
 
@@ -324,8 +327,13 @@ export default {
 
         ]
 
-      }
-
+      },
+      SEX,
+      SERIES,
+      QUALITY,
+      COST_PERFORMANCE,
+      TYPE_OF_PAYMENT,
+      IS_RETURNABLE
     }
   },
   created() {

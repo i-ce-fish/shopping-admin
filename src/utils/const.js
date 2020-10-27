@@ -180,9 +180,108 @@ const ARTICLE = {
     }
   }
 }
+
+// 供货商资料
+const SERIES = {
+  SPORTS: {
+    value: '0',
+    label: '运动系列'
+  },
+  LEISURE: {
+    value: '1',
+    label: '休闲系列'
+  },
+  BUSINESS: {
+    value: '2',
+    label: '商务系列'
+  },
+  HOUSEHOLD: {
+    value: '3',
+    label: '家居系列'
+  }
+}
+
+const QUALITY = {
+  CRAPPY_GOOD: {
+    value: '0',
+    label: '地摊货'
+  },
+  FAST_FASHION: {
+    value: '1',
+    label: '快时尚'
+  },
+  AFFORDABLE_LUXURY: {
+    value: '2',
+    label: '轻奢品'
+  },
+  LUXURY: {
+    value: '3',
+    label: '奢侈品'
+  }
+}
+
+const COST_PERFORMANCE = {
+  LOW: {
+    value: '0',
+    label: '不好'
+  },
+  SO_SO: {
+    value: '1',
+    label: '一般'
+  },
+  HIGH: {
+    value: '2',
+    label: '很好'
+  }
+}
+
+const TYPE_OF_PAYMENT = {
+  SELLING_AGENT: {
+    value: '0',
+    label: '代销'
+  },
+  CASH_ON_DELIVERY: {
+    value: '1',
+    label: '提货付清'
+  },
+  DEPOSIT: {
+    value: '2',
+    label: '预付部分'
+  },
+  PAYMENT_MONTHLY: {
+    value: '3',
+    label: '月结'
+  },
+  Others: {
+    value: '4',
+    label: '其他'
+  }
+}
+
+const IS_RETURNABLE = {
+  RETURN_ALL: {
+    value: '0',
+    label: '全部可退'
+  },
+  RETURN_A_PART: {
+    value: '1',
+    label: '部分可退'
+  },
+  NOT_RETURNABLE: {
+    value: '2',
+    label: '不可退'
+  }
+}
+
 export {
   GOOD_BRAND,
   ARTICLE,
   SEX,
-  JUDGE
+  JUDGE,
+  SERIES,
+  QUALITY,
+  COST_PERFORMANCE,
+  TYPE_OF_PAYMENT,
+  IS_RETURNABLE
+
 }

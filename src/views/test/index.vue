@@ -1,6 +1,5 @@
 <template>
   <div class="app-container">
-    {{checkedList}}
     <el-collapse v-model="collapse">
 
       <el-collapse-item v-for="(o1,i1) in headerList" :key="i1" :name="i1" :title="'第'+i1+'组'">
@@ -17,50 +16,21 @@
       </el-collapse-item>
 
     </el-collapse>
-    <div>
 
-    </div>
     <drag-table :header="checkedList" :header-temp="checkedList" :table-data="tableData"></drag-table>
-    <!--    <div class="y-m-t-10"></div>-->
-    <!--    <el-radio-group v-model="test">-->
-    <!--      <el-popover-->
-    <!--          placement="top-start"-->
-    <!--          width="200"-->
-    <!--          trigger="hover">-->
-    <!--        <div>-->
-    <!--          <el-image-->
-    <!--              style="width: 100%; height: 100%"-->
-    <!--              src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"-->
-    <!--              fit="contain"></el-image>-->
-    <!--        </div>-->
-    <!--        <div slot="reference">-->
-    <!--          <el-radio :label="1">无袖</el-radio>-->
-    <!--        </div>-->
-    <!--      </el-popover>-->
-    <!--      <el-popover-->
-    <!--          placement="top-start"-->
-    <!--          width="200"-->
-    <!--          trigger="hover">-->
-    <!--        <div>-->
-    <!--          <el-image-->
-    <!--              style="width: 100%; height: 100%"-->
-    <!--              src="https://cdn4.buysellads.net/uu/1/3386/1525189943-38523.png"-->
-    <!--              fit="contain"></el-image>-->
-    <!--        </div>-->
-    <!--        <div slot="reference">-->
-    <!--          <el-radio :label="2" class="y-p-t-20">有袖</el-radio>-->
-    <!--        </div>-->
-    <!--      </el-popover>-->
-    <!--    </el-radio-group>-->
-    <p>{{headerList[0][0].filter_array}}</p>
+    <y-drag-select v-model="value" style="width:500px;" multiple placeholder="请选择">
+      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
+    </y-drag-select>
   </div>
 </template>
 <script>
 import dragTable from '@/components/drag-table'
+import YDragSelect from '@/components/y-drag-select'
 
 export default {
   components: {
-    dragTable
+    dragTable,
+    YDragSelect
   },
   data() {
     return {
@@ -117,7 +87,25 @@ export default {
         id: '2'
       }],
 
-      collapse: []
+      collapse: [],
+
+      options: [{
+        value: 'Apple',
+        label: 'Apple'
+      }, {
+        value: 'Banana',
+        label: 'Banana'
+      }, {
+        value: 'Orange',
+        label: 'Orange'
+      }, {
+        value: 'Pear',
+        label: 'Pear'
+      }, {
+        value: 'Strawberry',
+        label: 'Strawberry'
+      }],
+      value: []
     }
   },
   created() {
