@@ -15,7 +15,7 @@
           v-for="item of options"
           :id="item.id"
           :key="item.value"
-          :label="item.label"
+          :label="item.value"
           :indeterminate="item.indeterminate"
           :disabled="item.disabled"
           :checked="item.checked"
@@ -25,7 +25,9 @@
           :controls="item.controls"
           :border="item.border"
           :size="item.size"
-      />
+      >
+        {{item.label}}
+      </el-checkbox>
     </el-checkbox-group>
   </y-tooltip>
 </template>
