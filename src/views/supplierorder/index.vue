@@ -27,162 +27,162 @@
       <template>
 
         <el-table-column
-prop="supply_source"
-                         label="供货货源"
-                         align="center"
+            prop="supply_source"
+            label="供货货源"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="joined_at"
-                         label="供应商录入日期"
-                         align="center"
+            prop="joined_at"
+            label="供应商录入日期"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="supplier_code"
-                         label="供货商编码"
-                         align="center"
+            prop="supplier_code"
+            label="供货商编码"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="supply_brand"
-                         label="供货品牌"
-                         align="center"
+            prop="supply_brand"
+            label="供货品牌"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="authorized_brand"
-                         label="可授权品牌"
-                         align="center"
+            prop="authorized_brand"
+            label="可授权品牌"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="quality_level"
-                         label="品质档次"
-                         align="center"
+            prop="quality_level"
+            label="品质档次"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="supply_gender"
-                         label="供货性别"
-                         align="center"
+            prop="supply_gender"
+            label="供货性别"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="supply_series"
-                         label="供货系列"
-                         align="center"
+            prop="supply_series"
+            label="供货系列"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="supply_category"
-                         label="供货品类"
-                         align="center"
+            prop="supply_category"
+            label="供货品类"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="supply_age"
-                         label="供货年龄"
-                         align="center"
+            prop="supply_age"
+            label="供货年龄"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="supply_style"
-                         label="供货风格"
-                         align="center"
+            prop="supply_style"
+            label="供货风格"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="good_memo"
-                         label="货品描述备忘录"
-                         align="center"
+            prop="good_memo"
+            label="货品描述备忘录"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="cost_performance"
-                         label="性价比"
-                         align="center"
+            prop="cost_performance"
+            label="性价比"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="wholesale_mode"
-                         label="起批方式"
-                         align="center"
+            prop="wholesale_mode"
+            label="起批方式"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="account_period"
-                         label="账期"
-                         align="center"
+            prop="account_period"
+            label="账期"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="refundable"
-                         label="能否退货"
-                         align="center"
+            prop="refundable"
+            label="能否退货"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="merchant_reliable"
-                         label="商家靠谱程度"
-                         align="center"
+            prop="merchant_reliable"
+            label="商家靠谱程度"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-prop="good_reliable"
-                         label="货品靠谱程度"
-                         align="center"
+            prop="good_reliable"
+            label="货品靠谱程度"
+            align="center"
 
         >
 

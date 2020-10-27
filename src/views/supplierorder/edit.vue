@@ -12,8 +12,8 @@
 
           <el-col :span="12">
             <el-form-item
-label="供货货源:"
-prop="supply_source"
+                label="供货货源:"
+                prop="supply_source"
 
             >
 
@@ -27,8 +27,8 @@ prop="supply_source"
 
           <el-col :span="12">
             <el-form-item
-label="供应商录入日期:"
-prop="joined_at"
+                label="供应商录入日期:"
+                prop="joined_at"
 
             >
 
@@ -42,8 +42,8 @@ prop="joined_at"
 
           <el-col :span="12">
             <el-form-item
-label="供货商编码:"
-prop="supplier_code"
+                label="供货商编码:"
+                prop="supplier_code"
 
             >
 
@@ -57,8 +57,8 @@ prop="supplier_code"
 
           <el-col :span="12">
             <el-form-item
-label="供货品牌:"
-prop="supply_brand"
+                label="供货品牌:"
+                prop="supply_brand"
 
             >
 
@@ -72,8 +72,8 @@ prop="supply_brand"
 
           <el-col :span="12">
             <el-form-item
-label="可授权品牌:"
-prop="authorized_brand"
+                label="可授权品牌:"
+                prop="authorized_brand"
 
             >
 
@@ -87,8 +87,8 @@ prop="authorized_brand"
 
           <el-col :span="12">
             <el-form-item
-label="品质档次:"
-prop="quality_level"
+                label="品质档次:"
+                prop="quality_level"
 
             >
 
@@ -102,8 +102,8 @@ prop="quality_level"
 
           <el-col :span="12">
             <el-form-item
-label="供货性别:"
-prop="supply_gender"
+                label="供货性别:"
+                prop="supply_gender"
 
             >
 
@@ -117,8 +117,8 @@ prop="supply_gender"
 
           <el-col :span="12">
             <el-form-item
-label="供货系列:"
-prop="supply_series"
+                label="供货系列:"
+                prop="supply_series"
 
             >
 
@@ -132,8 +132,8 @@ prop="supply_series"
 
           <el-col :span="12">
             <el-form-item
-label="供货品类:"
-prop="supply_category"
+                label="供货品类:"
+                prop="supply_category"
 
             >
 
@@ -147,8 +147,8 @@ prop="supply_category"
 
           <el-col :span="12">
             <el-form-item
-label="供货年龄:"
-prop="supply_age"
+                label="供货年龄:"
+                prop="supply_age"
 
             >
 
@@ -162,8 +162,8 @@ prop="supply_age"
 
           <el-col :span="12">
             <el-form-item
-label="供货风格:"
-prop="supply_style"
+                label="供货风格:"
+                prop="supply_style"
 
             >
 
@@ -177,8 +177,8 @@ prop="supply_style"
 
           <el-col :span="12">
             <el-form-item
-label="货品描述备忘录:"
-prop="good_memo"
+                label="货品描述备忘录:"
+                prop="good_memo"
 
             >
 
@@ -192,8 +192,8 @@ prop="good_memo"
 
           <el-col :span="12">
             <el-form-item
-label="性价比:"
-prop="cost_performance"
+                label="性价比:"
+                prop="cost_performance"
 
             >
 
@@ -207,8 +207,8 @@ prop="cost_performance"
 
           <el-col :span="12">
             <el-form-item
-label="起批方式:"
-prop="wholesale_mode"
+                label="起批方式:"
+                prop="wholesale_mode"
 
             >
 
@@ -222,8 +222,8 @@ prop="wholesale_mode"
 
           <el-col :span="12">
             <el-form-item
-label="账期:"
-prop="account_period"
+                label="账期:"
+                prop="account_period"
 
             >
 
@@ -237,8 +237,8 @@ prop="account_period"
 
           <el-col :span="12">
             <el-form-item
-label="能否退货:"
-prop="refundable"
+                label="能否退货:"
+                prop="refundable"
 
             >
 
@@ -252,8 +252,8 @@ prop="refundable"
 
           <el-col :span="12">
             <el-form-item
-label="商家靠谱程度:"
-prop="merchant_reliable"
+                label="商家靠谱程度:"
+                prop="merchant_reliable"
 
             >
 
@@ -267,8 +267,8 @@ prop="merchant_reliable"
 
           <el-col :span="12">
             <el-form-item
-label="货品靠谱程度:"
-prop="good_reliable"
+                label="货品靠谱程度:"
+                prop="good_reliable"
 
             >
 
