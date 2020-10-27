@@ -42,12 +42,13 @@
     <div class="y-p-t-20">
       <el-card
           class="bigCategory"
+          style="border: #298DF8 1px solid"
       >
         <el-collapse v-model="collapse1">
 
           <el-collapse-item :name="1">
             <div slot="title" class="y-flex y-align-between y-col-24">
-              <div class="y-font-16 y-font-blod">商品大类</div>
+              <div class="y-font-16 y-font-blod" >商品大类</div>
               <div>已选择大类1</div>
             </div>
 
@@ -75,10 +76,10 @@
               v-for="(bigCategory1,i1) in selectedBigCategory"
               :key="i1"
               class="smallCategory"
+              style="border: #EF7060 2px solid"
           >
 
             <el-collapse-item
-
                 :name="bigCategory1.id"
             >
 
@@ -115,6 +116,7 @@
                     v-for="(smallCategory,i2) in bigCategory2.children"
                     :key="i2"
                     class="XSCategory"
+                    style="border: #66C239 3px solid"
                 >
                   <el-collapse v-model="collapse3[i1]">
                     <el-collapse-item :name="i2">
@@ -448,108 +450,19 @@ export default {
 
 <style lang='scss' scoped>
 .app-container {
-  // 清除element组件默认的样式
-  /deep/ .el-collapse-item__header,
-  /deep/ .el-collapse-item__wrap,
-  /deep/ .el-collapse {
-    background-color: transparent;
-    border: 0;
-  }
-
-  // 文字颜色
-  /deep/ .el-checkbox__label {
-    color: #606266;
-  }
-
-  // 大类
-  .bigCategory {
-    // el-card的20px背景色
-    /deep/ .el-card__body {
-      background-color: #dfeefe
-    }
-
-    /deep/ .el-collapse {
-      background-color: #dfeefe
-    }
-
-    //  未激活的边框颜色
-    /deep/ .el-checkbox.is-bordered {
-      border-color: #298DF833;
-    }
-
-    // 激活后的背景颜色
-    /deep/ .el-checkbox.is-bordered.is-checked {
-      background-color: #298DF833
-    }
-
-    // 文字颜色
-    /deep/ .el-checkbox__label {
-      color: #606266;
-    }
-
-  }
-
-  .smallCategory {
-    /deep/ .el-card__body {
-      background-color: #FFE1DD
-    }
-
-    /deep/ .el-collapse {
-      background-color: #FFE1DD
-    }
-
-    //  未激活的边框颜色
-    /deep/ .el-checkbox.is-bordered {
-      border-color: #EF706033;
-    }
-
-    // 激活后的背景颜色
-    /deep/ .el-checkbox.is-bordered.is-checked {
-      background-color: #EF706033
-    }
-
-    // 勾选框的边框颜色
-    /deep/ .el-checkbox__inner {
-      border-color: #EF7060;
-    }
-
-    // 激活后的勾选框的背景颜色
-    /deep/ .is-checked .el-checkbox__inner {
-      background-color: #EF7060;
-    }
-
-  }
-
-  .XSCategory {
-    /deep/ .el-card__body {
-      background-color: #D6E1D0
-    }
-
-    /deep/ .el-collapse {
-      background-color: #D6E1D0
-
-    }
-
-    //  未激活的边框颜色
-    /deep/ .el-checkbox.is-bordered {
-      border-color: #badaaa;
-    }
-
-    // 激活后的背景颜色
-    /deep/ .el-checkbox.is-bordered.is-checked {
-      background-color: #badaaa
-    }
-
-    // 勾选框的边框颜色
-    /deep/ .el-checkbox__inner {
-      border-color: #66C23940;
-    }
-
-    // 激活后的勾选框的背景颜色
-    /deep/ .is-checked .el-checkbox__inner {
-      background-color: #66c239;
-    }
-
-  }
+  //// 清除element组件默认的样式
+  ///deep/ .el-collapse-item__header,
+  ///deep/ .el-collapse-item__wrap,
+  ///deep/ .el-collapse {
+  //  background-color: transparent;
+  //  border: 0;
+  //}
 }
+/deep/ .el-collapse-item__wrap{
+  border: 0px
+}
+.el-collapse{
+border: 0px;
+}
+
 </style>
