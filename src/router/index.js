@@ -13,6 +13,7 @@ import testRouter from './modules/test'
 import goodfabricRouter from './modules/goodfabric'
 import goodtextureRouter from './modules/goodtexture'
 import supplierinfoRouter from './modules/supplierinfo'
+import supplierorderRouter from './modules/supplierorder'
 
 Vue.use(VueRouter)
 
@@ -67,6 +68,7 @@ const routes = [
   goodtextureRouter,
   goodtrimRouter,
   supplierinfoRouter,
+  supplierorderRouter,
   {
     path: '/demo',
     name: 'test',
