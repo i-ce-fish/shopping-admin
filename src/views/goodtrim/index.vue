@@ -80,12 +80,8 @@
 </template>
 <script>
 import { getGoodtrims, delGoodtrim } from '@/api/goodtrim'
-import yButton from '@/components/y-button'
 
 export default {
-  components: {
-    yButton
-  },
   data() {
     return {
       goodtrimForm: {},

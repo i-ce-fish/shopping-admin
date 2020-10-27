@@ -71,11 +71,18 @@ export default {
     return {
       // 作为内部变量使用
       dropHeader: JSON.parse(JSON.stringify(this.header))
+      // dropHeader: { ...this.header }
     }
   },
   watch: {
+    /**
+     * <!--用于表头拖动的表头和用于表格展示的表头必须是两个数组, 互相独立-->
+     * @param val
+     */
     header(val) {
+      // 深拷贝 todo fix bug
       this.dropHeader = JSON.parse(JSON.stringify(val))
+      // this.dropHeader = { ...val }
     }
   },
   mounted() {
