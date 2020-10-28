@@ -1,5 +1,6 @@
 <template>
   <div class="dashboard app-container">
+    <test></test>
     爷组件
     <father></father>
     <el-row type="flex">
@@ -159,12 +160,14 @@
 import Tinymce from '@/components/tinymce/tinymce.vue'
 import wxHome from '@/views/mock-wx/home.vue'
 import father from '@/views/test/demo/father'
+import test from '@/views/test/demo/test'
 
 export default {
   components: {
     Tinymce,
     wxHome,
-    father
+    father,
+    test
   },
   data() {
     return {
