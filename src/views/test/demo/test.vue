@@ -1,13 +1,15 @@
 <template>
-  <div><span class="demonstration">多选选择任意一级选项{{value}}</span>
+  <div><span class="demonstration">{{isContainInput}}当前输入: {{currentInput}}多选选择任意一级选项{{value}}</span>
     <div>{{options}}</div>
     <el-cascader
+        ref="cascader"
         v-model="value"
         :options="options"
         :props="{ multiple: true, checkStrictly: true ,emitPath:false}"
         :show-all-levels="false"
         :filterable="true"
-        :filter-method="addItem"
+        :filter-method="filterMethod"
+        @visible-change="onShow"
         clearable></el-cascader>
   </div>
 </template>
@@ -15,7 +17,9 @@
 export default {
   data() {
     return {
-      value: '',
+      value: [],
+      currentInput: '',
+      isContainInput: false,
       options: [{
         value: 'zhinan',
         label: '指南',
@@ -214,15 +218,51 @@ export default {
     }
   },
   methods: {
-    addItem(node, keyword) {
-      // TODO FIX BUG
-      if (this.options[0].label !== keyword) {
-        this.options.unshift({
-          value: keyword,
-          label: keyword
-        })
+    // 每次输入都会遍历所有元素
+    filterMethod(node, keyword) {
+      // 保存最后输入的值到中间变量
+      // this.currentInput = keyword
+
+      // 判断输入值是否存在options中,
+      // // ps: 由于所有元素都会被遍历一次, 所以当设置为true以后 后续不应该被修改为false
+      this.isContainInput = node.text === keyword || this.isContainInput
+
+      // 如果存在就将对应的value赋值给currentInput
+      // this.currentInput = node.text === keyword ? node.value : keyword
+      if (node.text === keyword) {
+        this.currentInput = node.text
       }
+
+      if (!this.isContainInput) {
+        this.currentInput = keyword
+      }
+
+      console.log(this.isContainInput)
+      console.log(this.currentInput)
       return node.text.indexOf(keyword) !== -1
+    },
+
+    /**
+     * 下拉框打开/关闭时触发
+     * @param show [ Boolean ]
+     */
+    onShow(show) {
+      // 关闭下拉框时添加当前输入的值到options中, 并添加到value中
+      if (!show && this.currentInput) {
+        const newItem = {
+          value: this.currentInput,
+          label: this.currentInput
+        }
+        if (!this.isContainInput) {
+          this.options.unshift(newItem)
+        }
+
+        // todo indexOf
+        this.value.push(newItem.value)
+      } else {
+        // 打开下拉框时重置当前输入的值
+        this.currentInput = ''
+      }
     }
   }
 }
