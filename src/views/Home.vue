@@ -1,6 +1,7 @@
 <template>
   <div class="dashboard app-container">
-    <test></test>
+    {{value}}
+    <test v-model="value" :options="options"  ></test>
     爷组件
     <father></father>
     <el-row type="flex">
@@ -175,8 +176,9 @@ export default {
       settingRules: {},
       content: '',
       questionForm: {},
-      options: ['0']
+      options: [{ value: '1', label: '23' }, { value: '12', label: '223' }],
 
+      value: []
     }
   },
   created() {

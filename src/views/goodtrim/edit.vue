@@ -41,18 +41,38 @@
 
             </el-form-item>
           </el-col>
+          <el-col :span="12">
+            <el-form-item
+                label="功效"
+                prop="trimmed_effect"
+            >
+              <y-input
+                  v-model="goodtrimForm.intro"
+                  type="textarea"
+              />
+
+            </el-form-item>
+          </el-col>
 
           <el-col :span="12">
             <el-form-item
-              label="功能效果"
-              prop="intro"
-
+              label="图片/视频"
+              prop="photo_video"
             >
-
-              <y-input
-
+              <y-upload-image
                 v-model="goodtrimForm.intro"
+              />
 
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
+            <el-form-item
+                label="功能效果"
+                prop="intro"
+            >
+              <y-input
+                  v-model="goodtrimForm.intro"
               />
 
             </el-form-item>

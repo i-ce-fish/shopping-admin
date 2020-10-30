@@ -1,3 +1,4 @@
+<!--可以输入可以搜索的级联选择器-->
 <template>
   <el-cascader
       :key="key"
@@ -123,6 +124,7 @@ export default {
         this.isContainInput = false
       }
     },
+
     emit() {
       this.$emit('input', this.model)
     }

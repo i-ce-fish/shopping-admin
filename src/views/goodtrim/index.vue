@@ -2,9 +2,9 @@
   <div class="app-container">
     <el-card>
       <y-form
-        ref="goodtrimForm"
-        :model="goodtrimForm"
-        label-width="90px"
+          ref="goodtrimForm"
+          :model="goodtrimForm"
+          label-width="90px"
       >
 
         <el-row>
@@ -14,7 +14,7 @@
 
               <y-input
 
-                v-model="goodtrimForm.trimmed_name"
+                  v-model="goodtrimForm.trimmed_name"
 
               />
             </el-form-item>
@@ -24,8 +24,8 @@
 
         <el-row type="flex" align="space-between">
           <el-col>
-            <y-button type="primary" @click="onSearch">查询</y-button>
-            <y-button @click="reset" class="y-mr-l-10">重置</y-button>
+            <el-button type="primary" @click="onSearch">查询</el-button>
+            <el-button @click="reset" class="y-mr-l-10">重置</el-button>
           </el-col>
           <el-button type="success" @click="add">添加面料名称</el-button>
 
@@ -33,38 +33,52 @@
       </y-form>
     </el-card>
     <y-table
-      :data="goodtrimsData"
-      :pagination="pagination"
-      @sortBy="sortBy"
-      @changePage4List="getList"
-      class="y-p-t-20"
+        :data="goodtrimsData"
+        :pagination="pagination"
+        @sortBy="sortBy"
+        @changePage4List="getList"
+        class="y-p-t-20"
     >
       <template>
 
         <el-table-column
-          prop="trimmed_name"
-          label="后整理名称"
-          align="center"
+            prop="trimmed_name"
+            label="后整理名称"
+            align="center"
         >
 
         </el-table-column>
 
         <el-table-column
-          prop="trimmed_alias"
-          label="后整理别名"
-          align="center"
+            prop="trimmed_alias"
+            label="后整理别名"
+            align="center"
 
         >
 
         </el-table-column>
 
         <el-table-column
-          prop="intro"
-          label="功能简介"
-          align="center"
+            prop="intro"
+            label="功能简介"
+            align="center"
 
         >
 
+        </el-table-column>
+
+        <el-table-column
+            prop="trimmend_effect"
+            label="功效"
+            align="center"
+        >
+        </el-table-column>
+
+        <el-table-column
+            prop="photo_video"
+            label="图片/视频"
+            align="center"
+        >
         </el-table-column>
 
         <el-table-column label="操作" width="100px" align="center">
