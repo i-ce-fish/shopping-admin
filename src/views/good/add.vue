@@ -111,7 +111,7 @@
                         class="y-p-r-10"
                     ></y-select>
                     <el-button type="primary" plain @click="showBrandForm=!showBrandForm">新增品牌名称</el-button>
-                    <y-dialog v-model="showBrandForm" title="新增品牌名称" @cfm="cfmAddForm('addFormBrand','showBrandForm')">
+                    <y-dialog :visible.sync="showBrandForm" title="新增品牌名称" @cfm="cfmAddForm('addFormBrand','showBrandForm')">
                       <add-form-brand ref="addFormBrand" style="line-height: 1"></add-form-brand>
                     </y-dialog>
 
@@ -215,7 +215,7 @@
                       <el-col :span="4">
                         <el-button type="primary" @click="showCategory=true">选择分类</el-button>
                       </el-col>
-                      <y-dialog class="category-form" v-model="showCategory" title="选择分类">
+                      <y-dialog class="category-form" :visible.sync="showCategory" title="选择分类">
                         <el-tabs tab-position="left" style="height: 100%;">
                           <el-tab-pane :label="o1.label" v-for="(o1,i1) in categoryOptions" :key="i1">
                             <div v-for="(o2,i2) in o1.children " :key="i2">
@@ -350,7 +350,7 @@
 
                   <y-dialog
                       class="category-form"
-                      v-model="showPattern2"
+                      :visible.sync="showPattern2"
                       title="新增二级图案名称"
                       @cfm="cfmAddForm('addFormPattern2','showPattern2')">
                     <add-form-pattern ref="addFormPattern2" :children="true"></add-form-pattern>
@@ -358,7 +358,7 @@
                   </y-dialog>
                   <y-dialog
                       class="category-form"
-                      v-model="showPattern1"
+                      :visible.sync="showPattern1"
                       title="新增一级图案名称"
                       width="60%"
                       @cfm="cfmAddForm('addFormPattern1','showPattern1')">

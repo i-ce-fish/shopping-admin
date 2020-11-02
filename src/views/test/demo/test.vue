@@ -124,7 +124,7 @@ export default {
       }
     },
     emit() {
-      this.$emit('input', this.model)
+      this.$emit('input:value', this.model)
     }
   }
 }

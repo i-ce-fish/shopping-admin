@@ -8,7 +8,6 @@ import _ from 'lodash'
 // 自定义组件
 import YInput from '@/components/y-input/index.vue'
 import YSelect from '@/components/y-select/index.vue'
-import YSelectInput from '@/components/y-select-input/index.vue'
 import YCheckbox from '@/components/y-checkbox/index.vue'
 import YDatepicker from '@/components/y-datepicker/index.vue'
 import YNumber from '@/components/y-number/index.vue'
@@ -37,7 +36,6 @@ import './permission'
 Vue.component('YRadio', YRadio)
 Vue.component('YInput', YInput)
 Vue.component('YSelect', YSelect)
-Vue.component('YSelectInput', YSelectInput)
 Vue.component('YCheckbox', YCheckbox)
 Vue.component('YDatepicker', YDatepicker)
 Vue.component('YNumber', YNumber)

@@ -1,28 +1,11 @@
 <template>
   <y-tooltip :tips="tips">
     <el-input
-      v-model="result"
-      :size="size"
-      :rows="rows"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :resize="resize"
-      :form="form"
-      :readonly="readonly"
-      :type="type"
-      :autosize="autosize"
-      :autocomplete="autocomplete"
-      :validate-event="validateEvent"
-      :suffix-icon="suffixIcon"
-      @input="input"
-      :prefix-icon="prefixIcon"
-      :label="label"
-      :clearable="clearable"
-      :show-password="showPassword"
-      :show-word-limit="showWordLimit"
-      :tabindex="tabindex"
-      :maxlength="maxlength"
-      :minlength="minlength"
+        v-model="result"
+        :size="size"
+        :placeholder="placeholder"
+        v-bind="$attrs"
+        v-on="$listeners"
     />
   </y-tooltip>
 
@@ -37,66 +20,16 @@ export default {
       // default: 'small',
       required: false
     },
-    disabled: {
-      type: Boolean,
-      default: false,
-      required: false
-    },
     placeholder: {
       type: String,
       default: '请输入',
       required: false
     },
 
-    resize: String,
-    form: String,
-    readonly: Boolean,
-    type: {
-      type: String,
-      default: 'text'
-    },
-    autosize: {
-      type: [Boolean, Object],
-      default: false
-    },
-    autocomplete: {
-      type: String,
-      default: 'off'
-    },
-    validateEvent: {
-      type: Boolean,
-      default: true
-    },
-    suffixIcon: String,
-    prefixIcon: String,
-    label: String,
-    clearable: {
-      type: Boolean,
-      default: false
-    },
-    showPassword: {
-      type: Boolean,
-      default: false
-    },
-    showWordLimit: {
-      type: Boolean,
-      default: false
-    },
-    tabindex: String,
     // 输入提示
     tips: {
       type: String,
       default: ''
-    },
-    rows: {
-      type: [String, Number],
-      default: 2
-    },
-    maxlength: {
-      type: [String, Number]
-    },
-    minlength: {
-      type: [String, Number]
     }
 
   },
@@ -116,9 +49,6 @@ export default {
   mounted() {
   },
   methods: {
-    input() {
-      this.$emit('input', this.result)
-    }
   }
 }
 </script>

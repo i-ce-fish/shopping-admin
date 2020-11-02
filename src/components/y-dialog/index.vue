@@ -1,10 +1,11 @@
 <template>
   <el-dialog
     :title="title"
-    :visible.sync="dialogShow"
+    :visible.sync="visible"
     :width="width"
     :before-close="beforeClose"
-    :modal="modal"
+    v-bind="$attrs"
+    v-on="$listeners"
   >
     <slot/>
     <span slot="footer">
@@ -20,18 +21,13 @@
 
 export default {
   props: {
-    value: {
+    visible: {
       Boolean,
       default: false
     },
     title: {
       String,
       default: '对话框'
-    },
-    // 遮罩
-    modal: {
-      type: Boolean,
-      default: true
     },
     // 宽度
     width: {
@@ -58,7 +54,7 @@ export default {
     },
     close() {
       this.dialogShow = false
-      this.$emit('input', this.dialogShow)
+      this.$emit('update:visible', this.dialogShow)
       this.$emit('close')
     },
     confirm() {

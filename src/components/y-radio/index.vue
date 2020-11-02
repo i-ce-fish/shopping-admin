@@ -3,11 +3,8 @@
 
     <el-radio-group
         v-model="result"
-        :size="size"
-        :fill="fill"
-        :text-color="textColor"
-        :disabled="disabled"
-        @change="change"
+        v-bind="$attrs"
+        v-on="$listeners"
     >
       <el-radio
           v-for="item of options"
@@ -35,10 +32,6 @@ export default {
           require: false,
           default: () => JUDGE
         },
-    size: String,
-    fill: String,
-    textColor: String,
-    disabled: Boolean,
     // 输入提示
     tips: {
       type: String,
@@ -58,9 +51,6 @@ export default {
   created() {
   },
   methods: {
-    change() {
-      this.$emit('input', this.result)
-    }
   }
 }
 </script>

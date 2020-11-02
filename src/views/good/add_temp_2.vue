@@ -22,38 +22,38 @@
 
       </div>
       <y-form
-        ref="goodForm"
-        :model="goodForm"
-        :rules="goodRules"
-        label-width="100px"
+          ref="goodForm"
+          :model="goodForm"
+          :rules="goodRules"
+          label-width="100px"
       >
         <el-row>
 
           <el-col :span="6">
             <el-alert
-              type="info">
+                type="info">
               上传商品主图(正面图)
             </el-alert>
             <el-form-item label="" prop="main_pic" label-width="0">
               <y-upload-image
-                v-model="goodForm.main_pic"
-                :limit="1"
-                tips="上传1张商品正面图"
+                  v-model="goodForm.main_pic"
+                  :limit="1"
+                  tips="上传1张商品正面图"
               />
             </el-form-item>
           </el-col>
           <el-col :span="24">
             <el-alert
-              type="info">
+                type="info">
               上传商品侧面图、背后图、模特图、细节图(用于轮播,请排好顺序, 商品主图为第1张轮播图)
             </el-alert>
             <el-form-item label="详情轮播图:" prop="carousels">
 
               <div style="width:485px;max-height:420px;overflow-y: scroll;">
-                  <y-upload-image
+                <y-upload-image
                     v-model="goodForm.carousels"
                     class="upload-carousels"
-                  />
+                />
 
               </div>
             </el-form-item>
@@ -64,8 +64,8 @@
             <el-form-item label="商品性别:" prop="gender">
 
               <y-radio
-                :options="[{value: '1',label: '男'},{value: '0',label: '女'},{value:'2',label:'中性'}]"
-                tips="可多选"
+                  :options="[{value: '1',label: '男'},{value: '0',label: '女'},{value:'2',label:'中性'}]"
+                  tips="可多选"
               />
             </el-form-item>
           </el-col>
@@ -73,8 +73,8 @@
           <!--          todo   可搜索  旁边添加品类  只能3级-->
           <el-col :span="24">
             <el-form-item
-              label="商品类别:"
-              prop="vip_price">
+                label="商品类别:"
+                prop="vip_price">
               <!--              <y-select-->
               <!--                v-model="goodForm.value45678"-->
               <!--              />-->
@@ -95,23 +95,23 @@
               <div class="y-flex ">
 
                 <el-cascader
-                  v-model="goodForm.value45678"
-                  :options="categoryList"
-                  :props="{ expandTrigger: 'hover' }"
-                  separator='     '
-                  @change="test"></el-cascader>
+                    v-model="goodForm.value45678"
+                    :options="categoryList"
+                    :props="{ expandTrigger: 'hover' }"
+                    separator='     '
+                    @change="test"></el-cascader>
 
                 <el-button
-                  class="y-m-l-10"
-                  type="primary"
-                  size="small"
-                  @click="showDialog('showCategoryFrom')">添加品类
+                    class="y-m-l-10"
+                    type="primary"
+                    size="small"
+                    @click="showDialog('showCategoryFrom')">添加品类
                 </el-button>
 
               </div>
               <y-dialog
-                v-model="showCategoryFrom"
-                @cfm="submitDialogForm('categoryFrom','showCategoryFrom','getCategoryList')"
+                  :visible.sync="showCategoryFrom"
+                  @cfm="submitDialogForm('categoryFrom','showCategoryFrom','getCategoryList')"
               >
                 <categoryFrom ref="categoryFrom"/>
               </y-dialog>
@@ -128,9 +128,9 @@
                 <el-form-item label="颜色选择:" prop="code">
 
                   <el-color-picker
-                    class="color-picker"
-                    v-model="colorForm.color"
-                    color-format="hsl"
+                      class="color-picker"
+                      v-model="colorForm.color"
+                      color-format="hsl"
                   ></el-color-picker>
 
                 </el-form-item>
@@ -140,8 +140,8 @@
 
                   <!--              todo 色系名称不能改, 色系代码区间可以自定义, -->
                   <y-select
-                    v-model="colorForm.group"
-                    :options="[
+                      v-model="colorForm.group"
+                      :options="[
                 {label:'红色系',value:'0-9'},
                 {label:'橙色系',value:'10-19'},
                 {label:'蓝色系',value:'20-29'},
@@ -160,9 +160,9 @@
                 <el-form-item label="色系代码:" prop="color_name">
 
                   <y-input
-                    v-model="colorForm.group"
-                    placeholder=""
-                    readonly
+                      v-model="colorForm.group"
+                      placeholder=""
+                      readonly
                   />
                 </el-form-item>
               </el-col>
@@ -171,11 +171,11 @@
               <el-col :span="6">
                 <el-form-item label="主色名称:" prop="color_name">
 
-                  <y-select-input
-                    v-model="colorForm.color_name"
-                    tips="请选择或直接输入名称"
-                    :multiple="false"
-                    :options="[
+                  <y-select
+                      v-model="colorForm.color_name"
+                      tips="请选择或直接输入名称"
+                      :multiple="false"
+                      :options="[
                 {label:'正红',value:'0'},
                 {label:'大红',value:'1'},
                 {label:'浅红',value:'2'},
@@ -189,9 +189,9 @@
               <el-col :span="6">
                 <el-form-item label="主色代码:" prop="code">
                   <y-select
-                    v-model="colorForm.code"
-                    tips="请输入该色系范围内的数字"
-                    :options="[{value:0,label:0},{value:1,label:1},{value:2,label:2},{value:3,label:3},{value:4,label:4},{value:5,label:5}]"
+                      v-model="colorForm.code"
+                      tips="请输入该色系范围内的数字"
+                      :options="[{value:0,label:0},{value:1,label:1},{value:2,label:2},{value:3,label:3},{value:4,label:4},{value:5,label:5}]"
                   />
                 </el-form-item>
               </el-col>
@@ -199,22 +199,22 @@
               <el-col :span="12">
                 <el-form-item label="辅色:" prop="code">
                   <el-tag
-                    class="y-m-r-10"
-                    :key="tag"
-                    v-for="tag in dynamicTags"
-                    closable
-                    :disable-transitions="false"
-                    @close="handleClose(tag)">
+                      class="y-m-r-10"
+                      :key="tag"
+                      v-for="tag in dynamicTags"
+                      closable
+                      :disable-transitions="false"
+                      @close="handleClose(tag)">
                     {{ tag }}
                   </el-tag>
                   <el-input
-                    class="input-new-tag"
-                    v-if="inputVisible"
-                    v-model="inputValue"
-                    ref="saveTagInput"
-                    size="small"
-                    @keyup.enter.native="handleInputConfirm"
-                    @blur="handleInputConfirm"
+                      class="input-new-tag"
+                      v-if="inputVisible"
+                      v-model="inputValue"
+                      ref="saveTagInput"
+                      size="small"
+                      @keyup.enter.native="handleInputConfirm"
+                      @blur="handleInputConfirm"
                   >
                   </el-input>
                   <el-button v-else class="button-new-tag" size="small" @click="showInput">添加辅色</el-button>
@@ -227,7 +227,7 @@
             <el-form-item label="商品颜色:" prop="vip_price">
 
               <y-select
-                v-model="goodForm.value4561"
+                  v-model="goodForm.value4561"
               />
 
               <el-button class="y-m-l-10" type="primary" size="small">添加颜色</el-button>
@@ -255,7 +255,7 @@
             <el-form-item label="商品名称:" prop="product_name">
 
               <y-input
-                v-model="goodForm.product_name"
+                  v-model="goodForm.product_name"
               />
             </el-form-item>
           </el-col>
@@ -272,10 +272,10 @@
               <!--              </y-select>-->
               <!--              <el-button class="y-m-l-10" type="primary" size="small">添加颜色</el-button>-->
 
-              <y-select-input
-                v-model="goodForm.value45161"
-                :multiple="false"
-                tips="请输入或选择图案"
+              <y-select
+                  v-model="goodForm.value45161"
+                  :multiple="false"
+                  tips="请输入或选择图案"
               />
               <!--              <el-select-->
               <!--                v-model="goodForm.value422561"-->
@@ -301,7 +301,7 @@
 
               <y-input
 
-                v-model="goodForm.type_sn"
+                  v-model="goodForm.type_sn"
               />
             </el-form-item>
           </el-col>
@@ -310,7 +310,7 @@
 
               <y-input
 
-                v-model="goodForm.value11234213"
+                  v-model="goodForm.value11234213"
               />
             </el-form-item>
           </el-col>
@@ -319,7 +319,7 @@
 
               <y-input
 
-                v-model="goodForm.value1123123"
+                  v-model="goodForm.value1123123"
               />
             </el-form-item>
           </el-col>
@@ -328,7 +328,7 @@
 
               <y-input
 
-                v-model="goodForm.value1123"
+                  v-model="goodForm.value1123"
               />
             </el-form-item>
           </el-col>
@@ -337,7 +337,7 @@
             <el-form-item label="吊牌价:" prop="original_price">
 
               <y-input
-                v-model="goodForm.original_price"
+                  v-model="goodForm.original_price"
               />
             </el-form-item>
           </el-col>
@@ -345,7 +345,7 @@
           <el-col :span="12">
             <el-form-item label="内购价:" prop="onsale_price">
               <y-input
-                v-model="goodForm.onsale_price"
+                  v-model="goodForm.onsale_price"
               />
             </el-form-item>
           </el-col>
@@ -357,7 +357,7 @@
           <el-col :span="12">
             <el-form-item label="尊享价:" prop="vip_price">
               <y-input
-                v-model="goodForm.vip_price"
+                  v-model="goodForm.vip_price"
               />
             </el-form-item>
           </el-col>
@@ -379,15 +379,15 @@
                       <el-tooltip content="请选择或直接输入标签" placement="top-start">
 
                         <el-select
-                          v-model="goodForm.value1"
-                          multiple
-                          allow-create
-                          filterable
-                          default-first-option
-                          placeholder="请选择版型标签"
+                            v-model="goodForm.value1"
+                            multiple
+                            allow-create
+                            filterable
+                            default-first-option
+                            placeholder="请选择版型标签"
                         >
                           <el-option
-                            v-for="item in [{
+                              v-for="item in [{
                               value: 'HTML',
                               label: '超级紧身'
                             }, {
@@ -397,9 +397,9 @@
                               value: 'JavaScript',
                               label: '修身'
                             }]"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item.value"
+                              :key="item.value"
+                              :label="item.label"
+                              :value="item.value"
                           />
                         </el-select>
                       </el-tooltip>
@@ -409,15 +409,15 @@
                   <el-col :span="12">
                     <el-form-item label="风格元素:" prop="vip_price">
                       <el-select
-                        v-model="goodForm.value2"
-                        multiple
-                        allow-create
-                        filterable
-                        default-first-option
-                        placeholder="请选择风格元素标签"
+                          v-model="goodForm.value2"
+                          multiple
+                          allow-create
+                          filterable
+                          default-first-option
+                          placeholder="请选择风格元素标签"
                       >
                         <el-option
-                          v-for="item in [{
+                            v-for="item in [{
                             value: 'HTML',
                             label: '少淑'
                           }, {
@@ -427,9 +427,9 @@
                             value: 'JavaScript',
                             label: '北欧'
                           }]"
-                          :key="item.value"
-                          :label="item.label"
-                          :value="item.value"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value"
                         />
                       </el-select>
                     </el-form-item>
@@ -438,15 +438,15 @@
                   <el-col :span="12">
                     <el-form-item label="细节特征:" prop="vip_price">
                       <el-select
-                        v-model="goodForm.value3"
-                        multiple
-                        allow-create
-                        filterable
-                        default-first-option
-                        placeholder="请选择细节特征标签"
+                          v-model="goodForm.value3"
+                          multiple
+                          allow-create
+                          filterable
+                          default-first-option
+                          placeholder="请选择细节特征标签"
                       >
                         <el-option
-                          v-for="item in [{
+                            v-for="item in [{
                             value: 'HTML',
                             label: '高腰'
                           }, {
@@ -456,9 +456,9 @@
                             value: 'JavaScript',
                             label: '拼接'
                           }]"
-                          :key="item.value"
-                          :label="item.label"
-                          :value="item.value"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value"
                         />
                       </el-select>
                     </el-form-item>
@@ -491,42 +491,42 @@
                     <el-col :span="12">
                       <el-form-item label="轮播图:" prop="vip_price">
                         <y-upload-image
-                          :limit="1"
+                            :limit="1"
                         />
                       </el-form-item>
                     </el-col>
                     <el-col :span="12">
                       <el-form-item label="风格类型:" prop="vip_price">
                         <y-input
-                          type="textarea"
+                            type="textarea"
                         />
                       </el-form-item>
                     </el-col>
                     <el-col :span="12">
                       <el-form-item label="时尚度:" prop="vip_price">
                         <y-input
-                          type="textarea"
+                            type="textarea"
                         />
                       </el-form-item>
                     </el-col>
                     <el-col :span="12">
                       <el-form-item label="设计来历:" prop="vip_price">
                         <y-input
-                          type="textarea"
+                            type="textarea"
                         />
                       </el-form-item>
                     </el-col>
                     <el-col :span="12">
                       <el-form-item label="创意细节:" prop="vip_price">
                         <y-input
-                          type="textarea"
+                            type="textarea"
                         />
                       </el-form-item>
                     </el-col>
                     <el-col :span="12">
                       <el-form-item label="细节图:" prop="vip_price">
                         <y-upload-image
-                          :limit="3"
+                            :limit="3"
                         />
                       </el-form-item>
                     </el-col>
@@ -545,21 +545,21 @@
                 <el-col :span="12">
                   <el-form-item label="面料/做工:" prop="vip_price">
                     <y-input
-                      type="textarea"
+                        type="textarea"
                     />
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item label="适穿人群/场合:" prop="vip_price">
                     <y-input
-                      type="textarea"
+                        type="textarea"
                     />
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item label="穿着效果:" prop="vip_price">
                     <y-input
-                      type="textarea"
+                        type="textarea"
                     />
                   </el-form-item>
                 </el-col>
@@ -577,9 +577,9 @@
             <div class="">
 
               <el-tree
-                :data="categoryList"
-                :props="categoryProp"
-                show-checkbox
+                  :data="categoryList"
+                  :props="categoryProp"
+                  show-checkbox
               />
             </div>
 

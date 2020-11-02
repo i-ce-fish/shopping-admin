@@ -53,7 +53,7 @@
                     <div>
                       <el-button size="small" type="primary" plain @click="showTagForm =!showTagForm">添加标签</el-button>
                     </div>
-                    <y-dialog v-model="showTagForm" title="添加标签/关键词" @cfm="submitTagForm">
+                    <y-dialog :visible.sync="showTagForm" title="添加标签/关键词" @cfm="submitTagForm">
                       <!--  todo api完善-->
                       <y-form>
                         <el-form-item label="标签/关键词">

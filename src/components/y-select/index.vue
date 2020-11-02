@@ -1,34 +1,10 @@
 <template>
   <y-tooltip :tips="tips">
     <el-select
-        :id="id"
         v-model="result"
         :placeholder="placeholder"
-        :disabled="disabled"
-        :size="size"
-        :name="name"
-        :autocomplete="autocomplete"
-        :automatic-dropdown="automaticDropdown"
-        :clearable="clearable"
-        :filterable="filterable"
-        :allow-create="allowCreate"
-        :loading="loading"
-        :popper-class="popperClass"
-        @change="change"
-        @focus="focus"
-        :remote="remote"
-        :loading-text="loadingText"
-        :no-match-text="noMatchText"
-        :no-data-text="noDataText"
-        :remote-method="remoteMethod"
-        :filter-method="filterMethod"
-        :multiple="multiple"
-        :multiple-limit="multipleLimit"
-        :default-first-option="defaultFirstOption"
-        :reserve-keyword="reserveKeyword"
-        :value-key="valueKey"
-        :collapse-tags="collapseTags"
-        :popper-append-to-body="popperAppendToBody"
+        v-bind="$attrs"
+        v-on="$listeners"
     >
       <el-option
           v-for="item in innerOptions"
@@ -48,10 +24,6 @@ export default {
   props: {
     // 接口地址
     api: String,
-    disabled: {
-      type: Boolean,
-      default: false
-    },
     // 严格区分类型
     value: {
       required: true
@@ -86,50 +58,9 @@ export default {
         label: '北京烤鸭'
       }]
     },
-    size: {
-      type: String,
-      // default: 'small',
-      required: false
-    },
-
-    name: String,
-    id: String,
-
-    autocomplete: {
-      type: String,
-      default: 'off'
-    },
-    automaticDropdown: Boolean,
-    clearable: Boolean,
-    filterable: Boolean,
-    allowCreate: Boolean,
-    loading: Boolean,
-    popperClass: String,
-    remote: Boolean,
-    loadingText: String,
-    noMatchText: String,
-    noDataText: String,
-    remoteMethod: Function,
-    filterMethod: Function,
-    multiple: Boolean,
-    multipleLimit: {
-      type: Number,
-      default: 0
-    },
     placeholder: {
       type: String,
       default: '请选择'
-    },
-    defaultFirstOption: Boolean,
-    reserveKeyword: Boolean,
-    valueKey: {
-      type: String,
-      default: 'value'
-    },
-    collapseTags: Boolean,
-    popperAppendToBody: {
-      type: Boolean,
-      default: true
     },
     // 输入提示
     tips: {
@@ -162,12 +93,6 @@ export default {
     this.initData()
   },
   methods: {
-    change() {
-      this.$emit('input', this.result)
-    },
-    focus(e) {
-      this.$emit('focus', e)
-    },
     async initData() {
       if (this.api) {
         const res = await request({
@@ -182,6 +107,7 @@ export default {
         // }))
       }
     }
+
   }
 }
 </script>
