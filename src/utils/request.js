@@ -8,7 +8,7 @@ let loading = null
 let loadTotal = 0
 
 /**
- * 请求过程中的圆圈
+ * 请求过程中的加载动画
  */
 function ajaxBefore() {
   if (loading == null) {
@@ -26,8 +26,7 @@ function ajaxBefore() {
  * 关闭圆圈
  * @param loadingId 圆圈事件的定时器id
  */
-function ajaxAfter(loadingId) {
-  clearTimeout(loadingId)
+function ajaxAfter() {
   if (loading) {
     loadTotal--
     if (loadTotal === 0) {
@@ -50,7 +49,7 @@ service.interceptors.request.use(
   (config) => {
     // do something before request is sent
 
-    console.warn(`发送并处理过的数据请求:${config.url}`, config)
+    console.warn(`发送请求:${config.url}`, config)
 
     if (store.getters.token) {
       config.headers.Authorization = `Bearer ${getToken()}`
@@ -79,7 +78,7 @@ service.interceptors.response.use(
    */
   (response) => {
     const res = response.data
-    console.warn('返回并处理过的数据', res)
+    console.warn('响应请求', res)
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 200) {
       Message({
@@ -88,6 +87,7 @@ service.interceptors.response.use(
         duration: 3 * 1000
       })
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
+      // todo  需要配置错误码和错误信息
       if (res.code === 401 || res.code === 500) {
         const map = new Map([[401, '没有授权'], [500, '登录已过期']])
 
@@ -121,14 +121,28 @@ service.interceptors.response.use(
   }
 )
 
-async function http(params = {}) {
+/**
+ *  过滤请求时间小于[timeout] 的加载动画
+ * @param callback
+ * @param timeout
+ */
+async function loadingAopAround(callback, timeout) {
   //  100ms后才执行,过滤请求时间<100ms的loading
-  const loadingId = setTimeout(ajaxBefore, 50)
+  const loadingId = setTimeout(ajaxBefore, timeout)
   // 无论请求结果如何, 都会执行finally
-  const data = await service(params)
+  await callback()
     .finally(() => {
-      ajaxAfter(loadingId)
+      clearTimeout(loadingId)
+      ajaxAfter()
     })
+}
+
+async function http(params = {}) {
+  let data = null
+  // 增加加载动画效果
+  await loadingAopAround(async() => {
+    data = await service(params)
+  }, 50)
   return data
 }
 

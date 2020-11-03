@@ -3,19 +3,8 @@
 
     <el-input-number
       v-model="result"
-      :min="min"
-      :max="max"
-      :step="step"
-      :step_strictly="stepStrictly"
-      :disabled="disabled"
-      :size="size"
-      :controls="controls"
-      :controls_position="controlsPosition"
-      :name="name"
-      @change="handleChange"
-      :label="label"
-      :placeholder="placeholder"
-      :precision="precision"
+      v-bind="$attrs"
+      v-on="$listeners"
     />
   </y-tooltip>
 </template>
@@ -23,42 +12,6 @@
 export default {
   props: {
     value: Number,
-
-    step: {
-      type: Number,
-      default: 1
-    },
-    stepStrictly: {
-      type: Boolean,
-      default: false
-    },
-    max: {
-      type: Number,
-      default: 100
-    },
-    min: {
-      type: Number,
-      default: 0
-    },
-    disabled: Boolean,
-    size: String,
-    controls: {
-      type: Boolean,
-      default: true
-    },
-    controlsPosition: {
-      type: String,
-      default: ''
-    },
-    name: String,
-    label: String,
-    placeholder: String,
-    precision: {
-      type: Number,
-      validator(val) {
-        return val >= 0 && val === parseInt(val, 10)
-      }
-    },
     // 输入提示
     tips: {
       type: String,
@@ -75,9 +28,6 @@ export default {
     }
   },
   methods: {
-    handleChange() {
-      this.$emit('input', this.result)
-    }
   }
 }
 </script>

@@ -338,7 +338,7 @@
           <!--    添加编辑材质1级属性-->
 
           <y-dialog
-            v-model="materialDialog1"
+              :visible.sync="materialDialog1"
             :title="materialTitle"
             @cfm="confirmMaterial('1')"
             @close="closeMaterial('1')"
@@ -356,7 +356,7 @@
 
           <!--    添加编辑材质二级属性-->
           <y-dialog
-            v-model="materialDialog2"
+              :visible.sync="materialDialog2"
             :title="materialTitle"
             @cfm="confirmMaterial('2')"
             @close="closeMaterial('2')"
@@ -381,7 +381,7 @@
 
           <!--    添加编辑颜色-->
           <y-dialog
-            v-model="colorDialog"
+              :visible.sync="colorDialog"
             :title="colorSizeTitle"
             @cfm="confirmColorSize('color')"
             @close="closeColorSize('color')"
@@ -416,7 +416,7 @@
 
           <!--    添加编辑尺码-->
           <y-dialog
-            v-model="sizeDialog"
+              :visible.sync="sizeDialog"
             :title="colorSizeTitle"
             @cfm="confirmColorSize('size')"
             @close="closeColorSize('size')"

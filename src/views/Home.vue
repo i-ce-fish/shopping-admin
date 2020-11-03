@@ -1,7 +1,11 @@
 <template>
   <div class="dashboard app-container">
+    {{value}}
+    <!--    <test v-model="value" :options="options" test="asdf"  ></test>-->
+    <test v-model="value" :options="options" test="asdf"></test>
     爷组件
     <father></father>
+    ----
     <el-row type="flex">
       <el-col v-for="i in 4" :key="i">
         <el-card class="box-card">
@@ -159,12 +163,14 @@
 import Tinymce from '@/components/tinymce/tinymce.vue'
 import wxHome from '@/views/mock-wx/home.vue'
 import father from '@/views/test/demo/father'
+import test from '@/components/y-cascader-input'
 
 export default {
   components: {
     Tinymce,
     wxHome,
-    father
+    father,
+    test
   },
   data() {
     return {
@@ -172,8 +178,19 @@ export default {
       settingRules: {},
       content: '',
       questionForm: {},
-      options: ['0']
+      options: [{
+        value: '1',
+        label: '23'
+      }, {
+        value: '12',
+        label: '223',
+        children: [{
+          value: '123',
+          label: '123123'
+        }]
+      }],
 
+      value: []
     }
   },
   created() {

@@ -3,13 +3,8 @@
 
     <el-checkbox-group
         v-model="result"
-        :disabled="disabled"
-        :min="min"
-        :max="max"
-        :size="size"
-        :fill="fill"
-        :text-color="textColor"
-        @change="change"
+        v-on="$listeners"
+        v-bind="$attrs"
     >
       <el-checkbox
           v-for="item of options"
@@ -57,14 +52,6 @@ export default {
         label: '北京烤鸭'
       }]
     },
-    label: {},
-    disabled: Boolean,
-    min: Number,
-    max: Number,
-    size: String,
-    fill: String,
-    textColor: String,
-
     // 输入提示
     tips: {
       type: String,
@@ -82,9 +69,6 @@ export default {
     }
   },
   methods: {
-    change() {
-      this.$emit('input', this.result)
-    }
   }
 }
 </script>

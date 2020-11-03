@@ -3,23 +3,23 @@
     <el-card class="box-card">
       <h3>新增面料后整理名称</h3>
       <y-form
-        ref="goodtrimForm"
-        :model="goodtrimForm"
-        :rules="goodtrimRules"
-        label-width="100px"
+          ref="goodtrimForm"
+          :model="goodtrimForm"
+          :rules="goodtrimRules"
+          label-width="100px"
       >
         <el-row>
 
           <el-col :span="12">
             <el-form-item
-              label="后整理名称"
-              prop="trimmed_name"
+                label="后整理名称"
+                prop="trimmed_name"
 
             >
 
               <y-input
 
-                v-model="goodtrimForm.trimmed_name"
+                  v-model="goodtrimForm.trimmed_name"
 
               />
 
@@ -28,14 +28,14 @@
 
           <el-col :span="12">
             <el-form-item
-              label="后整理别名"
-              prop="trimmed_alias"
+                label="后整理别名"
+                prop="trimmed_alias"
 
             >
 
               <y-input
 
-                v-model="goodtrimForm.trimmed_alias"
+                  v-model="goodtrimForm.trimmed_alias"
 
               />
 
@@ -44,14 +44,38 @@
 
           <el-col :span="12">
             <el-form-item
-              label="功能效果"
-              prop="intro"
+                label="功效"
+                prop="trimmed_effect"
+            >
+              <y-input
+                  v-model="goodtrimForm.intro"
+                  type="textarea"
+              />
+
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="12">
+            <el-form-item
+                label="图片/视频"
+                prop="photo_video"
+            >
+              <y-upload-image
+                  v-model="goodtrimForm.intro"
+              />
+
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item
+                label="功能效果"
+                prop="intro"
 
             >
 
               <y-input
 
-                v-model="goodtrimForm.intro"
+                  v-model="goodtrimForm.intro"
 
               />
 

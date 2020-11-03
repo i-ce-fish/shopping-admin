@@ -11,7 +11,7 @@
       <el-col :span="12">
         <el-form-item label="大类:" prop="" class="el-form-item">
 
-          <y-select-input
+          <y-select
 
               v-model="categoryForm.value56465"
               :multiple="false"
@@ -22,7 +22,7 @@
       <el-col :span="12">
         <el-form-item label="小类:" prop="">
 
-          <y-select-input
+          <y-select
 
               v-model="categoryForm.value5754"
               :multiple="false"
