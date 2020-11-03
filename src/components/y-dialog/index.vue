@@ -1,11 +1,11 @@
 <template>
   <el-dialog
-    :title="title"
-    :visible.sync="visible"
-    :width="width"
-    :before-close="beforeClose"
-    v-bind="$attrs"
-    v-on="$listeners"
+      :title="title"
+      :visible.sync="visible"
+      :width="width"
+      :before-close="beforeClose"
+      v-bind="$attrs"
+      v-on="$listeners"
   >
     <slot/>
     <span slot="footer">
@@ -37,15 +37,9 @@ export default {
     }
   },
   data() {
-    return {
-      dialogShow: this.value
-    }
+    return {}
   },
-  watch: {
-    value(val) {
-      this.dialogShow = val
-    }
-  },
+  watch: {},
   created() {
   },
   methods: {
@@ -53,8 +47,7 @@ export default {
       this.close()
     },
     close() {
-      this.dialogShow = false
-      this.$emit('update:visible', this.dialogShow)
+      this.$emit('update:visible', false)
       this.$emit('close')
     },
     confirm() {

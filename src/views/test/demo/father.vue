@@ -24,8 +24,13 @@ export default {
   },
   data() {
     return {
-      fatherData: ''
+      fatherData: {}
     }
+  },
+  created() {
+    setTimeout(() => {
+      this.fatherData.a = 'new Data'
+    }, 500)
   },
   methods: {
     // 每次触发trigger事件就会执行这个方法

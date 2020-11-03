@@ -4,16 +4,16 @@
     接收的外部参数width:{{ width }}<br/>
     内部参数:innerData:{{ innerData }}<br/>
     <input v-model="innerData" @input="onInput" :style="{width:width}"/>
-    <slot  :childData="childData2" :otherData="{name:'576767'}"></slot>
+    <slot :childData="childData2" :otherData="{name:'576767'}"></slot>
     <br/>
     <slot name="footer"></slot>
   </div>
-</template>
+</template>3
 <script>
 export default {
   props: {
     // 文本框的值
-    // value: [String],
+    value: [String],
 
     // 宽度
     width: {
@@ -35,6 +35,12 @@ export default {
     return {
       innerData: '',
       childData2: '子组件的数据'
+    }
+  },
+  watch: {
+    value(val) {
+      this.value = val
+      console.log(val)
     }
   },
   methods: {
