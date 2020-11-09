@@ -1,7 +1,5 @@
 <template>
   <div>
-    {{header}}<br/>
-    {{dropHeader}}
     <el-table
         :class="tableClass"
         :data="tableData"

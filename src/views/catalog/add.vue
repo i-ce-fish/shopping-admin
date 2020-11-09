@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { addCatalog } from '../../api/catalog'
+import { addCatalog } from '@/api/catalog'
 
 export default {
 

@@ -82,7 +82,7 @@ service.interceptors.response.use(
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 200) {
       Message({
-        message: `error code ${res.code}: ${res.msg}` || 'Unknow Error',
+        message: `error code ${res.code}: ${res.msg}` || 'Unknown Error',
         type: 'error',
         duration: 3 * 1000
       })

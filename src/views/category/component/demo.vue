@@ -2,15 +2,12 @@
   <el-row :gutter="10" type="flex" class="tag-category">
     <el-col :span="8">
       <div>
-        <el-tag
-            effect="plain"
-            type="info"
-            color="">大类
+        <el-tag effect="plain" type="info">大类
         </el-tag>
       </div>
       <div>
         <el-tag effect="light" type="info">
-          {{lCategory}}
+          {{Large_Category}}
         </el-tag>
       </div>
     </el-col>
@@ -22,7 +19,7 @@
       </div>
       <div>
         <el-tag effect="light" type="info">
-          {{sCategory}}
+          {{Small_Category}}
         </el-tag>
       </div>
     </el-col>
@@ -37,10 +34,10 @@
       </div>
       <div>
         <el-tag effect="light" type="info">
-          {{xsCategory}}
+          {{Specific_Category}}
         </el-tag>
         <el-tag style="width: 50px;" effect="light" type="info">
-          {{xsCode}}
+          {{Category_Code}}
         </el-tag>
       </div>
     </el-col>
@@ -50,25 +47,25 @@
 export default {
   props: {
     // 大类
-    lCategory: {
+    Large_Category: {
       type: String,
       required: true
     },
     // 小类
-    sCategory: {
+    Small_Category: {
       type: String,
       default: null,
       required: true
     },
     // 品类
-    xsCategory: {
+    Specific_Category: {
       type: String,
       default: null,
       required: true
     },
 
     // 品类代码
-    xsCode: {
+    Category_Code: {
       type: String,
       default: null,
       required: true

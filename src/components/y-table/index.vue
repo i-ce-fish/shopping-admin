@@ -28,7 +28,7 @@
       :header-cell-class-name="headerCellClassName"
       :header-cell-style="headerCellStyle"
       :highlight-current-row="highlightCurrentRow"
-      :curren-row-key="currentRowKey"
+      :current-row-key="currentRowKey"
       :empty-text="emptyText"
       :expand-row-keys="expandRowKeys"
       :default-sort="defaultSort"
@@ -36,7 +36,7 @@
       :span-method="spanMethod"
       :select-on-indeterminate="selectOnIndeterminate"
       :indent="indent"
-      :tree--props="treeProps"
+      :tree-props="treeProps"
       :lazy="lazy"
       :load="load"
     >
