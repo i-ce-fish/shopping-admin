@@ -7,19 +7,11 @@
         v-bind="$attrs"
     >
       <el-checkbox
+
           v-for="item of options"
           :id="item.id"
           :key="item.value"
-          :label="item.value"
-          :indeterminate="item.indeterminate"
-          :disabled="item.disabled"
-          :checked="item.checked"
-          :name="item.name"
-          :true-label="item.trueLabel"
-          :false-label="item.falseLabel"
-          :controls="item.controls"
-          :border="item.border"
-          :size="item.size"
+          v-bind="item"
       >
         {{item.label}}
       </el-checkbox>

@@ -26,10 +26,10 @@ export function jsonToObj(obj, props) {
 }
 
 /**
- * 序列化对象的属性
- * @param obj
- * @param props 属性数组
- * @returns {*}
+ * 序列化对象的部分属性
+ * @param obj<Object>
+ * @param props<Array> 属性数组
+ * @returns iObj<Object>
  */
 export function objToJson(obj, props) {
   // 深拷贝， 直接修改对象会导致y-upload组件报错，expect get array but  string
